@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/dropdownMenu.dart';
 import 'package:scouting_platform/utils/numberFieldWithCounter.dart';
@@ -55,23 +56,36 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Navigation sidebar
+      drawer: NavigationSidebar(),
+      // Background color and pixel resize fix
       backgroundColor: AppStyle.primaryColor,
       resizeToAvoidBottomInset: false,
+
+      // Top navigation bar
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(40.0),
+          child: AppBar(
+            backgroundColor: AppStyle.textInputColor,
+            title: const Text("Scouting Platform - 2023"),
+          )),
+
+      // Body (input fields)
       body: Column(
         children: [
           const Padding(padding: EdgeInsets.only(top: 28.0)),
-          Center(
-            // Generate QR code image
-            child: QrImage(
-              // JSON data to add to the QR code
-              // TODO: Add this to the scanner app for smaller data transfer
-              data: "$initials $teamNumber $matchNumber $matchType" +
-                  _controller.text,
-              backgroundColor: Colors.white,
-              version: QrVersions.auto,
-              size: 300.0,
-            ),
-          ),
+          // Center(
+          //   // Generate QR code image
+          //   child: QrImage(
+          //     // JSON data to add to the QR code
+          //     // TODO: Add this to the scanner app for smaller data transfer
+          //     data: "$initials $teamNumber $matchNumber $matchType" +
+          //         _controller.text,
+          //     backgroundColor: Colors.white,
+          //     version: QrVersions.auto,
+          //     size: 300.0,
+          //   ),
+          // ),
           const SizedBox(
             height: 24,
           ),
