@@ -51,9 +51,11 @@ class _TextInputFieldState extends State<TextInputField> {
         style: TextStyle(
           color: textColor,
           fontSize: widget.textInputFontSize,
+          fontFamily: 'Helvetica',
         ),
         decoration: InputDecoration(
           hintText: widget.hintText,
+          hintStyle: const TextStyle(fontFamily: 'Helvetica'),
           filled: true,
           fillColor: widget.inputFieldColor,
           border: widget.inputFieldBorder,

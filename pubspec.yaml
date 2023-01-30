@@ -52,6 +52,16 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: "HesDeadJim"
+      fonts:
+        - asset: "fonts/HesDeadJim.ttf"
+    - family: "Futura"
+      fonts:
+        - asset: "fonts/FUTURALT-BOOK.ttf"
+    - family: "Helvetica"
+      fonts:
+        - asset: "fonts/Helvetica.ttf"
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

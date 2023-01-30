@@ -28,22 +28,18 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+  // Number input field controllers
+  static TextEditingController _controller = TextEditingController(text: "0");
+
+  // Team and match information
+  static late String initials = "";
+  static late String matchNumber = "";
+  static late String teamNumber = "";
+  static late String matchType = "Match Type";
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Number input field controllers
-  final TextEditingController _controller = TextEditingController(text: "0");
-
-  // Match and team data
-  late String initials = "";
-  late String matchNumber = "";
-  late String teamNumber = "";
-  late String test = "0";
-
-  // Selected match type (this is the default)
-  late String matchType = "Match Type";
-
-  // All match types for potential matches
+  // Dropdown menu options
   final List<String> matchTypes = [
     'Match Type',
     'Practice',
@@ -67,7 +63,11 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize: const Size.fromHeight(40.0),
           child: AppBar(
             backgroundColor: AppStyle.textInputColor,
-            title: const Text("Scouting Platform - 2023"),
+            title: const Text(
+              "Scouting Platform - 2023",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontFamily: 'Futura'),
+            ),
           )),
 
       // Body (input fields)
@@ -77,8 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
           // Center(
           //   // Generate QR code image
           //   child: QrImage(
-          //     // JSON data to add to the QR code
-          //     // TODO: Add this to the scanner app for smaller data transfer
           //     data: "$initials $teamNumber $matchNumber $matchType" +
           //         _controller.text,
           //     backgroundColor: Colors.white,
@@ -112,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(top: 24.0),
                     onChanged: (value) {
                       setState(() {
-                        initials = value;
+                        HomeScreen.initials = value;
                       });
                     },
                     textAlign: TextAlign.center,
@@ -123,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(top: 24.0),
                     onChanged: (value) {
                       setState(() {
-                        teamNumber = value;
+                        HomeScreen.teamNumber = value;
                       });
                     },
                     textAlign: TextAlign.center,
@@ -132,10 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 // "Match type" dropdown menu
                 DropdownMenu(
                     margin: const EdgeInsets.only(top: 24.0),
-                    dropdownMenuSelectedItem: matchType,
+                    dropdownMenuSelectedItem: HomeScreen.matchType,
                     onChanged: (value) {
                       setState(() {
-                        matchType = value;
+                        HomeScreen.matchType = value;
                       });
                     },
                     dropdownItems: matchTypes),
@@ -145,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsets.only(top: 24.0),
                     onChanged: (value) {
                       setState(() {
-                        matchNumber = value;
+                        HomeScreen.matchNumber = value;
                       });
                     },
                     textAlign: TextAlign.center,
@@ -182,21 +180,22 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               // Number input field creation
               NumberInputFieldWithCounter(
-                controller: _controller,
+                controller: HomeScreen._controller,
                 onTapIncrement: () {
-                  int currentValue = int.parse(_controller.text);
+                  int currentValue = int.parse(HomeScreen._controller.text);
                   setState(() {
                     currentValue++;
-                    _controller.text =
+                    HomeScreen._controller.text =
                         (currentValue > 0 ? currentValue : 0).toString();
                   });
                 },
                 onTapDecrement: () {
-                  int currentValue = int.parse(_controller.text);
+                  int currentValue = int.parse(HomeScreen._controller.text);
                   setState(() {
                     currentValue--;
-                    _controller.text = (currentValue > 0 ? currentValue : 0)
-                        .toString(); // decrementing value
+                    HomeScreen._controller.text =
+                        (currentValue > 0 ? currentValue : 0)
+                            .toString(); // decrementing value
                   });
                 },
               ),
@@ -205,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //margin: const EdgeInsets.only(top: 24.0),
                   onChanged: (value) {
                     setState(() {
-                      teamNumber = value;
+                      HomeScreen.teamNumber = value;
                     });
                   },
                   textAlign: TextAlign.center,
@@ -215,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //margin: const EdgeInsets.only(top: 24.0),
                   onChanged: (value) {
                     setState(() {
-                      teamNumber = value;
+                      HomeScreen.teamNumber = value;
                     });
                   },
                   textAlign: TextAlign.center,
@@ -226,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //margin: const EdgeInsets.only(top: 24.0),
                   onChanged: (value) {
                     setState(() {
-                      matchNumber = value;
+                      HomeScreen.matchNumber = value;
                     });
                   },
                   textAlign: TextAlign.center,
