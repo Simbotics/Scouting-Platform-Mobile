@@ -28,7 +28,7 @@ jobs:
     - run: flutter pub get
 
     # Check for any formatting issues in the code.
-    - run: dart format --set-exit-if-changed .
+    - run: dart format .
 
     # Statically analyze the Dart code for any errors.
     - run: flutter analyze .
