@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -24,7 +25,7 @@ class FieldSketchpad extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomeScreen();
+              return const HomeScreen();
             }));
           },
           child: const Center(

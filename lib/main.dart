@@ -1,4 +1,3 @@
-import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/routes/splashpage.dart';
 import 'package:scouting_platform/text/title.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               )),
 
           body: SingleChildScrollView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               children: [
                 const SizedBox(
@@ -161,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       text: "Auto",
                       padding: EdgeInsets.only(top: 0.0, left: 18.0)),
                   Container(
-                    padding: EdgeInsets.only(left: 290),
+                    padding: const EdgeInsets.only(left: 290),
                     child: Transform.scale(
                       scale: 1.5,
                       child: Switch(

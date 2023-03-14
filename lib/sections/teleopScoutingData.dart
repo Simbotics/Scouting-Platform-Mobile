@@ -1,14 +1,10 @@
+// ignore_for_file: file_names
 import 'dart:async';
 
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../utils/dropdownMenu.dart';
 import '../utils/numberFieldWithCounter.dart';
-import '../utils/numberInputField.dart';
-import '../utils/textInputField.dart';
-import 'autoScoutingData.dart';
 
 class TeleopScoutingData extends StatefulWidget {
   const TeleopScoutingData({

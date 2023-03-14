@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/sections/teamMatchInformation.dart';
 import 'package:scouting_platform/sections/teleopScoutingData.dart';
 import 'package:screenshot/screenshot.dart';

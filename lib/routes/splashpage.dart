@@ -24,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
             //resizeToAvoidBottomInset: false,
             body: Center(
           child: SingleChildScrollView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

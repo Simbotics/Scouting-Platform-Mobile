@@ -1,7 +1,7 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -31,7 +31,7 @@ class CurrentQRCode extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomeScreen();
+              return const HomeScreen();
             }));
           },
           child: Center(

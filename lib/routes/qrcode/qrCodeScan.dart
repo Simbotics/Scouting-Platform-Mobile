@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'dart:io';
 
 import 'package:csv/csv.dart';
@@ -34,7 +35,7 @@ class ScanQRCode extends StatelessWidget {
         fit: BoxFit.contain,
         onDetect: (capture) {
           barcodes = capture.barcodes; // Barcode(s) scanned
-          final Uint8List? image = capture.image; // Image of QR code
+          //final Uint8List? image = capture.image; // Image of QR code
           for (final barcode in barcodes) {
             barcodeStrings = barcode.rawValue?.split(",");
             fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
@@ -197,7 +198,9 @@ class ScanQRCode extends StatelessWidget {
 
   static Future<File> writeToFile(String fileName, String fileContents) async {
     final file = await createFileInAppDirectory(fileName);
-    print("Writing to file...");
+    if (kDebugMode) {
+      print("Writing to file...");
+    }
     return file.writeAsString(fileContents);
   }
 }

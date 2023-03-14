@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_returning_null_for_void, file_names
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';

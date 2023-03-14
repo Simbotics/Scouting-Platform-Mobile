@@ -1,14 +1,10 @@
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
+// ignore_for_file: file_names
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
 import '../routes/comments.dart';
 import '../utils/dropdownMenu.dart';
-import '../utils/numberFieldWithCounter.dart';
 import '../utils/numberInputField.dart';
-import '../utils/textInputField.dart';
-import 'autoScoutingData.dart';
 
 class TeamAndMatchData extends StatefulWidget {
   const TeamAndMatchData({
@@ -41,12 +37,6 @@ class _TeamAndMatchDataState extends State<TeamAndMatchData> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> balanceOptions = [
-      'Attempted',
-      'No Attempt',
-      'Succeeded'
-    ];
-
     final List<String> allianceOptions = ['Blue', 'Red'];
 
     return Column(

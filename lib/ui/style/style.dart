@@ -1,4 +1,3 @@
-//We will set the app style colors
 import 'package:flutter/material.dart';
 
 class AppStyle {

@@ -1,7 +1,6 @@
-import 'package:scouting_platform/main.dart';
+// ignore_for_file: file_names
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class StopwatchButton extends StatelessWidget {
   final String variable;
@@ -21,7 +20,7 @@ class StopwatchButton extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20.0),
       child: ElevatedButton(
         child: Text(text,
-            style: TextStyle(fontSize: 16.0, fontFamily: "Helvetica")),
+            style: const TextStyle(fontSize: 16.0, fontFamily: "Helvetica")),
         style: ElevatedButton.styleFrom(
             minimumSize: const Size(150.0, 47.0),
             backgroundColor: AppStyle.textInputColorLight),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/text/title.dart';
 
-import '../main.dart';
 import '../sections/comments.dart';
 import '../ui/style/style.dart';
 

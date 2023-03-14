@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-/**
- * Gets a specific key from the config file.
- */
+/// Gets a specific key from the config file.
 get(String key) async {
   final configFile = File('config.json');
   final jsonString = await configFile.readAsString();

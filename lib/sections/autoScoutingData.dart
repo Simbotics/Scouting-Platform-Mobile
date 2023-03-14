@@ -1,10 +1,6 @@
-import 'dart:async';
-
-import 'package:scouting_platform/ui/style/style.dart';
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../utils/dropdownMenu.dart';
 import '../utils/numberFieldWithCounter.dart';
 
 class AutoScoutingData extends StatefulWidget {
@@ -32,9 +28,7 @@ class AutoScoutingData extends StatefulWidget {
   static final TextEditingController autoBalanceTime =
       TextEditingController(text: "0");
 
-  /**
-   * AUTO
-   */
+  /// AUTO
 
   // Auto scouting data
   static int autoScoredLow = int.parse(AutoScoutingData.autoLowController.text);
