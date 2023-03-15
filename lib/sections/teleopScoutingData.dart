@@ -52,12 +52,6 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> balanceOptions = [
-      'Attempted',
-      'No Attempt',
-      'Succeeded'
-    ];
-
     return Column(
       children: [
         Row(
@@ -476,7 +470,7 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
         TeleopScoutingData.teleopBalanceIsRunning = false;
       } else {
         TeleopScoutingData.teleopBalanceTimer =
-            Timer.periodic(Duration(seconds: 1), (Timer timer) {
+            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
           setState(() {
             TeleopScoutingData.teleopBalanceElapsedSeconds++;
           });
@@ -493,7 +487,7 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
         TeleopScoutingData.autoBalanceIsRunning = false;
       } else {
         TeleopScoutingData.autoBalanceTimer =
-            Timer.periodic(Duration(seconds: 1), (Timer timer) {
+            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
           setState(() {
             TeleopScoutingData.autoBalanceElapsedSeconds++;
           });

@@ -74,11 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                Row(children: const [
-                  TitleStyle(
-                      text: "Team & Match Information",
-                      padding: EdgeInsets.only(left: 18.0)),
-                ]),
+                const TitleStyle(
+                    text: "Team & Match Information",
+                    padding: EdgeInsets.only(left: 18.0)),
 
                 Align(
                   alignment: Alignment.centerLeft,
