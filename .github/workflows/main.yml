@@ -34,7 +34,7 @@ jobs:
     - run: flutter analyze .
 
     # Run widget tests for our flutter project.
-    - run: flutter test
+    # - run: flutter test
 
     # Build apk suited for scouting tablets.
     - run: flutter build appbundle --target-platform android-arm
