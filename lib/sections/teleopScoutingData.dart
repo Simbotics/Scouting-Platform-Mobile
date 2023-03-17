@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/numberFieldWithCounter.dart';
+import '../builders/numberFieldWithCounter.dart';
 
 class TeleopScoutingData extends StatefulWidget {
   const TeleopScoutingData({
@@ -22,6 +22,8 @@ class TeleopScoutingData extends StatefulWidget {
       TextEditingController(text: "0");
   static final TextEditingController teleopConeMissedController =
       TextEditingController(text: "0");
+  static final TextEditingController teleopConeDroppedController =
+      TextEditingController(text: "0");
 
   static final TextEditingController teleopCubeLowController =
       TextEditingController(text: "0");
@@ -31,9 +33,18 @@ class TeleopScoutingData extends StatefulWidget {
       TextEditingController(text: "0");
   static final TextEditingController teleopCubeMissedController =
       TextEditingController(text: "0");
+  static final TextEditingController teleopCubeDroppedController =
+      TextEditingController(text: "0");
+
+  static final TextEditingController teleopBalanceTimeController =
+      TextEditingController(text: "");
+  static final TextEditingController autoBalanceTimeController =
+      TextEditingController(text: "");
 
   // Teleop balancing data
   static String teleopBalance = "No Attempt";
+
+  static String teleopMobility = "No";
 
   static bool teleopBalanceIsRunning = false;
   static int teleopBalanceElapsedSeconds = 0;
@@ -118,21 +129,21 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: 200,
-                  padding: const EdgeInsets.only(top: 7.0, left: 10.0),
-                  child: const Text(
-                    "Time To Balance In Auto",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Container(
+              //     width: 200,
+              //     padding: const EdgeInsets.only(top: 7.0, left: 10.0),
+              //     child: const Text(
+              //       "Time To Balance In Auto",
+              //       textAlign: TextAlign.left,
+              //       style: TextStyle(
+              //           color: Colors.white,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 15.0),
+              //     ),
+              //   ),
+              // ),
               // Align(
               //   alignment: Alignment.centerLeft,
               //   child: Container(
@@ -246,23 +257,6 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
                           .toString(); // decrementing value
                 });
               },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: SizedBox(
-                height: 47,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppStyle.textInputColor),
-                  onPressed: toggleAutoBalanceStopwatch,
-                  child: Text(
-                    TeleopScoutingData.autoBalanceIsRunning
-                        ? "Stopped Balancing ${formatTime(TeleopScoutingData.autoBalanceElapsedSeconds)}"
-                        : "Started Balancing ${formatTime(TeleopScoutingData.autoBalanceElapsedSeconds)}",
-                    style: const TextStyle(fontSize: 16.0),
-                  ),
-                ),
-              ),
             ),
           ],
         ),

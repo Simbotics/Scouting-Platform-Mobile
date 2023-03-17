@@ -6,12 +6,16 @@ import 'package:flutter/services.dart';
 class NumberInputField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final EdgeInsets margin;
+  final double width;
 
-  const NumberInputField({
-    Key? key,
-    required this.controller,
-    required this.hintText,
-  }) : super(key: key);
+  const NumberInputField(
+      {Key? key,
+      required this.controller,
+      required this.hintText,
+      this.margin = const EdgeInsets.only(top: 4.0, left: 10.0),
+      this.width = 150})
+      : super(key: key);
 
   @override
   _NumberInputFieldState createState() => _NumberInputFieldState();
@@ -26,10 +30,10 @@ class _NumberInputFieldState extends State<NumberInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      width: widget.width,
       height: 47,
       padding: const EdgeInsets.all(3),
-      margin: const EdgeInsets.only(top: 4.0, left: 20.0),
+      margin: widget.margin,
       decoration: const BoxDecoration(color: AppStyle.textInputColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

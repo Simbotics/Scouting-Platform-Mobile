@@ -5,7 +5,6 @@
         android:name="${applicationName}">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="landscape"
             android:exported="true"
             android:launchMode="singleTop"
             android:requestLegacyExternalStorage="true"

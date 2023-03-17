@@ -1,30 +1,25 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:scouting_platform/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Performance test', (WidgetTester tester) async {
+    // Build the widget that you want to measure the performance of
+    const widget = HomeScreen();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Pump the widget to the screen
+    await tester.pumpWidget(widget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Start recording performance
+    final stopwatch = Stopwatch()..start();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Perform some action on the widget (e.g. scroll, tap, etc.)
+    await tester.scrollUntilVisible(find.byType(ListView), 500);
+
+    // Stop recording performance
+    stopwatch.stop();
+
+    // Check that the widget meets your performance criteria
+    expect(stopwatch.elapsedMilliseconds, lessThan(100));
   });
 }

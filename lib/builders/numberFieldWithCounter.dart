@@ -8,14 +8,16 @@ class NumberInputFieldWithCounter extends StatefulWidget {
   final String hintText;
   final Function onTapIncrement;
   final Function onTapDecrement;
+  final EdgeInsets margin;
 
-  const NumberInputFieldWithCounter({
-    Key? key,
-    required this.controller,
-    required this.onTapIncrement,
-    required this.onTapDecrement,
-    this.hintText = "0",
-  }) : super(key: key);
+  const NumberInputFieldWithCounter(
+      {Key? key,
+      required this.controller,
+      required this.onTapIncrement,
+      required this.onTapDecrement,
+      this.hintText = "0",
+      this.margin = const EdgeInsets.only(left: 20.0)})
+      : super(key: key);
 
   @override
   _NumberInputFieldWithCounterState createState() =>
@@ -35,7 +37,7 @@ class _NumberInputFieldWithCounterState
       width: 150,
       height: 47,
       padding: const EdgeInsets.all(3),
-      margin: const EdgeInsets.only(left: 20.0),
+      margin: widget.margin,
       decoration: const BoxDecoration(color: AppStyle.textInputColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

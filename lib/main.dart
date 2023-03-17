@@ -1,16 +1,36 @@
-import 'package:scouting_platform/routes/splashpage.dart';
-import 'package:scouting_platform/text/title.dart';
+import 'dart:async';
+
+import 'package:flutter/services.dart';
+import 'package:scouting_platform/routes/comments.dart';
+import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
+import 'package:scouting_platform/rows/fields/row1fields.dart';
+import 'package:scouting_platform/rows/fields/row2fields.dart';
+import 'package:scouting_platform/rows/fields/row3fields.dart';
+import 'package:scouting_platform/rows/fields/row4fields.dart';
+import 'package:scouting_platform/rows/headers/row1headers.dart';
+import 'package:scouting_platform/rows/headers/row2headers.dart';
+import 'package:scouting_platform/rows/headers/row3headers.dart';
+import 'package:scouting_platform/rows/headers/row4headers.dart';
+import 'package:scouting_platform/sections/comments.dart';
+import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/sections/autoScoutingData.dart';
 import 'package:scouting_platform/sections/teamMatchInformation.dart';
 import 'package:scouting_platform/sections/teleopScoutingData.dart';
-import 'package:scouting_platform/text/header.dart';
 import 'package:scouting_platform/ui/style/style.dart';
-import 'package:scouting_platform/utils/dropdownMenu.dart';
+import 'package:scouting_platform/builders/dropdownMenu.dart';
+import 'package:scouting_platform/builders/numberFieldWithCounter.dart';
+import 'package:scouting_platform/builders/numberInputField.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]).then((value) => runApp(const MyApp()));
   runApp(const MyApp());
 }
 
@@ -22,7 +42,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: "Scouting Platform",
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      home: TeamAndMatchInformation(),
     );
   }
 }
@@ -45,173 +65,220 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-          return false;
-        },
-        child: Scaffold(
-          // Navigation sidebar
-          drawer: const NavigationSidebar(),
-          // Background color and pixel resize fix
-          backgroundColor: AppStyle.primaryColor,
+    return Scaffold(
+        // Navigation sidebar
+        drawer: const NavigationSidebar(),
+        // Background color and pixel resize fix
+        backgroundColor: AppStyle.primaryColor,
 
-          // Top navigation bar
-          appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(40.0),
-              child: AppBar(
-                backgroundColor: AppStyle.textInputColor,
-                title: const Text(
-                  "Scouting Platform - 2023",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontFamily: 'Futura'),
-                ),
-              )),
-
-          body: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 24,
-                ),
-                const TitleStyle(
-                    text: "Team & Match Information",
-                    padding: EdgeInsets.only(left: 18.0)),
-
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Container(
-                    width: 170.0,
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: const Text(
-                      "Team Alliance",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0),
-                    ),
-                  ),
-                ),
-
-                // Creates team adn match data fields section
-                const TeamAndMatchData(),
-
-                /**
-           * Scouting data title.
-           */
-                Row(children: [
-                  const TitleStyle(
-                      text: "Scouting Data",
-                      padding: EdgeInsets.only(top: 10.0, left: 18.0)),
-                  const Spacer(),
+        // Top navigation bar
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(40.0),
+            child: AppBar(
+              backgroundColor: AppStyle.textInputColor,
+              title: const Text(
+                "Scouting Platform - 2023",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontFamily: 'Futura'),
+              ),
+            )),
+        // Create a scrollable widget so that the page is scrollable when using the keyboard
+        body: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(children: [
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, right: 90.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // Create text that contains team alliance, team number, and match number
+                  Center(
+                      child: Text(
+                    "${TeamAndMatchData.teamAlliance} - ${TeamAndMatchData.teamNumberController.text} - Q${TeamAndMatchData.matchNumberController.text}",
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  )),
+                  // Button to reset all field data
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 170.0,
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: const Text(
-                        "Auto Mobility",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 170.0,
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: const Text(
-                        "Auto Balance",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 260.0,
-                      padding: const EdgeInsets.only(top: 25.0),
-                      child: const Text(
-                        "Teleop Balance",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                    ),
-                  ),
-                ]),
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                          padding: const EdgeInsets.only(left: 13),
+                          height: 30.0,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppStyle.textInputColorLight,
+                            ),
+                            onPressed: () {
+                              resetAllFields();
+                            },
+                            child: const Text(
+                              'Reset All Fields',
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                          ))),
+                ],
+              ),
+            ),
 
-                Row(children: [
-                  // Auto text header.
-                  const HeaderStyle(
-                      text: "Auto",
-                      padding: EdgeInsets.only(top: 0.0, left: 18.0)),
-                  Container(
-                    padding: const EdgeInsets.only(left: 290),
-                    child: Transform.scale(
-                      scale: 1.5,
-                      child: Switch(
-                        // thumb color (round icon)
-                        activeColor: Colors.blueGrey.shade400,
-                        activeTrackColor: Colors.red.shade600,
-                        inactiveThumbColor: Colors.blueGrey.shade600,
-                        inactiveTrackColor: Colors.grey.shade400,
-                        splashRadius: 100.0,
-                        // boolean variable value
-                        value: AutoScoutingData.autoMobility,
-                        // changes the state of the switch
-                        onChanged: (value) => setState(
-                            () => AutoScoutingData.autoMobility = value),
-                      ),
-                    ),
-                  ),
-                  ScoutingDropdownMenu(
-                      margin: const EdgeInsets.only(left: 112.0),
-                      width: 130,
-                      dropdownMenuSelectedItem: AutoScoutingData.autoBalance,
-                      onChanged: (value) => {
-                            setState(() {
-                              AutoScoutingData.autoBalance = value;
-                            })
-                          },
-                      dropdownItems: AutoScoutingData.balanceOptions),
-                  ScoutingDropdownMenu(
-                      margin: const EdgeInsets.only(left: 40.0),
-                      width: 130,
-                      dropdownMenuSelectedItem:
-                          TeleopScoutingData.teleopBalance,
-                      onChanged: (value) => {
-                            setState(() {
-                              TeleopScoutingData.teleopBalance = value;
-                            })
-                          },
-                      dropdownItems: AutoScoutingData.balanceOptions)
-                ]),
-
-                const AutoScoutingData(),
-
-                /**
-           * Teleop data header.
-           */
-                const HeaderStyle(
-                    text: "Teleop",
-                    padding: EdgeInsets.only(left: 18.0, top: 10.0)),
-
-                const TeleopScoutingData(),
+            // Create titles for auto and teleop
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                TitleStyle(text: "Auto", padding: EdgeInsets.only(left: 20)),
+                SizedBox(width: 0),
+                TitleStyle(text: "Teleop", padding: EdgeInsets.only(left: 320))
               ],
             ),
-          ),
+
+            // Create rows of fields and headers for those fields
+            const Row1Headers(),
+            const Row1Fields(),
+            const Row2Headers(),
+            const Row2Fields(),
+            const Row3Headers(),
+            const Row3Fields(),
+            const Row4Headers(),
+            const Row4Fields(),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                // Prematch button
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                        padding: const EdgeInsets.only(top: 4.0, left: 13),
+                        height: 47.0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppStyle
+                                .textInputColorLight, // Set the background color here
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const TeamAndMatchInformation();
+                            }));
+                          },
+                          child: const Text(
+                            '< Prematch ',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ))),
+                const Spacer(),
+                // Comments button
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                        padding: const EdgeInsets.only(top: 4.0, right: 13),
+                        height: 47.0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppStyle
+                                .textInputColorLight, // Set the background color here
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const Comments(title: "Comments");
+                            }));
+                          },
+                          child: const Text(
+                            'Comments >',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        )))
+              ],
+            )
+          ]),
         ));
+  }
+
+  void resetAllFields() {
+    setState(() {
+      TeamAndMatchData.initials = "";
+      TeamAndMatchData.initialsController.text = "";
+      TeamAndMatchData.matchNumber = 0;
+      TeamAndMatchData.matchNumberController.text = "";
+      TeamAndMatchData.teamAlliance = "Red";
+      TeamAndMatchData.teamNumber = 0;
+      TeamAndMatchData.teamNumberController.text = "";
+      TeamAndMatchData.initials = "";
+      TeamAndMatchData.initialsController.text = "";
+
+      AutoScoutingData.autoMobility = "No";
+      AutoScoutingData.autoBalance = "No Attempt";
+
+      AutoScoutingData.autoHighController.text = "0";
+      TeleopScoutingData.teleopConeHighController.text = "0";
+      TeleopScoutingData.teleopCubeHighController.text = "0";
+      TeleopScoutingData.teleopBalance = "No Attempt";
+
+      AutoScoutingData.autoBalance = "No Attempt";
+      AutoScoutingData.autoMidController.text = "0";
+      TeleopScoutingData.teleopConeMidController.text = "0";
+      TeleopScoutingData.teleopCubeMidController.text = "0";
+
+      TeleopScoutingData.teleopBalanceTimeController.text = "";
+      TeleopScoutingData.autoBalanceTimeController.text = "";
+
+      AutoScoutingData.autoLowController.text = "0";
+      TeleopScoutingData.teleopConeLowController.text = "0";
+      TeleopScoutingData.teleopCubeLowController.text = "0";
+      TeleopScoutingData.teleopCubeDroppedController.text = "0";
+
+      AutoScoutingData.autoMissedController.text = "0";
+      TeleopScoutingData.teleopConeMissedController.text = "0";
+      TeleopScoutingData.teleopCubeMissedController.text = "0";
+      TeleopScoutingData.teleopConeDroppedController.text = "0";
+
+      CommentsSection.autoCommentsController.text = "";
+      CommentsSection.preferenceCommentsController.text = "";
+      CommentsSection.otherCommentsController.text = "";
+    });
+  }
+
+  void toggleTeleopBalanceStopwatch() {
+    setState(() {
+      if (TeleopScoutingData.teleopBalanceIsRunning) {
+        TeleopScoutingData.teleopBalanceTimer.cancel();
+        TeleopScoutingData.teleopBalanceIsRunning = false;
+      } else {
+        TeleopScoutingData.teleopBalanceTimer =
+            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+          setState(() {
+            TeleopScoutingData.teleopBalanceElapsedSeconds++;
+          });
+        });
+        TeleopScoutingData.teleopBalanceIsRunning = true;
+      }
+    });
+  }
+
+  void toggleAutoBalanceStopwatch() {
+    setState(() {
+      if (TeleopScoutingData.autoBalanceIsRunning) {
+        TeleopScoutingData.autoBalanceTimer.cancel();
+        TeleopScoutingData.autoBalanceIsRunning = false;
+      } else {
+        TeleopScoutingData.autoBalanceTimer =
+            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+          setState(() {
+            TeleopScoutingData.autoBalanceElapsedSeconds++;
+          });
+        });
+        TeleopScoutingData.autoBalanceIsRunning = true;
+      }
+    });
+  }
+
+  static String formatTime(int seconds) {
+    int minutes = (seconds % 3600) ~/ 60;
+    int remainingSeconds = seconds % 60;
+    return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
   }
 }

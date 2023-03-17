@@ -3,8 +3,8 @@ import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 import '../routes/comments.dart';
-import '../utils/dropdownMenu.dart';
-import '../utils/numberInputField.dart';
+import '../builders/dropdownMenu.dart';
+import '../builders/numberInputField.dart';
 
 class TeamAndMatchData extends StatefulWidget {
   const TeamAndMatchData({

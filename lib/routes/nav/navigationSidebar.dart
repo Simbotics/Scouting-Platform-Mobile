@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
-import 'package:scouting_platform/routes/fieldSketchpad.dart';
 import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
 import 'package:scouting_platform/ui/style/style.dart';
@@ -26,6 +25,11 @@ class NavigationSidebar extends StatelessWidget {
             ),
             child: null,
           ),
+          /**
+           * Main buttons on sidebar
+           */
+
+          // Comments
           ListTile(
             leading: const Icon(Icons.chat_bubble),
             title: const Text(
@@ -38,6 +42,7 @@ class NavigationSidebar extends StatelessWidget {
               return const Comments(title: 'Comments For Scout');
             })),
           ),
+          // Scanning
           ListTile(
             leading: const Icon(Icons.camera),
             title: const Text(
@@ -50,16 +55,13 @@ class NavigationSidebar extends StatelessWidget {
               return const ScanQRCode(title: 'Scan QR Code');
             })),
           ),
+          // Field sketchpad
           ListTile(
-            leading: const Icon(Icons.draw),
-            title: const Text('Field',
-                style: TextStyle(
-                    fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const FieldSketchpad(title: 'Field Sketchpad');
-            })),
-          ),
+              leading: const Icon(Icons.draw),
+              title: const Text('Field',
+                  style: TextStyle(
+                      fontFamily: 'Futura', fontWeight: FontWeight.bold)),
+              onTap: () => null),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('My Scouts',
@@ -72,6 +74,7 @@ class NavigationSidebar extends StatelessWidget {
             },
           ),
           const Divider(),
+          // Settings
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings',
@@ -79,6 +82,7 @@ class NavigationSidebar extends StatelessWidget {
                     fontFamily: 'Futura', fontWeight: FontWeight.bold)),
             onTap: () => null,
           ),
+          // About section
           ListTile(
             leading: const Icon(Icons.question_mark),
             title: const Text('About',
@@ -87,6 +91,7 @@ class NavigationSidebar extends StatelessWidget {
             onTap: () => null,
           ),
           const Divider(),
+          // Exit app
           ListTile(
             title: const Text('Exit',
                 style: TextStyle(

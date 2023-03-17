@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
-import '../utils/numberFieldWithCounter.dart';
+import '../builders/numberFieldWithCounter.dart';
 
 class AutoScoutingData extends StatefulWidget {
   const AutoScoutingData({
@@ -39,7 +39,7 @@ class AutoScoutingData extends StatefulWidget {
   // Auto balancing data
   static String autoBalance = "No Attempt";
 
-  static bool autoMobility = false;
+  static String autoMobility = "No";
 
   static List<String> balanceOptions = ['Attempted', 'No Attempt', 'Succeeded'];
 }

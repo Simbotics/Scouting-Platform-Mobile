@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/text/title.dart';
+import 'package:scouting_platform/textStyles/title.dart';
 
 import '../sections/comments.dart';
 import '../ui/style/style.dart';
@@ -12,7 +12,7 @@ class Comments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppStyle.primaryColor,
-        resizeToAvoidBottomInset: true,
+        //resizeToAvoidBottomInset: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
@@ -24,7 +24,7 @@ class Comments extends StatelessWidget {
               ),
             )),
         body: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: const [
               TitleStyle(
