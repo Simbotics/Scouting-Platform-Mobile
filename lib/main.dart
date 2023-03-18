@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               backgroundColor: AppStyle.textInputColorLight,
                             ),
                             onPressed: () {
-                              resetAllFields();
+                              showConformationDialog(context);
                             },
                             child: const Text(
                               'Reset All Fields',
@@ -198,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
+  /// Resets all fields that the user has put information into
   void resetAllFields() {
     setState(() {
       TeamAndMatchData.initials = "";
@@ -240,6 +241,42 @@ class _HomeScreenState extends State<HomeScreen> {
       CommentsSection.preferenceCommentsController.text = "";
       CommentsSection.otherCommentsController.text = "";
     });
+  }
+
+  /// Shows alert dialog for resetting all fields
+  showConformationDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: const Text("No"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+      },
+    );
+    Widget continueButton = TextButton(
+      child: const Text("Yes"),
+      onPressed: () {
+        resetAllFields();
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const TeamAndMatchInformation();
+        }));
+      },
+    ); // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Reset All Fields"),
+      content: const Text(
+          "Would you like to reset all of the fields to their default values?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   void toggleTeleopBalanceStopwatch() {
