@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
@@ -20,9 +18,6 @@ import 'package:scouting_platform/sections/autoScoutingData.dart';
 import 'package:scouting_platform/sections/teamMatchInformation.dart';
 import 'package:scouting_platform/sections/teleopScoutingData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
-import 'package:scouting_platform/builders/dropdownMenu.dart';
-import 'package:scouting_platform/builders/numberFieldWithCounter.dart';
-import 'package:scouting_platform/builders/numberInputField.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -201,6 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Resets all fields that the user has put information into
   void resetAllFields() {
     setState(() {
+      CommentsSection.qrIsVisible = false;
       TeamAndMatchData.initials = "";
       TeamAndMatchData.initialsController.text = "";
       TeamAndMatchData.matchNumber = 0;

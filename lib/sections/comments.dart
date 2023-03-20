@@ -102,7 +102,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                     // }));
                   },
                   child: const Text(
-                    'Save QR Code',
+                    'Update QR Code',
                     style: TextStyle(fontSize: 20.0),
                   ),
                 )),

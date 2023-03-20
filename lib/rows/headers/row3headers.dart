@@ -1,14 +1,5 @@
 // ignore_for_file: file_names
-import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
-
-import '../../builders/numberFieldWithCounter.dart';
-import '../../main.dart';
-import '../../routes/comments.dart';
-import '../../builders/dropdownMenu.dart';
-import '../../builders/numberInputField.dart';
-import '../../sections/autoScoutingData.dart';
-import '../../sections/teleopScoutingData.dart';
 
 class Row3Headers extends StatefulWidget {
   const Row3Headers({

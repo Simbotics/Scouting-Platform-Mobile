@@ -1,7 +1,4 @@
 // ignore_for_file: file_names
-import 'dart:async';
-
-import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 import '../builders/numberFieldWithCounter.dart';

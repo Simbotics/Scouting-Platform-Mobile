@@ -1,20 +1,14 @@
-import 'dart:async';
-
+// ignore_for_file: file_names
 import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/sections/autoScoutingData.dart';
 import 'package:scouting_platform/sections/teamMatchInformation.dart';
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
-import 'package:scouting_platform/textStyles/header.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/numberInputField.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
 
 import '../main.dart';
-import 'comments.dart';
 
 class TeamAndMatchInformation extends StatefulWidget {
   const TeamAndMatchInformation({Key? key}) : super(key: key);
