@@ -45,14 +45,6 @@ class TeleopScoutingData extends StatefulWidget {
   static String teleopBalance = "No Attempt";
 
   static String teleopMobility = "No";
-
-  static bool teleopBalanceIsRunning = false;
-  static int teleopBalanceElapsedSeconds = 0;
-  static late Timer teleopBalanceTimer;
-
-  static bool autoBalanceIsRunning = false;
-  static int autoBalanceElapsedSeconds = 0;
-  static late Timer autoBalanceTimer;
 }
 
 class _TeleopScoutingDataState extends State<TeleopScoutingData> {
@@ -434,62 +426,62 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
                 });
               },
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: SizedBox(
-                height: 47,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppStyle.textInputColor),
-                  onPressed: toggleTeleopBalanceStopwatch,
-                  child: Text(
-                    TeleopScoutingData.teleopBalanceIsRunning
-                        ? "Stopped Balancing ${formatTime(TeleopScoutingData.teleopBalanceElapsedSeconds)}"
-                        : "Started Balancing ${formatTime(TeleopScoutingData.teleopBalanceElapsedSeconds)}",
-                    style: const TextStyle(fontSize: 16.0),
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 40.0),
+            //   child: SizedBox(
+            //     height: 47,
+            //     child: ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //           backgroundColor: AppStyle.textInputColor),
+            //       onPressed: toggleTeleopBalanceStopwatch,
+            //       child: Text(
+            //         TeleopScoutingData.teleopBalanceIsRunning
+            //             ? "Stopped Balancing ${formatTime(TeleopScoutingData.teleopBalanceElapsedSeconds)}"
+            //             : "Started Balancing ${formatTime(TeleopScoutingData.teleopBalanceElapsedSeconds)}",
+            //         style: const TextStyle(fontSize: 16.0),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ],
     );
   }
 
-  void toggleTeleopBalanceStopwatch() {
-    setState(() {
-      if (TeleopScoutingData.teleopBalanceIsRunning) {
-        TeleopScoutingData.teleopBalanceTimer.cancel();
-        TeleopScoutingData.teleopBalanceIsRunning = false;
-      } else {
-        TeleopScoutingData.teleopBalanceTimer =
-            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-          setState(() {
-            TeleopScoutingData.teleopBalanceElapsedSeconds++;
-          });
-        });
-        TeleopScoutingData.teleopBalanceIsRunning = true;
-      }
-    });
-  }
+  // void toggleTeleopBalanceStopwatch() {
+  //   setState(() {
+  //     if (TeleopScoutingData.teleopBalanceIsRunning) {
+  //       TeleopScoutingData.teleopBalanceTimer.cancel();
+  //       TeleopScoutingData.teleopBalanceIsRunning = false;
+  //     } else {
+  //       TeleopScoutingData.teleopBalanceTimer =
+  //           Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+  //         setState(() {
+  //           TeleopScoutingData.teleopBalanceElapsedSeconds++;
+  //         });
+  //       });
+  //       TeleopScoutingData.teleopBalanceIsRunning = true;
+  //     }
+  //   });
+  // }
 
-  void toggleAutoBalanceStopwatch() {
-    setState(() {
-      if (TeleopScoutingData.autoBalanceIsRunning) {
-        TeleopScoutingData.autoBalanceTimer.cancel();
-        TeleopScoutingData.autoBalanceIsRunning = false;
-      } else {
-        TeleopScoutingData.autoBalanceTimer =
-            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-          setState(() {
-            TeleopScoutingData.autoBalanceElapsedSeconds++;
-          });
-        });
-        TeleopScoutingData.autoBalanceIsRunning = true;
-      }
-    });
-  }
+  // void toggleAutoBalanceStopwatch() {
+  //   setState(() {
+  //     if (TeleopScoutingData.autoBalanceIsRunning) {
+  //       TeleopScoutingData.autoBalanceTimer.cancel();
+  //       TeleopScoutingData.autoBalanceIsRunning = false;
+  //     } else {
+  //       TeleopScoutingData.autoBalanceTimer =
+  //           Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+  //         setState(() {
+  //           TeleopScoutingData.autoBalanceElapsedSeconds++;
+  //         });
+  //       });
+  //       TeleopScoutingData.autoBalanceIsRunning = true;
+  //     }
+  //   });
+  // }
 
   static String formatTime(int seconds) {
     int minutes = (seconds % 3600) ~/ 60;

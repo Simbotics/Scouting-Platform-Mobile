@@ -55,40 +55,31 @@ class _CommentsSectionState extends State<CommentsSection> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextInputField(
+              controller: CommentsSection.autoCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
-              onChanged: (value) {
-                setState(() {
-                  CommentsSection.autoCommentsController.text = value;
-                });
-              },
+              onChanged: (value) {},
               textAlign: TextAlign.justify,
               hintText: "Auto (Starting position? Routine? etc)",
               maxLines: 3,
             ),
             TextInputField(
+              controller: CommentsSection.preferenceCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
-              onChanged: (value) {
-                setState(() {
-                  CommentsSection.preferenceCommentsController.text = value;
-                });
-              },
+              onChanged: (value) {},
               textAlign: TextAlign.justify,
               hintText: "Preference (Cubes/Cones, Pickup Location, etc)",
               maxLines: 3,
             ),
             TextInputField(
+              controller: CommentsSection.otherCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
-              onChanged: (value) {
-                setState(() {
-                  CommentsSection.otherCommentsController.text = value;
-                });
-              },
+              onChanged: (value) {},
               textAlign: TextAlign.justify,
               hintText: "Other (Anything else important)",
               maxLines: 3,
@@ -127,7 +118,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               child: QrImage(
                 // Access variables through widget
                 data:
-                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0},${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0},${TeamAndMatchData.initialsController.text},${TeamAndMatchData.teamAlliance},${int.parse(AutoScoutingData.autoLowController.text)},${int.parse(AutoScoutingData.autoMidController.text)},${int.parse(AutoScoutingData.autoHighController.text)},${int.parse(AutoScoutingData.autoMissedController.text)},${AutoScoutingData.autoMobility},${AutoScoutingData.autoBalance},${formatTime(TeleopScoutingData.autoBalanceElapsedSeconds)},${int.parse(TeleopScoutingData.teleopConeLowController.text)},${int.parse(TeleopScoutingData.teleopConeMidController.text)},${int.parse(TeleopScoutingData.teleopConeHighController.text)},${int.parse(TeleopScoutingData.teleopConeMissedController.text)},${int.parse(TeleopScoutingData.teleopConeDroppedController.text)},${int.parse(TeleopScoutingData.teleopCubeLowController.text)},${int.parse(TeleopScoutingData.teleopCubeMidController.text)},${int.parse(TeleopScoutingData.teleopCubeHighController.text)},${int.parse(TeleopScoutingData.teleopCubeMissedController.text)},${int.parse(TeleopScoutingData.teleopCubeDroppedController.text)},${TeleopScoutingData.teleopBalance},${formatTime(TeleopScoutingData.teleopBalanceElapsedSeconds)},${CommentsSection.autoCommentsController.text},${CommentsSection.preferenceCommentsController.text.toString()},${CommentsSection.otherCommentsController.text}",
+                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0},${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0},${TeamAndMatchData.initialsController.text},${TeamAndMatchData.teamAlliance},${int.parse(AutoScoutingData.autoLowController.text)},${int.parse(AutoScoutingData.autoMidController.text)},${int.parse(AutoScoutingData.autoHighController.text)},${int.parse(AutoScoutingData.autoMissedController.text)},${AutoScoutingData.autoMobility},${AutoScoutingData.autoBalance},${int.tryParse(TeleopScoutingData.autoBalanceTimeController.text) ?? 0},${int.parse(TeleopScoutingData.teleopConeLowController.text)},${int.parse(TeleopScoutingData.teleopConeMidController.text)},${int.parse(TeleopScoutingData.teleopConeHighController.text)},${int.parse(TeleopScoutingData.teleopConeMissedController.text)},${int.parse(TeleopScoutingData.teleopConeDroppedController.text)},${int.parse(TeleopScoutingData.teleopCubeLowController.text)},${int.parse(TeleopScoutingData.teleopCubeMidController.text)},${int.parse(TeleopScoutingData.teleopCubeHighController.text)},${int.parse(TeleopScoutingData.teleopCubeMissedController.text)},${int.parse(TeleopScoutingData.teleopCubeDroppedController.text)},${TeleopScoutingData.teleopBalance},${int.tryParse(TeleopScoutingData.teleopBalanceTimeController.text) ?? 0},${CommentsSection.autoCommentsController.text},${CommentsSection.preferenceCommentsController.text.toString()},${CommentsSection.otherCommentsController.text}",
                 backgroundColor: Colors.white,
                 version: QrVersions.auto,
               ),

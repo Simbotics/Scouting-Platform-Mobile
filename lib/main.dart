@@ -278,44 +278,4 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-
-  void toggleTeleopBalanceStopwatch() {
-    setState(() {
-      if (TeleopScoutingData.teleopBalanceIsRunning) {
-        TeleopScoutingData.teleopBalanceTimer.cancel();
-        TeleopScoutingData.teleopBalanceIsRunning = false;
-      } else {
-        TeleopScoutingData.teleopBalanceTimer =
-            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-          setState(() {
-            TeleopScoutingData.teleopBalanceElapsedSeconds++;
-          });
-        });
-        TeleopScoutingData.teleopBalanceIsRunning = true;
-      }
-    });
-  }
-
-  void toggleAutoBalanceStopwatch() {
-    setState(() {
-      if (TeleopScoutingData.autoBalanceIsRunning) {
-        TeleopScoutingData.autoBalanceTimer.cancel();
-        TeleopScoutingData.autoBalanceIsRunning = false;
-      } else {
-        TeleopScoutingData.autoBalanceTimer =
-            Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-          setState(() {
-            TeleopScoutingData.autoBalanceElapsedSeconds++;
-          });
-        });
-        TeleopScoutingData.autoBalanceIsRunning = true;
-      }
-    });
-  }
-
-  static String formatTime(int seconds) {
-    int minutes = (seconds % 3600) ~/ 60;
-    int remainingSeconds = seconds % 60;
-    return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
-  }
 }

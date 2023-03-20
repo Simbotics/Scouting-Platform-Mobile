@@ -136,12 +136,9 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                 ),
               ),
               TextInputField(
+                  controller: TeamAndMatchData.initialsController,
                   margin: EdgeInsets.only(left: 10),
-                  onChanged: (value) {
-                    setState(() {
-                      TeamAndMatchData.initialsController.text = value;
-                    });
-                  },
+                  onChanged: (value) {},
                   textAlign: TextAlign.center,
                   hintText: "Scout Initials"),
               SizedBox(height: 30.0),

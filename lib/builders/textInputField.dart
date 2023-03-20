@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:flutter/services.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class TextInputField extends StatefulWidget {
   final Color inputFieldColor;
   final InputBorder inputFieldBorder;
   final int maxLines;
+  final TextEditingController controller;
 
   const TextInputField(
       {Key? key,
@@ -27,7 +29,8 @@ class TextInputField extends StatefulWidget {
       required this.hintText,
       this.inputFieldColor = AppStyle.textInputColor,
       this.inputFieldBorder = InputBorder.none,
-      this.maxLines = 1})
+      this.maxLines = 1,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -54,6 +57,7 @@ class _TextInputFieldState extends State<TextInputField> {
         onChanged: (value) {
           widget.onChanged(value);
         },
+        controller: widget.controller,
         textAlign: widget.textAlign,
         style: TextStyle(
           color: textColor,
