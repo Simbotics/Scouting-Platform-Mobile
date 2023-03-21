@@ -40,7 +40,7 @@ class ScanQRCode extends StatelessWidget {
           barcodes = capture.barcodes; // Barcode(s) scanned
           //final Uint8List? image = capture.image; // Image of QR code
           for (final barcode in barcodes) {
-            barcodeStrings = barcode.rawValue?.split(",");
+            barcodeStrings = barcode.rawValue?.split(":");
             fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
                 .replaceAll(" ", "");
 
@@ -196,7 +196,7 @@ class ScanQRCode extends StatelessWidget {
       ],
     ];
 
-    String csv = const ListToCsvConverter().convert(data);
+    String csv = const ListToCsvConverter(fieldDelimiter: ":").convert(data);
 
     // File name for generated csv file
     fileName = "M$matchNumber-$teamNumber.csv".replaceAll(" ", "");
