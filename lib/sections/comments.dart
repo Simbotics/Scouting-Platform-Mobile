@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_platform/sections/teamMatchInformation.dart';
 import 'package:scouting_platform/sections/teleopScoutingData.dart';
@@ -127,23 +126,5 @@ class _CommentsSectionState extends State<CommentsSection> {
         ),
       ],
     );
-  }
-
-  Future<String> get imagePath async {
-    final directory = (await getApplicationDocumentsDirectory()).path;
-    String fileName =
-        "M${TeamAndMatchData.matchNumber}-${TeamAndMatchData.teamNumber}.csv"
-            .replaceAll(" ", "");
-    return '$directory/$fileName.png';
-  }
-
-  Future<Image> _loadImage() async {
-    return await imagePath.then((imagePath) => Image.asset(imagePath));
-  }
-
-  String formatTime(int seconds) {
-    int minutes = (seconds % 3600) ~/ 60;
-    int remainingSeconds = seconds % 60;
-    return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
   }
 }

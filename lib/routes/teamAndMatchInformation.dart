@@ -41,7 +41,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
           )),
 
       body: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -131,11 +131,11 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
               ),
               TextInputField(
                   controller: TeamAndMatchData.initialsController,
-                  margin: EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10),
                   onChanged: (value) {},
                   textAlign: TextAlign.center,
                   hintText: "Scout Initials"),
-              SizedBox(height: 30.0),
+              const SizedBox(height: 30.0),
               Align(
                   alignment: Alignment.bottomRight,
                   child: Container(

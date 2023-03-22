@@ -479,10 +479,4 @@ class _TeleopScoutingDataState extends State<TeleopScoutingData> {
   //     }
   //   });
   // }
-
-  static String formatTime(int seconds) {
-    int minutes = (seconds % 3600) ~/ 60;
-    int remainingSeconds = seconds % 60;
-    return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
-  }
 }

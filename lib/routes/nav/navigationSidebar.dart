@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
-import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 
@@ -63,16 +62,11 @@ class NavigationSidebar extends StatelessWidget {
                       fontFamily: 'Futura', fontWeight: FontWeight.bold)),
               onTap: () => null),
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('My Scouts',
-                style: TextStyle(
-                    fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-            onTap: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const CurrentQRCode(title: 'My Scouting Data');
-              })),
-            },
-          ),
+              leading: const Icon(Icons.person),
+              title: const Text('My Scouts',
+                  style: TextStyle(
+                      fontFamily: 'Futura', fontWeight: FontWeight.bold)),
+              onTap: () => null),
           const Divider(),
           // Settings
           ListTile(

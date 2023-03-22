@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NumberInputFieldWithCounter extends StatefulWidget {
+  /// Options for number input field with buttons
+
+  // Controller which holds the current typed number
   final TextEditingController controller;
+  // "Hint Text" which shows up when nothing it inputted
   final String hintText;
+  // What happens when the user taps the increment button
   final Function onTapIncrement;
+  // What happens when the user taps the decrement button
   final Function onTapDecrement;
+  // Margin from sides/top/bottom of the screen/widget
   final EdgeInsets margin;
 
   const NumberInputFieldWithCounter(

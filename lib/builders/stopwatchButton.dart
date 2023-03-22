@@ -3,8 +3,13 @@ import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class StopwatchButton extends StatelessWidget {
+  /// Options for stopwatch button builder
+
+  // Variable to change when it it activated and tracking time
   final String variable;
+  // Text to display on the button
   final String text;
+  // Method to activate when it is pressed
   final Function stopwatchMethod;
 
   const StopwatchButton({

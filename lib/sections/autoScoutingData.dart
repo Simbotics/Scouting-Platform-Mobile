@@ -41,7 +41,12 @@ class AutoScoutingData extends StatefulWidget {
 
   static String autoMobility = "No";
 
-  static List<String> balanceOptions = ['Attempted', 'No Attempt', 'Succeeded'];
+  static List<String> balanceOptions = [
+    'Attempted',
+    'No Attempt',
+    'Succeeded',
+    'Docked'
+  ];
 }
 
 class _AutoScoutingDataState extends State<AutoScoutingData> {

@@ -45,7 +45,7 @@ class ScanQRCode extends StatelessWidget {
                 .replaceAll(" ", "");
 
             // Prints the barcode scanned values
-            debugPrint('Barcode found! ${barcode.rawValue}');
+            // debugPrint('Barcode found! ${barcode.rawValue}');
 
             // Stop the camera scanning then send the user to the "View Data" page.
             HomeScreen.cameraController.stop().then((value) => Navigator.push(
@@ -196,6 +196,7 @@ class ScanQRCode extends StatelessWidget {
       ],
     ];
 
+    // Convert data to csv data and add ":" as field delimiter
     String csv = const ListToCsvConverter(fieldDelimiter: ":").convert(data);
 
     // File name for generated csv file

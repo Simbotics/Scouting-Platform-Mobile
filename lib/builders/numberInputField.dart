@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class NumberInputField extends StatefulWidget {
+  /// Options for number input field builder
+
+  // Controller which holds the currently types text
   final TextEditingController controller;
+  // "Hint Text" which shows up when nothing it typed in the field
   final String hintText;
+  // Margin from sides/top/botto of the screen/widget
   final EdgeInsets margin;
+  // Width of the container which holds the field
   final double width;
 
   const NumberInputField(
