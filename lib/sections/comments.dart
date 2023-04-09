@@ -1,11 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/sections/teamMatchInformation.dart';
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
+import 'dart:async';
+import 'dart:convert';
 
-import '../ui/style/style.dart';
-import '../builders/textInputField.dart';
-import 'autoScoutingData.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
+
+import '../../ui/style/style.dart';
+import '../../builders/textInputField.dart';
 
 class CommentsSection extends StatefulWidget {
   const CommentsSection({
@@ -15,35 +21,10 @@ class CommentsSection extends StatefulWidget {
   @override
   _CommentsSectionState createState() => _CommentsSectionState();
 
-  static final TextEditingController autoCommentsController =
-      TextEditingController(text: "");
-  static final TextEditingController preferenceCommentsController =
-      TextEditingController(text: "");
-  static final TextEditingController otherCommentsController =
-      TextEditingController(text: "");
-
   static bool qrIsVisible = false;
 }
 
 class _CommentsSectionState extends State<CommentsSection> {
-  @override
-  void initState() {
-    super.initState();
-    // CommentsSection.autoComments = String.fromCharCodes(
-    //     CommentsSection._autoComments.text.runes.toList().reversed);
-    // CommentsSection.preferenceComments = String.fromCharCodes(
-    //     CommentsSection._preferenceComments.text.runes.toList().reversed);
-    // CommentsSection.otherComments = String.fromCharCodes(
-    //     CommentsSection._otherComments.text.runes.toList().reversed);
-
-    // CommentsSection._autoComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._autoComments.text.length));
-    // CommentsSection._preferenceComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._preferenceComments.text.length));
-    // CommentsSection._otherComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._otherComments.text.length));
-  }
-
   Future<Image>? image;
 
   @override
@@ -54,7 +35,7 @@ class _CommentsSectionState extends State<CommentsSection> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             TextInputField(
-              controller: CommentsSection.autoCommentsController,
+              controller: CommentsData.autoCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
@@ -64,7 +45,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               maxLines: 3,
             ),
             TextInputField(
-              controller: CommentsSection.preferenceCommentsController,
+              controller: CommentsData.preferenceCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
@@ -74,7 +55,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               maxLines: 3,
             ),
             TextInputField(
-              controller: CommentsSection.otherCommentsController,
+              controller: CommentsData.otherCommentsController,
               margin: const EdgeInsets.only(left: 20.0),
               width: 400.0,
               height: 100.0,
@@ -117,7 +98,7 @@ class _CommentsSectionState extends State<CommentsSection> {
               child: QrImage(
                 // Access variables through widget
                 data:
-                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}:${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}:${TeamAndMatchData.initialsController.text}:${TeamAndMatchData.teamAlliance}:${int.parse(AutoScoutingData.autoLowController.text)}:${int.parse(AutoScoutingData.autoMidController.text)}:${int.parse(AutoScoutingData.autoHighController.text)}:${int.parse(AutoScoutingData.autoMissedController.text)}:${AutoScoutingData.autoMobility}:${AutoScoutingData.autoBalance}:${int.tryParse(TeleopScoutingData.autoBalanceTimeController.text) ?? 0}:${int.parse(TeleopScoutingData.teleopConeLowController.text)}:${int.parse(TeleopScoutingData.teleopConeMidController.text)}:${int.parse(TeleopScoutingData.teleopConeHighController.text)}:${int.parse(TeleopScoutingData.teleopConeMissedController.text)}:${int.parse(TeleopScoutingData.teleopConeDroppedController.text)}:${int.parse(TeleopScoutingData.teleopCubeLowController.text)}:${int.parse(TeleopScoutingData.teleopCubeMidController.text)}:${int.parse(TeleopScoutingData.teleopCubeHighController.text)}:${int.parse(TeleopScoutingData.teleopCubeMissedController.text)}:${int.parse(TeleopScoutingData.teleopCubeDroppedController.text)}:${TeleopScoutingData.teleopBalance}:${int.tryParse(TeleopScoutingData.teleopBalanceTimeController.text) ?? 0}:${CommentsSection.autoCommentsController.text.replaceAll("\n", "")}:${CommentsSection.preferenceCommentsController.text.replaceAll("\n", "")}:${CommentsSection.otherCommentsController.text.replaceAll("\n", "")}",
+                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}:${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}:${TeamAndMatchData.initialsController.text}:${TeamAndMatchData.teamAlliance}:${int.parse(AutoData.autoLowController.text)}:${int.parse(AutoData.autoMidController.text)}:${int.parse(AutoData.autoHighController.text)}:${int.parse(AutoData.autoMissedController.text)}:${AutoData.currentAutoMobility}:${AutoData.currentAutoBalanceState}:${int.tryParse(TeleopData.autoBalanceTimeController.text) ?? 0}:${int.parse(TeleopData.teleopConeLowController.text)}:${int.parse(TeleopData.teleopConeMidController.text)}:${int.parse(TeleopData.teleopConeHighController.text)}:${int.parse(TeleopData.teleopConeMissedController.text)}:${int.parse(TeleopData.teleopConeDroppedController.text)}:${int.parse(TeleopData.teleopCubeLowController.text)}:${int.parse(TeleopData.teleopCubeMidController.text)}:${int.parse(TeleopData.teleopCubeHighController.text)}:${int.parse(TeleopData.teleopCubeMissedController.text)}:${int.parse(TeleopData.teleopCubeDroppedController.text)}:${TeleopData.currentTeleopBalanceState}:${int.tryParse(TeleopData.teleopBalanceTimeController.text) ?? 0}:${CommentsData.autoCommentsController.text.replaceAll("\n", "")}:${CommentsData.preferenceCommentsController.text.replaceAll("\n", "")}:${CommentsData.otherCommentsController.text.replaceAll("\n", "")}",
                 backgroundColor: Colors.white,
                 version: QrVersions.auto,
               ),

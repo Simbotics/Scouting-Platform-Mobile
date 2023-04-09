@@ -11,7 +11,7 @@ class Comments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppStyle.primaryColor,
+        backgroundColor: AppStyle.redAlliance,
         //resizeToAvoidBottomInset: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),

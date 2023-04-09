@@ -1,4 +1,6 @@
 // ignore_for_file: file_names
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:csv/csv.dart';
@@ -35,58 +37,61 @@ class ScanQRCode extends StatelessWidget {
             ),
           )),
       body: MobileScanner(
-        fit: BoxFit.contain,
-        onDetect: (capture) {
-          barcodes = capture.barcodes; // Barcode(s) scanned
-          //final Uint8List? image = capture.image; // Image of QR code
-          for (final barcode in barcodes) {
-            barcodeStrings = barcode.rawValue?.split(":");
-            fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
-                .replaceAll(" ", "");
+          fit: BoxFit.contain,
+          onDetect: (capture) {
+            ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
+            //final Uint8List? image = capture.image; // Image of QR code
+            for (final barcode in ScanQRCode.barcodes) {
+              barcodes = capture.barcodes; // Barcode(s) scanned
+              //final Uint8List? image = capture.image; // Image of QR code
+              for (final barcode in barcodes) {
+                barcodeStrings = barcode.rawValue?.split(":");
+                fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
+                    .replaceAll(" ", "");
 
-            // Prints the barcode scanned values
-            // debugPrint('Barcode found! ${barcode.rawValue}');
-
-            // Stop the camera scanning then send the user to the "View Data" page.
-            HomeScreen.cameraController.stop().then((value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      // Go to csv file options route
-                      ScannedQRCodeData(
-                    title: 'Scanned QR Code Data',
-                    teamNumber: barcodeStrings![0],
-                    matchNumber: barcodeStrings![1],
-                    initials: barcodeStrings![2],
-                    allianceColour: barcodeStrings![3],
-                    autoLow: barcodeStrings![4],
-                    autoMid: barcodeStrings![5],
-                    autoHigh: barcodeStrings![6],
-                    autoMissed: barcodeStrings![7],
-                    autoMobility: barcodeStrings![8],
-                    autoBalance: barcodeStrings![9],
-                    autoBalanceTime: barcodeStrings![10],
-                    teleopConeLow: barcodeStrings![11],
-                    teleopConeMid: barcodeStrings![12],
-                    teleopConeHigh: barcodeStrings![13],
-                    teleopConeMissed: barcodeStrings![14],
-                    teleopConeDropped: barcodeStrings![15],
-                    teleopCubeLow: barcodeStrings![16],
-                    teleopCubeMid: barcodeStrings![17],
-                    teleopCubeHigh: barcodeStrings![18],
-                    teleopCubeMissed: barcodeStrings![19],
-                    teleopCubeDropped: barcodeStrings![20],
-                    teleopBalance: barcodeStrings![21],
-                    teleopBalanceTime: barcodeStrings![22],
-                    autoComments: barcodeStrings![23],
-                    preferenceComments: barcodeStrings![24],
-                    otherComments: barcodeStrings![25],
-                    fileName: fileName,
-                  ),
-                )));
-          }
-        },
-      ),
+                // Stop the camera scanning then send the user to the "View Data" page.
+                HomeScreen.cameraController
+                    .stop()
+                    .then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              // Go to csv file options route
+                              ScannedQRCodeData(
+                            title: 'Scanned QR Code Data',
+                            teamNumber: ScanQRCode.barcodeStrings![0],
+                            matchNumber: ScanQRCode.barcodeStrings![1],
+                            initials: ScanQRCode.barcodeStrings![2],
+                            allianceColour: ScanQRCode.barcodeStrings![3],
+                            autoLow: ScanQRCode.barcodeStrings![4],
+                            autoMid: ScanQRCode.barcodeStrings![5],
+                            autoHigh: ScanQRCode.barcodeStrings![6],
+                            autoMissed: ScanQRCode.barcodeStrings![7],
+                            autoMobility: ScanQRCode.barcodeStrings![8],
+                            autoBalance: ScanQRCode.barcodeStrings![9],
+                            autoBalanceTime: ScanQRCode.barcodeStrings![10],
+                            teleopConeLow: ScanQRCode.barcodeStrings![11],
+                            teleopConeMid: ScanQRCode.barcodeStrings![12],
+                            teleopConeHigh: ScanQRCode.barcodeStrings![13],
+                            teleopConeMissed: ScanQRCode.barcodeStrings![14],
+                            teleopConeDropped: ScanQRCode.barcodeStrings![15],
+                            teleopCubeLow: ScanQRCode.barcodeStrings![16],
+                            teleopCubeMid: ScanQRCode.barcodeStrings![17],
+                            teleopCubeHigh: ScanQRCode.barcodeStrings![18],
+                            teleopCubeMissed: ScanQRCode.barcodeStrings![19],
+                            teleopCubeDropped: ScanQRCode.barcodeStrings![20],
+                            teleopBalance: ScanQRCode.barcodeStrings![21],
+                            teleopBalanceTime: ScanQRCode.barcodeStrings![22],
+                            autoComments: ScanQRCode.barcodeStrings![23],
+                            preferenceComments: ScanQRCode.barcodeStrings![24],
+                            otherComments: ScanQRCode.barcodeStrings![25],
+                            fileName: ScanQRCode.fileName,
+                          ),
+                        )));
+              }
+            }
+            ;
+          }),
     );
   }
 
@@ -222,4 +227,59 @@ class ScanQRCode extends StatelessWidget {
     }
     return file.writeAsString(fileContents);
   }
+
+  // void _initBluetooth() async {
+  //   FlutterBlue flutterBlue = FlutterBlue.instance;
+
+  //   // Start scanning for Bluetooth devices
+  //   flutterBlue.scan().listen((scanResult) {
+  //     // Connect to the desired device
+  //     if (scanResult.device.name == 'Galaxy Tab E') {
+  //       flutterBlue.stopScan();
+  //       setState(() {
+  //         _device = scanResult.device;
+  //       });
+  //       _connectToDevice();
+  //     }
+  //   });
+  // }
+
+  // void _connectToDevice() async {
+  //   if (_device == null) return;
+
+  //   await _device.connect();
+  //   List<BluetoothService> services = await _device.discoverServices();
+
+  //   for (BluetoothService service in services) {
+  //     List<BluetoothCharacteristic> characteristics = service.characteristics;
+
+  //     for (BluetoothCharacteristic characteristic in characteristics) {
+  //       // Check if the characteristic supports reading
+  //       if (characteristic.properties.read) {
+  //         _readCharacteristic = characteristic;
+  //       }
+  //     }
+  //   }
+
+  //   if (_readCharacteristic != null) {
+  //     _valueStream = _readCharacteristic.value.listen(_onIncomingData);
+  //   }
+  // }
+
+  // void _disposeBluetooth() async {
+  //   if (_valueStream != null) {
+  //     await _valueStream.cancel();
+  //   }
+  //   if (_device != null) {
+  //     await _device.disconnect();
+  //   }
+  // }
+
+  // void _onIncomingData(List<int> value) {
+  //   String message = utf8.decode(value);
+  //   setState(() {
+  //     _message = message;
+  //     print(_message);
+  //   });
+  // }
 }

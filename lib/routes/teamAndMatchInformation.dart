@@ -2,11 +2,12 @@
 import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/sections/teamMatchInformation.dart';
+import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/numberInputField.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 
 import '../main.dart';
 
@@ -25,7 +26,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
       // Navigation sidebar
       drawer: const NavigationSidebar(),
       // Background color and pixel resize fix
-      backgroundColor: AppStyle.primaryColor,
+      backgroundColor: getBackgroundColour(),
       //resizeToAvoidBottomInset: true,
 
       // Top navigation bar
@@ -160,5 +161,16 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
             ],
           )),
     );
+  }
+}
+
+Color getBackgroundColour() {
+  switch (TeamAndMatchData.teamAlliance) {
+    case "Blue":
+      return AppStyle.blueAlliance;
+    case "Red":
+      return AppStyle.redAlliance;
+    default:
+      return AppStyle.redAlliance;
   }
 }

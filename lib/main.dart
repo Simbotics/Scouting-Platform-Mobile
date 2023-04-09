@@ -14,10 +14,13 @@ import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/sections/autoScoutingData.dart';
-import 'package:scouting_platform/sections/teamMatchInformation.dart';
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
+import 'package:scouting_platform/old/sections/autoScoutingData.dart';
+import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,6 +58,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO fix camera flip (disorientation)
+  }
+
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 
@@ -64,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // Navigation sidebar
         drawer: const NavigationSidebar(),
         // Background color and pixel resize fix
-        backgroundColor: AppStyle.primaryColor,
+        backgroundColor: getBackgroundColour(),
 
         // Top navigation bar
         appBar: PreferredSize(
@@ -197,45 +205,40 @@ class _HomeScreenState extends State<HomeScreen> {
   void resetAllFields() {
     setState(() {
       CommentsSection.qrIsVisible = false;
-      TeamAndMatchData.initials = "";
       TeamAndMatchData.initialsController.text = "";
-      TeamAndMatchData.matchNumber = 0;
       TeamAndMatchData.matchNumberController.text = "";
       TeamAndMatchData.teamAlliance = "Red";
-      TeamAndMatchData.teamNumber = 0;
       TeamAndMatchData.teamNumberController.text = "";
-      TeamAndMatchData.initials = "";
-      TeamAndMatchData.initialsController.text = "";
 
-      AutoScoutingData.autoMobility = "No";
-      AutoScoutingData.autoBalance = "No Attempt";
+      AutoData.currentAutoMobility = "No";
+      AutoData.currentAutoBalanceState = "No Attempt";
 
-      AutoScoutingData.autoHighController.text = "0";
-      TeleopScoutingData.teleopConeHighController.text = "0";
-      TeleopScoutingData.teleopCubeHighController.text = "0";
-      TeleopScoutingData.teleopBalance = "No Attempt";
+      AutoData.autoHighController.text = "0";
+      TeleopData.teleopConeHighController.text = "0";
+      TeleopData.teleopCubeHighController.text = "0";
+      TeleopData.currentTeleopBalanceState = "No Attempt";
 
-      AutoScoutingData.autoBalance = "No Attempt";
-      AutoScoutingData.autoMidController.text = "0";
-      TeleopScoutingData.teleopConeMidController.text = "0";
-      TeleopScoutingData.teleopCubeMidController.text = "0";
+      AutoData.currentAutoBalanceState = "No Attempt";
+      AutoData.autoMidController.text = "0";
+      TeleopData.teleopConeMidController.text = "0";
+      TeleopData.teleopCubeMidController.text = "0";
 
-      TeleopScoutingData.teleopBalanceTimeController.text = "";
-      TeleopScoutingData.autoBalanceTimeController.text = "";
+      TeleopData.teleopBalanceTimeController.text = "";
+      TeleopData.autoBalanceTimeController.text = "";
 
-      AutoScoutingData.autoLowController.text = "0";
-      TeleopScoutingData.teleopConeLowController.text = "0";
-      TeleopScoutingData.teleopCubeLowController.text = "0";
-      TeleopScoutingData.teleopCubeDroppedController.text = "0";
+      AutoData.autoLowController.text = "0";
+      TeleopData.teleopConeLowController.text = "0";
+      TeleopData.teleopCubeLowController.text = "0";
+      TeleopData.teleopCubeDroppedController.text = "0";
 
-      AutoScoutingData.autoMissedController.text = "0";
-      TeleopScoutingData.teleopConeMissedController.text = "0";
-      TeleopScoutingData.teleopCubeMissedController.text = "0";
-      TeleopScoutingData.teleopConeDroppedController.text = "0";
+      AutoData.autoMissedController.text = "0";
+      TeleopData.teleopConeMissedController.text = "0";
+      TeleopData.teleopCubeMissedController.text = "0";
+      TeleopData.teleopConeDroppedController.text = "0";
 
-      CommentsSection.autoCommentsController.text = "";
-      CommentsSection.preferenceCommentsController.text = "";
-      CommentsSection.otherCommentsController.text = "";
+      CommentsData.autoCommentsController.text = "";
+      CommentsData.preferenceCommentsController.text = "";
+      CommentsData.otherCommentsController.text = "";
     });
   }
 
@@ -273,5 +276,19 @@ class _HomeScreenState extends State<HomeScreen> {
         return alert;
       },
     );
+  }
+
+  /**
+   * Gets the right background colour that needs to be displayed
+   */
+  static Color getBackgroundColour() {
+    switch (TeamAndMatchData.teamAlliance) {
+      case "Blue":
+        return AppStyle.blueAlliance;
+      case "Red":
+        return AppStyle.redAlliance;
+      default:
+        return AppStyle.redAlliance;
+    }
   }
 }

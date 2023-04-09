@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HeaderStyle extends StatelessWidget {
-  final String text;
-  final FontWeight fontWeight;
-  final EdgeInsets padding;
+  final String text; // The text to display as a title
+  final FontWeight fontWeight; // The weight of the font (bold, italic, etc)
+  final EdgeInsets padding; // The padding around the text
 
   const HeaderStyle(
       {Key? key,

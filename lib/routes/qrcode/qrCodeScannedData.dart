@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
 import 'package:scouting_platform/ui/style/style.dart';
@@ -42,6 +44,7 @@ class ScannedQRCodeData extends StatelessWidget {
       required this.otherComments,
       required this.fileName})
       : super(key: key);
+
   final String title;
   // Match and team data
   final String teamNumber;
@@ -80,7 +83,7 @@ class ScannedQRCodeData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppStyle.primaryColor,
+        backgroundColor: AppStyle.redAlliance,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
@@ -117,33 +120,34 @@ class ScannedQRCodeData extends StatelessWidget {
                             .textInputColorLight, // Set the background color here
                       ),
                       onPressed: () {
-                        ScanQRCode.generateCsv(
-                            ScanQRCode.barcodeStrings![0],
-                            ScanQRCode.barcodeStrings![1],
-                            ScanQRCode.barcodeStrings![2],
-                            ScanQRCode.barcodeStrings![3],
-                            ScanQRCode.barcodeStrings![4],
-                            ScanQRCode.barcodeStrings![5],
-                            ScanQRCode.barcodeStrings![6],
-                            ScanQRCode.barcodeStrings![7],
-                            ScanQRCode.barcodeStrings![8],
-                            ScanQRCode.barcodeStrings![9],
-                            ScanQRCode.barcodeStrings![10],
-                            ScanQRCode.barcodeStrings![11],
-                            ScanQRCode.barcodeStrings![12],
-                            ScanQRCode.barcodeStrings![13],
-                            ScanQRCode.barcodeStrings![14],
-                            ScanQRCode.barcodeStrings![15],
-                            ScanQRCode.barcodeStrings![16],
-                            ScanQRCode.barcodeStrings![17],
-                            ScanQRCode.barcodeStrings![18],
-                            ScanQRCode.barcodeStrings![19],
-                            ScanQRCode.barcodeStrings![20],
-                            ScanQRCode.barcodeStrings![21],
-                            ScanQRCode.barcodeStrings![22],
-                            ScanQRCode.barcodeStrings![23],
-                            ScanQRCode.barcodeStrings![24],
-                            ScanQRCode.barcodeStrings![25]);
+                        HomeScreen.cameraController.start().then(
+                            ScanQRCode.generateCsv(
+                                ScanQRCode.barcodeStrings![0],
+                                ScanQRCode.barcodeStrings![1],
+                                ScanQRCode.barcodeStrings![2],
+                                ScanQRCode.barcodeStrings![3],
+                                ScanQRCode.barcodeStrings![4],
+                                ScanQRCode.barcodeStrings![5],
+                                ScanQRCode.barcodeStrings![6],
+                                ScanQRCode.barcodeStrings![7],
+                                ScanQRCode.barcodeStrings![8],
+                                ScanQRCode.barcodeStrings![9],
+                                ScanQRCode.barcodeStrings![10],
+                                ScanQRCode.barcodeStrings![11],
+                                ScanQRCode.barcodeStrings![12],
+                                ScanQRCode.barcodeStrings![13],
+                                ScanQRCode.barcodeStrings![14],
+                                ScanQRCode.barcodeStrings![15],
+                                ScanQRCode.barcodeStrings![16],
+                                ScanQRCode.barcodeStrings![17],
+                                ScanQRCode.barcodeStrings![18],
+                                ScanQRCode.barcodeStrings![19],
+                                ScanQRCode.barcodeStrings![20],
+                                ScanQRCode.barcodeStrings![21],
+                                ScanQRCode.barcodeStrings![22],
+                                ScanQRCode.barcodeStrings![23],
+                                ScanQRCode.barcodeStrings![24],
+                                ScanQRCode.barcodeStrings![25]));
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return const HomeScreen();

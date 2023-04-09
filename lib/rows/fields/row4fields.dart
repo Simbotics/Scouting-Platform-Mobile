@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
 
 import '../../builders/numberFieldWithCounter.dart';
-import '../../sections/autoScoutingData.dart';
-import '../../sections/teleopScoutingData.dart';
 
 class Row4Fields extends StatefulWidget {
   const Row4Fields({
@@ -30,22 +30,20 @@ class _Row4FieldsState extends State<Row4Fields> {
         // Auto missed
         NumberInputFieldWithCounter(
           margin: const EdgeInsets.only(left: 170),
-          controller: AutoScoutingData.autoMissedController,
+          controller: AutoData.autoMissedController,
           onTapIncrement: () {
-            int currentValue =
-                int.parse(AutoScoutingData.autoMissedController.text);
+            int currentValue = int.parse(AutoData.autoMissedController.text);
             setState(() {
               currentValue++;
-              AutoScoutingData.autoMissedController.text =
+              AutoData.autoMissedController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
-            int currentValue =
-                int.parse(AutoScoutingData.autoMissedController.text);
+            int currentValue = int.parse(AutoData.autoMissedController.text);
             setState(() {
               currentValue--;
-              AutoScoutingData.autoMissedController.text =
+              AutoData.autoMissedController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -54,22 +52,22 @@ class _Row4FieldsState extends State<Row4Fields> {
         // Teeop cones missed
         NumberInputFieldWithCounter(
           margin: const EdgeInsets.only(left: 83),
-          controller: TeleopScoutingData.teleopConeMissedController,
+          controller: TeleopData.teleopConeMissedController,
           onTapIncrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeMissedController.text);
+                int.parse(TeleopData.teleopConeMissedController.text);
             setState(() {
               currentValue++;
-              TeleopScoutingData.teleopConeMissedController.text =
+              TeleopData.teleopConeMissedController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeMissedController.text);
+                int.parse(TeleopData.teleopConeMissedController.text);
             setState(() {
               currentValue--;
-              TeleopScoutingData.teleopConeMissedController.text =
+              TeleopData.teleopConeMissedController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -77,22 +75,22 @@ class _Row4FieldsState extends State<Row4Fields> {
         ),
         // Teleop cubes missed
         NumberInputFieldWithCounter(
-          controller: TeleopScoutingData.teleopCubeMissedController,
+          controller: TeleopData.teleopCubeMissedController,
           onTapIncrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopCubeMissedController.text);
+                int.parse(TeleopData.teleopCubeMissedController.text);
             setState(() {
               currentValue++;
-              TeleopScoutingData.teleopCubeMissedController.text =
+              TeleopData.teleopCubeMissedController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopCubeMissedController.text);
+                int.parse(TeleopData.teleopCubeMissedController.text);
             setState(() {
               currentValue--;
-              TeleopScoutingData.teleopCubeMissedController.text =
+              TeleopData.teleopCubeMissedController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -100,22 +98,22 @@ class _Row4FieldsState extends State<Row4Fields> {
         ),
         // Teleop cones dropped
         NumberInputFieldWithCounter(
-          controller: TeleopScoutingData.teleopConeDroppedController,
+          controller: TeleopData.teleopConeDroppedController,
           onTapIncrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeDroppedController.text);
+                int.parse(TeleopData.teleopConeDroppedController.text);
             setState(() {
               currentValue++;
-              TeleopScoutingData.teleopConeDroppedController.text =
+              TeleopData.teleopConeDroppedController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeDroppedController.text);
+                int.parse(TeleopData.teleopConeDroppedController.text);
             setState(() {
               currentValue--;
-              TeleopScoutingData.teleopConeDroppedController.text =
+              TeleopData.teleopConeDroppedController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });

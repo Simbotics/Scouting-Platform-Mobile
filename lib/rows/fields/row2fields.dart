@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
 
 import '../../builders/numberFieldWithCounter.dart';
 import '../../builders/dropdownMenu.dart';
 import '../../builders/numberInputField.dart';
-import '../../sections/autoScoutingData.dart';
-import '../../sections/teleopScoutingData.dart';
 
 class Row2Fields extends StatefulWidget {
   const Row2Fields({
@@ -32,29 +32,29 @@ class _Row2FieldsState extends State<Row2Fields> {
       ScoutingDropdownMenu(
           margin: const EdgeInsets.only(left: 20),
           width: 130,
-          dropdownMenuSelectedItem: AutoScoutingData.autoBalance,
+          dropdownMenuSelectedItem: AutoData.currentAutoBalanceState,
           onChanged: (value) {
             setState(() {
-              AutoScoutingData.autoBalance = value;
+              AutoData.currentAutoBalanceState = value;
             });
           },
-          dropdownItems: AutoScoutingData.balanceOptions),
+          dropdownItems: AutoData.autoBalanceOptions),
       // Auto mid
       NumberInputFieldWithCounter(
-        controller: AutoScoutingData.autoMidController,
+        controller: AutoData.autoMidController,
         onTapIncrement: () {
-          int currentValue = int.parse(AutoScoutingData.autoMidController.text);
+          int currentValue = int.parse(AutoData.autoMidController.text);
           setState(() {
             currentValue++;
-            AutoScoutingData.autoMidController.text =
+            AutoData.autoMidController.text =
                 (currentValue > 0 ? currentValue : 0).toString();
           });
         },
         onTapDecrement: () {
-          int currentValue = int.parse(AutoScoutingData.autoMidController.text);
+          int currentValue = int.parse(AutoData.autoMidController.text);
           setState(() {
             currentValue--;
-            AutoScoutingData.autoMidController.text =
+            AutoData.autoMidController.text =
                 (currentValue > 0 ? currentValue : 0)
                     .toString(); // decrementing value
           });
@@ -63,22 +63,20 @@ class _Row2FieldsState extends State<Row2Fields> {
       // Teleop cones mid
       NumberInputFieldWithCounter(
         margin: const EdgeInsets.only(left: 83),
-        controller: TeleopScoutingData.teleopConeMidController,
+        controller: TeleopData.teleopConeMidController,
         onTapIncrement: () {
-          int currentValue =
-              int.parse(TeleopScoutingData.teleopConeMidController.text);
+          int currentValue = int.parse(TeleopData.teleopConeMidController.text);
           setState(() {
             currentValue++;
-            TeleopScoutingData.teleopConeMidController.text =
+            TeleopData.teleopConeMidController.text =
                 (currentValue > 0 ? currentValue : 0).toString();
           });
         },
         onTapDecrement: () {
-          int currentValue =
-              int.parse(TeleopScoutingData.teleopConeMidController.text);
+          int currentValue = int.parse(TeleopData.teleopConeMidController.text);
           setState(() {
             currentValue--;
-            TeleopScoutingData.teleopConeMidController.text =
+            TeleopData.teleopConeMidController.text =
                 (currentValue > 0 ? currentValue : 0)
                     .toString(); // decrementing value
           });
@@ -86,22 +84,20 @@ class _Row2FieldsState extends State<Row2Fields> {
       ),
       // Teleop cubes mid
       NumberInputFieldWithCounter(
-        controller: TeleopScoutingData.teleopCubeMidController,
+        controller: TeleopData.teleopCubeMidController,
         onTapIncrement: () {
-          int currentValue =
-              int.parse(TeleopScoutingData.teleopCubeMidController.text);
+          int currentValue = int.parse(TeleopData.teleopCubeMidController.text);
           setState(() {
             currentValue++;
-            TeleopScoutingData.teleopCubeMidController.text =
+            TeleopData.teleopCubeMidController.text =
                 (currentValue > 0 ? currentValue : 0).toString();
           });
         },
         onTapDecrement: () {
-          int currentValue =
-              int.parse(TeleopScoutingData.teleopCubeMidController.text);
+          int currentValue = int.parse(TeleopData.teleopCubeMidController.text);
           setState(() {
             currentValue--;
-            TeleopScoutingData.teleopCubeMidController.text =
+            TeleopData.teleopCubeMidController.text =
                 (currentValue > 0 ? currentValue : 0)
                     .toString(); // decrementing value
           });
@@ -111,7 +107,7 @@ class _Row2FieldsState extends State<Row2Fields> {
       NumberInputField(
           width: 150,
           margin: const EdgeInsets.only(left: 20.0),
-          controller: TeleopScoutingData.teleopBalanceTimeController,
+          controller: TeleopData.teleopBalanceTimeController,
           hintText: "Enter Time"),
     ]);
   }
