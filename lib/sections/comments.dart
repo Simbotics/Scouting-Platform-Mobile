@@ -80,11 +80,17 @@ class _CommentsSectionState extends State<CommentsSection> {
                       // setState(() {
                       //   CommentsSection.qrIsVisible = true;
                       // });
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const CurrentQRCode(title: "Current QR Code");
-                      }));
-                      setBrightness(1.0);
+                      if (TeamAndMatchData.matchNumberController.text == "" ||
+                          TeamAndMatchData.teamNumberController.text == "") {
+                        showErrorDialog(context);
+                        return;
+                      } else {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const CurrentQRCode(title: "Current QR Code");
+                        }));
+                        setBrightness(1.0);
+                      }
                     },
                     child: const Text(
                       'Go To QR Code',
@@ -126,5 +132,31 @@ class _CommentsSectionState extends State<CommentsSection> {
     } catch (e) {
       throw 'Failed to set brightness';
     }
+  }
+
+  showErrorDialog(BuildContext context) {
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Ok"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Error: Not enough fields filled out"),
+      content: const Text(
+        "Error 1114! Not enough fields have been filled out to generate a QR code.\n\nPlease fill out all team and match information fields before generating a QR code.",
+      ),
+      actions: [
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
