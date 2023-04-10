@@ -152,9 +152,9 @@ packages:
   mobile_scanner:
     dependency: "direct main"
     description:
-      name: mobile_scanner
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "local_plugins/mobile_scanner"
+      relative: true
+    source: path
     version: "3.2.0"
   path:
     dependency: transitive
