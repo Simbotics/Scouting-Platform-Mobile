@@ -34,12 +34,26 @@ jobs:
 
     # Build the Android app in release mode.
     - run: flutter build apk --target-platform android-arm --split-per-abi
-
-    # Upload the built APK as a draft release.
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
+      
+      # create a release draft
+    - name: Create Release Draft
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ github.event.release.upload_url }}
+        tag_name: ${{ github.ref }}
+        name: Release ${{ github.ref }}
+        draft: true
+
+      # upload the release asset
+    - name: Upload APK to release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: build/app/outputs/flutter-apk/app-release.apk
-        asset_name: MyApp-release.apk
-        asset_content_type: application/octet-stream
+        asset_name: SimScout-release.apk
+        asset_content_type: application/vnd.android.package-archive
