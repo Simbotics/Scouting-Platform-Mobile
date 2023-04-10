@@ -57,7 +57,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                   width: 170.0,
                   padding: const EdgeInsets.only(left: 10.0, top: 20.0),
                   child: const Text(
-                    "Match Number",
+                    "Team Number",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.white,
@@ -67,8 +67,8 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                 ),
               ),
               NumberInputField(
-                controller: TeamAndMatchData.matchNumberController,
-                hintText: "Match Number",
+                controller: TeamAndMatchData.teamNumberController,
+                hintText: "Team Number",
               ),
               Align(
                 alignment: Alignment.centerLeft,
@@ -101,7 +101,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                   width: 170.0,
                   padding: const EdgeInsets.only(left: 10.0, top: 20.0),
                   child: const Text(
-                    "Team Number",
+                    "Match Number",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Colors.white,
@@ -111,8 +111,8 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                 ),
               ),
               NumberInputField(
-                controller: TeamAndMatchData.teamNumberController,
-                hintText: "Team Number",
+                controller: TeamAndMatchData.matchNumberController,
+                hintText: "Match Number",
               ),
               Align(
                 alignment: Alignment.centerLeft,
