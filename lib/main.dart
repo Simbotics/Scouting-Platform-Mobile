@@ -204,11 +204,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// Resets all fields that the user has put information into
   void resetAllFields() {
+    int matchNumberAsInt =
+        int.parse(TeamAndMatchData.matchNumberController.text);
     setState(() {
       CommentsSection.qrIsVisible = false;
-      TeamAndMatchData.initialsController.text = "";
-      TeamAndMatchData.matchNumberController.text = "";
-      TeamAndMatchData.teamAlliance = "Red";
+      TeamAndMatchData.matchNumberController.text =
+          (matchNumberAsInt + 1).toString();
       TeamAndMatchData.teamNumberController.text = "";
 
       AutoData.currentAutoMobility = "No";
