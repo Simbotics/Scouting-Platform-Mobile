@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
