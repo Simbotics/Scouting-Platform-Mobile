@@ -33,7 +33,7 @@ jobs:
     - run: dart format .
 
     # Build the Android app in release mode.
-    - run: flutter build apk --target-platform android-arm --split-per-abi
+    - run: flutter build apk --target-platform android-arm --release
       
       # create a release draft
     - name: Create Release Draft
