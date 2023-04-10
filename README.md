@@ -1,16 +1,5 @@
-# scouting_platform
+# 2023 Scouting Platform
 
-A new Flutter project.
+This branch is for development and not production.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This code cannot be compiled directly with the provided code, this required a modified mobile_scanner package due to not being able to encode potentially null string types. Please head over to the releases page to view and download the latest working APK.
