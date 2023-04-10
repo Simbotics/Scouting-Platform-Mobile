@@ -31,7 +31,6 @@ class StopwatchButton extends StatelessWidget {
             backgroundColor: AppStyle.textInputColorLight),
         onPressed: () {
           stopwatchMethod();
-          //print("pressed");
         },
       ),
     );

@@ -1,6 +1,4 @@
 // ignore_for_file: file_names
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -58,9 +56,7 @@ class CurrentQRCode extends StatelessWidget {
     return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
   }
 
-  /**
-   * Gets the right background colour that needs to be displayed
-   */
+  /// Gets the right background colour that needs to be displayed
   static Color getBackgroundColour() {
     switch (TeamAndMatchData.teamAlliance) {
       case "Blue":

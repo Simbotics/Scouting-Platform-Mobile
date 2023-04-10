@@ -38,9 +38,7 @@ class Comments extends StatelessWidget {
         ));
   }
 
-  /**
-   * Gets the right background colour that needs to be displayed
-   */
+  /// Gets the right background colour that needs to be displayed
   static Color getBackgroundColour() {
     switch (TeamAndMatchData.teamAlliance) {
       case "Blue":

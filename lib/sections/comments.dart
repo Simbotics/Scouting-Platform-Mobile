@@ -1,9 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
@@ -114,7 +113,6 @@ class _CommentsSectionState extends State<CommentsSection> {
     try {
       await ScreenBrightness().setScreenBrightness(brightness);
     } catch (e) {
-      print(e);
       throw 'Failed to set brightness';
     }
   }

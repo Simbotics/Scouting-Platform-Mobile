@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:csv/csv.dart';
@@ -41,6 +40,7 @@ class ScanQRCode extends StatelessWidget {
           onDetect: (capture) {
             ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
             //final Uint8List? image = capture.image; // Image of QR code
+            // ignore: unused_local_variable
             for (final barcode in ScanQRCode.barcodes) {
               barcodes = capture.barcodes; // Barcode(s) scanned
               //final Uint8List? image = capture.image; // Image of QR code
@@ -90,7 +90,6 @@ class ScanQRCode extends StatelessWidget {
                         )));
               }
             }
-            ;
           }),
     );
   }
@@ -222,64 +221,6 @@ class ScanQRCode extends StatelessWidget {
   // Creates and writes a string to a file in the app directory.
   static Future<File> writeToFile(String fileName, String fileContents) async {
     final file = await createFileInAppDirectory(fileName);
-    if (kDebugMode) {
-      print("Writing to file...");
-    }
     return file.writeAsString(fileContents);
   }
-
-  // void _initBluetooth() async {
-  //   FlutterBlue flutterBlue = FlutterBlue.instance;
-
-  //   // Start scanning for Bluetooth devices
-  //   flutterBlue.scan().listen((scanResult) {
-  //     // Connect to the desired device
-  //     if (scanResult.device.name == 'Galaxy Tab E') {
-  //       flutterBlue.stopScan();
-  //       setState(() {
-  //         _device = scanResult.device;
-  //       });
-  //       _connectToDevice();
-  //     }
-  //   });
-  // }
-
-  // void _connectToDevice() async {
-  //   if (_device == null) return;
-
-  //   await _device.connect();
-  //   List<BluetoothService> services = await _device.discoverServices();
-
-  //   for (BluetoothService service in services) {
-  //     List<BluetoothCharacteristic> characteristics = service.characteristics;
-
-  //     for (BluetoothCharacteristic characteristic in characteristics) {
-  //       // Check if the characteristic supports reading
-  //       if (characteristic.properties.read) {
-  //         _readCharacteristic = characteristic;
-  //       }
-  //     }
-  //   }
-
-  //   if (_readCharacteristic != null) {
-  //     _valueStream = _readCharacteristic.value.listen(_onIncomingData);
-  //   }
-  // }
-
-  // void _disposeBluetooth() async {
-  //   if (_valueStream != null) {
-  //     await _valueStream.cancel();
-  //   }
-  //   if (_device != null) {
-  //     await _device.disconnect();
-  //   }
-  // }
-
-  // void _onIncomingData(List<int> value) {
-  //   String message = utf8.decode(value);
-  //   setState(() {
-  //     _message = message;
-  //     print(_message);
-  //   });
-  // }
 }

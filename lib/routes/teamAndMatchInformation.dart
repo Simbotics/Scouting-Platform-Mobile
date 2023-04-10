@@ -2,7 +2,6 @@
 import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/numberInputField.dart';

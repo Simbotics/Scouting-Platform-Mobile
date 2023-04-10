@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
 import 'package:scouting_platform/ui/style/style.dart';

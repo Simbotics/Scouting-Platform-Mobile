@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
@@ -14,8 +15,6 @@ import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/old/sections/autoScoutingData.dart';
-import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
@@ -61,6 +60,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    super.initState();
     // TODO fix camera flip (disorientation)
   }
 
@@ -281,9 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /**
-   * Gets the right background colour that needs to be displayed
-   */
+  /// Gets the right background colour that needs to be displayed
   static Color getBackgroundColour() {
     switch (TeamAndMatchData.teamAlliance) {
       case "Blue":
@@ -299,7 +297,6 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       await ScreenBrightness().setScreenBrightness(brightness);
     } catch (e) {
-      print(e);
       throw 'Failed to set brightness';
     }
   }
