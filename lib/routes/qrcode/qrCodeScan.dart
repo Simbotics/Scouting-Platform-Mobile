@@ -129,83 +129,89 @@ class ScanQRCode extends StatelessWidget {
       String autoComments,
       String preferenceComments,
       String otherComments) async {
-    List<List<String>> data = [
-      [
-        "Team #",
-        "Match #",
-        "Initials",
-        "Alliance Colour",
-        "Auto Low",
-        "Auto Mid",
-        "Auto High",
-        "Auto Missed",
-        "Auto Mobility",
-        "Auto Balance",
-        "Auto Balance Time",
-        "Teleop Cone Low",
-        "Teleop Cone Mid",
-        "Teleop Cone High",
-        "Teleop Cone Dropped",
-        "Teleop Cone Missed",
-        "Teleop Cube Low",
-        "Teleop Cube Mid",
-        "Teleop Cube High",
-        "Teleop Cube Dropped",
-        "Teleop Cube Missed",
-        "Teleop Balance",
-        "Teleop Balance Time",
-        "Auto Comments",
-        "Preference Comments",
-        "Other Comments"
-      ],
-      [
-        // Team and match information
-        teamNumber,
-        matchNumber,
-        initials,
-        allianceColour,
+    // File name for generated csv file
+    String fileName = "2023-Houston-Worlds.csv";
 
-        // Auto scored levels
-        autoScoredLow,
-        autoScoredMid,
-        autoScoredHigh,
-        autoScoredMissed,
+    final directory = (await getExternalStorageDirectories())?.first;
+    final file = File('${directory?.path}/$fileName');
 
-        // Auto balance stats
-        autoMobility,
-        autoBalance,
-        autoBalanceTime,
+    // Check if the file already exists
+    bool fileExists = await file.exists();
 
-        // Teleop cone scored levels
-        teleopScoredConeLow,
-        teleopScoredConeMid,
-        teleopScoredConeHigh,
-        teleopConeDropped,
-        teleopConeMissed,
-
-        // Teleop cube scored levels
-        teleopScoredCubeLow,
-        teleopScoredCubeMid,
-        teleopScoredCubeHigh,
-        teleopCubeDropped,
-        teleopCubeMissed,
-
-        // Teleop balance stats
-        teleopBalance,
-        teleopBalanceTime,
-
-        // Comments
-        autoComments,
-        preferenceComments,
-        otherComments
-      ],
+    // Column names
+    List<String> columns = [
+      "Team #",
+      "Match #",
+      "Initials",
+      "Alliance Colour",
+      "Auto Low",
+      "Auto Mid",
+      "Auto High",
+      "Auto Missed",
+      "Auto Mobility",
+      "Auto Balance",
+      "Auto Balance Time",
+      "Teleop Cone Low",
+      "Teleop Cone Mid",
+      "Teleop Cone High",
+      "Teleop Cone Dropped",
+      "Teleop Cone Missed",
+      "Teleop Cube Low",
+      "Teleop Cube Mid",
+      "Teleop Cube High",
+      "Teleop Cube Dropped",
+      "Teleop Cube Missed",
+      "Teleop Balance",
+      "Teleop Balance Time",
+      "Auto Comments",
+      "Preference Comments",
+      "Other Comments"
     ];
+
+    // Add column names to data if the file doesn't exist
+    List<List<String>> data = [];
+    if (!fileExists) {
+      await writeToFile(fileName, 'sep=~\n');
+      data.add(columns);
+    }
+
+    // Add data to list
+    List<String> rowData = [
+      teamNumber,
+      matchNumber,
+      initials,
+      allianceColour,
+      autoScoredLow,
+      autoScoredMid,
+      autoScoredHigh,
+      autoScoredMissed,
+      autoMobility,
+      autoBalance,
+      autoBalanceTime,
+      teleopScoredConeLow,
+      teleopScoredConeMid,
+      teleopScoredConeHigh,
+      teleopConeDropped,
+      teleopConeMissed,
+      teleopScoredCubeLow,
+      teleopScoredCubeMid,
+      teleopScoredCubeHigh,
+      teleopCubeDropped,
+      teleopCubeMissed,
+      teleopBalance,
+      teleopBalanceTime,
+      autoComments,
+      preferenceComments,
+      otherComments
+    ];
+    data.add(rowData);
+
+    if (fileExists) {
+      await writeToFile(fileName, "\n");
+    }
 
     // Convert data to csv data and add ":" as field delimiter
     String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
-
-    // File name for generated csv file
-    fileName = "2023-Houston-Worlds.csv";
 
     // Write to file
     await writeToFile(fileName, csv);
