@@ -255,12 +255,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget continueButton = TextButton(
       child: const Text("Yes"),
       onPressed: () {
-        setBrightness(0.05);
         resetAllFields();
         Navigator.of(context, rootNavigator: true).pop('dialog');
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const TeamAndMatchInformation();
         }));
+        setBrightness(0.05);
       },
     ); // set up the AlertDialog
     AlertDialog alert = AlertDialog(

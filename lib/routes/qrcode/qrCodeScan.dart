@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:csv/csv.dart';
@@ -44,9 +45,10 @@ class ScanQRCode extends StatelessWidget {
               barcodes = capture.barcodes; // Barcode(s) scanned
               //final Uint8List? image = capture.image; // Image of QR code
               for (final barcode in barcodes) {
-                barcodeStrings = barcode.rawValue?.split(":");
-                fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
-                    .replaceAll(" ", "");
+                List<int> decodedBytes = base64.decode(barcode.rawValue);
+                String decodedBarcodeString = utf8.decode(decodedBytes);
+                barcodeStrings = decodedBarcodeString.split("~");
+                fileName = "2023-Houston-Worlds.csv";
 
                 // Stop the camera scanning then send the user to the "View Data" page.
                 HomeScreen.cameraController
@@ -200,10 +202,10 @@ class ScanQRCode extends StatelessWidget {
     ];
 
     // Convert data to csv data and add ":" as field delimiter
-    String csv = const ListToCsvConverter(fieldDelimiter: ":").convert(data);
+    String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
 
     // File name for generated csv file
-    fileName = "M$matchNumber-$teamNumber.csv".replaceAll(" ", "");
+    fileName = "2023-Houston-Worlds.csv";
 
     // Write to file
     await writeToFile(fileName, csv);
@@ -220,6 +222,7 @@ class ScanQRCode extends StatelessWidget {
   // Creates and writes a string to a file in the app directory.
   static Future<File> writeToFile(String fileName, String fileContents) async {
     final file = await createFileInAppDirectory(fileName);
-    return file.writeAsString(fileContents);
+    return file.writeAsString(fileContents,
+        flush: true, mode: FileMode.append); // write to file if exists
   }
 }

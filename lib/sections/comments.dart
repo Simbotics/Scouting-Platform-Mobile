@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -24,6 +25,8 @@ class CommentsSection extends StatefulWidget {
 
 class _CommentsSectionState extends State<CommentsSection> {
   Future<Image>? image;
+
+  static Codec<String, String> stringToBase64 = utf8.fuse(base64);
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +74,10 @@ class _CommentsSectionState extends State<CommentsSection> {
                         .textInputColorLight, // Set the background color here
                   ),
                   onPressed: () async {
-                    setBrightness(1.0);
                     setState(() {
                       CommentsSection.qrIsVisible = true;
                     });
+                    setBrightness(1.0);
                     // Navigator.push(context,
                     //     MaterialPageRoute(builder: (context) {
                     //   return const CurrentQRCode(title: "Current QR Code");
@@ -96,8 +99,8 @@ class _CommentsSectionState extends State<CommentsSection> {
                   300.0, // set the width of the container as per your requirement
               child: QrImage(
                 // Access variables through widget
-                data:
-                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}:${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}:${TeamAndMatchData.initialsController.text}:${TeamAndMatchData.teamAlliance}:${int.parse(AutoData.autoLowController.text)}:${int.parse(AutoData.autoMidController.text)}:${int.parse(AutoData.autoHighController.text)}:${int.parse(AutoData.autoMissedController.text)}:${AutoData.currentAutoMobility}:${AutoData.currentAutoBalanceState}:${int.tryParse(TeleopData.autoBalanceTimeController.text) ?? 0}:${int.parse(TeleopData.teleopConeLowController.text)}:${int.parse(TeleopData.teleopConeMidController.text)}:${int.parse(TeleopData.teleopConeHighController.text)}:${int.parse(TeleopData.teleopConeMissedController.text)}:${int.parse(TeleopData.teleopConeDroppedController.text)}:${int.parse(TeleopData.teleopCubeLowController.text)}:${int.parse(TeleopData.teleopCubeMidController.text)}:${int.parse(TeleopData.teleopCubeHighController.text)}:${int.parse(TeleopData.teleopCubeMissedController.text)}:${int.parse(TeleopData.teleopCubeDroppedController.text)}:${TeleopData.currentTeleopBalanceState}:${int.tryParse(TeleopData.teleopBalanceTimeController.text) ?? 0}:${CommentsData.autoCommentsController.text.replaceAll("\n", "")}:${CommentsData.preferenceCommentsController.text.replaceAll("\n", "")}:${CommentsData.otherCommentsController.text.replaceAll("\n", "")}",
+                data: stringToBase64.encode(
+                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}~${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}~${TeamAndMatchData.initialsController.text}~${TeamAndMatchData.teamAlliance}~${int.parse(AutoData.autoLowController.text)}~${int.parse(AutoData.autoMidController.text)}~${int.parse(AutoData.autoHighController.text)}~${int.parse(AutoData.autoMissedController.text)}~${AutoData.currentAutoMobility}~${AutoData.currentAutoBalanceState}~${int.tryParse(TeleopData.autoBalanceTimeController.text) ?? 0}~${int.parse(TeleopData.teleopConeLowController.text)}~${int.parse(TeleopData.teleopConeMidController.text)}~${int.parse(TeleopData.teleopConeHighController.text)}~${int.parse(TeleopData.teleopConeMissedController.text)}~${int.parse(TeleopData.teleopConeDroppedController.text)}~${int.parse(TeleopData.teleopCubeLowController.text)}~${int.parse(TeleopData.teleopCubeMidController.text)}~${int.parse(TeleopData.teleopCubeHighController.text)}~${int.parse(TeleopData.teleopCubeMissedController.text)}~${int.parse(TeleopData.teleopCubeDroppedController.text)}~${TeleopData.currentTeleopBalanceState}~${int.tryParse(TeleopData.teleopBalanceTimeController.text) ?? 0}~${CommentsData.autoCommentsController.text.replaceAll("\n", "")}~${CommentsData.preferenceCommentsController.text.replaceAll("\n", "")}~${CommentsData.otherCommentsController.text.replaceAll("\n", "")}"),
                 backgroundColor: Colors.white,
                 version: QrVersions.auto,
               ),
