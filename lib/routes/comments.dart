@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/textStyles/title.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 
 import '../sections/comments.dart';
 import '../ui/style/style.dart';
@@ -11,7 +12,7 @@ class Comments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppStyle.redAlliance,
+        backgroundColor: getBackgroundColour(),
         //resizeToAvoidBottomInset: true,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
@@ -35,5 +36,19 @@ class Comments extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  /**
+   * Gets the right background colour that needs to be displayed
+   */
+  static Color getBackgroundColour() {
+    switch (TeamAndMatchData.teamAlliance) {
+      case "Blue":
+        return AppStyle.blueAlliance;
+      case "Red":
+        return AppStyle.redAlliance;
+      default:
+        return AppStyle.redAlliance;
+    }
   }
 }

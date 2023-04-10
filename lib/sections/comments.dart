@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/old/sections/teamAndMatchData.dart';
+import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 
 import '../../ui/style/style.dart';
 import '../../builders/textInputField.dart';
@@ -73,6 +73,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                         .textInputColorLight, // Set the background color here
                   ),
                   onPressed: () async {
+                    setBrightness(1.0);
                     setState(() {
                       CommentsSection.qrIsVisible = true;
                     });
@@ -107,5 +108,14 @@ class _CommentsSectionState extends State<CommentsSection> {
         ),
       ],
     );
+  }
+
+  Future<void> setBrightness(double brightness) async {
+    try {
+      await ScreenBrightness().setScreenBrightness(brightness);
+    } catch (e) {
+      print(e);
+      throw 'Failed to set brightness';
+    }
   }
 }

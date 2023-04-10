@@ -21,6 +21,7 @@ import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -254,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget continueButton = TextButton(
       child: const Text("Yes"),
       onPressed: () {
+        setBrightness(0.05);
         resetAllFields();
         Navigator.of(context, rootNavigator: true).pop('dialog');
         Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -289,6 +291,15 @@ class _HomeScreenState extends State<HomeScreen> {
         return AppStyle.redAlliance;
       default:
         return AppStyle.redAlliance;
+    }
+  }
+
+  Future<void> setBrightness(double brightness) async {
+    try {
+      await ScreenBrightness().setScreenBrightness(brightness);
+    } catch (e) {
+      print(e);
+      throw 'Failed to set brightness';
     }
   }
 }

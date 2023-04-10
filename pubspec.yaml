@@ -40,6 +40,7 @@ dependencies:
   file_picker: ^5.2.5
   csv: ^5.0.1
   file_saver: ^0.1.1
+  screen_brightness: ^0.2.2
 
 dev_dependencies:
   flutter_test:
