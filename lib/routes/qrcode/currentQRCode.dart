@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';

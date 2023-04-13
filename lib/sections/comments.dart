@@ -205,8 +205,7 @@ class _CommentsSectionState extends State<CommentsSection> {
       controller: fieldController,
       decoration: const InputDecoration(
         hintText: "Type the team number here...",
-        hintStyle:
-            const TextStyle(fontFamily: 'Helvetica', color: Colors.black),
+        hintStyle: TextStyle(fontFamily: 'Helvetica', color: Colors.black),
         filled: true,
       ),
     );

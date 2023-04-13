@@ -33,6 +33,7 @@ class _Row3FieldsState extends State<Row3Fields> {
             width: 130,
             margin: const EdgeInsets.only(left: 20.0),
             controller: TeleopData.autoBalanceTimeController,
+            onChanged: (value) {},
             hintText: "Enter Time"),
         // Auto low
         NumberInputFieldWithCounter(

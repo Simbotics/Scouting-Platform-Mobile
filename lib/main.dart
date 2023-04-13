@@ -17,6 +17,7 @@ import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 import 'package:screen_brightness/screen_brightness.dart';
@@ -57,12 +58,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // TODO fix camera flip (disorientation)
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 
@@ -203,13 +198,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// Resets all fields that the user has put information into
   void resetAllFields() {
-    int matchNumberAsInt =
-        int.parse(TeamAndMatchData.matchNumberController.text);
     setState(() {
       CommentsSection.qrIsVisible = false;
-      TeamAndMatchData.matchNumberController.text =
-          (matchNumberAsInt + 1).toString();
-      TeamAndMatchData.teamNumberController.text = "";
+      if (TeamAndMatchData.matchNumberController.text != "") {
+        TeamAndMatchData.matchNumberController.text =
+            (int.parse(TeamAndMatchData.matchNumberController.text) + 1)
+                .toString();
+      } else {
+        TeamAndMatchData.matchNumberController.text = (2).toString();
+      }
+
+      SchedulingData.getTeamNumberFromSchedule(
+              int.parse(// Get the team number from the schedule
+                  TeamAndMatchData.matchNumberController.text))
+          .then((teamNumber) => TeamAndMatchData.teamNumberController.text =
+              teamNumber.toString());
 
       AutoData.currentAutoMobility = "No";
       AutoData.currentAutoBalanceState = "No Attempt";

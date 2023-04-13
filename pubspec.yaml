@@ -42,6 +42,8 @@ dependencies:
   csv: ^5.0.1
   file_saver: ^0.1.1
   screen_brightness: ^0.2.2
+  http: ^0.13.5
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:

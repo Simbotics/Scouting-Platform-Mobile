@@ -108,6 +108,7 @@ class _Row2FieldsState extends State<Row2Fields> {
           width: 150,
           margin: const EdgeInsets.only(left: 20.0),
           controller: TeleopData.teleopBalanceTimeController,
+          onChanged: (value) {},
           hintText: "Enter Time"),
     ]);
   }
