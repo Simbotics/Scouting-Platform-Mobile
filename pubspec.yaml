@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/images/nav_banner.png
     - assets/images/simbotics_logo.png
+    - assets/images/jqr_code_centerfold.png
   fonts:
     - family: "HesDeadJim"
       fonts:

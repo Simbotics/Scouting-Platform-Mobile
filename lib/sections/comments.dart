@@ -85,11 +85,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                         showErrorDialog(context);
                         return;
                       } else {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const CurrentQRCode(title: "Current QR Code");
-                        }));
-                        setBrightness(1.0);
+                        showConformationDialog(context);
                       }
                     },
                     child: const Text(
@@ -149,6 +145,79 @@ class _CommentsSectionState extends State<CommentsSection> {
         "Error 1114! Not enough fields have been filled out to generate a QR code.\n\nPlease fill out all team and match information fields before generating a QR code.",
       ),
       actions: [
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showFailedDialog(BuildContext context) {
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Ok"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Error: Incorrect field input"),
+      content: const Text(
+        "Error! The team number you types did not match the team number of the team\nyou are scouting. Please re-type the team number!",
+      ),
+      actions: [
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showConformationDialog(BuildContext context) {
+    TextEditingController fieldController = TextEditingController(text: "");
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Submit"),
+      onPressed: () {
+        if (fieldController.text !=
+            TeamAndMatchData.teamNumberController.text) {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          showFailedDialog(context);
+        } else {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const CurrentQRCode(title: "Current QR Code");
+          }));
+          setBrightness(1.0);
+        }
+      },
+    );
+    Widget teamNumberField = TextField(
+      controller: fieldController,
+      decoration: const InputDecoration(
+        hintText: "Type the team number here...",
+        hintStyle:
+            const TextStyle(fontFamily: 'Helvetica', color: Colors.black),
+        filled: true,
+      ),
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Confirmation: Please type TEAM NUMBER"),
+      content: Text(
+        "Please type the TEAM NUMBER of the team you are scouting in the \nbox below to confirm the generation of the QR code.\n\nMatch Number: ${TeamAndMatchData.matchNumberController.text}\nTeam Number: ${TeamAndMatchData.teamNumberController.text}",
+      ),
+      actions: [
+        teamNumberField,
         okButton,
       ],
     ); // show the dialog
