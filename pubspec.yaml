@@ -1,5 +1,5 @@
 name: scouting_platform
-description: A scouting platform app designed to track FRC robot performance.
+description: A scouting platform app designed to track FRC robot performance. 
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
