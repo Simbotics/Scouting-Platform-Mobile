@@ -57,7 +57,8 @@ class SchedulingData {
   static Future<void> saveCurrentEventIDAndCurrentDriverStation() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
-      final file = File("/storage/emulated/0/Documents/current_event_id.txt");
+      final file =
+          File("/storage/emulated/0/Documents/scouting_app_data.pickle");
       await file.writeAsString(
           eventIDController.text + "," + currentScoutingDriverStation);
     } else {
@@ -69,7 +70,8 @@ class SchedulingData {
   static Future<String> getCurrentEventIDAndCurrentDriverStation() async {
     final status = await Permission.storage.request();
     if (status.isGranted) {
-      final file = File("/storage/emulated/0/Documents/current_event_id.txt");
+      final file =
+          File("/storage/emulated/0/Documents/scouting_app_data.pickle");
       if (await file.exists()) {
         return await file.readAsString();
       } else {
