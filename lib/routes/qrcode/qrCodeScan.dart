@@ -134,8 +134,8 @@ class ScanQRCode extends StatelessWidget {
     // File name for generated csv file
     String fileName = "2023-Houston-Worlds.csv";
 
-    final directory = (await getExternalStorageDirectories())?.first;
-    final file = File('${directory?.path}/$fileName');
+    final directory = Directory("/storage/emulated/0/Documents");
+    final file = File('${directory.path}/$fileName');
 
     // Check if the file already exists
     bool fileExists = await file.exists();
@@ -221,8 +221,8 @@ class ScanQRCode extends StatelessWidget {
 
   // Creates file in the app directory.
   static Future<File> createFileInAppDirectory(String fileName) async {
-    final directory = (await getExternalStorageDirectories())?.first;
-    final file = File('${directory?.path}/$fileName');
+    final directory = Directory("/storage/emulated/0/Documents");
+    final file = File('${directory.path}/$fileName');
     await file.create();
     return file;
   }
