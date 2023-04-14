@@ -6,6 +6,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 
@@ -53,15 +54,13 @@ class CurrentQRCode extends StatelessWidget {
     return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
   }
 
-  /// Gets the right background colour that needs to be displayed
-  static Color getBackgroundColour() {
-    switch (TeamAndMatchData.teamAlliance) {
-      case "Blue":
-        return AppStyle.blueAlliance;
-      case "Red":
-        return AppStyle.redAlliance;
-      default:
-        return AppStyle.redAlliance;
+  Color getBackgroundColour() {
+    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
+      return AppStyle.redAlliance;
+    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
+      return AppStyle.blueAlliance;
+    } else {
+      throw Exception("Invalid alliance colour");
     }
   }
 }

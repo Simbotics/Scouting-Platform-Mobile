@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/textStyles/title.dart';
-import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/schedulingData.dart';
 
 import '../sections/comments.dart';
 import '../ui/style/style.dart';
@@ -38,15 +38,13 @@ class Comments extends StatelessWidget {
         ));
   }
 
-  /// Gets the right background colour that needs to be displayed
-  static Color getBackgroundColour() {
-    switch (TeamAndMatchData.teamAlliance) {
-      case "Blue":
-        return AppStyle.blueAlliance;
-      case "Red":
-        return AppStyle.redAlliance;
-      default:
-        return AppStyle.redAlliance;
+  Color getBackgroundColour() {
+    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
+      return AppStyle.redAlliance;
+    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
+      return AppStyle.blueAlliance;
+    } else {
+      throw Exception("Invalid alliance colour");
     }
   }
 }

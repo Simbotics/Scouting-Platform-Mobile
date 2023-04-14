@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
+import 'package:scouting_platform/routes/settings/settings.dart';
+import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 
 class NavigationSidebar extends StatelessWidget {
@@ -62,11 +64,14 @@ class NavigationSidebar extends StatelessWidget {
                       fontFamily: 'Futura', fontWeight: FontWeight.bold)),
               onTap: () => null),
           ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('My Scouts',
+              leading: const Icon(Icons.tablet),
+              title: const Text('Start Scouting',
                   style: TextStyle(
                       fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-              onTap: () => null),
+              onTap: () =>
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const TeamAndMatchInformation();
+                  }))),
           const Divider(),
           // Settings
           ListTile(
@@ -74,7 +79,10 @@ class NavigationSidebar extends StatelessWidget {
             title: const Text('Settings',
                 style: TextStyle(
                     fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-            onTap: () => null,
+            onTap: () =>
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Settings(title: 'Settings');
+            })),
           ),
           // About section
           ListTile(

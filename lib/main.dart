@@ -283,15 +283,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Gets the right background colour that needs to be displayed
-  static Color getBackgroundColour() {
-    switch (TeamAndMatchData.teamAlliance) {
-      case "Blue":
-        return AppStyle.blueAlliance;
-      case "Red":
-        return AppStyle.redAlliance;
-      default:
-        return AppStyle.redAlliance;
+  Color getBackgroundColour() {
+    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
+      return AppStyle.redAlliance;
+    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
+      return AppStyle.blueAlliance;
+    } else {
+      throw Exception("Invalid alliance colour");
     }
   }
 

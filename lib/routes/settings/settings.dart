@@ -3,22 +3,20 @@ import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/ui/style/style.dart';
-import 'package:scouting_platform/builders/numberInputField.dart';
+import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 
-import '../main.dart';
-
-class TeamAndMatchInformation extends StatefulWidget {
-  const TeamAndMatchInformation({Key? key}) : super(key: key);
+class Settings extends StatefulWidget {
+  const Settings({Key? key, required this.title}) : super(key: key);
+  final String title;
 
   @override
-  State<TeamAndMatchInformation> createState() =>
-      _TeamAndMatchInformationState();
+  State<Settings> createState() => _SettingsState();
 }
 
-class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
+class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
@@ -43,10 +41,10 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
           preferredSize: const Size.fromHeight(40.0),
           child: AppBar(
             backgroundColor: AppStyle.textInputColor,
-            title: const Text(
-              "Scouting Platform - 2023",
+            title: Text(
+              widget.title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: 'Futura'),
+              style: const TextStyle(fontFamily: 'Futura'),
             ),
           )),
 
@@ -59,8 +57,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                 height: 10,
               ),
               const TitleStyle(
-                  text: "Team & Match Information",
-                  padding: EdgeInsets.only(left: 10.0)),
+                  text: "Settings", padding: EdgeInsets.only(left: 10.0)),
               Row(children: [
                 Align(
                   alignment: Alignment.centerLeft,
@@ -68,7 +65,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                     width: 170.0,
                     padding: const EdgeInsets.only(left: 10.0, top: 20.0),
                     child: const Text(
-                      "Team Number",
+                      "Current Driver Station",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white,
@@ -77,16 +74,41 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                     ),
                   ),
                 ),
-                const Spacer(),
               ]),
               Row(children: [
-                NumberInputField(
-                  readOnly: true,
-                  onChanged: (value) {},
-                  controller: TeamAndMatchData.teamNumberController,
-                  hintText: "Team Number",
-                ),
-                const Spacer(),
+                ScoutingDropdownMenu(
+                    width: 150.0,
+                    margin: const EdgeInsets.only(left: 10.0),
+                    dropdownMenuSelectedItem:
+                        SchedulingData.currentScoutingDriverStation,
+                    onChanged: (value) {
+                      setState(() {
+                        SchedulingData.currentScoutingDriverStation = value;
+                        SchedulingData
+                            .saveCurrentEventIDAndCurrentDriverStation();
+                        if (TeamAndMatchData.matchNumberController.text != "") {
+                          // If it isn't null
+                          SchedulingData.getTeamNumberFromSchedule(int.parse(
+                                  // Get the team number from the schedule
+                                  TeamAndMatchData.matchNumberController.text))
+                              .then((teamNumber) {
+                            // Once retrieved then set the team number to the text field
+                            TeamAndMatchData.teamNumberController.text =
+                                teamNumber.toString();
+                          });
+                        }
+
+                        // If the driver station starts with "Red" make alliance colour red, if it starts with "Blue" make alliance colour blue
+                        if (SchedulingData.currentScoutingDriverStation
+                            .startsWith("Red")) {
+                          TeamAndMatchData.teamAlliance = "Red";
+                        } else if (SchedulingData.currentScoutingDriverStation
+                            .startsWith("Blue")) {
+                          TeamAndMatchData.teamAlliance = "Blue";
+                        }
+                      });
+                    },
+                    dropdownItems: SchedulingData.driverStations),
               ]),
               Row(children: [
                 Align(
@@ -95,7 +117,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                     width: 200.0,
                     padding: const EdgeInsets.only(left: 10.0, top: 20),
                     child: const Text(
-                      "Match Number",
+                      "Fetching Event ID",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white,
@@ -104,74 +126,39 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
                     ),
                   ),
                 ),
-                const Spacer(),
               ]),
-              Row(children: [
-                NumberInputField(
-                  onChanged: (value) async {
-                    if (TeamAndMatchData.matchNumberController.text != "") {
-                      // If it isn't null
-                      SchedulingData.getTeamNumberFromSchedule(
-                              int.parse(// Get the team number from the schedule
-                                  TeamAndMatchData.matchNumberController.text))
-                          .then((teamNumber) {
-                        // Once retrieved then set the team number to the text field
-                        TeamAndMatchData.teamNumberController.text =
-                            teamNumber.toString();
-                      });
-                    }
-                  },
-                  controller: TeamAndMatchData.matchNumberController,
-                  hintText: "Match Number",
-                ),
-                const Spacer(),
-              ]),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: 170.0,
-                  padding: const EdgeInsets.only(left: 10.0, top: 20.0),
-                  child: const Text(
-                    "Scout Initials",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
               Row(children: [
                 TextInputField(
-                    controller: TeamAndMatchData.initialsController,
-                    margin: const EdgeInsets.only(left: 10),
-                    onChanged: (value) {},
+                    controller: SchedulingData.eventIDController,
+                    margin: const EdgeInsets.only(left: 10.0),
+                    onChanged: (value) async {
+                      SchedulingData
+                          .saveCurrentEventIDAndCurrentDriverStation();
+                    },
                     textAlign: TextAlign.center,
-                    hintText: "Scout Initials"),
-                const Spacer(),
+                    hintText: "Event ID"),
               ]),
-              const SizedBox(height: 123.0),
-              Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                      padding: const EdgeInsets.only(top: 4.0, right: 13),
-                      height: 47.0,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppStyle
-                              .textInputColorLight, // Set the background color here
-                        ),
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const HomeScreen();
-                          }));
-                        },
-                        child: const Text(
-                          'Auto/Teleop >',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                      )))
+              Row(children: [
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                        padding: const EdgeInsets.only(top: 24.0, left: 10.0),
+                        height: 67.0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppStyle
+                                .textInputColorLight, // Set the background color here
+                          ),
+                          onPressed: () {
+                            // Fetched the schedule for the even ID from the github repo
+                            showConfirmationDialog(context);
+                          },
+                          child: const Text(
+                            'Fetch Schedule',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        )))
+              ]),
             ],
           )),
     );
