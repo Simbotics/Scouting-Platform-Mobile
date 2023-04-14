@@ -5,6 +5,7 @@ import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
+import 'package:scouting_platform/utils/data/qrCodeData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 
@@ -20,8 +21,10 @@ class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
+    // Get the current event ID and current driver station from the file
     SchedulingData.getCurrentEventIDAndCurrentDriverStation()
         .then((value) => setState(() {
+              // Once retrieved then set the text fields to the values
               List<String> lineArray = value.split(",");
               SchedulingData.eventIDController.text = lineArray[0];
               SchedulingData.currentScoutingDriverStation = lineArray[1];
@@ -75,6 +78,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
               ]),
+              // Dropdown menu for the current driver station
               Row(children: [
                 ScoutingDropdownMenu(
                     width: 150.0,
@@ -82,6 +86,7 @@ class _SettingsState extends State<Settings> {
                     dropdownMenuSelectedItem:
                         SchedulingData.currentScoutingDriverStation,
                     onChanged: (value) {
+                      // When the value is changed then set the current driver station to the value
                       setState(() {
                         SchedulingData.currentScoutingDriverStation = value;
                         SchedulingData
@@ -127,6 +132,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
               ]),
+              // Event ID text field
               Row(children: [
                 TextInputField(
                     controller: SchedulingData.eventIDController,
@@ -138,6 +144,7 @@ class _SettingsState extends State<Settings> {
                     textAlign: TextAlign.center,
                     hintText: "Event ID"),
               ]),
+              // Fetch schedule button
               Row(children: [
                 Align(
                     alignment: Alignment.bottomRight,
@@ -158,6 +165,39 @@ class _SettingsState extends State<Settings> {
                             style: TextStyle(fontSize: 20.0),
                           ),
                         )))
+              ]),
+              Row(children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: 170.0,
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: const Text(
+                      "Current QR Centerfold",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                    ),
+                  ),
+                ),
+              ]),
+              // Dropdown menu for the QR centerfold
+              Row(children: [
+                ScoutingDropdownMenu(
+                    width: 150.0,
+                    margin: const EdgeInsets.only(left: 10.0),
+                    dropdownMenuSelectedItem:
+                        QRCodeData.currentlySelectedQRCenterfold,
+                    onChanged: (value) {
+                      setState(() {
+                        QRCodeData.currentlySelectedQRCenterfold = value;
+                        QRCodeData.currentlySelectedQRCenterfoldFileName =
+                            value + "_centerfold.png";
+                      });
+                    },
+                    dropdownItems: QRCodeData.qrCenterfoldDropdownOptions),
               ]),
             ],
           )),

@@ -11,6 +11,7 @@ class SchedulingData {
   // Current scouting driver station
   static String currentScoutingDriverStation = "Red 1";
   static late int argumentReadingIndex;
+  static late int driverStationIdentifier;
 
   // Create a texteditingcontroller which holds the ID of the current fetching event
   static final TextEditingController eventIDController =

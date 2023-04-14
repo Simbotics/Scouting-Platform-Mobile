@@ -6,18 +6,65 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/qrCodeData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 
-class CurrentQRCode extends StatelessWidget {
+class CurrentQRCode extends StatefulWidget {
   const CurrentQRCode({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
+  State<CurrentQRCode> createState() => _CurrentQRCodeState();
+}
+
+class _CurrentQRCodeState extends State<CurrentQRCode> {
+  @override
+  void initState() {
+    super.initState();
+    // Based on what station they are scouting, set the driver station identifier
+    // to a number between 0 and 5. This is used to determine which device has been scanned.
+    switch (SchedulingData.currentScoutingDriverStation) {
+      case "Red 1":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 0;
+        });
+        break;
+      case "Red 2":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 1;
+        });
+        break;
+      case "Red 3":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 2;
+        });
+        break;
+      case "Blue 1":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 3;
+        });
+        break;
+      case "Blue 2":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 4;
+        });
+        break;
+      case "Blue 3":
+        setState(() {
+          SchedulingData.driverStationIdentifier = 5;
+        });
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // Encode the data in utf8 (for emoijs and other special characters)
     List<int> encoded = utf8.encode(
-        "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}~${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}~${TeamAndMatchData.initialsController.text}~${TeamAndMatchData.teamAlliance}~${int.parse(AutoData.autoLowController.text)}~${int.parse(AutoData.autoMidController.text)}~${int.parse(AutoData.autoHighController.text)}~${int.parse(AutoData.autoMissedController.text)}~${AutoData.currentAutoMobility}~${AutoData.currentAutoBalanceState}~${int.tryParse(TeleopData.autoBalanceTimeController.text) ?? 0}~${int.parse(TeleopData.teleopConeLowController.text)}~${int.parse(TeleopData.teleopConeMidController.text)}~${int.parse(TeleopData.teleopConeHighController.text)}~${int.parse(TeleopData.teleopConeMissedController.text)}~${int.parse(TeleopData.teleopConeDroppedController.text)}~${int.parse(TeleopData.teleopCubeLowController.text)}~${int.parse(TeleopData.teleopCubeMidController.text)}~${int.parse(TeleopData.teleopCubeHighController.text)}~${int.parse(TeleopData.teleopCubeMissedController.text)}~${int.parse(TeleopData.teleopCubeDroppedController.text)}~${TeleopData.currentTeleopBalanceState}~${int.tryParse(TeleopData.teleopBalanceTimeController.text) ?? 0}~${CommentsData.autoCommentsController.text.replaceAll("\n", "")}~${CommentsData.preferenceCommentsController.text.replaceAll("\n", "")}~${CommentsData.otherCommentsController.text.replaceAll("\n", "")}");
+        "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}~${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}~${TeamAndMatchData.initialsController.text}~${TeamAndMatchData.teamAlliance}~${int.parse(AutoData.autoLowController.text)}~${int.parse(AutoData.autoMidController.text)}~${int.parse(AutoData.autoHighController.text)}~${int.parse(AutoData.autoMissedController.text)}~${AutoData.currentAutoMobility}~${AutoData.currentAutoBalanceState}~${int.tryParse(TeleopData.autoBalanceTimeController.text) ?? 0}~${int.parse(TeleopData.teleopConeLowController.text)}~${int.parse(TeleopData.teleopConeMidController.text)}~${int.parse(TeleopData.teleopConeHighController.text)}~${int.parse(TeleopData.teleopConeMissedController.text)}~${int.parse(TeleopData.teleopConeDroppedController.text)}~${int.parse(TeleopData.teleopCubeLowController.text)}~${int.parse(TeleopData.teleopCubeMidController.text)}~${int.parse(TeleopData.teleopCubeHighController.text)}~${int.parse(TeleopData.teleopCubeMissedController.text)}~${int.parse(TeleopData.teleopCubeDroppedController.text)}~${TeleopData.currentTeleopBalanceState}~${int.tryParse(TeleopData.teleopBalanceTimeController.text) ?? 0}~${CommentsData.autoCommentsController.text.replaceAll("\n", "")}~${CommentsData.preferenceCommentsController.text.replaceAll("\n", "")}~${CommentsData.otherCommentsController.text.replaceAll("\n", "")}~${SchedulingData.driverStationIdentifier}");
+    // Encode the data in base64 to make it more compact
     String base64String = base64.encode(encoded);
     return Scaffold(
       backgroundColor: getBackgroundColour(),
@@ -26,34 +73,31 @@ class CurrentQRCode extends StatelessWidget {
           child: AppBar(
             backgroundColor: AppStyle.textInputColor,
             title: Text(
-              title,
+              widget.title,
               textAlign: TextAlign.center,
               style: const TextStyle(fontFamily: 'Futura'),
             ),
           )),
       body: Center(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          //width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context)
+              .size
+              .height, // Fit to fill the whole screen
           child: QrImage(
               // Access variables through widget
-              data: base64String,
+              data: base64String, // QR code data (the encoded string)
               backgroundColor: Colors.white,
               version: QrVersions.auto,
               errorCorrectionLevel: QrErrorCorrectLevel.L,
-              embeddedImage:
-                  const AssetImage("assets/images/jqr_code_centerfold.png")),
+              // Set the centerfold image
+              embeddedImage: AssetImage("assets/images/centerfolds/" +
+                  QRCodeData.currentlySelectedQRCenterfoldFileName)),
         ),
       ),
     );
   }
 
-  static String formatTime(int seconds) {
-    int minutes = (seconds % 3600) ~/ 60;
-    int remainingSeconds = seconds % 60;
-    return "${minutes.toString()}:${remainingSeconds.toString().padLeft(2, '0')}";
-  }
-
+  /// Retrieves the background colour based on the alliance colour
   Color getBackgroundColour() {
     if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
       return AppStyle.redAlliance;

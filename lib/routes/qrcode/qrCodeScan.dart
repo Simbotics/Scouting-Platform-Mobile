@@ -86,6 +86,8 @@ class ScanQRCode extends StatelessWidget {
                             autoComments: ScanQRCode.barcodeStrings![23],
                             preferenceComments: ScanQRCode.barcodeStrings![24],
                             otherComments: ScanQRCode.barcodeStrings![25],
+                            driverStationIdentifier:
+                                ScanQRCode.barcodeStrings![26],
                             fileName: ScanQRCode.fileName,
                           ),
                         )));

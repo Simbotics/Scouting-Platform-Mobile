@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/routes/comments.dart';
-import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
+import 'package:scouting_platform/routes/qrcode/scannedDriverStations.dart';
 import 'package:scouting_platform/routes/settings/settings.dart';
 import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
 import 'package:scouting_platform/ui/style/style.dart';
@@ -43,26 +43,20 @@ class NavigationSidebar extends StatelessWidget {
               return const Comments(title: 'Comments For Scout');
             })),
           ),
-          // Scanning
+
+          // Scanned status's and scanning
           ListTile(
-            leading: const Icon(Icons.camera),
-            title: const Text(
-              'Scan',
-              style:
-                  TextStyle(fontFamily: 'Futura', fontWeight: FontWeight.bold),
-            ),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const ScanQRCode(title: 'Scan QR Code');
-            })),
-          ),
-          // Field sketchpad
-          ListTile(
-              leading: const Icon(Icons.draw),
-              title: const Text('Field',
+              leading: const Icon(Icons.camera_alt_outlined),
+              title: const Text('Scanned Status',
                   style: TextStyle(
                       fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-              onTap: () => null),
+              onTap: () =>
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const ScannedDriverStations(
+                      title: 'Scanned Status',
+                    );
+                  }))),
+          // Start scouting a match or pickup where you left off
           ListTile(
               leading: const Icon(Icons.tablet),
               title: const Text('Start Scouting',
@@ -73,7 +67,7 @@ class NavigationSidebar extends StatelessWidget {
                     return const TeamAndMatchInformation();
                   }))),
           const Divider(),
-          // Settings
+          // Settings (QR code centerfold, Driver station scouting, etc) (MANAGEMENT ONLY)
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings',
@@ -83,14 +77,6 @@ class NavigationSidebar extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const Settings(title: 'Settings');
             })),
-          ),
-          // About section
-          ListTile(
-            leading: const Icon(Icons.question_mark),
-            title: const Text('About',
-                style: TextStyle(
-                    fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-            onTap: () => null,
           ),
           const Divider(),
           // Exit app

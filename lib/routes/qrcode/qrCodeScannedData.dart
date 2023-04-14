@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScan.dart';
+import 'package:scouting_platform/routes/qrcode/scannedDriverStations.dart';
 import 'package:scouting_platform/ui/style/style.dart';
+import 'package:scouting_platform/utils/data/scanningData.dart';
 
-class ScannedQRCodeData extends StatelessWidget {
+class ScannedQRCodeData extends StatefulWidget {
   const ScannedQRCodeData(
       {Key? key,
       // Match and team data
@@ -41,6 +41,7 @@ class ScannedQRCodeData extends StatelessWidget {
       required this.autoComments,
       required this.preferenceComments,
       required this.otherComments,
+      required this.driverStationIdentifier,
       required this.fileName})
       : super(key: key);
 
@@ -77,8 +78,13 @@ class ScannedQRCodeData extends StatelessWidget {
   final String autoComments;
   final String preferenceComments;
   final String otherComments;
+  final String driverStationIdentifier;
   final String fileName;
+  @override
+  State<ScannedQRCodeData> createState() => _ScannedQRCodeDataState();
+}
 
+class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +94,7 @@ class ScannedQRCodeData extends StatelessWidget {
             child: AppBar(
               backgroundColor: AppStyle.textInputColor,
               title: Text(
-                title,
+                widget.title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontFamily: 'Futura'),
               ),
@@ -118,8 +124,17 @@ class ScannedQRCodeData extends StatelessWidget {
                         backgroundColor: AppStyle
                             .textInputColorLight, // Set the background color here
                       ),
-                      onPressed: () {
-                        ScanQRCode.generateCsv(
+                      onPressed: () async {
+                        setState(() {
+                          ScanningData.unscannedDevices = ScanningData
+                              .unscannedDevices
+                              .where((element) => !element
+                                  .contains(ScanQRCode.barcodeStrings![26]))
+                              .toList();
+                          ScanningData.scannedDevices
+                              .add(ScanQRCode.barcodeStrings![26]);
+                        });
+                        await ScanQRCode.generateCsv(
                             ScanQRCode.barcodeStrings![0],
                             ScanQRCode.barcodeStrings![1],
                             ScanQRCode.barcodeStrings![2],
@@ -148,7 +163,9 @@ class ScannedQRCodeData extends StatelessWidget {
                             ScanQRCode.barcodeStrings![25]);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const HomeScreen();
+                          return const ScannedDriverStations(
+                            title: "Scanned Status",
+                          );
                         }));
                       },
                       child: const Text(
@@ -162,7 +179,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(top: 15.0, left: 15.0),
               child: Text(
-                "Team #: $teamNumber",
+                "Team #: ${widget.teamNumber}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -171,7 +188,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Match #: $matchNumber",
+                "Match #: ${widget.matchNumber}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -180,7 +197,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Initials: $initials",
+                "Initials: ${widget.initials}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -189,7 +206,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Alliance Colour: $allianceColour",
+                "Alliance Colour: ${widget.allianceColour}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -198,7 +215,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Low Scored: $autoLow",
+                "Auto Low Scored: ${widget.autoLow}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -207,7 +224,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Mid Scored: $autoMid",
+                "Auto Mid Scored: ${widget.autoMid}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -216,7 +233,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto High Scored: $autoHigh",
+                "Auto High Scored: ${widget.autoHigh}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -225,7 +242,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Missed: $autoMissed",
+                "Auto Missed: ${widget.autoMissed}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -234,7 +251,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Mobility: $autoMobility",
+                "Auto Mobility: ${widget.autoMobility}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -243,7 +260,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Balance: $autoBalance",
+                "Auto Balance: ${widget.autoBalance}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -252,7 +269,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Balance Time: $autoBalanceTime",
+                "Auto Balance Time: ${widget.autoBalanceTime}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -261,7 +278,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Scored Cone Low: $teleopConeLow",
+                "Teleop Scored Cone Low: ${widget.teleopConeLow}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -270,7 +287,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Scored Cone Mid: $teleopConeMid",
+                "Teleop Scored Cone Mid: ${widget.teleopConeMid}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -279,7 +296,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Scored Cone High: $teleopConeHigh",
+                "Teleop Scored Cone High: ${widget.teleopConeHigh}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -288,7 +305,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cone Missed: $teleopConeMissed",
+                "Teleop Cone Missed: ${widget.teleopConeMissed}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -297,7 +314,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cone Dropped: $teleopConeDropped",
+                "Teleop Cone Dropped: ${widget.teleopConeDropped}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -306,7 +323,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Low: $teleopCubeLow",
+                "Teleop Cube Low: ${widget.teleopCubeLow}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -315,7 +332,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Mid: $teleopCubeMid",
+                "Teleop Cube Mid: ${widget.teleopCubeMid}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -324,7 +341,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube High: $teleopCubeHigh",
+                "Teleop Cube High: ${widget.teleopCubeHigh}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -333,7 +350,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Missed: $teleopCubeMissed",
+                "Teleop Cube Missed: ${widget.teleopCubeMissed}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -342,7 +359,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Dropped: $teleopCubeDropped",
+                "Teleop Cube Dropped: ${widget.teleopCubeDropped}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -351,7 +368,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Balance: $teleopBalance",
+                "Teleop Balance: ${widget.teleopBalance}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -360,7 +377,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Balance Time: $teleopBalanceTime",
+                "Teleop Balance Time: ${widget.teleopBalanceTime}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -369,7 +386,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Auto Comments: $autoComments",
+                "Auto Comments: ${widget.autoComments}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -378,7 +395,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Preference Comments: $preferenceComments",
+                "Preference Comments: ${widget.preferenceComments}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -387,7 +404,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Other Comments: $otherComments",
+                "Other Comments: ${widget.otherComments}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -405,7 +422,7 @@ class ScannedQRCodeData extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Generated CSV File Name: $fileName",
+                "Generated CSV File Name: ${widget.fileName}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
