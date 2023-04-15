@@ -20,7 +20,6 @@ import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 import 'package:scouting_platform/utils/data/uiUtils.dart';
-import 'package:screen_brightness/screen_brightness.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
