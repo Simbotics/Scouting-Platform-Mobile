@@ -12,19 +12,12 @@ class Row4Headers extends StatefulWidget {
 
 class _Row4HeadersState extends State<Row4Headers> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const SizedBox(width: 70),
+        // Auto missed
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -41,13 +34,14 @@ class _Row4HeadersState extends State<Row4Headers> {
           ),
         ),
         const SizedBox(width: 2),
+        // Teleop cones dropped
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
             width: 280.0,
             padding: const EdgeInsets.only(left: 162.0, top: 20.0),
             child: const Text(
-              "Cones Missed",
+              "Cones Dropped",
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Colors.white,
@@ -57,28 +51,14 @@ class _Row4HeadersState extends State<Row4Headers> {
           ),
         ),
         const SizedBox(width: 10),
+        // Teleop cubes dropped
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
             width: 170.0,
             padding: const EdgeInsets.only(left: 42.0, top: 20.0),
             child: const Text(
-              "Cubes Missed",
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.0),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            width: 170.0,
-            padding: const EdgeInsets.only(left: 42.0, top: 20.0),
-            child: const Text(
-              "Cones Dropped",
+              "Cubes Dropped",
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Colors.white,

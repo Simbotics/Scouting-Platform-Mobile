@@ -12,18 +12,11 @@ class Row1Headers extends StatefulWidget {
 
 class _Row1HeadersState extends State<Row1Headers> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        // Auto mobility status
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -39,6 +32,7 @@ class _Row1HeadersState extends State<Row1Headers> {
             ),
           ),
         ),
+        // Auto high scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -54,6 +48,7 @@ class _Row1HeadersState extends State<Row1Headers> {
             ),
           ),
         ),
+        // Teleop cones high scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -69,6 +64,7 @@ class _Row1HeadersState extends State<Row1Headers> {
             ),
           ),
         ),
+        // Teleop cubes high scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -84,6 +80,7 @@ class _Row1HeadersState extends State<Row1Headers> {
             ),
           ),
         ),
+        // Teleop balance statuss
         Align(
           alignment: Alignment.centerLeft,
           child: Container(

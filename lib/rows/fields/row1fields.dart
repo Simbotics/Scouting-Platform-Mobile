@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
 
 import '../../builders/numberFieldWithCounter.dart';
 import '../../builders/dropdownMenu.dart';
-import '../../sections/autoScoutingData.dart';
-import '../../sections/teleopScoutingData.dart';
 
 class Row1Fields extends StatefulWidget {
   const Row1Fields({
@@ -17,14 +17,6 @@ class Row1Fields extends StatefulWidget {
 
 class _Row1FieldsState extends State<Row1Fields> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
@@ -32,31 +24,29 @@ class _Row1FieldsState extends State<Row1Fields> {
         ScoutingDropdownMenu(
             margin: const EdgeInsets.only(left: 20),
             width: 130,
-            dropdownMenuSelectedItem: AutoScoutingData.autoMobility,
+            dropdownMenuSelectedItem: AutoData.currentAutoMobility,
             onChanged: (value) {
               setState(() {
-                AutoScoutingData.autoMobility = value;
+                AutoData.currentAutoMobility = value;
               });
             },
-            dropdownItems: yesNoOptions),
+            dropdownItems: AutoData.autoMobilityOptions),
         // Auto high
         NumberInputFieldWithCounter(
-          controller: AutoScoutingData.autoHighController,
+          controller: AutoData.autoHighController,
           onTapIncrement: () {
-            int currentValue =
-                int.parse(AutoScoutingData.autoHighController.text);
+            int currentValue = int.parse(AutoData.autoHighController.text);
             setState(() {
               currentValue++;
-              AutoScoutingData.autoHighController.text =
+              AutoData.autoHighController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
-            int currentValue =
-                int.parse(AutoScoutingData.autoHighController.text);
+            int currentValue = int.parse(AutoData.autoHighController.text);
             setState(() {
               currentValue--;
-              AutoScoutingData.autoHighController.text =
+              AutoData.autoHighController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -65,22 +55,22 @@ class _Row1FieldsState extends State<Row1Fields> {
         // Teleop cones high
         NumberInputFieldWithCounter(
           margin: const EdgeInsets.only(left: 83.0),
-          controller: TeleopScoutingData.teleopConeHighController,
+          controller: TeleopData.teleopConeHighController,
           onTapIncrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeHighController.text);
+                int.parse(TeleopData.teleopConeHighController.text);
             setState(() {
               currentValue++;
-              TeleopScoutingData.teleopConeHighController.text =
+              TeleopData.teleopConeHighController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopConeHighController.text);
+                int.parse(TeleopData.teleopConeHighController.text);
             setState(() {
               currentValue--;
-              TeleopScoutingData.teleopConeHighController.text =
+              TeleopData.teleopConeHighController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -88,22 +78,22 @@ class _Row1FieldsState extends State<Row1Fields> {
         ),
         // Teleop cubes high
         NumberInputFieldWithCounter(
-          controller: TeleopScoutingData.teleopCubeHighController,
+          controller: TeleopData.teleopCubeHighController,
           onTapIncrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopCubeHighController.text);
+                int.parse(TeleopData.teleopCubeHighController.text);
             setState(() {
               currentValue++;
-              TeleopScoutingData.teleopCubeHighController.text =
+              TeleopData.teleopCubeHighController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
             int currentValue =
-                int.parse(TeleopScoutingData.teleopCubeHighController.text);
+                int.parse(TeleopData.teleopCubeHighController.text);
             setState(() {
               currentValue--;
-              TeleopScoutingData.teleopCubeHighController.text =
+              TeleopData.teleopCubeHighController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });
@@ -113,13 +103,13 @@ class _Row1FieldsState extends State<Row1Fields> {
         ScoutingDropdownMenu(
             margin: const EdgeInsets.only(left: 20, right: 10),
             width: 150,
-            dropdownMenuSelectedItem: TeleopScoutingData.teleopBalance,
+            dropdownMenuSelectedItem: TeleopData.currentTeleopBalanceState,
             onChanged: (value) {
               setState(() {
-                TeleopScoutingData.teleopBalance = value;
+                TeleopData.currentTeleopBalanceState = value;
               });
             },
-            dropdownItems: AutoScoutingData.balanceOptions),
+            dropdownItems: AutoData.autoBalanceOptions),
       ],
     );
   }

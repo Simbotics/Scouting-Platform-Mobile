@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:csv/csv.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScannedData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
@@ -35,58 +35,62 @@ class ScanQRCode extends StatelessWidget {
             ),
           )),
       body: MobileScanner(
-        fit: BoxFit.contain,
-        onDetect: (capture) {
-          barcodes = capture.barcodes; // Barcode(s) scanned
-          //final Uint8List? image = capture.image; // Image of QR code
-          for (final barcode in barcodes) {
-            barcodeStrings = barcode.rawValue?.split(":");
-            fileName = "M${barcodeStrings![1]}-${barcodeStrings![0]}.csv"
-                .replaceAll(" ", "");
+          fit: BoxFit.contain,
+          onDetect: (capture) {
+            ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
+            // ignore: unused_local_variable
+            for (final barcode in ScanQRCode.barcodes) {
+              barcodes = capture.barcodes; // Barcode(s) scanned
+              for (final barcode in barcodes) {
+                List<int> decodedBytes = base64.decode(barcode.rawValue);
+                String decodedBarcodeString = utf8.decode(decodedBytes);
+                barcodeStrings = decodedBarcodeString.split("~");
+                fileName = "2023-Houston-Worlds.csv";
 
-            // Prints the barcode scanned values
-            // debugPrint('Barcode found! ${barcode.rawValue}');
-
-            // Stop the camera scanning then send the user to the "View Data" page.
-            HomeScreen.cameraController.stop().then((value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      // Go to csv file options route
-                      ScannedQRCodeData(
-                    title: 'Scanned QR Code Data',
-                    teamNumber: barcodeStrings![0],
-                    matchNumber: barcodeStrings![1],
-                    initials: barcodeStrings![2],
-                    allianceColour: barcodeStrings![3],
-                    autoLow: barcodeStrings![4],
-                    autoMid: barcodeStrings![5],
-                    autoHigh: barcodeStrings![6],
-                    autoMissed: barcodeStrings![7],
-                    autoMobility: barcodeStrings![8],
-                    autoBalance: barcodeStrings![9],
-                    autoBalanceTime: barcodeStrings![10],
-                    teleopConeLow: barcodeStrings![11],
-                    teleopConeMid: barcodeStrings![12],
-                    teleopConeHigh: barcodeStrings![13],
-                    teleopConeMissed: barcodeStrings![14],
-                    teleopConeDropped: barcodeStrings![15],
-                    teleopCubeLow: barcodeStrings![16],
-                    teleopCubeMid: barcodeStrings![17],
-                    teleopCubeHigh: barcodeStrings![18],
-                    teleopCubeMissed: barcodeStrings![19],
-                    teleopCubeDropped: barcodeStrings![20],
-                    teleopBalance: barcodeStrings![21],
-                    teleopBalanceTime: barcodeStrings![22],
-                    autoComments: barcodeStrings![23],
-                    preferenceComments: barcodeStrings![24],
-                    otherComments: barcodeStrings![25],
-                    fileName: fileName,
-                  ),
-                )));
-          }
-        },
-      ),
+                // Stop the camera scanning then send the user to the "View Data" page.
+                HomeScreen.cameraController
+                    .stop()
+                    .then((value) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              // Go to csv file options route
+                              ScannedQRCodeData(
+                            title: 'Scanned QR Code Data',
+                            teamNumber: ScanQRCode.barcodeStrings![0],
+                            matchNumber: ScanQRCode.barcodeStrings![1],
+                            initials: ScanQRCode.barcodeStrings![2],
+                            allianceColour: ScanQRCode.barcodeStrings![3],
+                            autoLow: ScanQRCode.barcodeStrings![4],
+                            autoMid: ScanQRCode.barcodeStrings![5],
+                            autoHigh: ScanQRCode.barcodeStrings![6],
+                            autoMissed: ScanQRCode.barcodeStrings![7],
+                            autoMobility: ScanQRCode.barcodeStrings![8],
+                            autoBalance: ScanQRCode.barcodeStrings![9],
+                            autoBalanceTime: ScanQRCode.barcodeStrings![10],
+                            teleopConeLow: ScanQRCode.barcodeStrings![11],
+                            teleopConeMid: ScanQRCode.barcodeStrings![12],
+                            teleopConeHigh: ScanQRCode.barcodeStrings![13],
+                            teleopConeDropped: ScanQRCode.barcodeStrings![14],
+                            teleopCubeLow: ScanQRCode.barcodeStrings![15],
+                            teleopCubeMid: ScanQRCode.barcodeStrings![16],
+                            teleopCubeHigh: ScanQRCode.barcodeStrings![17],
+                            teleopCubeDropped: ScanQRCode.barcodeStrings![18],
+                            teleopChargingStationCrosses:
+                                ScanQRCode.barcodeStrings![19],
+                            teleopBalance: ScanQRCode.barcodeStrings![20],
+                            teleopBalanceTime: ScanQRCode.barcodeStrings![21],
+                            autoComments: ScanQRCode.barcodeStrings![22],
+                            preferenceComments: ScanQRCode.barcodeStrings![23],
+                            otherComments: ScanQRCode.barcodeStrings![24],
+                            driverStationIdentifier:
+                                ScanQRCode.barcodeStrings![25],
+                            fileName: ScanQRCode.fileName,
+                          ),
+                        )));
+              }
+            }
+          }),
     );
   }
 
@@ -110,13 +114,12 @@ class ScanQRCode extends StatelessWidget {
       String teleopScoredConeLow,
       String teleopScoredConeMid,
       String teleopScoredConeHigh,
-      String teleopConeMissed,
       String teleopConeDropped,
       String teleopScoredCubeLow,
       String teleopScoredCubeMid,
       String teleopScoredCubeHigh,
-      String teleopCubeMissed,
       String teleopCubeDropped,
+      String teleopChargingStationCrosses,
       // Teleop balance
       String teleopBalance,
       String teleopBalanceTime,
@@ -124,92 +127,97 @@ class ScanQRCode extends StatelessWidget {
       String autoComments,
       String preferenceComments,
       String otherComments) async {
-    List<List<String>> data = [
-      [
-        "Team #",
-        "Match #",
-        "Initials",
-        "Alliance Colour",
-        "Auto Low",
-        "Auto Mid",
-        "Auto High",
-        "Auto Missed",
-        "Auto Mobility",
-        "Auto Balance",
-        "Auto Balance Time",
-        "Teleop Cone Low",
-        "Teleop Cone Mid",
-        "Teleop Cone High",
-        "Teleop Cone Dropped",
-        "Teleop Cone Missed",
-        "Teleop Cube Low",
-        "Teleop Cube Mid",
-        "Teleop Cube High",
-        "Teleop Cube Dropped",
-        "Teleop Cube Missed",
-        "Teleop Balance",
-        "Teleop Balance Time",
-        "Auto Comments",
-        "Preference Comments",
-        "Other Comments"
-      ],
-      [
-        // Team and match information
-        teamNumber,
-        matchNumber,
-        initials,
-        allianceColour,
+    // File name for generated csv file
+    String fileName = "2023-Houston-Worlds.csv";
 
-        // Auto scored levels
-        autoScoredLow,
-        autoScoredMid,
-        autoScoredHigh,
-        autoScoredMissed,
+    final directory = Directory("/storage/emulated/0/Documents");
+    final file = File('${directory.path}/$fileName');
 
-        // Auto balance stats
-        autoMobility,
-        autoBalance,
-        autoBalanceTime,
+    // Check if the file already exists
+    bool fileExists = await file.exists();
 
-        // Teleop cone scored levels
-        teleopScoredConeLow,
-        teleopScoredConeMid,
-        teleopScoredConeHigh,
-        teleopConeDropped,
-        teleopConeMissed,
-
-        // Teleop cube scored levels
-        teleopScoredCubeLow,
-        teleopScoredCubeMid,
-        teleopScoredCubeHigh,
-        teleopCubeDropped,
-        teleopCubeMissed,
-
-        // Teleop balance stats
-        teleopBalance,
-        teleopBalanceTime,
-
-        // Comments
-        autoComments,
-        preferenceComments,
-        otherComments
-      ],
+    // Column names
+    List<String> columns = [
+      "Team #",
+      "Match #",
+      "Initials",
+      "Alliance Colour",
+      "Auto Low",
+      "Auto Mid",
+      "Auto High",
+      "Auto Missed",
+      "Auto Mobility",
+      "Auto Balance",
+      "Auto Balance Time",
+      "Teleop Cone Low",
+      "Teleop Cone Mid",
+      "Teleop Cone High",
+      "Teleop Cone Dropped",
+      "Teleop Cube Low",
+      "Teleop Cube Mid",
+      "Teleop Cube High",
+      "Teleop Cube Dropped",
+      "Teleop Charging Station Crosses",
+      "Teleop Balance",
+      "Teleop Balance Time",
+      "Auto Comments",
+      "Preference Comments",
+      "Other Comments"
     ];
 
-    // Convert data to csv data and add ":" as field delimiter
-    String csv = const ListToCsvConverter(fieldDelimiter: ":").convert(data);
+    // Add column names to data if the file doesn't exist
+    List<List<String>> data = [];
+    if (!fileExists) {
+      await writeToFile(fileName,
+          'sep=~\n'); // Used to automatically determine the delimiter when opening the file in excel
+      data.add(columns);
+    }
 
-    // File name for generated csv file
-    fileName = "M$matchNumber-$teamNumber.csv".replaceAll(" ", "");
+    // Add data to list
+    List<String> rowData = [
+      teamNumber,
+      matchNumber,
+      initials,
+      allianceColour,
+      autoScoredLow,
+      autoScoredMid,
+      autoScoredHigh,
+      autoScoredMissed,
+      autoMobility,
+      autoBalance,
+      autoBalanceTime,
+      teleopScoredConeLow,
+      teleopScoredConeMid,
+      teleopScoredConeHigh,
+      teleopConeDropped,
+      teleopScoredCubeLow,
+      teleopScoredCubeMid,
+      teleopScoredCubeHigh,
+      teleopCubeDropped,
+      teleopChargingStationCrosses,
+      teleopBalance,
+      teleopBalanceTime,
+      autoComments,
+      preferenceComments,
+      otherComments
+    ];
+    data.add(rowData);
 
-    // Write to file
+    if (fileExists) {
+      await writeToFile(fileName, "\n");
+    }
+
+    // Convert data to csv data and add "~" as field delimiter
+    String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
+
+    // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
   }
 
   // Creates file in the app directory.
   static Future<File> createFileInAppDirectory(String fileName) async {
-    final directory = (await getExternalStorageDirectories())?.first;
-    final file = File('${directory?.path}/$fileName');
+    final directory = Directory("/storage/emulated/0/Documents");
+    final file = File('${directory.path}/$fileName');
     await file.create();
     return file;
   }
@@ -217,9 +225,8 @@ class ScanQRCode extends StatelessWidget {
   // Creates and writes a string to a file in the app directory.
   static Future<File> writeToFile(String fileName, String fileContents) async {
     final file = await createFileInAppDirectory(fileName);
-    if (kDebugMode) {
-      print("Writing to file...");
-    }
-    return file.writeAsString(fileContents);
+    return file.writeAsString(fileContents,
+        flush: true,
+        mode: FileMode.append); // write to file if exists, else create file
   }
 }

@@ -8,17 +8,22 @@ class NumberInputField extends StatefulWidget {
 
   // Controller which holds the currently types text
   final TextEditingController controller;
+  final Function onChanged;
   // "Hint Text" which shows up when nothing it typed in the field
   final String hintText;
   // Margin from sides/top/botto of the screen/widget
   final EdgeInsets margin;
   // Width of the container which holds the field
   final double width;
+  // Defines if the field is read only or not (editable)
+  final bool readOnly;
 
   const NumberInputField(
       {Key? key,
       required this.controller,
+      required this.onChanged,
       required this.hintText,
+      this.readOnly = false,
       this.margin = const EdgeInsets.only(top: 4.0, left: 10.0),
       this.width = 150})
       : super(key: key);
@@ -28,11 +33,6 @@ class NumberInputField extends StatefulWidget {
 }
 
 class _NumberInputFieldState extends State<NumberInputField> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,6 +53,10 @@ class _NumberInputFieldState extends State<NumberInputField> {
                 borderRadius: BorderRadius.circular(0),
                 color: AppStyle.textInputColor),
             child: TextFormField(
+              readOnly: widget.readOnly,
+              onChanged: (value) {
+                widget.onChanged(value);
+              },
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,

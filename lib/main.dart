@@ -9,19 +9,22 @@ import 'package:scouting_platform/rows/headers/row1headers.dart';
 import 'package:scouting_platform/rows/headers/row2headers.dart';
 import 'package:scouting_platform/rows/headers/row3headers.dart';
 import 'package:scouting_platform/rows/headers/row4headers.dart';
-import 'package:scouting_platform/sections/comments.dart';
 import 'package:scouting_platform/textStyles/title.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
-import 'package:scouting_platform/sections/autoScoutingData.dart';
-import 'package:scouting_platform/sections/teamMatchInformation.dart';
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
+import 'package:scouting_platform/utils/data/autoData.dart';
+import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/schedulingData.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/teleopData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Set the screen orientation to landscape (either way)
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
@@ -36,8 +39,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: "Scouting Platform",
-      debugShowCheckedModeBanner: false,
-      home: TeamAndMatchInformation(),
+      debugShowCheckedModeBanner:
+          false, // Don't show debug banner on debug builds
+      home:
+          TeamAndMatchInformation(), // Sets the home page to the team and match information page
     );
   }
 }
@@ -48,23 +53,18 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 
-  static MobileScannerController cameraController = MobileScannerController();
-
-  // Additional
-  static late String comments = "";
+  static MobileScannerController cameraController =
+      MobileScannerController(); // Camera controller for scanning QR codes
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         // Navigation sidebar
         drawer: const NavigationSidebar(),
         // Background color and pixel resize fix
-        backgroundColor: AppStyle.primaryColor,
+        backgroundColor: UIUtils.getBackgroundColour(),
 
         // Top navigation bar
         appBar: PreferredSize(
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // Create text that contains team alliance, team number, and match number
+                  // Create header that shows the teams alliance, team number, and the match number
                   Center(
                       child: Text(
                     "${TeamAndMatchData.teamAlliance} - ${TeamAndMatchData.teamNumberController.text} - Q${TeamAndMatchData.matchNumberController.text}",
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Create titles for auto and teleop
+            // Create titles for auto and teleop sections
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: const [
@@ -130,19 +130,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
 
-            // Create rows of fields and headers for those fields
+            // Create rows of fields and headers for the input fields
+            // Row 1
             const Row1Headers(),
             const Row1Fields(),
+            // Row 2
             const Row2Headers(),
             const Row2Fields(),
+            // Row 3
             const Row3Headers(),
             const Row3Fields(),
+            // Row 4
             const Row4Headers(),
             const Row4Fields(),
-            const SizedBox(height: 20),
+            const SizedBox(
+                height:
+                    20), // Space between the end of the bottom row and the buttons to naviagte
             Row(
               children: [
-                // Prematch button
+                // Prematch button (team and match information page)
                 Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -164,7 +170,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(fontSize: 20.0),
                           ),
                         ))),
-                const Spacer(),
+
+                const Spacer(), // Spacer to space the buttons apart as much as possible
+
                 // Comments button
                 Align(
                     alignment: Alignment.bottomRight,
@@ -196,46 +204,51 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Resets all fields that the user has put information into
   void resetAllFields() {
     setState(() {
-      CommentsSection.qrIsVisible = false;
-      TeamAndMatchData.initials = "";
-      TeamAndMatchData.initialsController.text = "";
-      TeamAndMatchData.matchNumber = 0;
-      TeamAndMatchData.matchNumberController.text = "";
-      TeamAndMatchData.teamAlliance = "Red";
-      TeamAndMatchData.teamNumber = 0;
-      TeamAndMatchData.teamNumberController.text = "";
-      TeamAndMatchData.initials = "";
-      TeamAndMatchData.initialsController.text = "";
+      // Increment the match number
+      if (TeamAndMatchData.matchNumberController.text != "") {
+        TeamAndMatchData.matchNumberController.text =
+            (int.parse(TeamAndMatchData.matchNumberController.text) + 1)
+                .toString();
+      } else {
+        TeamAndMatchData.matchNumberController.text = (2).toString();
+      }
 
-      AutoScoutingData.autoMobility = "No";
-      AutoScoutingData.autoBalance = "No Attempt";
+      // Get the team number from the schedule and set the team number field to that
+      SchedulingData.getTeamNumberFromSchedule(
+              int.parse(// Get the team number from the schedule
+                  TeamAndMatchData.matchNumberController.text))
+          .then((teamNumber) => TeamAndMatchData.teamNumberController.text =
+              teamNumber.toString());
 
-      AutoScoutingData.autoHighController.text = "0";
-      TeleopScoutingData.teleopConeHighController.text = "0";
-      TeleopScoutingData.teleopCubeHighController.text = "0";
-      TeleopScoutingData.teleopBalance = "No Attempt";
+      AutoData.currentAutoMobility = "No";
+      AutoData.currentAutoBalanceState = "No Attempt";
 
-      AutoScoutingData.autoBalance = "No Attempt";
-      AutoScoutingData.autoMidController.text = "0";
-      TeleopScoutingData.teleopConeMidController.text = "0";
-      TeleopScoutingData.teleopCubeMidController.text = "0";
+      TeleopData.teleopChargingStationCrossesController.text = "0";
 
-      TeleopScoutingData.teleopBalanceTimeController.text = "";
-      TeleopScoutingData.autoBalanceTimeController.text = "";
+      AutoData.autoHighController.text = "0";
+      TeleopData.teleopConeHighController.text = "0";
+      TeleopData.teleopCubeHighController.text = "0";
+      TeleopData.currentTeleopBalanceState = "No Attempt";
 
-      AutoScoutingData.autoLowController.text = "0";
-      TeleopScoutingData.teleopConeLowController.text = "0";
-      TeleopScoutingData.teleopCubeLowController.text = "0";
-      TeleopScoutingData.teleopCubeDroppedController.text = "0";
+      AutoData.currentAutoBalanceState = "No Attempt";
+      AutoData.autoMidController.text = "0";
+      TeleopData.teleopConeMidController.text = "0";
+      TeleopData.teleopCubeMidController.text = "0";
 
-      AutoScoutingData.autoMissedController.text = "0";
-      TeleopScoutingData.teleopConeMissedController.text = "0";
-      TeleopScoutingData.teleopCubeMissedController.text = "0";
-      TeleopScoutingData.teleopConeDroppedController.text = "0";
+      TeleopData.teleopBalanceTimeController.text = "";
+      TeleopData.autoBalanceTimeController.text = "";
 
-      CommentsSection.autoCommentsController.text = "";
-      CommentsSection.preferenceCommentsController.text = "";
-      CommentsSection.otherCommentsController.text = "";
+      AutoData.autoLowController.text = "0";
+      TeleopData.teleopConeLowController.text = "0";
+      TeleopData.teleopCubeLowController.text = "0";
+
+      AutoData.autoMissedController.text = "0";
+      TeleopData.teleopConeDroppedController.text = "0";
+      TeleopData.teleopCubeDroppedController.text = "0";
+
+      CommentsData.autoCommentsController.text = "";
+      CommentsData.preferenceCommentsController.text = "";
+      CommentsData.otherCommentsController.text = "";
     });
   }
 
@@ -256,6 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const TeamAndMatchInformation();
         }));
+        UIUtils.setBrightness(0.17);
       },
     ); // set up the AlertDialog
     AlertDialog alert = AlertDialog(

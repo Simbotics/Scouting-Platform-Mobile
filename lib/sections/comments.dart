@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/sections/teamMatchInformation.dart';
-import 'package:scouting_platform/sections/teleopScoutingData.dart';
+import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
+import 'package:scouting_platform/textStyles/header.dart';
+import 'package:scouting_platform/utils/data/commentsData.dart';
+import 'package:scouting_platform/utils/data/schedulingData.dart';
+import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
-import '../ui/style/style.dart';
-import '../builders/textInputField.dart';
-import 'autoScoutingData.dart';
+import '../../ui/style/style.dart';
+import '../../builders/textInputField.dart';
 
 class CommentsSection extends StatefulWidget {
   const CommentsSection({
@@ -14,117 +16,201 @@ class CommentsSection extends StatefulWidget {
 
   @override
   _CommentsSectionState createState() => _CommentsSectionState();
-
-  static final TextEditingController autoCommentsController =
-      TextEditingController(text: "");
-  static final TextEditingController preferenceCommentsController =
-      TextEditingController(text: "");
-  static final TextEditingController otherCommentsController =
-      TextEditingController(text: "");
-
-  static bool qrIsVisible = false;
 }
 
 class _CommentsSectionState extends State<CommentsSection> {
   @override
   void initState() {
     super.initState();
-    // CommentsSection.autoComments = String.fromCharCodes(
-    //     CommentsSection._autoComments.text.runes.toList().reversed);
-    // CommentsSection.preferenceComments = String.fromCharCodes(
-    //     CommentsSection._preferenceComments.text.runes.toList().reversed);
-    // CommentsSection.otherComments = String.fromCharCodes(
-    //     CommentsSection._otherComments.text.runes.toList().reversed);
-
-    // CommentsSection._autoComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._autoComments.text.length));
-    // CommentsSection._preferenceComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._preferenceComments.text.length));
-    // CommentsSection._otherComments.selection = TextSelection.fromPosition(
-    //     TextPosition(offset: CommentsSection._otherComments.text.length));
+    // If the driver station starts with "Red" make alliance colour red, if it starts with "Blue" make alliance colour blue
+    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
+      TeamAndMatchData.teamAlliance = "Red";
+    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
+      TeamAndMatchData.teamAlliance = "Blue";
+    }
   }
-
-  Future<Image>? image;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
         Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          //mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            TextInputField(
-              controller: CommentsSection.autoCommentsController,
-              margin: const EdgeInsets.only(left: 20.0),
-              width: 400.0,
-              height: 100.0,
-              onChanged: (value) {},
-              textAlign: TextAlign.justify,
-              hintText: "Auto (Starting position? Routine? etc)",
-              maxLines: 3,
-            ),
-            TextInputField(
-              controller: CommentsSection.preferenceCommentsController,
-              margin: const EdgeInsets.only(left: 20.0),
-              width: 400.0,
-              height: 100.0,
-              onChanged: (value) {},
-              textAlign: TextAlign.justify,
-              hintText: "Preference (Cubes/Cones, Pickup Location, etc)",
-              maxLines: 3,
-            ),
-            TextInputField(
-              controller: CommentsSection.otherCommentsController,
-              margin: const EdgeInsets.only(left: 20.0),
-              width: 400.0,
-              height: 100.0,
-              onChanged: (value) {},
-              textAlign: TextAlign.justify,
-              hintText: "Other (Anything else important)",
-              maxLines: 3,
-            ),
-            Container(
-                padding: const EdgeInsets.only(left: 20.0),
-                height: 47.0,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppStyle
-                        .textInputColorLight, // Set the background color here
-                  ),
-                  onPressed: () async {
-                    setState(() {
-                      CommentsSection.qrIsVisible = true;
-                    });
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return const CurrentQRCode(title: "Current QR Code");
-                    // }));
-                  },
-                  child: const Text(
-                    'Update QR Code',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                )),
+            // Auto comments field
+            Row(children: [
+              TextInputField(
+                controller: CommentsData.autoCommentsController,
+                margin: const EdgeInsets.only(left: 20.0),
+                width: 600.0,
+                height: 100.0,
+                onChanged: (value) {},
+                textAlign: TextAlign.justify,
+                hintText: "Auto (Starting position? Routine? etc)",
+                maxLines: 3,
+              ),
+            ]),
+            // Preference comments field
+            Row(children: [
+              TextInputField(
+                controller: CommentsData.preferenceCommentsController,
+                margin: const EdgeInsets.only(left: 20.0),
+                width: 600.0,
+                height: 100.0,
+                onChanged: (value) {},
+                textAlign: TextAlign.justify,
+                hintText: "Preference (Cubes/Cones, Pickup Location, etc)",
+                maxLines: 3,
+              ),
+            ]),
+            // Other comments field
+            Row(children: [
+              TextInputField(
+                controller: CommentsData.otherCommentsController,
+                margin: const EdgeInsets.only(left: 20.0),
+                width: 600.0,
+                height: 125.0,
+                onChanged: (value) {},
+                textAlign: TextAlign.justify,
+                hintText: "Other (Anything else important)",
+                maxLines: 5,
+              ),
+            ]),
+            Row(children: [
+              Container(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  height: 47.0,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppStyle
+                          .textInputColorLight, // Set the background color here
+                    ),
+                    onPressed: () async {
+                      // If the user has not filled out all the fields, show an error dialog
+                      if (TeamAndMatchData.matchNumberController.text == "" ||
+                          TeamAndMatchData.teamNumberController.text == "") {
+                        showErrorDialog(context);
+                        return;
+                      } else {
+                        // If the user has filled out all the fields, show conformation dialog
+                        showConformationDialog(context);
+                      }
+                    },
+                    child: const Text(
+                      'Go To QR Code',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  )),
+              HeaderStyle(
+                text:
+                    "   Team Number: ${TeamAndMatchData.teamNumberController.text}  |  Match Number: ${TeamAndMatchData.matchNumberController.text}",
+                padding: const EdgeInsets.only(left: 0.0),
+              )
+            ])
           ],
         ),
-        Visibility(
-          visible: CommentsSection.qrIsVisible,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 120.0, bottom: 60.0),
-            child: SizedBox(
-              width:
-                  300.0, // set the width of the container as per your requirement
-              child: QrImage(
-                // Access variables through widget
-                data:
-                    "${int.tryParse(TeamAndMatchData.teamNumberController.text) ?? 0}:${int.tryParse(TeamAndMatchData.matchNumberController.text) ?? 0}:${TeamAndMatchData.initialsController.text}:${TeamAndMatchData.teamAlliance}:${int.parse(AutoScoutingData.autoLowController.text)}:${int.parse(AutoScoutingData.autoMidController.text)}:${int.parse(AutoScoutingData.autoHighController.text)}:${int.parse(AutoScoutingData.autoMissedController.text)}:${AutoScoutingData.autoMobility}:${AutoScoutingData.autoBalance}:${int.tryParse(TeleopScoutingData.autoBalanceTimeController.text) ?? 0}:${int.parse(TeleopScoutingData.teleopConeLowController.text)}:${int.parse(TeleopScoutingData.teleopConeMidController.text)}:${int.parse(TeleopScoutingData.teleopConeHighController.text)}:${int.parse(TeleopScoutingData.teleopConeMissedController.text)}:${int.parse(TeleopScoutingData.teleopConeDroppedController.text)}:${int.parse(TeleopScoutingData.teleopCubeLowController.text)}:${int.parse(TeleopScoutingData.teleopCubeMidController.text)}:${int.parse(TeleopScoutingData.teleopCubeHighController.text)}:${int.parse(TeleopScoutingData.teleopCubeMissedController.text)}:${int.parse(TeleopScoutingData.teleopCubeDroppedController.text)}:${TeleopScoutingData.teleopBalance}:${int.tryParse(TeleopScoutingData.teleopBalanceTimeController.text) ?? 0}:${CommentsSection.autoCommentsController.text.replaceAll("\n", "")}:${CommentsSection.preferenceCommentsController.text.replaceAll("\n", "")}:${CommentsSection.otherCommentsController.text.replaceAll("\n", "")}",
-                backgroundColor: Colors.white,
-                version: QrVersions.auto,
-              ),
-            ),
-          ),
-        ),
       ],
+    );
+  }
+
+  // Shows an error dialog if the user has not filled out all the fields
+  showErrorDialog(BuildContext context) {
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Ok"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Error: Not enough fields filled out"),
+      content: const Text(
+        "Error 1114! Not enough fields have been filled out to generate a QR code.\n\nPlease fill out all team and match information fields before generating a QR code.",
+      ),
+      actions: [
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  // Shows the user a dialog saying they didn't fill out the field correctly
+  showFailedDialog(BuildContext context) {
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Ok"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop('dialog');
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Error: Incorrect field input"),
+      content: const Text(
+        "Error! The team number you types did not match the team number of the team\nyou are scouting. Please re-type the team number!",
+      ),
+      actions: [
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  /// Shows a dialog to the user asking them to confirm that they want to generate a QR code
+  showConformationDialog(BuildContext context) {
+    TextEditingController fieldController = TextEditingController(text: "");
+    // set up the buttons
+    Widget okButton = TextButton(
+      child: const Text("Submit"),
+      onPressed: () {
+        if (fieldController.text !=
+            TeamAndMatchData.teamNumberController.text) {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          showFailedDialog(context);
+        } else {
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const CurrentQRCode(title: "Current QR Code");
+          }));
+          UIUtils.setBrightness(1.0);
+        }
+      },
+    );
+    Widget teamNumberField = TextField(
+      controller: fieldController,
+      decoration: const InputDecoration(
+        hintText: "Type the team number here...",
+        hintStyle: TextStyle(fontFamily: 'Helvetica', color: Colors.black),
+        filled: true,
+      ),
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Confirmation: Please type TEAM NUMBER"),
+      content: Text(
+        "Please type the TEAM NUMBER of the team you are scouting in the \nbox below to confirm the generation of the QR code.\n\nMatch Number: ${TeamAndMatchData.matchNumberController.text}\nTeam Number: ${TeamAndMatchData.teamNumberController.text}",
+      ),
+      actions: [
+        teamNumberField,
+        okButton,
+      ],
+    ); // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

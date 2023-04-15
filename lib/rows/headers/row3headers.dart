@@ -12,18 +12,11 @@ class Row3Headers extends StatefulWidget {
 
 class _Row3HeadersState extends State<Row3Headers> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        // Auto time to balance
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -39,6 +32,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Auto low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -54,6 +48,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop cones low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -69,6 +64,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop cubes low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -84,13 +80,14 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop charging station crosses
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            width: 170.0,
+            width: 250.0,
             padding: const EdgeInsets.only(left: 62.0, top: 20.0),
             child: const Text(
-              "Cubes Dropped",
+              "Charge Station Crosses",
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Colors.white,
