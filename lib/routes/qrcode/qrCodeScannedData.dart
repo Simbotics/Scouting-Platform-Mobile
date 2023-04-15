@@ -9,77 +9,79 @@ class ScannedQRCodeData extends StatefulWidget {
   const ScannedQRCodeData(
       {Key? key,
       // Match and team data
-      required this.title,
-      required this.teamNumber,
-      required this.matchNumber,
-      required this.initials,
-      required this.allianceColour,
+      required this.title, // The title of the page
+      required this.teamNumber, // The team number
+      required this.matchNumber, // The match number
+      required this.initials, // The initials of the scout
+      required this.allianceColour, // The alliance colour
       // Auto scoring
-      required this.autoLow,
-      required this.autoMid,
-      required this.autoHigh,
-      required this.autoMissed,
+      required this.autoLow, // The number of low goals scored in auto
+      required this.autoMid, // The number of mid goals scored in auto
+      required this.autoHigh, // The number of high goals scored in auto
+      required this.autoMissed, // The number of goals missed in auto
       // Auto balancing and mobility
-      required this.autoMobility,
-      required this.autoBalance,
-      required this.autoBalanceTime,
+      required this.autoMobility, // Whether the robot was mobile in auto
+      required this.autoBalance, // Whether the robot was balanced in auto
+      required this.autoBalanceTime, // The time the robot was balanced in auto
       // Teleop scoring
-      required this.teleopConeLow,
-      required this.teleopConeMid,
-      required this.teleopConeHigh,
-      required this.teleopConeMissed,
-      required this.teleopConeDropped,
-      required this.teleopCubeLow,
-      required this.teleopCubeMid,
-      required this.teleopCubeHigh,
-      required this.teleopCubeMissed,
-      required this.teleopCubeDropped,
+      required this.teleopConeLow, // The number of low cones scored in teleop
+      required this.teleopConeMid, // The number of mid cones scored in teleop
+      required this.teleopConeHigh, // The number of high goals scored in teleop
+      required this.teleopConeDropped, // The number of cones dropped in teleop
+      required this.teleopCubeLow, // The number of low cubes scored in teleop
+      required this.teleopCubeMid, // The number of mid cubes scored in teleop
+      required this.teleopCubeHigh, // The number of high cubes scored in teleop
+      required this.teleopCubeDropped, // The number of cubes dropped in teleop
+      required this.teleopChargingStationCrosses, // The number of times the robot crossed the charging station in teleop
       // Teleop balancing
-      required this.teleopBalance,
-      required this.teleopBalanceTime,
+      required this.teleopBalance, // How the robot did at balancing in teleop
+      required this.teleopBalanceTime, // The time the robot took to balance in teleop
       // Comments
-      required this.autoComments,
-      required this.preferenceComments,
-      required this.otherComments,
-      required this.driverStationIdentifier,
-      required this.fileName})
+      required this.autoComments, // The comments on auto
+      required this.preferenceComments, // The comments on preferences
+      required this.otherComments, // The other comments
+      required this.driverStationIdentifier, // The driver station identifier (0-5)
+      required this.fileName // The name of the file
+      })
       : super(key: key);
 
-  final String title;
+  // This pages information
+  final String title; // The title of the page
   // Match and team data
-  final String teamNumber;
-  final String matchNumber;
-  final String initials;
-  final String allianceColour;
+  final String teamNumber; // The team number
+  final String matchNumber; // The match number
+  final String initials; // The initials of the scout
+  final String allianceColour; // The alliance colour
   // Auto scoring
-  final String autoLow;
-  final String autoMid;
-  final String autoHigh;
-  final String autoMissed;
+  final String autoLow; // The number of low goals scored in auto
+  final String autoMid; // The number of mid goals scored in auto
+  final String autoHigh; // The number of high goals scored in auto
+  final String autoMissed; // The number of goals missed in auto
   // Auto balancing and mobility
-  final String autoMobility;
-  final String autoBalance;
-  final String autoBalanceTime;
+  final String autoMobility; // Whether the robot was mobile in auto
+  final String autoBalance; // The state of the balance in auto
+  final String autoBalanceTime; // The time the robot took to balance in auto
   // Teleop scoring
-  final String teleopConeLow;
-  final String teleopConeMid;
-  final String teleopConeHigh;
-  final String teleopConeMissed;
-  final String teleopConeDropped;
-  final String teleopCubeLow;
-  final String teleopCubeMid;
-  final String teleopCubeHigh;
-  final String teleopCubeMissed;
-  final String teleopCubeDropped;
+  final String teleopConeLow; // The number of low cones scored in teleop
+  final String teleopConeMid; // The number of mid cones scored in teleop
+  final String teleopConeHigh; // The number of high goals scored in teleop
+  final String teleopConeDropped; // The number of cones dropped in teleop
+  final String teleopCubeLow; // The number of low cubes scored in teleop
+  final String teleopCubeMid; // The number of mid cubes scored in teleop
+  final String teleopCubeHigh; // The number of high cubes scored in teleop
+  final String teleopCubeDropped; // The number of cubes dropped in teleop
+  final String
+      teleopChargingStationCrosses; // The number of times the robot crossed the charging station in teleop
   // Teleop balancing
-  final String teleopBalance;
-  final String teleopBalanceTime;
+  final String teleopBalance; // How the robot did at balancing in teleop
+  final String
+      teleopBalanceTime; // The time the robot took to balance in teleop
   // Comments
-  final String autoComments;
-  final String preferenceComments;
-  final String otherComments;
-  final String driverStationIdentifier;
-  final String fileName;
+  final String autoComments; // The comments on auto
+  final String preferenceComments; // The comments on preferences
+  final String otherComments; // The other comments
+  final String driverStationIdentifier; // The driver station identifier (0-5)
+  final String fileName; // The name of the file
   @override
   State<ScannedQRCodeData> createState() => _ScannedQRCodeDataState();
 }
@@ -129,10 +131,10 @@ class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
                           ScanningData.unscannedDevices = ScanningData
                               .unscannedDevices
                               .where((element) => !element
-                                  .contains(ScanQRCode.barcodeStrings![26]))
+                                  .contains(ScanQRCode.barcodeStrings![25]))
                               .toList();
                           ScanningData.scannedDevices
-                              .add(ScanQRCode.barcodeStrings![26]);
+                              .add(ScanQRCode.barcodeStrings![25]);
                         });
                         await ScanQRCode.generateCsv(
                             ScanQRCode.barcodeStrings![0],
@@ -159,8 +161,7 @@ class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
                             ScanQRCode.barcodeStrings![21],
                             ScanQRCode.barcodeStrings![22],
                             ScanQRCode.barcodeStrings![23],
-                            ScanQRCode.barcodeStrings![24],
-                            ScanQRCode.barcodeStrings![25]);
+                            ScanQRCode.barcodeStrings![24]);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return const ScannedDriverStations(
@@ -305,15 +306,6 @@ class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cone Missed: ${widget.teleopConeMissed}",
-                textAlign: TextAlign.left,
-                style: const TextStyle(fontSize: 13.5, color: Colors.white),
-              ),
-            ),
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 15.0),
-              child: Text(
                 "Teleop Cone Dropped: ${widget.teleopConeDropped}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
@@ -350,7 +342,7 @@ class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Missed: ${widget.teleopCubeMissed}",
+                "Teleop Cube Dropped: ${widget.teleopCubeDropped}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),
@@ -359,7 +351,7 @@ class _ScannedQRCodeDataState extends State<ScannedQRCodeData> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
-                "Teleop Cube Dropped: ${widget.teleopCubeDropped}",
+                "Teleop Charging Station Crosses: ${widget.teleopChargingStationCrosses}",
                 textAlign: TextAlign.left,
                 style: const TextStyle(fontSize: 13.5, color: Colors.white),
               ),

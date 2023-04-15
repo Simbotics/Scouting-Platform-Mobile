@@ -50,11 +50,6 @@ class ScoutingDropdownMenu extends StatefulWidget {
 
 class _DropdownMenuState extends State<ScoutingDropdownMenu> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: widget.margin,

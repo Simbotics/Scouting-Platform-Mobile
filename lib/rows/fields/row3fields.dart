@@ -16,11 +16,6 @@ class Row3Fields extends StatefulWidget {
 }
 
 class _Row3FieldsState extends State<Row3Fields> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 
@@ -103,24 +98,24 @@ class _Row3FieldsState extends State<Row3Fields> {
             });
           },
         ),
-        // Teleop cubes dropped
+        // Teleop charging station crosses
         NumberInputFieldWithCounter(
-          controller: TeleopData.teleopCubeDroppedController,
+          controller: TeleopData.teleopChargingStationCrossesController,
           onTapIncrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopCubeDroppedController.text);
+            int currentValue = int.parse(
+                TeleopData.teleopChargingStationCrossesController.text);
             setState(() {
               currentValue++;
-              TeleopData.teleopCubeDroppedController.text =
+              TeleopData.teleopChargingStationCrossesController.text =
                   (currentValue > 0 ? currentValue : 0).toString();
             });
           },
           onTapDecrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopCubeDroppedController.text);
+            int currentValue = int.parse(
+                TeleopData.teleopChargingStationCrossesController.text);
             setState(() {
               currentValue--;
-              TeleopData.teleopCubeDroppedController.text =
+              TeleopData.teleopChargingStationCrossesController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });

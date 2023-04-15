@@ -56,6 +56,7 @@ class NavigationSidebar extends StatelessWidget {
                       title: 'Scanned Status',
                     );
                   }))),
+
           // Start scouting a match or pickup where you left off
           ListTile(
               leading: const Icon(Icons.tablet),
@@ -67,6 +68,7 @@ class NavigationSidebar extends StatelessWidget {
                     return const TeamAndMatchInformation();
                   }))),
           const Divider(),
+
           // Settings (QR code centerfold, Driver station scouting, etc) (MANAGEMENT ONLY)
           ListTile(
             leading: const Icon(Icons.settings),
@@ -79,6 +81,7 @@ class NavigationSidebar extends StatelessWidget {
             })),
           ),
           const Divider(),
+
           // Exit app
           ListTile(
             title: const Text('Exit',

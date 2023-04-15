@@ -11,11 +11,6 @@ class Row2Headers extends StatefulWidget {
 }
 
 class _Row2HeadersState extends State<Row2Headers> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 

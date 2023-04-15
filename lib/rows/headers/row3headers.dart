@@ -11,11 +11,6 @@ class Row3Headers extends StatefulWidget {
 }
 
 class _Row3HeadersState extends State<Row3Headers> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 
@@ -87,10 +82,10 @@ class _Row3HeadersState extends State<Row3Headers> {
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            width: 170.0,
+            width: 200.0,
             padding: const EdgeInsets.only(left: 62.0, top: 20.0),
             child: const Text(
-              "Cubes Dropped",
+              "Charge Station Crosses",
               textAlign: TextAlign.left,
               style: TextStyle(
                   color: Colors.white,

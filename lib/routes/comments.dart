@@ -7,7 +7,7 @@ import '../ui/style/style.dart';
 
 class Comments extends StatelessWidget {
   const Comments({Key? key, required this.title}) : super(key: key);
-  final String title;
+  final String title; // Title of the page
 
   @override
   Widget build(BuildContext context) {

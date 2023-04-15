@@ -34,11 +34,6 @@ class NumberInputFieldWithCounter extends StatefulWidget {
 class _NumberInputFieldWithCounterState
     extends State<NumberInputFieldWithCounter> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: 150,

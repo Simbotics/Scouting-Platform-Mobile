@@ -15,11 +15,6 @@ class Row4Fields extends StatefulWidget {
 }
 
 class _Row4FieldsState extends State<Row4Fields> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 
@@ -49,55 +44,9 @@ class _Row4FieldsState extends State<Row4Fields> {
             });
           },
         ),
-        // Teeop cones missed
+        // Teeop cones dropped
         NumberInputFieldWithCounter(
           margin: const EdgeInsets.only(left: 83),
-          controller: TeleopData.teleopConeMissedController,
-          onTapIncrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopConeMissedController.text);
-            setState(() {
-              currentValue++;
-              TeleopData.teleopConeMissedController.text =
-                  (currentValue > 0 ? currentValue : 0).toString();
-            });
-          },
-          onTapDecrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopConeMissedController.text);
-            setState(() {
-              currentValue--;
-              TeleopData.teleopConeMissedController.text =
-                  (currentValue > 0 ? currentValue : 0)
-                      .toString(); // decrementing value
-            });
-          },
-        ),
-        // Teleop cubes missed
-        NumberInputFieldWithCounter(
-          controller: TeleopData.teleopCubeMissedController,
-          onTapIncrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopCubeMissedController.text);
-            setState(() {
-              currentValue++;
-              TeleopData.teleopCubeMissedController.text =
-                  (currentValue > 0 ? currentValue : 0).toString();
-            });
-          },
-          onTapDecrement: () {
-            int currentValue =
-                int.parse(TeleopData.teleopCubeMissedController.text);
-            setState(() {
-              currentValue--;
-              TeleopData.teleopCubeMissedController.text =
-                  (currentValue > 0 ? currentValue : 0)
-                      .toString(); // decrementing value
-            });
-          },
-        ),
-        // Teleop cones dropped
-        NumberInputFieldWithCounter(
           controller: TeleopData.teleopConeDroppedController,
           onTapIncrement: () {
             int currentValue =
@@ -114,6 +63,29 @@ class _Row4FieldsState extends State<Row4Fields> {
             setState(() {
               currentValue--;
               TeleopData.teleopConeDroppedController.text =
+                  (currentValue > 0 ? currentValue : 0)
+                      .toString(); // decrementing value
+            });
+          },
+        ),
+        // Teleop cubes dropped
+        NumberInputFieldWithCounter(
+          controller: TeleopData.teleopCubeDroppedController,
+          onTapIncrement: () {
+            int currentValue =
+                int.parse(TeleopData.teleopCubeDroppedController.text);
+            setState(() {
+              currentValue++;
+              TeleopData.teleopCubeDroppedController.text =
+                  (currentValue > 0 ? currentValue : 0).toString();
+            });
+          },
+          onTapDecrement: () {
+            int currentValue =
+                int.parse(TeleopData.teleopCubeDroppedController.text);
+            setState(() {
+              currentValue--;
+              TeleopData.teleopCubeDroppedController.text =
                   (currentValue > 0 ? currentValue : 0)
                       .toString(); // decrementing value
             });

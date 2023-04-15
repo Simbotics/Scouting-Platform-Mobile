@@ -217,6 +217,8 @@ class _HomeScreenState extends State<HomeScreen> {
       AutoData.currentAutoMobility = "No";
       AutoData.currentAutoBalanceState = "No Attempt";
 
+      TeleopData.teleopChargingStationCrossesController.text = "0";
+
       AutoData.autoHighController.text = "0";
       TeleopData.teleopConeHighController.text = "0";
       TeleopData.teleopCubeHighController.text = "0";
@@ -233,12 +235,10 @@ class _HomeScreenState extends State<HomeScreen> {
       AutoData.autoLowController.text = "0";
       TeleopData.teleopConeLowController.text = "0";
       TeleopData.teleopCubeLowController.text = "0";
-      TeleopData.teleopCubeDroppedController.text = "0";
 
       AutoData.autoMissedController.text = "0";
-      TeleopData.teleopConeMissedController.text = "0";
-      TeleopData.teleopCubeMissedController.text = "0";
       TeleopData.teleopConeDroppedController.text = "0";
+      TeleopData.teleopCubeDroppedController.text = "0";
 
       CommentsData.autoCommentsController.text = "";
       CommentsData.preferenceCommentsController.text = "";
@@ -263,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const TeamAndMatchInformation();
         }));
-        setBrightness(0.05);
+        setBrightness(0.2);
       },
     ); // set up the AlertDialog
     AlertDialog alert = AlertDialog(

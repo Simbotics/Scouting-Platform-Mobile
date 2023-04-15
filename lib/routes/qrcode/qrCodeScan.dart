@@ -38,11 +38,9 @@ class ScanQRCode extends StatelessWidget {
           fit: BoxFit.contain,
           onDetect: (capture) {
             ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
-            //final Uint8List? image = capture.image; // Image of QR code
             // ignore: unused_local_variable
             for (final barcode in ScanQRCode.barcodes) {
               barcodes = capture.barcodes; // Barcode(s) scanned
-              //final Uint8List? image = capture.image; // Image of QR code
               for (final barcode in barcodes) {
                 List<int> decodedBytes = base64.decode(barcode.rawValue);
                 String decodedBarcodeString = utf8.decode(decodedBytes);
@@ -73,20 +71,20 @@ class ScanQRCode extends StatelessWidget {
                             teleopConeLow: ScanQRCode.barcodeStrings![11],
                             teleopConeMid: ScanQRCode.barcodeStrings![12],
                             teleopConeHigh: ScanQRCode.barcodeStrings![13],
-                            teleopConeMissed: ScanQRCode.barcodeStrings![14],
-                            teleopConeDropped: ScanQRCode.barcodeStrings![15],
-                            teleopCubeLow: ScanQRCode.barcodeStrings![16],
-                            teleopCubeMid: ScanQRCode.barcodeStrings![17],
-                            teleopCubeHigh: ScanQRCode.barcodeStrings![18],
-                            teleopCubeMissed: ScanQRCode.barcodeStrings![19],
-                            teleopCubeDropped: ScanQRCode.barcodeStrings![20],
-                            teleopBalance: ScanQRCode.barcodeStrings![21],
-                            teleopBalanceTime: ScanQRCode.barcodeStrings![22],
-                            autoComments: ScanQRCode.barcodeStrings![23],
-                            preferenceComments: ScanQRCode.barcodeStrings![24],
-                            otherComments: ScanQRCode.barcodeStrings![25],
+                            teleopConeDropped: ScanQRCode.barcodeStrings![14],
+                            teleopCubeLow: ScanQRCode.barcodeStrings![15],
+                            teleopCubeMid: ScanQRCode.barcodeStrings![16],
+                            teleopCubeHigh: ScanQRCode.barcodeStrings![17],
+                            teleopCubeDropped: ScanQRCode.barcodeStrings![18],
+                            teleopChargingStationCrosses:
+                                ScanQRCode.barcodeStrings![19],
+                            teleopBalance: ScanQRCode.barcodeStrings![20],
+                            teleopBalanceTime: ScanQRCode.barcodeStrings![21],
+                            autoComments: ScanQRCode.barcodeStrings![22],
+                            preferenceComments: ScanQRCode.barcodeStrings![23],
+                            otherComments: ScanQRCode.barcodeStrings![24],
                             driverStationIdentifier:
-                                ScanQRCode.barcodeStrings![26],
+                                ScanQRCode.barcodeStrings![25],
                             fileName: ScanQRCode.fileName,
                           ),
                         )));
@@ -116,13 +114,12 @@ class ScanQRCode extends StatelessWidget {
       String teleopScoredConeLow,
       String teleopScoredConeMid,
       String teleopScoredConeHigh,
-      String teleopConeMissed,
       String teleopConeDropped,
       String teleopScoredCubeLow,
       String teleopScoredCubeMid,
       String teleopScoredCubeHigh,
-      String teleopCubeMissed,
       String teleopCubeDropped,
+      String teleopChargingStationCrosses,
       // Teleop balance
       String teleopBalance,
       String teleopBalanceTime,
@@ -156,12 +153,11 @@ class ScanQRCode extends StatelessWidget {
       "Teleop Cone Mid",
       "Teleop Cone High",
       "Teleop Cone Dropped",
-      "Teleop Cone Missed",
       "Teleop Cube Low",
       "Teleop Cube Mid",
       "Teleop Cube High",
       "Teleop Cube Dropped",
-      "Teleop Cube Missed",
+      "Teleop Charging Station Crosses",
       "Teleop Balance",
       "Teleop Balance Time",
       "Auto Comments",
@@ -172,7 +168,8 @@ class ScanQRCode extends StatelessWidget {
     // Add column names to data if the file doesn't exist
     List<List<String>> data = [];
     if (!fileExists) {
-      await writeToFile(fileName, 'sep=~\n');
+      await writeToFile(fileName,
+          'sep=~\n'); // Used to automatically determine the delimiter when opening the file in excel
       data.add(columns);
     }
 
@@ -193,12 +190,11 @@ class ScanQRCode extends StatelessWidget {
       teleopScoredConeMid,
       teleopScoredConeHigh,
       teleopConeDropped,
-      teleopConeMissed,
       teleopScoredCubeLow,
       teleopScoredCubeMid,
       teleopScoredCubeHigh,
       teleopCubeDropped,
-      teleopCubeMissed,
+      teleopChargingStationCrosses,
       teleopBalance,
       teleopBalanceTime,
       autoComments,
@@ -211,10 +207,10 @@ class ScanQRCode extends StatelessWidget {
       await writeToFile(fileName, "\n");
     }
 
-    // Convert data to csv data and add ":" as field delimiter
+    // Convert data to csv data and add "~" as field delimiter
     String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
 
-    // Write to file
+    // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
   }
 
@@ -230,6 +226,7 @@ class ScanQRCode extends StatelessWidget {
   static Future<File> writeToFile(String fileName, String fileContents) async {
     final file = await createFileInAppDirectory(fileName);
     return file.writeAsString(fileContents,
-        flush: true, mode: FileMode.append); // write to file if exists
+        flush: true,
+        mode: FileMode.append); // write to file if exists, else create file
   }
 }

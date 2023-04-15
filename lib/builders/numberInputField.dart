@@ -15,6 +15,7 @@ class NumberInputField extends StatefulWidget {
   final EdgeInsets margin;
   // Width of the container which holds the field
   final double width;
+  // Defines if the field is read only or not (editable)
   final bool readOnly;
 
   const NumberInputField(
@@ -32,11 +33,6 @@ class NumberInputField extends StatefulWidget {
 }
 
 class _NumberInputFieldState extends State<NumberInputField> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

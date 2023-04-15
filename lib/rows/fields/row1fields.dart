@@ -16,11 +16,6 @@ class Row1Fields extends StatefulWidget {
 }
 
 class _Row1FieldsState extends State<Row1Fields> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   // Dropdown menu options
   final List<String> yesNoOptions = ['Yes', 'No'];
 

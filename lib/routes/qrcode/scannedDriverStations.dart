@@ -11,7 +11,7 @@ import 'package:scouting_platform/utils/data/schedulingData.dart';
 class ScannedDriverStations extends StatefulWidget {
   const ScannedDriverStations({Key? key, required this.title})
       : super(key: key);
-  final String title;
+  final String title; // Title of the page
 
   @override
   State<ScannedDriverStations> createState() => _ScannedDriverStationsState();
@@ -20,8 +20,8 @@ class ScannedDriverStations extends StatefulWidget {
 class _ScannedDriverStationsState extends State<ScannedDriverStations> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> unscannedWidgets = [];
-    List<Widget> scannedWidgets = [];
+    List<Widget> unscannedWidgets = []; // Unscanned devices widgets
+    List<Widget> scannedWidgets = []; // Scanned devices widgets
 
     // If there are unscanned devices, add them to the list of unscanned widgets
     if (ScanningData.unscannedDevices.isNotEmpty) {
