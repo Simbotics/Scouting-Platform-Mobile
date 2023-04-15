@@ -82,7 +82,7 @@ class _Row3HeadersState extends State<Row3Headers> {
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
-            width: 200.0,
+            width: 250.0,
             padding: const EdgeInsets.only(left: 62.0, top: 20.0),
             child: const Text(
               "Charge Station Crosses",

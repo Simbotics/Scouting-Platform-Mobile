@@ -7,7 +7,12 @@ class QRCodeData {
     'jqr_code',
     'jimmy',
     'peppa_pig',
-    'kiss_motore'
+    'kiss_motore',
+    'bruh',
+    'bottle_of_wotah',
+    'huh',
+    'who_did_this',
+    'hungwy'
   ];
   static String currentlySelectedQRCenterfold = "jqr_code";
   static String currentlySelectedQRCenterfoldFileName =

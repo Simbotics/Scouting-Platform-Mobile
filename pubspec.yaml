@@ -55,6 +55,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  flutter_launcher_icons: ^0.9.0
+flutter_icons:
+  android: true
+  image_path: "assets/images/app_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,11 +66,17 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
+    - assets/images/app_icon.png
     - assets/images/nav_banner.png
     - assets/images/simbotics_logo.png
     - assets/images/centerfolds/jqr_code_centerfold.png
     - assets/images/centerfolds/peppa_pig_centerfold.png
     - assets/images/centerfolds/kiss_motore_centerfold.png
+    - assets/images/centerfolds/bottle_of_wotah_centerfold.png
+    - assets/images/centerfolds/bruh_centerfold.png
+    - assets/images/centerfolds/huh_centerfold.png
+    - assets/images/centerfolds/hungwy_centerfold.png
+    - assets/images/centerfolds/who_did_this_centerfold.png
   fonts:
     - family: "HesDeadJim"
       fonts:
