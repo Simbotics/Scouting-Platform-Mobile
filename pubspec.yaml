@@ -37,10 +37,7 @@ dependencies:
   qr_flutter: ^4.0.0
   mobile_scanner:
     path: ./local_plugins/mobile_scanner
-  path_provider: ^2.0.13
-  file_picker: ^5.2.5
   csv: ^5.0.1
-  file_saver: ^0.1.1
   screen_brightness: ^0.2.2
   http: ^0.13.5
   permission_handler: ^10.2.0
@@ -66,9 +63,11 @@ flutter_icons:
 # The following section is specific to Flutter.
 flutter:
   assets:
+  # App icons, banners, and logos
     - assets/images/app_icon.png
     - assets/images/nav_banner.png
     - assets/images/simbotics_logo.png
+  # QR code centerfolds
     - assets/images/centerfolds/jqr_code_centerfold.png
     - assets/images/centerfolds/peppa_pig_centerfold.png
     - assets/images/centerfolds/kiss_motore_centerfold.png
@@ -77,6 +76,7 @@ flutter:
     - assets/images/centerfolds/huh_centerfold.png
     - assets/images/centerfolds/hungwy_centerfold.png
     - assets/images/centerfolds/who_did_this_centerfold.png
+  # Custom fonts specific to team 1114
   fonts:
     - family: "HesDeadJim"
       fonts:
