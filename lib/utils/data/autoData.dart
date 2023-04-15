@@ -25,6 +25,8 @@ class AutoData {
   static String currentAutoBalanceState = "No Attempt";
   static String currentAutoMobility = "No";
 
+  static List<String> autoMobilityOptions = ['Yes', 'No'];
+
   // Options shown in auto balance dropdown
   static List<String> autoBalanceOptions = [
     'Attempted',

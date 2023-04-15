@@ -16,9 +16,6 @@ class Row1Fields extends StatefulWidget {
 }
 
 class _Row1FieldsState extends State<Row1Fields> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,7 +30,7 @@ class _Row1FieldsState extends State<Row1Fields> {
                 AutoData.currentAutoMobility = value;
               });
             },
-            dropdownItems: yesNoOptions),
+            dropdownItems: AutoData.autoMobilityOptions),
         // Auto high
         NumberInputFieldWithCounter(
           controller: AutoData.autoHighController,

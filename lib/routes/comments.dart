@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/textStyles/title.dart';
-import 'package:scouting_platform/utils/data/schedulingData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 import '../sections/comments.dart';
 import '../ui/style/style.dart';
@@ -12,8 +12,7 @@ class Comments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: getBackgroundColour(),
-        //resizeToAvoidBottomInset: true,
+        backgroundColor: UIUtils.getBackgroundColour(),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
@@ -28,23 +27,15 @@ class Comments extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: const [
+              // Title of the comments page
               TitleStyle(
                   text: "Comments",
                   padding: EdgeInsets.only(top: 10.0, left: 18.0)),
               SizedBox(height: 20.0),
+              // Input fields for comments and "Go to QR Code" button
               CommentsSection(),
             ],
           ),
         ));
-  }
-
-  Color getBackgroundColour() {
-    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
-      return AppStyle.redAlliance;
-    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
-      return AppStyle.blueAlliance;
-    } else {
-      throw Exception("Invalid alliance colour");
-    }
   }
 }

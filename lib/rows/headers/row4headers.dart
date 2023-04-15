@@ -11,15 +11,13 @@ class Row4Headers extends StatefulWidget {
 }
 
 class _Row4HeadersState extends State<Row4Headers> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const SizedBox(width: 70),
+        // Auto missed
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -36,6 +34,7 @@ class _Row4HeadersState extends State<Row4Headers> {
           ),
         ),
         const SizedBox(width: 2),
+        // Teleop cones dropped
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -52,6 +51,7 @@ class _Row4HeadersState extends State<Row4Headers> {
           ),
         ),
         const SizedBox(width: 10),
+        // Teleop cubes dropped
         Align(
           alignment: Alignment.centerLeft,
           child: Container(

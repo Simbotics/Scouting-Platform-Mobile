@@ -7,9 +7,11 @@ class HeaderStyle extends StatelessWidget {
 
   const HeaderStyle(
       {Key? key,
-      required this.text,
-      this.fontWeight = FontWeight.normal,
-      required this.padding})
+      required this.text, // The text to display as a header
+      this.fontWeight =
+          FontWeight.normal, // The weight of the font (bold, italic, etc)
+      required this.padding // The padding around the text
+      })
       : super(key: key);
 
   @override

@@ -10,6 +10,7 @@ import 'package:scouting_platform/utils/data/qrCodeData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 class CurrentQRCode extends StatefulWidget {
   const CurrentQRCode({Key? key, required this.title}) : super(key: key);
@@ -67,7 +68,7 @@ class _CurrentQRCodeState extends State<CurrentQRCode> {
     // Encode the data in base64 to make it more compact
     String base64String = base64.encode(encoded);
     return Scaffold(
-      backgroundColor: getBackgroundColour(),
+      backgroundColor: UIUtils.getBackgroundColour(),
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40.0),
           child: AppBar(
@@ -95,16 +96,5 @@ class _CurrentQRCodeState extends State<CurrentQRCode> {
         ),
       ),
     );
-  }
-
-  /// Retrieves the background colour based on the alliance colour
-  Color getBackgroundColour() {
-    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
-      return AppStyle.redAlliance;
-    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
-      return AppStyle.blueAlliance;
-    } else {
-      throw Exception("Invalid alliance colour");
-    }
   }
 }

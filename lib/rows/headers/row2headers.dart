@@ -11,14 +11,12 @@ class Row2Headers extends StatefulWidget {
 }
 
 class _Row2HeadersState extends State<Row2Headers> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        // Auto balance state
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -34,6 +32,7 @@ class _Row2HeadersState extends State<Row2Headers> {
             ),
           ),
         ),
+        // Auto middle scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -49,6 +48,7 @@ class _Row2HeadersState extends State<Row2Headers> {
             ),
           ),
         ),
+        // Teleop cones middle scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -64,6 +64,7 @@ class _Row2HeadersState extends State<Row2Headers> {
             ),
           ),
         ),
+        // Teleop cubes middle scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -79,6 +80,7 @@ class _Row2HeadersState extends State<Row2Headers> {
             ),
           ),
         ),
+        // Teleop time to balance
         Align(
           alignment: Alignment.centerLeft,
           child: Container(

@@ -11,14 +11,12 @@ class Row3Headers extends StatefulWidget {
 }
 
 class _Row3HeadersState extends State<Row3Headers> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        // Auto time to balance
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -34,6 +32,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Auto low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -49,6 +48,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop cones low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -64,6 +64,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop cubes low scored
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -79,6 +80,7 @@ class _Row3HeadersState extends State<Row3Headers> {
             ),
           ),
         ),
+        // Teleop charging station crosses
         Align(
           alignment: Alignment.centerLeft,
           child: Container(

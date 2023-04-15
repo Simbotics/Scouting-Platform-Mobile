@@ -7,6 +7,7 @@ import 'package:scouting_platform/builders/numberInputField.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 import '../main.dart';
 
@@ -36,7 +37,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
       // Navigation sidebar
       drawer: const NavigationSidebar(),
       // Background color and pixel resize fix
-      backgroundColor: getBackgroundColour(),
+      backgroundColor: UIUtils.getBackgroundColour(),
 
       // Top navigation bar
       appBar: PreferredSize(
@@ -248,14 +249,4 @@ showFailedDialog(BuildContext context) {
       return alert;
     },
   );
-}
-
-Color getBackgroundColour() {
-  if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
-    return AppStyle.redAlliance;
-  } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
-    return AppStyle.blueAlliance;
-  } else {
-    throw Exception("Invalid alliance colour");
-  }
 }

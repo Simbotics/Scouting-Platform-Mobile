@@ -15,9 +15,6 @@ class Row4Fields extends StatefulWidget {
 }
 
 class _Row4FieldsState extends State<Row4Fields> {
-  // Dropdown menu options
-  final List<String> yesNoOptions = ['Yes', 'No'];
-
   @override
   Widget build(BuildContext context) {
     return Row(

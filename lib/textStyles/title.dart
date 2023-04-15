@@ -7,9 +7,11 @@ class TitleStyle extends StatelessWidget {
 
   const TitleStyle(
       {Key? key,
-      required this.text,
-      this.fontWeight = FontWeight.bold,
-      required this.padding})
+      required this.text, // The text to display as a title
+      this.fontWeight =
+          FontWeight.bold, // The weight of the font (bold, italic, etc)
+      required this.padding // The padding around the text
+      })
       : super(key: key);
 
   @override

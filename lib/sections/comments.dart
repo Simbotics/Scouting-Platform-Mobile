@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/textStyles/header.dart';
 import 'package:scouting_platform/utils/data/commentsData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
-import 'package:screen_brightness/screen_brightness.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 import '../../ui/style/style.dart';
 import '../../builders/textInputField.dart';
@@ -18,13 +16,9 @@ class CommentsSection extends StatefulWidget {
 
   @override
   _CommentsSectionState createState() => _CommentsSectionState();
-
-  static bool qrIsVisible = false;
 }
 
 class _CommentsSectionState extends State<CommentsSection> {
-  Future<Image>? image;
-
   @override
   void initState() {
     super.initState();
@@ -43,6 +37,7 @@ class _CommentsSectionState extends State<CommentsSection> {
         Column(
           //mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            // Auto comments field
             Row(children: [
               TextInputField(
                 controller: CommentsData.autoCommentsController,
@@ -55,6 +50,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                 maxLines: 3,
               ),
             ]),
+            // Preference comments field
             Row(children: [
               TextInputField(
                 controller: CommentsData.preferenceCommentsController,
@@ -67,6 +63,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                 maxLines: 3,
               ),
             ]),
+            // Other comments field
             Row(children: [
               TextInputField(
                 controller: CommentsData.otherCommentsController,
@@ -81,7 +78,7 @@ class _CommentsSectionState extends State<CommentsSection> {
             ]),
             Row(children: [
               Container(
-                  padding: const EdgeInsets.only(right: 2),
+                  padding: const EdgeInsets.only(left: 10.0),
                   height: 47.0,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -89,14 +86,13 @@ class _CommentsSectionState extends State<CommentsSection> {
                           .textInputColorLight, // Set the background color here
                     ),
                     onPressed: () async {
-                      // setState(() {
-                      //   CommentsSection.qrIsVisible = true;
-                      // });
+                      // If the user has not filled out all the fields, show an error dialog
                       if (TeamAndMatchData.matchNumberController.text == "" ||
                           TeamAndMatchData.teamNumberController.text == "") {
                         showErrorDialog(context);
                         return;
                       } else {
+                        // If the user has filled out all the fields, show conformation dialog
                         showConformationDialog(context);
                       }
                     },
@@ -117,14 +113,7 @@ class _CommentsSectionState extends State<CommentsSection> {
     );
   }
 
-  Future<void> setBrightness(double brightness) async {
-    try {
-      await ScreenBrightness().setScreenBrightness(brightness);
-    } catch (e) {
-      throw 'Failed to set brightness';
-    }
-  }
-
+  // Shows an error dialog if the user has not filled out all the fields
   showErrorDialog(BuildContext context) {
     // set up the buttons
     Widget okButton = TextButton(
@@ -151,6 +140,7 @@ class _CommentsSectionState extends State<CommentsSection> {
     );
   }
 
+  // Shows the user a dialog saying they didn't fill out the field correctly
   showFailedDialog(BuildContext context) {
     // set up the buttons
     Widget okButton = TextButton(
@@ -177,6 +167,7 @@ class _CommentsSectionState extends State<CommentsSection> {
     );
   }
 
+  /// Shows a dialog to the user asking them to confirm that they want to generate a QR code
   showConformationDialog(BuildContext context) {
     TextEditingController fieldController = TextEditingController(text: "");
     // set up the buttons
@@ -192,7 +183,7 @@ class _CommentsSectionState extends State<CommentsSection> {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return const CurrentQRCode(title: "Current QR Code");
           }));
-          setBrightness(1.0);
+          UIUtils.setBrightness(1.0);
         }
       },
     );

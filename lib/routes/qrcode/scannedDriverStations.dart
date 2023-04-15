@@ -7,6 +7,7 @@ import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/scanningData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
+import 'package:scouting_platform/utils/data/uiUtils.dart';
 
 class ScannedDriverStations extends StatefulWidget {
   const ScannedDriverStations({Key? key, required this.title})
@@ -47,7 +48,7 @@ class _ScannedDriverStationsState extends State<ScannedDriverStations> {
       // Navigation sidebar
       drawer: const NavigationSidebar(),
       // Background color and pixel resize fix
-      backgroundColor: getBackgroundColour(),
+      backgroundColor: UIUtils.getBackgroundColour(),
 
       // Top navigation bar
       appBar: PreferredSize(
@@ -69,19 +70,24 @@ class _ScannedDriverStationsState extends State<ScannedDriverStations> {
               const SizedBox(
                 height: 10,
               ),
+              // Title for the section
               const TitleStyle(
                   text: "Scanning Status",
                   padding: EdgeInsets.only(left: 10.0)),
+              // Header for the unscanned devices
               const HeaderStyle(
                   text: "Unscanned Driver Stations",
                   padding: EdgeInsets.only(left: 10.0, top: 10.0)),
+              // List of unscanned devices
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(children: unscannedWidgets),
               ),
+              // Header for the scanned devices
               const HeaderStyle(
                   text: "Scanned Driver Stations",
                   padding: EdgeInsets.only(left: 10.0, top: 10.0)),
+              // List of scanned devices
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(children: scannedWidgets),
@@ -172,15 +178,5 @@ class _ScannedDriverStationsState extends State<ScannedDriverStations> {
         return alert;
       },
     );
-  }
-
-  Color getBackgroundColour() {
-    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
-      return AppStyle.redAlliance;
-    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
-      return AppStyle.blueAlliance;
-    } else {
-      throw Exception("Invalid alliance colour");
-    }
   }
 }
