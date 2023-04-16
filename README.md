@@ -22,7 +22,7 @@ To get started with this app, follow these steps:
 
 ## Documentation
 
-You can find documentation for both our (Schedule Generator)[https://github.com/Simbotics/Scouting-Platform-Schedule-Generator] and this project (here)[https://scouting-platform.ian-tapply.me/en/latest/]
+You can find documentation for both our [Schedule Generator](https://github.com/Simbotics/Scouting-Platform-Schedule-Generator) and this project [here](https://scouting-platform.ian-tapply.me/en/latest/)
 
 ## Contributing
 
