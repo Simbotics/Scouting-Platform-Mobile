@@ -9,6 +9,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/qrcode/qrCodeScannedData.dart';
 import 'package:scouting_platform/ui/style/style.dart';
+import 'package:scouting_platform/utils/data/scanningData.dart';
 
 class ScanQRCode extends StatelessWidget {
   const ScanQRCode({Key? key, required this.title}) : super(key: key);
@@ -45,7 +46,7 @@ class ScanQRCode extends StatelessWidget {
                 List<int> decodedBytes = base64.decode(barcode.rawValue);
                 String decodedBarcodeString = utf8.decode(decodedBytes);
                 barcodeStrings = decodedBarcodeString.split("~");
-                fileName = "2023-Houston-Worlds.csv";
+                fileName = ScanningData.currentSavingSpreadsheetName;
 
                 // Stop the camera scanning then send the user to the "View Data" page.
                 HomeScreen.cameraController
@@ -128,7 +129,7 @@ class ScanQRCode extends StatelessWidget {
       String preferenceComments,
       String otherComments) async {
     // File name for generated csv file
-    String fileName = "2023-Houston-Worlds.csv";
+    String fileName = ScanningData.currentSavingSpreadsheetName;
 
     final directory = Directory("/storage/emulated/0/Documents");
     final file = File('${directory.path}/$fileName');
