@@ -7,7 +7,7 @@ A simple and easy-to-use scouting platform for FRC competitions, built with Flut
 
 ## Features
 
-- Record data for individual matches, including scores, penalties, and performance metrics for each team
+- Record data for individual matches, including scores, balancing metrics, and various other stats for each team
 - View and analyze match data in real-time to make informed decisions about alliance selection and game strategy
 - Store data securely on a scanning device and export it for future use
 
