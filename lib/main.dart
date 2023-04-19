@@ -213,12 +213,14 @@ class _HomeScreenState extends State<HomeScreen> {
         TeamAndMatchData.matchNumberController.text = (2).toString();
       }
 
-      // Get the team number from the schedule and set the team number field to that
-      SchedulingData.getTeamNumberFromSchedule(
-              int.parse(// Get the team number from the schedule
-                  TeamAndMatchData.matchNumberController.text))
-          .then((teamNumber) => TeamAndMatchData.teamNumberController.text =
-              teamNumber.toString());
+      if (TeamAndMatchData.isTeamNumberReadOnly) {
+        // Get the team number from the schedule and set the team number field to that
+        SchedulingData.getTeamNumberFromSchedule(
+                int.parse(// Get the team number from the schedule
+                    TeamAndMatchData.matchNumberController.text))
+            .then((teamNumber) => TeamAndMatchData.teamNumberController.text =
+                teamNumber.toString());
+      }
 
       AutoData.currentAutoMobility = "No";
       AutoData.currentAutoBalanceState = "No Attempt";

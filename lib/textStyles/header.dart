@@ -23,7 +23,10 @@ class HeaderStyle extends StatelessWidget {
         text,
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 25.0, color: Colors.white, fontWeight: fontWeight),
+            fontSize: 25.0,
+            color: Colors.white,
+            fontWeight: fontWeight,
+            fontFamily: 'Helvetica'),
       ),
     );
   }
