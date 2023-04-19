@@ -287,6 +287,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  remove_emoji:
+    dependency: "direct main"
+    description:
+      name: remove_emoji
+      sha256: "8c4213e5341a9177cb0c58527db912943117594a39862e847160657a2e506fa7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.8"
   screen_brightness:
     dependency: "direct main"
     description:
