@@ -15,6 +15,12 @@ class TeamAndMatchData {
   // Alliance colour (tracked with variable because it isn't constantly updated)
   static String teamAlliance = "Red";
 
+  // Is team number editable (yes or no)
+  static String isTeamNumberEditable = "No";
+  static bool isTeamNumberReadOnly = true;
+
   // Colours available to select from the dropdown
-  final List<String> allianceDropdownOptions = ['Blue', 'Red'];
+  static final List<String> allianceDropdownOptions = ['Blue', 'Red'];
+
+  static final List<String> yesNoOptions = ['Yes', 'No'];
 }

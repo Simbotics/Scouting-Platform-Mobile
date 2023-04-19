@@ -6,6 +6,7 @@ import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/builders/dropdownMenu.dart';
 import 'package:scouting_platform/builders/textInputField.dart';
 import 'package:scouting_platform/utils/data/qrCodeData.dart';
+import 'package:scouting_platform/utils/data/scanningData.dart';
 import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:scouting_platform/utils/data/teamAndMatchData.dart';
 import 'package:scouting_platform/utils/data/uiUtils.dart';
@@ -199,6 +200,75 @@ class _SettingsState extends State<Settings> {
                       });
                     },
                     dropdownItems: QRCodeData.qrCenterfoldDropdownOptions),
+              ]),
+              Row(children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: 200.0,
+                    padding: const EdgeInsets.only(left: 10.0, top: 20),
+                    child: const Text(
+                      "Saved Spreadsheet Name",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                    ),
+                  ),
+                ),
+              ]),
+              // Current saving spreadsheet name text field
+              Row(children: [
+                TextInputField(
+                    controller:
+                        ScanningData.currentSavingSpreadsheetNameController,
+                    margin: const EdgeInsets.only(left: 10.0),
+                    onChanged: (value) {
+                      setState(() {
+                        ScanningData.currentSavingSpreadsheetName =
+                            value + ".csv";
+                      });
+                    },
+                    textAlign: TextAlign.center,
+                    hintText: "Saved Spreadsheet Name"),
+              ]),
+              Row(children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: 170.0,
+                    padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: const Text(
+                      "Is team number editable?",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                    ),
+                  ),
+                ),
+              ]),
+              // Dropdown menu for if the team number is editable
+              Row(children: [
+                ScoutingDropdownMenu(
+                    width: 150.0,
+                    margin: const EdgeInsets.only(left: 10.0),
+                    dropdownMenuSelectedItem:
+                        TeamAndMatchData.isTeamNumberEditable,
+                    onChanged: (value) {
+                      // When the value is changed then set the is team number editable accordingly
+                      setState(() {
+                        TeamAndMatchData.isTeamNumberEditable = value;
+                        if (TeamAndMatchData.isTeamNumberEditable == "Yes") {
+                          TeamAndMatchData.isTeamNumberReadOnly = false;
+                        } else {
+                          TeamAndMatchData.isTeamNumberReadOnly = true;
+                        }
+                      });
+                    },
+                    dropdownItems: TeamAndMatchData.yesNoOptions),
               ]),
             ],
           )),

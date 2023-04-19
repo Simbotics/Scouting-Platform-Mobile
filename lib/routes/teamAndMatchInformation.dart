@@ -29,6 +29,20 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
               SchedulingData.eventIDController.text = lineArray[0];
               SchedulingData.currentScoutingDriverStation = lineArray[1];
             }));
+    // If all requirements are met to update the team number automatically, update it on page loade
+    if (TeamAndMatchData.isTeamNumberReadOnly) {
+      if (TeamAndMatchData.matchNumberController.text != "") {
+        // If it isn't null
+        SchedulingData.getTeamNumberFromSchedule(int.parse(
+            // Get the team number from the schedule
+            TeamAndMatchData.matchNumberController.text)).then((teamNumber) {
+          // Once retrieved then set the team number to the text field
+          setState(() {
+            TeamAndMatchData.teamNumberController.text = teamNumber.toString();
+          });
+        });
+      }
+    }
   }
 
   @override
@@ -82,7 +96,7 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
               ]),
               Row(children: [
                 NumberInputField(
-                  readOnly: true,
+                  readOnly: TeamAndMatchData.isTeamNumberReadOnly,
                   onChanged: (value) {},
                   controller: TeamAndMatchData.teamNumberController,
                   hintText: "Team Number",
@@ -110,16 +124,20 @@ class _TeamAndMatchInformationState extends State<TeamAndMatchInformation> {
               Row(children: [
                 NumberInputField(
                   onChanged: (value) async {
-                    if (TeamAndMatchData.matchNumberController.text != "") {
-                      // If it isn't null
-                      SchedulingData.getTeamNumberFromSchedule(
-                              int.parse(// Get the team number from the schedule
-                                  TeamAndMatchData.matchNumberController.text))
-                          .then((teamNumber) {
-                        // Once retrieved then set the team number to the text field
-                        TeamAndMatchData.teamNumberController.text =
-                            teamNumber.toString();
-                      });
+                    if (TeamAndMatchData.isTeamNumberReadOnly) {
+                      if (TeamAndMatchData.matchNumberController.text != "") {
+                        // If it isn't null
+                        SchedulingData.getTeamNumberFromSchedule(int.parse(
+                                // Get the team number from the schedule
+                                TeamAndMatchData.matchNumberController.text))
+                            .then((teamNumber) {
+                          // Once retrieved then set the team number to the text field
+                          setState(() {
+                            TeamAndMatchData.teamNumberController.text =
+                                teamNumber.toString();
+                          });
+                        });
+                      }
                     }
                   },
                   controller: TeamAndMatchData.matchNumberController,

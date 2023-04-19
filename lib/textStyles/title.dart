@@ -23,7 +23,10 @@ class TitleStyle extends StatelessWidget {
         text,
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontSize: 30.0, color: Colors.white, fontWeight: fontWeight),
+            fontSize: 30.0,
+            color: Colors.white,
+            fontWeight: fontWeight,
+            fontFamily: 'Futura'),
       ),
     );
   }
