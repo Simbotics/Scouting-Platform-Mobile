@@ -70,6 +70,7 @@ flutter:
     - assets/images/simbotics_logo.png
   # QR code centerfolds
     - assets/images/centerfolds/jqr_code_centerfold.png
+    - assets/images/centerfolds/jimmy_centerfold.png
     - assets/images/centerfolds/peppa_pig_centerfold.png
     - assets/images/centerfolds/kiss_motore_centerfold.png
     - assets/images/centerfolds/bottle_of_wotah_centerfold.png

@@ -45,7 +45,7 @@ class ScanQRCode extends StatelessWidget {
               for (final barcode in barcodes) {
                 List<int> decodedBytes = base64.decode(barcode.rawValue);
                 String decodedBarcodeString = utf8.decode(decodedBytes);
-                barcodeStrings = decodedBarcodeString.split("~");
+                barcodeStrings = decodedBarcodeString.split("^");
                 fileName = ScanningData.currentSavingSpreadsheetName;
 
                 // Stop the camera scanning then send the user to the "View Data" page.
@@ -170,7 +170,7 @@ class ScanQRCode extends StatelessWidget {
     List<List<String>> data = [];
     if (!fileExists) {
       await writeToFile(fileName,
-          'sep=~\n'); // Used to automatically determine the delimiter when opening the file in excel
+          'sep=^\n'); // Used to automatically determine the delimiter when opening the file in excel
       data.add(columns);
     }
 
@@ -208,8 +208,8 @@ class ScanQRCode extends StatelessWidget {
       await writeToFile(fileName, "\n");
     }
 
-    // Convert data to csv data and add "~" as field delimiter
-    String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
+    // Convert data to csv data and add "^" as field delimiter
+    String csv = const ListToCsvConverter(fieldDelimiter: "^").convert(data);
 
     // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
