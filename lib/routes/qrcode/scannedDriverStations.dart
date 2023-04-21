@@ -44,103 +44,106 @@ class _ScannedDriverStationsState extends State<ScannedDriverStations> {
       }
     }
 
-    return Scaffold(
-      // Navigation sidebar
-      drawer: const NavigationSidebar(),
-      // Background color and pixel resize fix
-      backgroundColor: UIUtils.getBackgroundColour(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        // Navigation sidebar
+        drawer: const NavigationSidebar(),
+        // Background color and pixel resize fix
+        backgroundColor: UIUtils.getBackgroundColour(),
 
-      // Top navigation bar
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(40.0),
-          child: AppBar(
-            backgroundColor: AppStyle.textInputColor,
-            title: Text(
-              widget.title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontFamily: 'Futura'),
-            ),
-          )),
+        // Top navigation bar
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(40.0),
+            child: AppBar(
+              backgroundColor: AppStyle.textInputColor,
+              title: Text(
+                widget.title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontFamily: 'Futura'),
+              ),
+            )),
 
-      body: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              // Title for the section
-              const TitleStyle(
-                  text: "Scanning Status",
-                  padding: EdgeInsets.only(left: 10.0)),
-              // Header for the unscanned devices
-              const HeaderStyle(
-                  text: "Unscanned Driver Stations",
-                  padding: EdgeInsets.only(left: 10.0, top: 10.0)),
-              // List of unscanned devices
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(children: unscannedWidgets),
-              ),
-              // Header for the scanned devices
-              const HeaderStyle(
-                  text: "Scanned Driver Stations",
-                  padding: EdgeInsets.only(left: 10.0, top: 10.0)),
-              // List of scanned devices
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(children: scannedWidgets),
-              ),
-              // Reset scanned and unscanned devices button
-              Row(children: [
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                        padding: const EdgeInsets.only(top: 24.0, left: 10.0),
-                        height: 67.0,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppStyle
-                                .textInputColorLight, // Set the background color here
-                          ),
-                          onPressed: () {
-                            showConformationDialog(context);
-                          },
-                          child: const Text(
-                            "Reset Status's",
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                        )))
-              ]),
-              // Scan another device button
-              Row(children: [
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                        padding: const EdgeInsets.only(top: 24.0, left: 10.0),
-                        height: 67.0,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppStyle
-                                .textInputColorLight, // Set the background color here
-                          ),
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const ScanQRCode(
-                                title: "Scan QR Code",
-                              );
-                            }));
-                          },
-                          child: const Text(
-                            "Scan Another Device",
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                        )))
-              ]),
-            ],
-          )),
+        body: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                // Title for the section
+                const TitleStyle(
+                    text: "Scanning Status",
+                    padding: EdgeInsets.only(left: 10.0)),
+                // Header for the unscanned devices
+                const HeaderStyle(
+                    text: "Unscanned Driver Stations",
+                    padding: EdgeInsets.only(left: 10.0, top: 10.0)),
+                // List of unscanned devices
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Row(children: unscannedWidgets),
+                ),
+                // Header for the scanned devices
+                const HeaderStyle(
+                    text: "Scanned Driver Stations",
+                    padding: EdgeInsets.only(left: 10.0, top: 10.0)),
+                // List of scanned devices
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Row(children: scannedWidgets),
+                ),
+                // Reset scanned and unscanned devices button
+                Row(children: [
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                          padding: const EdgeInsets.only(top: 24.0, left: 10.0),
+                          height: 67.0,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppStyle
+                                  .textInputColorLight, // Set the background color here
+                            ),
+                            onPressed: () {
+                              showConformationDialog(context);
+                            },
+                            child: const Text(
+                              "Reset Status's",
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                          )))
+                ]),
+                // Scan another device button
+                Row(children: [
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                          padding: const EdgeInsets.only(top: 24.0, left: 10.0),
+                          height: 67.0,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppStyle
+                                  .textInputColorLight, // Set the background color here
+                            ),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const ScanQRCode(
+                                  title: "Scan QR Code",
+                                );
+                              }));
+                            },
+                            child: const Text(
+                              "Scan Another Device",
+                              style: TextStyle(fontSize: 20.0),
+                            ),
+                          )))
+                ]),
+              ],
+            )),
+      ),
     );
   }
 

@@ -25,6 +25,7 @@ class ScanQRCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppStyle.redAlliance,
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
