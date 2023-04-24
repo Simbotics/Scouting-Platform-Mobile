@@ -32,8 +32,8 @@ jobs:
     # Check for any formatting issues in the code.
     - run: dart format .
 
-    # Build the Android app in release mode.
-    - run: flutter build apk --target-platform android-arm --release
+    # Build the Android app in profile mode. (THIS NEEDS TO BE FIXED TO BE BUILT FOR RELEASE)
+    - run: flutter build apk --target-platform android-arm --profile
       
       # create a release draft
     - name: Create Release Draft
