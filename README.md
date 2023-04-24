@@ -13,12 +13,19 @@ A simple and easy-to-use scouting platform for FRC competitions, built with Flut
 
 ## Getting Started
 
-To get started with this app, follow these steps:
+To get started with this app and run it, follow these steps:
 
 1. Install Flutter and Dart on your machine
 2. Clone this repository using `git clone https://github.com/Simbotics/2023-Scouting-Platform.git`
 3. Run `flutter pub get` to install dependencies
 4. Run the app using `flutter run` command
+
+To build the app, follow these steps:
+
+1. Install Flutter and Dart on your machine
+2. Clone this repository using `git clone https://github.com/Simbotics/2023-Scouting-Platform.git`
+3. Run `flutter pub get` to install dependencies
+4. Run the build process by using `flutter build apk --target-platform android-arm --profile`
 
 ## Documentation
 
