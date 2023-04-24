@@ -25,74 +25,81 @@ class ScanQRCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(40.0),
-          child: AppBar(
-            backgroundColor: AppStyle.textInputColor,
-            title: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontFamily: 'Futura'),
-            ),
-          )),
-      body: MobileScanner(
-          fit: BoxFit.contain,
-          onDetect: (capture) {
-            ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
-            // ignore: unused_local_variable
-            for (final barcode in ScanQRCode.barcodes) {
-              barcodes = capture.barcodes; // Barcode(s) scanned
-              for (final barcode in barcodes) {
-                List<int> decodedBytes = base64.decode(barcode.rawValue);
-                String decodedBarcodeString = utf8.decode(decodedBytes);
-                barcodeStrings = decodedBarcodeString.split("~");
-                fileName = ScanningData.currentSavingSpreadsheetName;
+        backgroundColor: AppStyle.redAlliance,
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(40.0),
+            child: AppBar(
+              backgroundColor: AppStyle.textInputColor,
+              title: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontFamily: 'Futura'),
+              ),
+            )),
+        body: RotatedBox(
+          quarterTurns: 1,
+          child: MobileScanner(
+              fit: BoxFit.contain,
+              onDetect: (capture) {
+                ScanQRCode.barcodes = capture.barcodes; // Barcode(s) scanned
+                // ignore: unused_local_variable
+                for (final barcode in ScanQRCode.barcodes) {
+                  barcodes = capture.barcodes; // Barcode(s) scanned
+                  for (final barcode in barcodes) {
+                    List<int> decodedBytes = base64.decode(barcode.rawValue);
+                    String decodedBarcodeString = utf8.decode(decodedBytes);
+                    barcodeStrings = decodedBarcodeString.split("^");
+                    fileName = ScanningData.currentSavingSpreadsheetName;
 
-                // Stop the camera scanning then send the user to the "View Data" page.
-                HomeScreen.cameraController
-                    .stop()
-                    .then((value) => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              // Go to csv file options route
-                              ScannedQRCodeData(
-                            title: 'Scanned QR Code Data',
-                            teamNumber: ScanQRCode.barcodeStrings![0],
-                            matchNumber: ScanQRCode.barcodeStrings![1],
-                            initials: ScanQRCode.barcodeStrings![2],
-                            allianceColour: ScanQRCode.barcodeStrings![3],
-                            autoLow: ScanQRCode.barcodeStrings![4],
-                            autoMid: ScanQRCode.barcodeStrings![5],
-                            autoHigh: ScanQRCode.barcodeStrings![6],
-                            autoMissed: ScanQRCode.barcodeStrings![7],
-                            autoMobility: ScanQRCode.barcodeStrings![8],
-                            autoBalance: ScanQRCode.barcodeStrings![9],
-                            autoBalanceTime: ScanQRCode.barcodeStrings![10],
-                            teleopConeLow: ScanQRCode.barcodeStrings![11],
-                            teleopConeMid: ScanQRCode.barcodeStrings![12],
-                            teleopConeHigh: ScanQRCode.barcodeStrings![13],
-                            teleopConeDropped: ScanQRCode.barcodeStrings![14],
-                            teleopCubeLow: ScanQRCode.barcodeStrings![15],
-                            teleopCubeMid: ScanQRCode.barcodeStrings![16],
-                            teleopCubeHigh: ScanQRCode.barcodeStrings![17],
-                            teleopCubeDropped: ScanQRCode.barcodeStrings![18],
-                            teleopChargingStationCrosses:
-                                ScanQRCode.barcodeStrings![19],
-                            teleopBalance: ScanQRCode.barcodeStrings![20],
-                            teleopBalanceTime: ScanQRCode.barcodeStrings![21],
-                            autoComments: ScanQRCode.barcodeStrings![22],
-                            preferenceComments: ScanQRCode.barcodeStrings![23],
-                            otherComments: ScanQRCode.barcodeStrings![24],
-                            driverStationIdentifier:
-                                ScanQRCode.barcodeStrings![25],
-                            fileName: ScanQRCode.fileName,
-                          ),
-                        )));
-              }
-            }
-          }),
-    );
+                    // Stop the camera scanning then send the user to the "View Data" page.
+                    HomeScreen.cameraController
+                        .stop()
+                        .then((value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  // Go to csv file options route
+                                  ScannedQRCodeData(
+                                title: 'Scanned QR Code Data',
+                                teamNumber: ScanQRCode.barcodeStrings![0],
+                                matchNumber: ScanQRCode.barcodeStrings![1],
+                                initials: ScanQRCode.barcodeStrings![2],
+                                allianceColour: ScanQRCode.barcodeStrings![3],
+                                autoLow: ScanQRCode.barcodeStrings![4],
+                                autoMid: ScanQRCode.barcodeStrings![5],
+                                autoHigh: ScanQRCode.barcodeStrings![6],
+                                autoMissed: ScanQRCode.barcodeStrings![7],
+                                autoMobility: ScanQRCode.barcodeStrings![8],
+                                autoBalance: ScanQRCode.barcodeStrings![9],
+                                autoBalanceTime: ScanQRCode.barcodeStrings![10],
+                                teleopConeLow: ScanQRCode.barcodeStrings![11],
+                                teleopConeMid: ScanQRCode.barcodeStrings![12],
+                                teleopConeHigh: ScanQRCode.barcodeStrings![13],
+                                teleopConeDropped:
+                                    ScanQRCode.barcodeStrings![14],
+                                teleopCubeLow: ScanQRCode.barcodeStrings![15],
+                                teleopCubeMid: ScanQRCode.barcodeStrings![16],
+                                teleopCubeHigh: ScanQRCode.barcodeStrings![17],
+                                teleopCubeDropped:
+                                    ScanQRCode.barcodeStrings![18],
+                                teleopChargingStationCrosses:
+                                    ScanQRCode.barcodeStrings![19],
+                                teleopBalance: ScanQRCode.barcodeStrings![20],
+                                teleopBalanceTime:
+                                    ScanQRCode.barcodeStrings![21],
+                                autoComments: ScanQRCode.barcodeStrings![22],
+                                preferenceComments:
+                                    ScanQRCode.barcodeStrings![23],
+                                otherComments: ScanQRCode.barcodeStrings![24],
+                                driverStationIdentifier:
+                                    ScanQRCode.barcodeStrings![25],
+                                fileName: ScanQRCode.fileName,
+                              ),
+                            )));
+                  }
+                }
+              }),
+        ));
   }
 
   /// Generates a CSV file in the app directory with the scanned data
@@ -170,7 +177,7 @@ class ScanQRCode extends StatelessWidget {
     List<List<String>> data = [];
     if (!fileExists) {
       await writeToFile(fileName,
-          'sep=~\n'); // Used to automatically determine the delimiter when opening the file in excel
+          'sep=^\n'); // Used to automatically determine the delimiter when opening the file in excel
       data.add(columns);
     }
 
@@ -208,8 +215,8 @@ class ScanQRCode extends StatelessWidget {
       await writeToFile(fileName, "\n");
     }
 
-    // Convert data to csv data and add "~" as field delimiter
-    String csv = const ListToCsvConverter(fieldDelimiter: "~").convert(data);
+    // Convert data to csv data and add "^" as field delimiter
+    String csv = const ListToCsvConverter(fieldDelimiter: "^").convert(data);
 
     // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
