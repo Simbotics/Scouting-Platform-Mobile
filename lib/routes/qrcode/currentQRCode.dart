@@ -87,15 +87,15 @@ class _CurrentQRCodeState extends State<CurrentQRCode> {
           height: MediaQuery.of(context)
               .size
               .height, // Fit to fill the whole screen
-          child: QrImage(
+          child: QrImageView(
               // Access variables through widget
               data: base64String, // QR code data (the encoded string)
               backgroundColor: Colors.white,
               version: QrVersions.auto,
               errorCorrectionLevel: QrErrorCorrectLevel.L,
               // Set the centerfold image
-              embeddedImage: AssetImage("assets/images/centerfolds/" +
-                  QRCodeData.currentlySelectedQRCenterfoldFileName)),
+              embeddedImage: AssetImage(
+                  "assets/images/centerfolds/${QRCodeData.currentlySelectedQRCenterfoldFileName}")),
         ),
       ),
     );
