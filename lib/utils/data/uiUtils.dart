@@ -2,19 +2,13 @@
 import 'dart:ui';
 
 import 'package:scouting_platform/ui/style/style.dart';
-import 'package:scouting_platform/utils/data/schedulingData.dart';
 import 'package:screen_brightness/screen_brightness.dart';
 
 class UIUtils {
   /// Gets the background colour for the app
   static Color getBackgroundColour() {
-    if (SchedulingData.currentScoutingDriverStation.startsWith("Red")) {
-      return AppStyle.redAlliance;
-    } else if (SchedulingData.currentScoutingDriverStation.startsWith("Blue")) {
-      return AppStyle.blueAlliance;
-    } else {
-      throw Exception("Invalid alliance colour");
-    }
+    // TODO: Actually implement this
+    return AppStyle.redAlliance;
   }
 
   // Sets the brightness of the screen

@@ -2,7 +2,7 @@
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
-class ScoutingDropdownMenu extends StatefulWidget {
+class ScoutingDropdownMenu extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final double width;
   final Color dropdownButtonColor;
@@ -31,48 +31,36 @@ class ScoutingDropdownMenu extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ScoutingDropdownMenu> createState() => _ScoutingDropdownMenuState();
-}
-
-class _ScoutingDropdownMenuState extends State<ScoutingDropdownMenu> {
-  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: widget.margin,
-      width: widget.width,
+      margin: margin,
+      width: width,
       height: 47.0,
-      decoration: BoxDecoration(
-        color: widget.dropdownButtonColor,
-      ),
+      color: dropdownButtonColor,
       child: DropdownButton<String>(
         isExpanded: false,
-        underline: const SizedBox(),
-        dropdownColor: widget.dropdownMenuColor,
-        value: widget.dropdownMenuSelectedItem,
-        onChanged: (String? newValue) {
-          widget.onChanged(newValue);
-        },
-
-        // Style the selected item
+        underline: SizedBox(),
+        dropdownColor: dropdownMenuColor,
+        value: dropdownMenuSelectedItem,
+        onChanged: (value) => onChanged(value),
         selectedItemBuilder: (BuildContext context) {
-          return widget.dropdownItems.map((String value) {
+          return dropdownItems.map((String value) {
             return Container(
-                padding: widget.selectedItemTextPadding,
-                alignment: widget.selectedItemAlignment,
-                width: 100,
-                child: Text(
-                  value,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                      color: widget.selectedItemTextColor,
-                      fontSize: widget.selectedItemFontSize),
-                ));
+              padding: selectedItemTextPadding,
+              alignment: selectedItemAlignment,
+              width: 100,
+              child: Text(
+                value,
+                textAlign: TextAlign.end,
+                style: TextStyle(
+                  color: selectedItemTextColor,
+                  fontSize: selectedItemFontSize,
+                ),
+              ),
+            );
           }).toList();
         },
-
-        // Style items in the menu
-        items:
-            widget.dropdownItems.map<DropdownMenuItem<String>>((String value) {
+        items: dropdownItems.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Align(alignment: Alignment.center, child: Text(value)),

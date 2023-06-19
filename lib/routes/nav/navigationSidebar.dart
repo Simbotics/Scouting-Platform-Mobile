@@ -1,10 +1,8 @@
-// ignore_for_file: avoid_returning_null_for_void, file_names
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:scouting_platform/routes/comments.dart';
-import 'package:scouting_platform/routes/qrcode/scannedDriverStations.dart';
-import 'package:scouting_platform/routes/settings/settings.dart';
-import 'package:scouting_platform/routes/teamAndMatchInformation.dart';
+import 'package:scouting_platform/builders/sidebarItem.dart';
+import 'package:scouting_platform/routes/example/exampleRoute.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 
 class NavigationSidebar extends StatelessWidget {
@@ -14,7 +12,6 @@ class NavigationSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        // Remove padding
         padding: EdgeInsets.zero,
         children: [
           const DrawerHeader(
@@ -22,67 +19,21 @@ class NavigationSidebar extends StatelessWidget {
               color: AppStyle.textInputColor,
               image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: AssetImage("assets/images/nav_banner.png")),
+                  image: AssetImage(
+                      "assets/images/nav_banner.png")), // Change this to whatever you want the sidebar banner to be
             ),
             child: null,
           ),
-          /**
-           * Main buttons on sidebar
-           */
-
-          // Comments
-          ListTile(
-            leading: const Icon(Icons.chat_bubble),
-            title: const Text(
-              'Comments',
-              style:
-                  TextStyle(fontFamily: 'Futura', fontWeight: FontWeight.bold),
-            ),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Comments(title: 'Comments For Scout');
-            })),
-          ),
-
-          // Scanned status's and scanning
-          ListTile(
-              leading: const Icon(Icons.camera_alt_outlined),
-              title: const Text('Scanned Status',
-                  style: TextStyle(
-                      fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const ScannedDriverStations(
-                      title: 'Scanned Status',
-                    );
-                  }))),
-
-          // Start scouting a match or pickup where you left off
-          ListTile(
-              leading: const Icon(Icons.tablet),
-              title: const Text('Start Scouting',
-                  style: TextStyle(
-                      fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const TeamAndMatchInformation();
-                  }))),
+          const SidebarItem(
+              icon: Icon(Icons.verified),
+              itemName: "Example Item 1",
+              route: ExampleRoute(title: 'Example Route 1')),
           const Divider(),
-
-          // Settings (QR code centerfold, Driver station scouting, etc) (MANAGEMENT ONLY)
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings',
-                style: TextStyle(
-                    fontFamily: 'Futura', fontWeight: FontWeight.bold)),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Settings(title: 'Settings');
-            })),
-          ),
+          const SidebarItem(
+              icon: Icon(Icons.verified),
+              itemName: "Example Item 2",
+              route: ExampleRoute(title: 'Example Route 2')),
           const Divider(),
-
-          // Exit app
           ListTile(
             title: const Text('Exit',
                 style: TextStyle(
