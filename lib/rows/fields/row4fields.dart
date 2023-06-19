@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 
-import '../../builders/numberFieldWithCounter.dart';
+import '../../builders/counterNumberField.dart';
 
 class Row4Fields extends StatefulWidget {
   const Row4Fields({
@@ -20,7 +20,7 @@ class _Row4FieldsState extends State<Row4Fields> {
     return Row(
       children: [
         // Auto missed
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           margin: const EdgeInsets.only(left: 170),
           controller: AutoData.autoMissedController,
           onTapIncrement: () {
@@ -42,7 +42,7 @@ class _Row4FieldsState extends State<Row4Fields> {
           },
         ),
         // Teeop cones dropped
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           margin: const EdgeInsets.only(left: 83),
           controller: TeleopData.teleopConeDroppedController,
           onTapIncrement: () {
@@ -66,7 +66,7 @@ class _Row4FieldsState extends State<Row4Fields> {
           },
         ),
         // Teleop cubes dropped
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           controller: TeleopData.teleopCubeDroppedController,
           onTapIncrement: () {
             int currentValue =

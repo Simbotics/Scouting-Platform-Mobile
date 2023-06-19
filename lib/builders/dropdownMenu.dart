@@ -3,30 +3,16 @@ import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
 class ScoutingDropdownMenu extends StatefulWidget {
-  /// Options for dropdown builder
-
-  // Margin from sides/top/bottom
   final EdgeInsetsGeometry margin;
-  // Width of dropdown container
   final double width;
-  // Color of container that holds dropdown
   final Color dropdownButtonColor;
-  // Dropdown menu color (option selection)
   final Color dropdownMenuColor;
-  // Item that is currently selected from the menu.
-  // Has to be from the array which holds items.
   final String dropdownMenuSelectedItem;
-  // What to do when it is changed (change variable to selected)
   final Function onChanged;
-  // Array of possible items that can be picked from dropdown
   final List<String> dropdownItems;
-  // Color for the selected item name
   final Color selectedItemTextColor;
-  // Padding for text displayed in the dropdown
   final EdgeInsetsGeometry selectedItemTextPadding;
-  // Alignment for selected item in dropdown
   final AlignmentGeometry selectedItemAlignment;
-  // Font size for selected item
   final double selectedItemFontSize;
 
   const ScoutingDropdownMenu({
@@ -45,10 +31,10 @@ class ScoutingDropdownMenu extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DropdownMenuState createState() => _DropdownMenuState();
+  State<ScoutingDropdownMenu> createState() => _ScoutingDropdownMenuState();
 }
 
-class _DropdownMenuState extends State<ScoutingDropdownMenu> {
+class _ScoutingDropdownMenuState extends State<ScoutingDropdownMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(

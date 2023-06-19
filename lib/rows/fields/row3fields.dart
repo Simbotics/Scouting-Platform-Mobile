@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 
-import '../../builders/numberFieldWithCounter.dart';
+import '../../builders/counterNumberField.dart';
 import '../../builders/numberInputField.dart';
 
 class Row3Fields extends StatefulWidget {
@@ -28,7 +28,7 @@ class _Row3FieldsState extends State<Row3Fields> {
             onChanged: (value) {},
             hintText: "Enter Time"),
         // Auto low
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           controller: AutoData.autoLowController,
           onTapIncrement: () {
             int currentValue = int.parse(AutoData.autoLowController.text);
@@ -49,7 +49,7 @@ class _Row3FieldsState extends State<Row3Fields> {
           },
         ),
         // Teleop cones low
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           margin: const EdgeInsets.only(left: 83),
           controller: TeleopData.teleopConeLowController,
           onTapIncrement: () {
@@ -73,7 +73,7 @@ class _Row3FieldsState extends State<Row3Fields> {
           },
         ),
         // Teleop cubes low
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           controller: TeleopData.teleopCubeLowController,
           onTapIncrement: () {
             int currentValue =
@@ -96,7 +96,7 @@ class _Row3FieldsState extends State<Row3Fields> {
           },
         ),
         // Teleop charging station crosses
-        NumberInputFieldWithCounter(
+        CounterNumberField(
           controller: TeleopData.teleopChargingStationCrossesController,
           onTapIncrement: () {
             int currentValue = int.parse(

@@ -3,21 +3,14 @@ import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NumberInputFieldWithCounter extends StatefulWidget {
-  /// Options for number input field with buttons
-
-  // Controller which holds the current typed number
+class CounterNumberField extends StatefulWidget {
   final TextEditingController controller;
-  // "Hint Text" which shows up when nothing it inputted
   final String hintText;
-  // What happens when the user taps the increment button
   final Function onTapIncrement;
-  // What happens when the user taps the decrement button
   final Function onTapDecrement;
-  // Margin from sides/top/bottom of the screen/widget
   final EdgeInsets margin;
 
-  const NumberInputFieldWithCounter(
+  const CounterNumberField(
       {Key? key,
       required this.controller,
       required this.onTapIncrement,
@@ -27,12 +20,10 @@ class NumberInputFieldWithCounter extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NumberInputFieldWithCounterState createState() =>
-      _NumberInputFieldWithCounterState();
+  State<CounterNumberField> createState() => _CounterNumberFieldState();
 }
 
-class _NumberInputFieldWithCounterState
-    extends State<NumberInputFieldWithCounter> {
+class _CounterNumberFieldState extends State<CounterNumberField> {
   @override
   Widget build(BuildContext context) {
     return Container(

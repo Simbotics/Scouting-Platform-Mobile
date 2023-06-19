@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/utils/data/autoData.dart';
 import 'package:scouting_platform/utils/data/teleopData.dart';
 
-import '../../builders/numberFieldWithCounter.dart';
+import '../../builders/counterNumberField.dart';
 import '../../builders/dropdownMenu.dart';
 import '../../builders/numberInputField.dart';
 
@@ -32,7 +32,7 @@ class _Row2FieldsState extends State<Row2Fields> {
           },
           dropdownItems: AutoData.autoBalanceOptions),
       // Auto mid
-      NumberInputFieldWithCounter(
+      CounterNumberField(
         controller: AutoData.autoMidController,
         onTapIncrement: () {
           int currentValue = int.parse(AutoData.autoMidController.text);
@@ -53,7 +53,7 @@ class _Row2FieldsState extends State<Row2Fields> {
         },
       ),
       // Teleop cones mid
-      NumberInputFieldWithCounter(
+      CounterNumberField(
         margin: const EdgeInsets.only(left: 83),
         controller: TeleopData.teleopConeMidController,
         onTapIncrement: () {
@@ -75,7 +75,7 @@ class _Row2FieldsState extends State<Row2Fields> {
         },
       ),
       // Teleop cubes mid
-      NumberInputFieldWithCounter(
+      CounterNumberField(
         controller: TeleopData.teleopCubeMidController,
         onTapIncrement: () {
           int currentValue = int.parse(TeleopData.teleopCubeMidController.text);
