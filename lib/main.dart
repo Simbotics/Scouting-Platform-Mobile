@@ -13,12 +13,12 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
-  ]).then((value) => runApp(const MyApp()));
-  runApp(const MyApp());
+  ]);
+  runApp(const ScoutingPlatform());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ScoutingPlatform extends StatelessWidget {
+  const ScoutingPlatform({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
