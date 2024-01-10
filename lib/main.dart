@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:scouting_platform/routes/example/exampleRoute.dart';
+import 'package:scouting_platform/routes/landing/landingRoute.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
@@ -25,7 +25,7 @@ class ScoutingPlatform extends StatelessWidget {
     return const MaterialApp(
         title: "Scouting Platform",
         debugShowCheckedModeBanner: false,
-        home: ExampleRoute(
+        home: landingRoute(
             title:
                 "Example Route: Home") // Set this to what you want the default homepage to be
         );

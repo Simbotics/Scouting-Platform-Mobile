@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/routePage.dart';
 import 'package:scouting_platform/textStyles/title.dart';
 
-class ExampleRoute extends StatelessWidget {
-  const ExampleRoute({Key? key, required this.title}) : super(key: key);
+class dataInputRoute extends StatelessWidget {
+  const dataInputRoute({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -14,7 +14,7 @@ class ExampleRoute extends StatelessWidget {
       body: const SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),
         child: TitleStyle(
-            text: "Example Page/Route",
+            text: "Data Input",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
       ),
     );
