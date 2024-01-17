@@ -28,7 +28,7 @@ class _Row1FieldsState extends State<Row1Fields> {
                 Data.autoMobility.text = value;
               });
             },
-          dropdownItems: Data.yesNoOptions, 
+          dropdownItems: const ["yes", "no"], 
           margin: const EdgeInsets.only(left: 20)),
         //speaker scored
         CounterNumberField(

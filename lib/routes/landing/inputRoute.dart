@@ -1,12 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/routePage.dart';
-import 'package:scouting_platform/routes/dataInput/row1Fields.dart';
-import 'package:scouting_platform/routes/dataInput/row1Labels.dart';
-import 'package:scouting_platform/routes/dataInput/row2Fields.dart';
-import 'package:scouting_platform/routes/dataInput/row2Labels.dart';
-import 'package:scouting_platform/routes/dataInput/row3Fields.dart';
-import 'package:scouting_platform/routes/dataInput/row3labels.dart';
+import 'package:scouting_platform/routes/dataInput/fields/row1Fields.dart';
+import 'package:scouting_platform/routes/dataInput/fields/row2Fields.dart';
+import 'package:scouting_platform/routes/dataInput/fields/row3Fields.dart';
+import 'package:scouting_platform/routes/dataInput/labels/row1Labels.dart';
+import 'package:scouting_platform/routes/dataInput/labels/row2Labels.dart';
+import 'package:scouting_platform/routes/dataInput/labels/row3Labels.dart';
 import 'package:scouting_platform/textStyles/title.dart';
 
 class InputRoute extends StatelessWidget {

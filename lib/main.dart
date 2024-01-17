@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:scouting_platform/routes/dataInput/row1Fields.dart';
+import 'package:scouting_platform/routes/dataInput/fields/row1Fields.dart';
 import 'package:scouting_platform/routes/landing/inputRoute.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
