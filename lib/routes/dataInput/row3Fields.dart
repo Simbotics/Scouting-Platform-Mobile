@@ -45,7 +45,7 @@ class _Row3FieldsState extends State<Row3Fields> {
           dropdownMenuSelectedItem: Data.sSpotlight, 
           onChanged: (value) {
               setState(() {
-                Data.spotlight.value = value;
+                Data.spotlight = value;
               });
             },
           dropdownItems: const ["yes", "no"], 

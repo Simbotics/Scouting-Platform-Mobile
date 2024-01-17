@@ -23,6 +23,6 @@ class Data {
   static String sClimb = "no";
   static final TextEditingController climbTime = TextEditingController(text: "0");
   static final TextEditingController trap = TextEditingController(text: "0");
-  static final TextEditingController spotlight = TextEditingController(text: "0");
+  static TextEditingController spotlight = TextEditingController(text: "0");
   static String sSpotlight = "no";
 }
