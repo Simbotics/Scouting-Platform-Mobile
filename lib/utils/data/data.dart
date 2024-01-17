@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 /// ALL VALUES IN THIS CLASS SHOULD BE UPDATED/SET WITH SETSTATE
 class Data {
+  static final yesNoOptions = ["yes", "no"];
   // Create files like these to store certain variables such as team numbers, match numbers, etc.
   // This is just a placeholder file and is to be deleted as this is just an example.
   //auto
