@@ -1,6 +1,4 @@
 // ignore_for_file: file_names
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/fields/counterNumberField.dart';
 import 'package:scouting_platform/builders/fields/dropdownMenu.dart';
