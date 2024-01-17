@@ -83,7 +83,7 @@ class _Row3labelsState extends State<Row3Labels> {
             padding: const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
             child: 
                 const Text(
-                  "Spotlight",
+                  "Spotlit",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.white,

@@ -22,10 +22,10 @@ class _Row1FieldsState extends State<Row1Fields> {
       children: [
         // Auto mobility dropdown
         ScoutingDropdownMenu(
-          dropdownMenuSelectedItem: Data.mobility, 
+          dropdownMenuSelectedItem: Data.autoMobility.text, 
           onChanged: (value) {
               setState(() {
-                Data.autoMobility.value = value;
+                Data.autoMobility.text = value;
               });
             },
           dropdownItems: const ["yes", "no"], 

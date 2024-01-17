@@ -22,10 +22,10 @@ class _Row3FieldsState extends State<Row3Fields> {
       children: [
         //climb dropdown
        ScoutingDropdownMenu(
-          dropdownMenuSelectedItem: Data.sClimb, 
+          dropdownMenuSelectedItem: Data.climb.text, 
           onChanged: (value) {
               setState(() {
-                Data.climb.value = value;
+                Data.climb.text = value;
               });
             },
           dropdownItems: const ["yes", "no"], 
@@ -42,10 +42,10 @@ class _Row3FieldsState extends State<Row3Fields> {
           controller: Data.trap),
         //spotlight
         ScoutingDropdownMenu(
-          dropdownMenuSelectedItem: Data.sSpotlight, 
+          dropdownMenuSelectedItem: Data.spotlight.text, 
           onChanged: (value) {
               setState(() {
-                Data.spotlight = value;
+                Data.spotlight.text = value;
               });
             },
           dropdownItems: const ["yes", "no"], 
