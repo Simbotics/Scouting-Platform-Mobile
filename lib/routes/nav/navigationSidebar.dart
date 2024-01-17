@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:scouting_platform/builders/sidebarItem.dart';
 import 'package:scouting_platform/routes/dataInput/commentsRoute.dart';
 import 'package:scouting_platform/routes/dataInput/dataInputRoute.dart';
-import 'package:scouting_platform/routes/landing/landingRoute.dart';
+import 'package:scouting_platform/routes/landing/inputRoute.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 
 class NavigationSidebar extends StatelessWidget {
@@ -28,8 +28,8 @@ class NavigationSidebar extends StatelessWidget {
           ),
           const SidebarItem(
               icon: Icon(Icons.verified),
-              itemName: "Landing",
-              route: landingRoute(title: 'Landing')),
+              itemName: "Input",
+              route: InputRoute(title: 'Input')),
           const Divider(),
           const SidebarItem(
               icon: Icon(Icons.verified), 

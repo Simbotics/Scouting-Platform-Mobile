@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:scouting_platform/routes/landing/landingRoute.dart';
+import 'package:scouting_platform/routes/dataInput/row1Fields.dart';
+import 'package:scouting_platform/routes/landing/inputRoute.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/routes/nav/navigationSidebar.dart';
@@ -25,9 +26,9 @@ class ScoutingPlatform extends StatelessWidget {
     return const MaterialApp(
         title: "Scouting Platform",
         debugShowCheckedModeBanner: false,
-        home: landingRoute(
+        home: InputRoute(
             title:
-                "Example Route: Home") // Set this to what you want the default homepage to be
+                "Example Route: Home", ) // Set this to what you want the default homepage to be
         );
   }
 }
@@ -71,8 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 5,
             ),
-            Text("Example Homepage")
+            Text("Example Homepage"),
           ]),
         ));
+        
   }
 }
