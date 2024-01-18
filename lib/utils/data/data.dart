@@ -13,6 +13,9 @@ class Data {
   static final TextEditingController autoSpeakerMissed = TextEditingController(text: "0");
   static final TextEditingController autoAmpScored = TextEditingController(text: "0");
   static final TextEditingController autoAmpMissed = TextEditingController(text: "0");
+  static String stopwatchText = "Start Timer";
+  static int stopwatchState = 0;
+  static final stopwatch = Stopwatch();
 
   //teleop
   static final TextEditingController speaker = TextEditingController(text: "0");
@@ -21,6 +24,6 @@ class Data {
   static final TextEditingController ampMissed = TextEditingController(text: "0");
   static final TextEditingController climb = TextEditingController(text: "no");
   static final TextEditingController climbTime = TextEditingController(text: "0");
-  static final TextEditingController trap = TextEditingController(text: "0");
+  static TextEditingController trap = TextEditingController(text: "0");
   static TextEditingController spotlight = TextEditingController(text: "no");
 }
