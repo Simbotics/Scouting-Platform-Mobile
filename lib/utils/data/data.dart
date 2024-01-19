@@ -12,6 +12,9 @@ class Data {
   static TextEditingController autoSpeakerMissed = TextEditingController(text: "0");
   static TextEditingController autoAmpScored = TextEditingController(text: "0");
   static TextEditingController autoAmpMissed = TextEditingController(text: "0");
+  static final TextEditingController stopwatchText = TextEditingController(text: "Start Timer");
+  static final TextEditingController stopwatchState = TextEditingController(text: "0");
+  static final stopwatch = Stopwatch();
 
   //teleop
   static TextEditingController speaker = TextEditingController(text: "0");
