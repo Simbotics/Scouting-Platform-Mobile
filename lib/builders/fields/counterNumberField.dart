@@ -32,7 +32,7 @@ class CounterNumberField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(
-            onTap: onTapDecrement.call(),
+            onTap: () => onTapDecrement.call(),
             child: const Icon(
               Icons.remove,
               color: Colors.white,
@@ -75,7 +75,7 @@ class CounterNumberField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: onTapIncrement.call(),
+                onTap: () => onTapIncrement.call(),
                 child: const Icon(
                   Icons.add,
                   color: Colors.white,

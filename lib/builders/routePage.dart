@@ -16,11 +16,13 @@ class RoutePage extends StatefulWidget {
 }
 
 class _RoutePageState extends State<RoutePage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: UIUtils.getBackgroundColour(),
+        key: scaffoldKey,
         drawer: const NavigationSidebar(),
+        backgroundColor: UIUtils.getBackgroundColour(),
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
@@ -28,7 +30,14 @@ class _RoutePageState extends State<RoutePage> {
               title: Text(
                 widget.title,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontFamily: 'Futura'),
+                style:
+                    const TextStyle(fontFamily: 'Futura', color: Colors.white),
+              ),
+              leading: IconButton(
+                icon: const Icon(Icons.lunch_dining, color: Colors.white),
+                onPressed: () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
               ),
             )),
         body: widget.body);

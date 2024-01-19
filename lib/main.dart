@@ -27,7 +27,7 @@ class ScoutingPlatform extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: InputRoute(
             title:
-                "Example Route: Home", ) // Set this to what you want the default homepage to be
+                "Scouting Platform - 2024", ) // Set this to what you want the default homepage to be
         );
   }
 }
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(fontFamily: 'Futura'),
             ),
             leading: IconButton(
-              icon: const Icon(Icons.menu),
+              icon: const Icon(Icons.lunch_dining),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },

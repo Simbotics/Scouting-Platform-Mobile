@@ -1,12 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/routePage.dart';
-import 'package:scouting_platform/routes/dataInput/fields/row1Fields.dart';
-import 'package:scouting_platform/routes/dataInput/fields/row2Fields.dart';
-import 'package:scouting_platform/routes/dataInput/fields/row3Fields.dart';
-import 'package:scouting_platform/routes/dataInput/labels/row1Labels.dart';
-import 'package:scouting_platform/routes/dataInput/labels/row2Labels.dart';
-import 'package:scouting_platform/routes/dataInput/labels/row3Labels.dart';
+import 'package:scouting_platform/routes/dataInput/fields/autoDataFields.dart';
+import 'package:scouting_platform/routes/dataInput/fields/teleopDataFields.dart';
+import 'package:scouting_platform/routes/dataInput/fields/endgameDataFields.dart';
+import 'package:scouting_platform/routes/dataInput/labels/autoDataLabels.dart';
+import 'package:scouting_platform/routes/dataInput/labels/teleopDataLabels.dart';
+import 'package:scouting_platform/routes/dataInput/labels/endgameDataLabels.dart';
 import 'package:scouting_platform/textStyles/title.dart';
 
 class InputRoute extends StatelessWidget {
@@ -21,13 +21,13 @@ class InputRoute extends StatelessWidget {
         physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
-            TitleStyle(text: "Auto Data", padding: EdgeInsets.only(top: 10.0, left: 10.0)),
+            TitleStyle(text: "Auto Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row1Labels(),
             Row1Fields(),
-            TitleStyle(text: "Teleop Data", padding: EdgeInsets.only(top: 10.0, left: 10.0)),
+            TitleStyle(text: "Teleop Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row2Labels(),
             Row2Fields(),
-            TitleStyle(text: "Endgame Data", padding: EdgeInsets.only(top: 10.0, left: 10.0)),
+            TitleStyle(text: "Endgame Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row3Labels(),
             Row3Fields(),
           ]
