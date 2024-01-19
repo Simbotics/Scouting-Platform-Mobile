@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/fields/counterNumberField.dart';
 import 'package:scouting_platform/builders/fields/dropdownMenu.dart';
+import 'package:scouting_platform/builders/fields/stopwatchButton.dart';
 import 'package:scouting_platform/utils/data/data.dart';
 
 class Row3Fields extends StatefulWidget {
@@ -55,10 +56,10 @@ class _Row3FieldsState extends State<Row3Fields> {
             dropdownItems: Data.yesNoOptions,
             margin: const EdgeInsets.only(left: 20)),
         //climb time
-        CounterNumberField(
-            onTapDecrement: () {},
-            onTapIncrement: () {},
-            controller: Data.climb),
+        StopwatchButton(
+          state: Data.stopwatchState,
+          timer: Data.stopwatch,
+        ),
         //trap
         CounterNumberField(
             controller: Data.trap,
