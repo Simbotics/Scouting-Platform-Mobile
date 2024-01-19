@@ -31,28 +31,10 @@ class _Row3FieldsState extends State<Row3Fields> {
           margin: const EdgeInsets.only(left: 20)),
         //climb time
         StopwatchButton(
-          text: Data.stopwatchText, 
-          stopwatchMethod: (){
-         
-            if(Data.stopwatchState == 1){
-                
-                Data.stopwatchText = (Data.stopwatch.elapsedMilliseconds / 1000).toString() + "s";
-                Data.stopwatch.stop();
-                Data.stopwatchState = 2;
-            }
-            else if(Data.stopwatchState == 2){
-                Data.stopwatch.reset();
-                Data.stopwatchText = "Start Timer";
-                Data.stopwatchState = 0;
-            }else{
-                Data.stopwatch.start();
-                Data.stopwatchState = 1;
-                Data.stopwatchText = "Stop Timer";   
-            }
-                
-                
-             
-          }),
+ 
+          state: Data.stopwatchState,
+          timer: Data.stopwatch,
+        ),
         //trap
         CounterNumberField(
           onTapDecrement: () {

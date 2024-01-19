@@ -13,8 +13,8 @@ class Data {
   static final TextEditingController autoSpeakerMissed = TextEditingController(text: "0");
   static final TextEditingController autoAmpScored = TextEditingController(text: "0");
   static final TextEditingController autoAmpMissed = TextEditingController(text: "0");
-  static String stopwatchText = "Start Timer";
-  static int stopwatchState = 0;
+  static final TextEditingController stopwatchText = TextEditingController(text: "Start Timer");
+  static final TextEditingController stopwatchState = TextEditingController(text: "0");
   static final stopwatch = Stopwatch();
 
   //teleop
