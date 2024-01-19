@@ -32,16 +32,28 @@ class _StopwatchButtonState extends State<StopwatchButton> {
             ),
             onPressed: () {
               if(int.parse(widget.state.text) == 1){
-                widget.timer.stop();
-                widget.state.text = "2";
+                setState((){
+                  widget.timer.stop();
+                  widget.state.text = "2";
+                });
+                
               }else if(int.parse(widget.state.text) == 2){
-                widget.state.text = "3";
+                setState((){
+                  widget.state.text = "3";
+                });
+                
               }else if(int.parse(widget.state.text) == 3){
+              setState((){
                 widget.timer.reset();
                 widget.state.text = "0";
+              });
+                
              }else{
+              setState((){
                 widget.timer.start();
                 widget.state.text = "1";
+              });
+                
              }
             },
         child: Text(returnFormattedText(),
@@ -54,13 +66,21 @@ class _StopwatchButtonState extends State<StopwatchButton> {
     int milli = widget.timer.elapsed.inMilliseconds;
 
     if(milli == 0){
+ 
       return "Start Timer";
+    } else if(int.parse(widget.state.text) == 1){
+      return "Stop Timer";
     }
  
     String milliseconds = (milli % 1000).toString().padLeft(1, "0"); 
     String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, "0"); 
     String minutes = ((milli ~/ 1000) ~/ 60).toString().padLeft(1, "0"); 
- 
+
     return "$minutes:$seconds:$milliseconds";
   }
+  void pleaseWork(){
+      while(true){
+        setState((){});
+      }     
+    }
 }

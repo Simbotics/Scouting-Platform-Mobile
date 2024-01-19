@@ -8,10 +8,10 @@ import 'package:scouting_platform/utils/data/data.dart';
 class Row3Fields extends StatefulWidget {
   const Row3Fields({
     Key? key,
-  }) : super(key: key);
+  }) : super(key: key); 
 
   @override
-  _Row3FieldsState createState() => _Row3FieldsState();
+  _Row3FieldsState createState() => _Row3FieldsState(); 
 }
 
 class _Row3FieldsState extends State<Row3Fields> {
@@ -76,6 +76,7 @@ class _Row3FieldsState extends State<Row3Fields> {
             dropdownItems: Data.yesNoOptions,
             margin: const EdgeInsets.only(left: 20)),
       ],
+      
     );
   }
 }
