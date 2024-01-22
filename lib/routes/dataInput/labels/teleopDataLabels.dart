@@ -20,7 +20,7 @@ class _Row2labelsState extends State<Row2Labels> {
           alignment: Alignment.centerLeft,
           child: Container(
             width: 170.0,
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            padding: const EdgeInsets.only(left: 20.0, top: 20.0,),
             child: 
                 const Text(
                   "Speaker Scored",

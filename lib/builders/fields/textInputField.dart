@@ -20,7 +20,7 @@ class TextInputField extends StatefulWidget {
       {Key? key,
       this.margin = const EdgeInsets.only(top: 0.0),
       this.width = 150.0,
-      this.height = 47.0,
+      this.height = 47.5,
       required this.onChanged,
       required this.textAlign,
       this.textInputColor = Colors.white,

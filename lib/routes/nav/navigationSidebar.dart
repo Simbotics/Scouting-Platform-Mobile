@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/builders/sidebarItem.dart';
 import 'package:scouting_platform/main.dart';
-import 'package:scouting_platform/routes/dataInput/commentsRoute.dart';
+import 'package:scouting_platform/routes/dataInput/Comments/commentsRoute.dart';
 import 'package:scouting_platform/routes/landing/inputRoute.dart';
+import 'package:scouting_platform/routes/scanningRoute.dart';
+import 'package:scouting_platform/routes/teamAndMatchInfoRoute.dart';
 
 class NavigationSidebar extends StatelessWidget {
   const NavigationSidebar({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class NavigationSidebar extends StatelessWidget {
           const SidebarItem(
               icon: Icon(Icons.description),
               itemName: "Team and Match Data",
-              route: InputRoute(title: 'Data Input')),
+              route: infoRoute(title: 'Team and Match Data')),
           const SidebarItem(
               icon: Icon(Icons.draw),
               itemName: "Data Input",
@@ -36,13 +38,13 @@ class NavigationSidebar extends StatelessWidget {
           const SidebarItem(
               icon: Icon(Icons.chat_bubble),
               itemName: "Comments",
-              route: HomeScreen()),
+              route: commentsRoute(title: "Comments")),
           const Divider(),
-          const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: commentsRoute(title: "Scanning")),
+          const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: scanningRoute(title: "Scanning")),
           const SidebarItem(
               icon: Icon(Icons.settings),
               itemName: "Settings",
-              route: commentsRoute(title: "Settings")),
+              route: HomeScreen()),
           ListTile(
             title: const Text('Exit',
                 style: TextStyle(

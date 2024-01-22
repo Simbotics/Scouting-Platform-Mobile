@@ -8,6 +8,7 @@ import 'package:scouting_platform/routes/dataInput/labels/autoDataLabels.dart';
 import 'package:scouting_platform/routes/dataInput/labels/teleopDataLabels.dart';
 import 'package:scouting_platform/routes/dataInput/labels/endgameDataLabels.dart';
 import 'package:scouting_platform/textStyles/title.dart';
+import 'package:scouting_platform/ui/style/style.dart';
 
 class InputRoute extends StatelessWidget {
   const InputRoute({Key? key, required this.title}) : super(key: key);
@@ -24,9 +25,11 @@ class InputRoute extends StatelessWidget {
             TitleStyle(text: "Auto Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row1Labels(),
             Row1Fields(),
+            Divider(color:AppStyle.redAlliance),
             TitleStyle(text: "Teleop Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row2Labels(),
             Row2Fields(),
+            Divider(color:AppStyle.redAlliance),
             TitleStyle(text: "Endgame Data", padding: EdgeInsets.only(top: 10.0, left: 20.0)),
             Row3Labels(),
             Row3Fields(),

@@ -12,7 +12,6 @@ class Data {
   static TextEditingController autoSpeakerMissed = TextEditingController(text: "0");
   static TextEditingController autoAmpScored = TextEditingController(text: "0");
   static TextEditingController autoAmpMissed = TextEditingController(text: "0");
-  static final TextEditingController stopwatchText = TextEditingController(text: "Start Timer");
   static final TextEditingController stopwatchState = TextEditingController(text: "0");
   static final stopwatch = Stopwatch();
 
@@ -25,4 +24,9 @@ class Data {
   static TextEditingController climbTime = TextEditingController(text: "0");
   static TextEditingController trap = TextEditingController(text: "0");
   static TextEditingController spotlight = TextEditingController(text: "no");
+
+  //comments
+  static final TextEditingController autoComments = TextEditingController(text: "");
+  static final TextEditingController teleopComments = TextEditingController(text: "");
+  static final TextEditingController endgameComments = TextEditingController(text: "");
 }

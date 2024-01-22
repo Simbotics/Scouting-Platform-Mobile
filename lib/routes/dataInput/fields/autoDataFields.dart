@@ -75,6 +75,7 @@ class _Row1FieldsState extends State<Row1Fields> {
             controller: Data.autoAmpMissed,
             onTapDecrement: () => decrementNumber(Data.autoAmpMissed),
             onTapIncrement: () => incrementNumber(Data.autoAmpMissed)),
+      
       ],
     );
   }
