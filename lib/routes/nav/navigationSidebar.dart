@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/builders/sidebarItem.dart';
 import 'package:scouting_platform/main.dart';
+import 'package:scouting_platform/routes/QRCode/QRRoute.dart';
+import 'package:scouting_platform/routes/QRCode/currentQRCode.dart';
 import 'package:scouting_platform/routes/dataInput/Comments/commentsRoute.dart';
 import 'package:scouting_platform/routes/landing/inputRoute.dart';
 import 'package:scouting_platform/routes/scanningRoute.dart';
@@ -39,6 +41,10 @@ class NavigationSidebar extends StatelessWidget {
               icon: Icon(Icons.chat_bubble),
               itemName: "Comments",
               route: commentsRoute(title: "Comments")),
+          const SidebarItem(
+              icon: Icon(Icons.qr_code_2),
+              itemName: "QR Code",
+              route: CurrentQRCode(title: "QR Code")),
           const Divider(),
           const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: scanningRoute(title: "Scanning")),
           const SidebarItem(

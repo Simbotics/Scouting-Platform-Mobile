@@ -29,4 +29,10 @@ class Data {
   static final TextEditingController autoComments = TextEditingController(text: "");
   static final TextEditingController teleopComments = TextEditingController(text: "");
   static final TextEditingController endgameComments = TextEditingController(text: "");
+
+  //team and match info
+  static String driverStation = "Red 1";
+  static final TextEditingController teamNumber = TextEditingController(text: "");
+  static final TextEditingController matchNumber = TextEditingController(text: "");
+  static final TextEditingController initials = TextEditingController(text: "");
 }
