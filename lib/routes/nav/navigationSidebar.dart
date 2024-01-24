@@ -2,12 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/builders/sidebarItem.dart';
-import 'package:scouting_platform/main.dart';
-import 'package:scouting_platform/routes/QRCode/currentQRCode.dart';
+import 'package:scouting_platform/routes/dataInput/qrcode/currentQRCode.dart';
 import 'package:scouting_platform/routes/dataInput/Comments/commentsRoute.dart';
+import 'package:scouting_platform/routes/dataInput/qrcode/scannedDriverStations.dart';
 import 'package:scouting_platform/routes/landing/inputRoute.dart';
 import 'package:scouting_platform/routes/nav/settingsRoute.dart';
-import 'package:scouting_platform/routes/scanningRoute.dart';
 import 'package:scouting_platform/routes/teamAndMatchInfoRoute.dart';
 
 class NavigationSidebar extends StatelessWidget {
@@ -46,7 +45,7 @@ class NavigationSidebar extends StatelessWidget {
               itemName: "QR Code",
               route: CurrentQRCode(title: "QR Code")),
           const Divider(),
-          const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: scanningRoute(title: "Scanning")),
+          const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: scannedDriverStations(title: "Scanning")),
           const SidebarItem(
               icon: Icon(Icons.settings),
               itemName: "Settings",

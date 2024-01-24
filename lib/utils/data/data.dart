@@ -32,7 +32,28 @@ class Data {
 
   //team and match info
   static String driverStation = "Red 1";
+  
   static final TextEditingController teamNumber = TextEditingController(text: "");
   static final TextEditingController matchNumber = TextEditingController(text: "");
   static final TextEditingController initials = TextEditingController(text: "");
+
+  // scanning data
+    // scanning
+  static List<String> unscannedDevices = ['0', '1', '2', '3', '4', '5'];
+  static List<String> scannedDevices = [];
+
+  static String currentSavingSpreadsheetName = "2024-Houston-Worlds.csv";
+
+  static final TextEditingController currentSavingSpreadsheetNameController =
+      TextEditingController(text: "2024-Houston-Worlds");
+
+    // Create a list of all the driver stations for the dropdown menu
+  static List<String> driverStations = [
+    "Red 1",
+    "Red 2",
+    "Red 3",
+    "Blue 1",
+    "Blue 2",
+    "Blue 3",
+  ];
 }

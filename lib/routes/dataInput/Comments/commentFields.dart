@@ -1,21 +1,19 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/builders/fields/counterNumberField.dart';
-import 'package:scouting_platform/builders/fields/dropdownMenu.dart';
 import 'package:scouting_platform/builders/fields/textInputField.dart';
 import 'package:scouting_platform/textStyles/title.dart';
 import 'package:scouting_platform/utils/data/data.dart';
 
-class CommentFields extends StatefulWidget {
-  const CommentFields({
+class commentFields extends StatefulWidget {
+  const commentFields({
     Key? key,
   }) : super(key: key);
 
   @override
-  _CommentFields createState() => _CommentFields();
+  _commentFields createState() => _commentFields();
 }
 
-class _CommentFields extends State<CommentFields> {
+class _commentFields extends State<commentFields> {
 
 
   @override
@@ -23,7 +21,7 @@ class _CommentFields extends State<CommentFields> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TitleStyle(
+        const TitleStyle(
             text: "Auto Comments",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
         TextInputField(
@@ -39,7 +37,7 @@ class _CommentFields extends State<CommentFields> {
           width: 880,
           height: 90.0,
           maxLines: 10,),
-          TitleStyle(
+          const TitleStyle(
             text: "Teleop Comments",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
         TextInputField(
@@ -55,7 +53,7 @@ class _CommentFields extends State<CommentFields> {
           width: 880,
           height: 90.0,
           maxLines: 10,),
-          TitleStyle(
+          const TitleStyle(
             text: "End Game Comments",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
         TextInputField(

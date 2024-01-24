@@ -1,12 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
+// ignore_for_file: prefer_const_constructors, file_names
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/routePage.dart';
-import 'package:scouting_platform/ui/style/style.dart';
 import 'package:scouting_platform/utils/data/data.dart';
-import 'package:scouting_platform/utils/data/uiUtils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class CurrentQRCode extends StatelessWidget {

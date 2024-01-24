@@ -1,9 +1,7 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/builders/fields/counterNumberField.dart';
-import 'package:scouting_platform/builders/fields/dropdownMenu.dart';
 import 'package:scouting_platform/builders/routePage.dart';
 import 'package:scouting_platform/textStyles/title.dart';
-import 'package:scouting_platform/utils/data/data.dart';
 
 class settingsRoute extends StatefulWidget {
   const settingsRoute({
