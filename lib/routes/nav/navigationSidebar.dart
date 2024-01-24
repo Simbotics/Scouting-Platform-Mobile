@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/builders/sidebarItem.dart';
 import 'package:scouting_platform/main.dart';
-import 'package:scouting_platform/routes/QRCode/QRRoute.dart';
 import 'package:scouting_platform/routes/QRCode/currentQRCode.dart';
 import 'package:scouting_platform/routes/dataInput/Comments/commentsRoute.dart';
 import 'package:scouting_platform/routes/landing/inputRoute.dart';
+import 'package:scouting_platform/routes/nav/settingsRoute.dart';
 import 'package:scouting_platform/routes/scanningRoute.dart';
 import 'package:scouting_platform/routes/teamAndMatchInfoRoute.dart';
 
@@ -50,7 +50,7 @@ class NavigationSidebar extends StatelessWidget {
           const SidebarItem(
               icon: Icon(Icons.settings),
               itemName: "Settings",
-              route: HomeScreen()),
+              route: settingsRoute()),
           ListTile(
             title: const Text('Exit',
                 style: TextStyle(
