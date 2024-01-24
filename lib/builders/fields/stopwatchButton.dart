@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/data/data.dart';
 
 /// THIS CLASS IS DEPRECATED AND IS NO LONGER SUPPORTED FOR USE
 /// Please refer to previous years of for usage of this class
@@ -9,10 +10,12 @@ class StopwatchButton extends StatefulWidget {
   final TextEditingController state;
   final Stopwatch timer;
 
+
   const StopwatchButton({
     Key? key,
     required this.state,
     required this.timer,
+
   }) : super(key: key);
 
     @override
@@ -31,6 +34,7 @@ class _StopwatchButtonState extends State<StopwatchButton> {
             shape:const ContinuousRectangleBorder(),
             ),
             onPressed: () {
+      
               if(int.parse(widget.state.text) == 1){
                 setState((){
                   widget.timer.stop();
@@ -78,9 +82,5 @@ class _StopwatchButtonState extends State<StopwatchButton> {
 
     return "$minutes:$seconds:$milliseconds";
   }
-  void pleaseWork(){
-      while(true){
-        setState((){});
-      }     
-    }
+
 }
