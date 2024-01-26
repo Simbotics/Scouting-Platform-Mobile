@@ -56,4 +56,13 @@ class Data {
     "Blue 2",
     "Blue 3",
   ];
+
+
+  static TextEditingController selectedDriverStation = TextEditingController(text: "Red 1");
+  static TextEditingController eventID = TextEditingController(text: "");
+  static TextEditingController fileName = TextEditingController(text: "");
+   static TextEditingController selectedCenterfold = TextEditingController(text: "cheese");
+  static List<String> images = [
+    "cheese"
+  ];
 }
