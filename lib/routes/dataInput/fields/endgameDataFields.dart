@@ -54,7 +54,7 @@ class _Row3FieldsState extends State<Row3Fields> {
                 Data.climb.text = value;
               });
             },
-            dropdownItems: Data.yesNoOptions,
+            dropdownItems: Data.climbOptions,
             margin: const EdgeInsets.only(left: 20)),
         //climb time
         StopwatchButton(

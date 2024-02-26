@@ -64,8 +64,9 @@ class qrCodeScanning extends StatelessWidget {
                                 teleopTrap: decodedBarcodeString[15],
                                 teleopSpotlight: decodedBarcodeString[16],
                                 autoComments: decodedBarcodeString[17],
-                                teleopComments: decodedBarcodeString[18],
-                                endgameComments: decodedBarcodeString[19])));
+                                autoOrder: decodedBarcodeString[18],
+                                teleopComments: decodedBarcodeString[19],
+                                endgameComments: decodedBarcodeString[20])));
 
                     HomeScreen.cameraController.stop();
                   }
@@ -98,6 +99,7 @@ class qrCodeScanning extends StatelessWidget {
       String teleopSpotlit,
       // Comments
       String autoComments,
+      String autoOrder,
       String teleopComments,
       String endgameComments) async {
     // File name for generated csv file
@@ -129,6 +131,7 @@ class qrCodeScanning extends StatelessWidget {
       "Teleop Trap",
       "Teleop Spotlit",
       "Auto Comments",
+      "Auto Order",
       "Teleop Comments",
       "Endgame Comments"
     ];
@@ -161,6 +164,7 @@ class qrCodeScanning extends StatelessWidget {
       teleopTrap,
       teleopSpotlit,
       autoComments,
+      autoOrder,
       teleopComments,
       endgameComments
     ];

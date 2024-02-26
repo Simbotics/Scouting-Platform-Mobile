@@ -38,6 +38,22 @@ class _commentFields extends State<commentFields> {
           height: 90.0,
           maxLines: 10,),
           const TitleStyle(
+            text: "Auto Note Order",
+            padding: EdgeInsets.only(top: 10.0, left: 18.0)),
+        TextInputField(
+          onChanged: (value) {
+             setState(() {
+                Data.autoOrder.text = value;
+              });
+          }, 
+          textAlign: TextAlign.left, 
+          hintText: "Auto Note Order", 
+          controller: Data.endgameComments,
+          margin: const EdgeInsets.only(left: 40, top: 10),
+          width: 880,
+          height: 45.0,
+          maxLines: 10,),
+          const TitleStyle(
             text: "Teleop Comments",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
         TextInputField(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 /// ALL VALUES IN THIS CLASS SHOULD BE UPDATED/SET WITH SETSTATE
 class Data {
   static final yesNoOptions = ["yes", "no"];
+  static final climbOptions = ["no", "single", "double", "triple", "park"];
   // Create files like these to store certain variables such as team numbers, match numbers, etc.
   // This is just a placeholder file and is to be deleted as this is just an example.
   //auto
@@ -27,6 +28,7 @@ class Data {
 
   //comments
   static final TextEditingController autoComments = TextEditingController(text: "");
+  static final TextEditingController autoOrder = TextEditingController(text:"");
   static final TextEditingController teleopComments = TextEditingController(text: "");
   static final TextEditingController endgameComments = TextEditingController(text: "");
 

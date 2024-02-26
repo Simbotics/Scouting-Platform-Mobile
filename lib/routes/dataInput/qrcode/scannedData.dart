@@ -29,6 +29,7 @@ class scannedData extends StatefulWidget {
       required this.teleopTrap,
       required this.teleopSpotlight,
       required this.autoComments,
+      required this.autoOrder,
       required this.teleopComments,
       required this.endgameComments})
       : super(key: key);
@@ -52,6 +53,7 @@ class scannedData extends StatefulWidget {
   final String teleopTrap;
   final String teleopSpotlight;
   final String autoComments;
+  final String autoOrder;
   final String teleopComments;
   final String endgameComments;
 
@@ -85,10 +87,10 @@ class _scannedDataState extends State<scannedData> {
                     setState(() {
                       Data.unscannedDevices = Data.unscannedDevices
                           .where((element) => !element
-                              .contains(qrCodeScanning.barcodeStrings![19]))
+                              .contains(qrCodeScanning.barcodeStrings![20]))
                           .toList();
                       Data.scannedDevices
-                          .add(qrCodeScanning.barcodeStrings![19]);
+                          .add(qrCodeScanning.barcodeStrings![20]);
                     });
                     await qrCodeScanning.generateCsv(
                         qrCodeScanning.barcodeStrings![0],
@@ -110,7 +112,8 @@ class _scannedDataState extends State<scannedData> {
                         qrCodeScanning.barcodeStrings![16],
                         qrCodeScanning.barcodeStrings![17],
                         qrCodeScanning.barcodeStrings![18],
-                        qrCodeScanning.barcodeStrings![19]);
+                        qrCodeScanning.barcodeStrings![19],
+                        qrCodeScanning.barcodeStrings![20]);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return const scannedDriverStations(
