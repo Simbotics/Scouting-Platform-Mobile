@@ -1,10 +1,13 @@
 // ignore_for_file: file_names
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:scouting_platform/builders/routePage.dart';
 import 'package:scouting_platform/main.dart';
 import 'package:scouting_platform/routes/dataInput/qrcode/scannedData.dart';
@@ -62,11 +65,12 @@ class qrCodeScanning extends StatelessWidget {
                                 teleopClimb: decodedBarcodeString[13],
                                 teleopClimbTime: decodedBarcodeString[14],
                                 teleopTrap: decodedBarcodeString[15],
-                                teleopSpotlight: decodedBarcodeString[16],
-                                autoComments: decodedBarcodeString[17],
-                                autoOrder: decodedBarcodeString[18],
-                                teleopComments: decodedBarcodeString[19],
-                                endgameComments: decodedBarcodeString[20])));
+                                teleopParked: decodedBarcodeString[16],
+                                teleopHarmony: decodedBarcodeString[17],
+                                autoComments: decodedBarcodeString[18],
+                                autoOrder: decodedBarcodeString[19],
+                                teleopComments: decodedBarcodeString[20],
+                                endgameComments: decodedBarcodeString[21])));
 
                     HomeScreen.cameraController.stop();
                   }
@@ -96,17 +100,30 @@ class qrCodeScanning extends StatelessWidget {
       String teleopClimb,
       String teleopClimbTime,
       String teleopTrap,
-      String teleopSpotlit,
+      String teleopParked,
+      String teleopHarmony,
       // Comments
       String autoComments,
       String autoOrder,
       String teleopComments,
       String endgameComments) async {
+
+    // Request storage permission
+    await Permission.storage.request();
+
+    if (await Permission.storage.isGranted) {
+      print('Storage permission granted');
+    } else {
+      print('Storage permission denied');
+    }
+
     // File name for generated csv file
     String fileName = Data.currentSavingSpreadsheetName;
 
     final directory = Directory("/storage/emulated/0/Documents");
+    //final directory = Directory(getApplicationDocumentsDirectory().toString());
     final file = File('${directory.path}/$fileName');
+
 
     // Check if the file already exists
     bool fileExists = await file.exists();
@@ -129,7 +146,8 @@ class qrCodeScanning extends StatelessWidget {
       "Teleop Climb",
       "Teleop Climb Time",
       "Teleop Trap",
-      "Teleop Spotlit",
+      "Teleop Parked",
+      "Teleop Harmony",
       "Auto Comments",
       "Auto Order",
       "Teleop Comments",
@@ -162,7 +180,8 @@ class qrCodeScanning extends StatelessWidget {
       teleopClimb,
       teleopClimbTime,
       teleopTrap,
-      teleopSpotlit,
+      teleopParked,
+      teleopHarmony,
       autoComments,
       autoOrder,
       teleopComments,
@@ -179,6 +198,10 @@ class qrCodeScanning extends StatelessWidget {
 
     // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
+
+    print(rowData);
+    print(file.path);
+    print('data written to file');
   }
 
   // Creates file in the app directory.

@@ -27,7 +27,8 @@ class scannedData extends StatefulWidget {
       required this.teleopClimb,
       required this.teleopClimbTime,
       required this.teleopTrap,
-      required this.teleopSpotlight,
+      required this.teleopParked,
+      required this.teleopHarmony,
       required this.autoComments,
       required this.autoOrder,
       required this.teleopComments,
@@ -51,7 +52,8 @@ class scannedData extends StatefulWidget {
   final String teleopClimb;
   final String teleopClimbTime;
   final String teleopTrap;
-  final String teleopSpotlight;
+  final String teleopParked;
+  final String teleopHarmony;
   final String autoComments;
   final String autoOrder;
   final String teleopComments;
@@ -75,56 +77,60 @@ class _scannedDataState extends State<scannedData> {
         title: widget.title,
         body: Container(
             alignment: Alignment.bottomLeft,
-            child: Container(
-                padding: const EdgeInsets.only(top: 18.0, right: 60.0),
-                height: 77.0,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppStyle
-                        .textInputColorLight, // Set the background color here
+            child: Row(
+                // padding: const EdgeInsets.only(top: 18.0, right: 60.0),
+                // height: 77.0,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppStyle
+                          .textInputColorLight, // Set the background color here
+                    ),
+                    onPressed: () async {
+                      setState(() {
+                        Data.unscannedDevices = Data.unscannedDevices
+                            .where((element) => !element
+                                .contains(qrCodeScanning.barcodeStrings![22]))
+                            .toList();
+                        Data.scannedDevices
+                            .add(qrCodeScanning.barcodeStrings![22]);
+                      });
+                      await qrCodeScanning.generateCsv(
+                          qrCodeScanning.barcodeStrings![0],
+                          qrCodeScanning.barcodeStrings![1],
+                          qrCodeScanning.barcodeStrings![2],
+                          qrCodeScanning.barcodeStrings![3],
+                          qrCodeScanning.barcodeStrings![4],
+                          qrCodeScanning.barcodeStrings![5],
+                          qrCodeScanning.barcodeStrings![6],
+                          qrCodeScanning.barcodeStrings![7],
+                          qrCodeScanning.barcodeStrings![8],
+                          qrCodeScanning.barcodeStrings![9],
+                          qrCodeScanning.barcodeStrings![10],
+                          qrCodeScanning.barcodeStrings![11],
+                          qrCodeScanning.barcodeStrings![12],
+                          qrCodeScanning.barcodeStrings![13],
+                          qrCodeScanning.barcodeStrings![14],
+                          qrCodeScanning.barcodeStrings![15],
+                          qrCodeScanning.barcodeStrings![16],
+                          qrCodeScanning.barcodeStrings![17],
+                          qrCodeScanning.barcodeStrings![18],
+                          qrCodeScanning.barcodeStrings![19],
+                          qrCodeScanning.barcodeStrings![20],
+                          qrCodeScanning.barcodeStrings![21]);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const scannedDriverStations(
+                          title: "Scanned Status",
+                        );
+                      }));
+                    },
+                    child: const Text(
+                      'Save QR Code Data',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
                   ),
-                  onPressed: () async {
-                    setState(() {
-                      Data.unscannedDevices = Data.unscannedDevices
-                          .where((element) => !element
-                              .contains(qrCodeScanning.barcodeStrings![20]))
-                          .toList();
-                      Data.scannedDevices
-                          .add(qrCodeScanning.barcodeStrings![20]);
-                    });
-                    await qrCodeScanning.generateCsv(
-                        qrCodeScanning.barcodeStrings![0],
-                        qrCodeScanning.barcodeStrings![1],
-                        qrCodeScanning.barcodeStrings![2],
-                        qrCodeScanning.barcodeStrings![3],
-                        qrCodeScanning.barcodeStrings![4],
-                        qrCodeScanning.barcodeStrings![5],
-                        qrCodeScanning.barcodeStrings![6],
-                        qrCodeScanning.barcodeStrings![7],
-                        qrCodeScanning.barcodeStrings![8],
-                        qrCodeScanning.barcodeStrings![9],
-                        qrCodeScanning.barcodeStrings![10],
-                        qrCodeScanning.barcodeStrings![11],
-                        qrCodeScanning.barcodeStrings![12],
-                        qrCodeScanning.barcodeStrings![13],
-                        qrCodeScanning.barcodeStrings![14],
-                        qrCodeScanning.barcodeStrings![15],
-                        qrCodeScanning.barcodeStrings![16],
-                        qrCodeScanning.barcodeStrings![17],
-                        qrCodeScanning.barcodeStrings![18],
-                        qrCodeScanning.barcodeStrings![19],
-                        qrCodeScanning.barcodeStrings![20]);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const scannedDriverStations(
-                        title: "Scanned Status",
-                      );
-                    }));
-                  },
-                  child: const Text(
-                    'Save QR Code Data',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                ))));
+                  Text("${widget.autoMobility}")
+                ])));
   }
 }

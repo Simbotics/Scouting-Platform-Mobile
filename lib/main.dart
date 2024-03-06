@@ -33,7 +33,7 @@ class ScoutingPlatform extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);  //hi :3
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

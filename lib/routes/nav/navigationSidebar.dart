@@ -31,7 +31,7 @@ class NavigationSidebar extends StatelessWidget {
           const SidebarItem(
               icon: Icon(Icons.description),
               itemName: "Team and Match Data",
-              route: infoRoute(title: 'Team and Match Data')),
+              route: teamAndMatchInfo(title: 'Team and Match Data')),
           const SidebarItem(
               icon: Icon(Icons.draw),
               itemName: "Data Input",

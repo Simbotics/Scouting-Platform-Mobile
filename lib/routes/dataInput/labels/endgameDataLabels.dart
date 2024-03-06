@@ -70,7 +70,7 @@ class _Row3labelsState extends State<Row3Labels> {
                 ),
               ) 
           ),
-          // spotlight
+          // parked
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -78,7 +78,25 @@ class _Row3labelsState extends State<Row3Labels> {
             padding: const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
             child: 
                 const Text(
-                  "Spotlight",
+                  "Parked",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0),
+                
+                ),
+              ) 
+          ),
+        // harmony
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            width: 170.0,
+            padding: const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
+            child: 
+                const Text(
+                  "Harmony",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: Colors.white,

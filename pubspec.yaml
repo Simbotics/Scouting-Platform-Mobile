@@ -40,8 +40,9 @@ dependencies:
   csv: ^5.0.1
   screen_brightness: ^0.2.2
   http: ^1.0.0
-  permission_handler: ^10.2.0
+  permission_handler: ^11.3.0
   remove_emoji: ^0.0.8
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +55,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.13.1
-flutter_icons:
+
+flutter_launcher_icons:
   android: true
   image_path: "assets/images/app_icon.png"
 
@@ -78,6 +80,7 @@ flutter:
     - assets/images/centerfolds/huh_centerfold.png
     - assets/images/centerfolds/hungwy_centerfold.png
     - assets/images/centerfolds/who_did_this_centerfold.png
+    - assets/images/centerfolds/cheese.png
   # Custom fonts specific to team 1114
   fonts:
     - family: "HesDeadJim"
