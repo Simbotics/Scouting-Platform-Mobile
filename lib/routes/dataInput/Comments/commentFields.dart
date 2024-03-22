@@ -31,7 +31,7 @@ class _commentFields extends State<commentFields> {
             });
           },
           textAlign: TextAlign.left,
-          hintText: "Ian is hot lol jk",
+          hintText: "Speed, reliability, etc. Keep this 1-2 sentences and brief",
           controller: Data.autoComments,
           margin: const EdgeInsets.only(left: 40, top: 10),
           width: 880,
@@ -48,7 +48,7 @@ class _commentFields extends State<commentFields> {
             });
           },
           textAlign: TextAlign.left,
-          hintText: "Auto Note Order",
+          hintText: "1, 2, 3, 4, 5. One being the top of the field from your point of view and five being the bottom",
           controller: Data.autoOrder,
           margin: const EdgeInsets.only(left: 40, top: 10),
           width: 880,
@@ -65,7 +65,7 @@ class _commentFields extends State<commentFields> {
             });
           },
           textAlign: TextAlign.left,
-          hintText: "More stuff",
+          hintText: "Speed, speaker reliability, amping, etc. Keep this 1-2 sentences and brief",
           controller: Data.teleopComments,
           margin: const EdgeInsets.only(left: 40, top: 10),
           width: 880,
@@ -82,7 +82,7 @@ class _commentFields extends State<commentFields> {
             });
           },
           textAlign: TextAlign.left,
-          hintText: "Final stuff",
+          hintText: "Climb, trap, park, harmony, etc. Keep this 1-2 sentences and brief",
           controller: Data.endgameComments,
           margin: const EdgeInsets.only(left: 40, top: 10, bottom: 20.0),
           width: 880,

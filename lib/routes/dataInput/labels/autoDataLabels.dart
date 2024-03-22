@@ -39,7 +39,7 @@ class _Row1labelsState extends State<Row1Labels> {
           child: Container(
             width: 170.0,
             margin: const EdgeInsets.only(left: 50.0),
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            padding: const EdgeInsets.only(left: 25.0, top: 20.0),
             child: 
                 const Text(
                   "Speaker Scored",
@@ -57,7 +57,7 @@ class _Row1labelsState extends State<Row1Labels> {
           alignment: Alignment.centerLeft,
           child: Container(
             width: 170.0,
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            padding: const EdgeInsets.only(left: 25.0, top: 20.0),
             child: 
                 const Text(
                   "Speaker Missed",
@@ -75,7 +75,7 @@ class _Row1labelsState extends State<Row1Labels> {
           alignment: Alignment.centerLeft,
           child: Container(
             width: 170.0,
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            padding: const EdgeInsets.only(left: 25.0, top: 20.0),
             child: 
                 const Text(
                   "Amp Scored",
@@ -93,7 +93,7 @@ class _Row1labelsState extends State<Row1Labels> {
           alignment: Alignment.centerLeft,
           child: Container(
             width: 170.0,
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            padding: const EdgeInsets.only(left: 25.0, top: 20.0),
             child: 
                 const Text(
                   "Amp Missed",

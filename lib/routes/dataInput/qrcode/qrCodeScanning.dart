@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
@@ -44,33 +43,34 @@ class qrCodeScanning extends StatelessWidget {
                     barcodeStrings = decodedBarcodeString.split("^");
                     fileName = Data.currentSavingSpreadsheetName;
 
+          print(barcodeStrings);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => scannedData(
                                 title: 'Scanned QR Code Data',
-                                teamNumber: decodedBarcodeString[0],
-                                matchNumber: decodedBarcodeString[1],
-                                initials: decodedBarcodeString[2],
-                                allianceColour: decodedBarcodeString[3],
-                                autoSpeakerScored: decodedBarcodeString[4],
-                                autoSpeakerMissed: decodedBarcodeString[5],
-                                autoAmpScored: decodedBarcodeString[6],
-                                autoAmpMissed: decodedBarcodeString[7],
-                                autoMobility: decodedBarcodeString[8],
-                                teleopSpeakerScored: decodedBarcodeString[9],
-                                teleopSpeakerMissed: decodedBarcodeString[10],
-                                teleopAmpScored: decodedBarcodeString[11],
-                                teleopAmpMissed: decodedBarcodeString[12],
-                                teleopClimb: decodedBarcodeString[13],
-                                teleopClimbTime: decodedBarcodeString[14],
-                                teleopTrap: decodedBarcodeString[15],
-                                teleopParked: decodedBarcodeString[16],
-                                teleopHarmony: decodedBarcodeString[17],
-                                autoComments: decodedBarcodeString[18],
-                                autoOrder: decodedBarcodeString[19],
-                                teleopComments: decodedBarcodeString[20],
-                                endgameComments: decodedBarcodeString[21])));
+                                teamNumber: barcodeStrings![0],
+                                matchNumber: barcodeStrings![1],
+                                initials: barcodeStrings![2],
+                                allianceColour: barcodeStrings![3],
+                                autoSpeakerScored: barcodeStrings![4],
+                                autoSpeakerMissed: barcodeStrings![5],
+                                autoAmpScored: barcodeStrings![6],
+                                autoAmpMissed: barcodeStrings![7],
+                                autoMobility: barcodeStrings![8],
+                                teleopSpeakerScored: barcodeStrings![9],
+                                teleopSpeakerMissed: barcodeStrings![10],
+                                teleopAmpScored: barcodeStrings![11],
+                                teleopAmpMissed: barcodeStrings![12],
+                                teleopClimb: barcodeStrings![13],
+                                teleopClimbTime: barcodeStrings![14],
+                                teleopTrap: barcodeStrings![15],
+                                teleopParked: barcodeStrings![16],
+                                teleopHarmony: barcodeStrings![17],
+                                autoComments: barcodeStrings![18],
+                                autoOrder: barcodeStrings![19],
+                                teleopComments: barcodeStrings![20],
+                                endgameComments: barcodeStrings![21])));
 
                     HomeScreen.cameraController.stop();
                   }
@@ -120,9 +120,10 @@ class qrCodeScanning extends StatelessWidget {
     // File name for generated csv file
     String fileName = Data.currentSavingSpreadsheetName;
 
-    final directory = Directory("/storage/emulated/0/Documents");
+    final directory = await getExternalStorageDirectory();
+    // final directory = Directory("/storage/emulated/0/Documents");
     //final directory = Directory(getApplicationDocumentsDirectory().toString());
-    final file = File('${directory.path}/$fileName');
+    final file = File('${directory?.path}/$fileName');
 
 
     // Check if the file already exists
@@ -198,16 +199,12 @@ class qrCodeScanning extends StatelessWidget {
 
     // Write QR code data/excel data to file
     await writeToFile(fileName, csv);
-
-    print(rowData);
-    print(file.path);
-    print('data written to file');
   }
 
   // Creates file in the app directory.
   static Future<File> createFileInAppDirectory(String fileName) async {
-    final directory = Directory("/storage/emulated/0/Documents");
-    final file = File('${directory.path}/$fileName');
+    final directory = await getExternalStorageDirectory();
+    final file = File('${directory?.path}/$fileName');
     await file.create();
     return file;
   }

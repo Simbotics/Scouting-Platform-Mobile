@@ -41,10 +41,28 @@ class Data {
 
   //team and match info
   static String driverStation = "Red 1";
+
+  static String teamAlliance = "Red";
   
   static final TextEditingController teamNumber = TextEditingController(text: "");
   static final TextEditingController matchNumber = TextEditingController(text: "");
   static final TextEditingController initials = TextEditingController(text: "");
+
+  static final TextEditingController currentSelectedCenterfold = TextEditingController(text: "who_did_this_centerfold");
+
+  // Create a list of all the driver stations for the dropdown menu of the centerfolds in assets
+  static List<String> centerfolds = [
+    "bottle_of_wotah_centerfold",
+    "bruh_centerfold",
+    "cheese",
+    "huh_centerfold",
+    "hungwy_centerfold",
+    "jimmy_centerfold",
+    "jqr_code_centerfold",
+    "kiss_motore_centerfold",
+    "peppa_pig_centerfold",
+    "who_did_this_centerfold"
+  ];
 
     static Future<String> get _scheduleDirecotyPath async {
     final directory = Directory('/storage/emulated/0/Documents');
@@ -178,8 +196,8 @@ class Data {
 
 
   static TextEditingController selectedDriverStation = TextEditingController(text: "Red 1");
-  static TextEditingController eventID = TextEditingController(text: "");
-  static TextEditingController fileName = TextEditingController(text: "");
+  static TextEditingController eventID = TextEditingController(text: "2024onnew");
+  static TextEditingController fileName = TextEditingController(text: "2024-Newmarket");
    static TextEditingController selectedCenterfold = TextEditingController(text: "cheese");
   static List<String> images = [
     "cheese"

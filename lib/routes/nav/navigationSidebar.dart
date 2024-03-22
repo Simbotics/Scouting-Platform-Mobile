@@ -45,7 +45,10 @@ class NavigationSidebar extends StatelessWidget {
               itemName: "QR Code",
               route: CurrentQRCode(title: "QR Code")),
           const Divider(),
-          const SidebarItem(icon: Icon(Icons.camera_alt_outlined), itemName: "Scanning", route: scannedDriverStations(title: "Scanning")),
+          const SidebarItem(
+              icon: Icon(Icons.camera_alt_outlined),
+              itemName: "Scanning",
+              route: scannedDriverStations(title: "Scanning")),
           const SidebarItem(
               icon: Icon(Icons.settings),
               itemName: "Settings",

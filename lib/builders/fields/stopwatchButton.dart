@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/utils/data/data.dart';
 
 /// THIS CLASS IS DEPRECATED AND IS NO LONGER SUPPORTED FOR USE
 /// Please refer to previous years of for usage of this class

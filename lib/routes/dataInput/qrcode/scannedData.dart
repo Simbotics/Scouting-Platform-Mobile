@@ -75,62 +75,137 @@ class _scannedDataState extends State<scannedData> {
   Widget build(BuildContext context) {
     return RoutePage(
         title: widget.title,
-        body: Container(
-            alignment: Alignment.bottomLeft,
-            child: Row(
+        body: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
                 // padding: const EdgeInsets.only(top: 18.0, right: 60.0),
                 // height: 77.0,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppStyle
-                          .textInputColorLight, // Set the background color here
-                    ),
-                    onPressed: () async {
-                      setState(() {
-                        Data.unscannedDevices = Data.unscannedDevices
-                            .where((element) => !element
-                                .contains(qrCodeScanning.barcodeStrings![22]))
-                            .toList();
-                        Data.scannedDevices
-                            .add(qrCodeScanning.barcodeStrings![22]);
-                      });
-                      await qrCodeScanning.generateCsv(
-                          qrCodeScanning.barcodeStrings![0],
-                          qrCodeScanning.barcodeStrings![1],
-                          qrCodeScanning.barcodeStrings![2],
-                          qrCodeScanning.barcodeStrings![3],
-                          qrCodeScanning.barcodeStrings![4],
-                          qrCodeScanning.barcodeStrings![5],
-                          qrCodeScanning.barcodeStrings![6],
-                          qrCodeScanning.barcodeStrings![7],
-                          qrCodeScanning.barcodeStrings![8],
-                          qrCodeScanning.barcodeStrings![9],
-                          qrCodeScanning.barcodeStrings![10],
-                          qrCodeScanning.barcodeStrings![11],
-                          qrCodeScanning.barcodeStrings![12],
-                          qrCodeScanning.barcodeStrings![13],
-                          qrCodeScanning.barcodeStrings![14],
-                          qrCodeScanning.barcodeStrings![15],
-                          qrCodeScanning.barcodeStrings![16],
-                          qrCodeScanning.barcodeStrings![17],
-                          qrCodeScanning.barcodeStrings![18],
-                          qrCodeScanning.barcodeStrings![19],
-                          qrCodeScanning.barcodeStrings![20],
-                          qrCodeScanning.barcodeStrings![21]);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const scannedDriverStations(
-                          title: "Scanned Status",
-                        );
-                      }));
-                    },
-                    child: const Text(
-                      'Save QR Code Data',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
+                  Row(
+                    children: [
+                      Text("Team Number: ${widget.teamNumber}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Match Number: ${widget.matchNumber}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Initials: ${widget.initials}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Alliance Colour: ${widget.allianceColour}",
+                          style: TextStyle(fontSize: 18)),
+                    ],
                   ),
-                  Text("${widget.autoMobility}")
+                  Row(
+                    children: [
+                      Text("Auto Speaker Scored: ${widget.autoSpeakerScored}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Auto Speaker Missed: ${widget.autoSpeakerMissed}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Auto Amp Scored: ${widget.autoAmpScored}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Auto Amp Missed: ${widget.autoAmpMissed}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Auto Mobility: ${widget.autoMobility}",
+                          style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                          "Teleop Speaker Scored: ${widget.teleopSpeakerScored}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text(
+                          "Teleop Speaker Missed: ${widget.teleopSpeakerMissed}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Amp Scored: ${widget.teleopAmpScored}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Amp Missed: ${widget.teleopAmpMissed}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Climb: ${widget.teleopClimb}",
+                          style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("Teleop Climb Time: ${widget.teleopClimbTime}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Trap: ${widget.teleopTrap}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Parked: ${widget.teleopParked}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Harmony: ${widget.teleopHarmony}, ",
+                          style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("Auto Comments: ${widget.autoComments}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Auto Order: ${widget.autoOrder}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Comments: ${widget.teleopComments}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Endgame Comments: ${widget.endgameComments}",
+                          style: TextStyle(fontSize: 18))
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppStyle
+                              .textInputColorLight, // Set the background color here
+                        ),
+                        onPressed: () async {
+                          setState(() {
+                            Data.unscannedDevices = Data.unscannedDevices
+                                .where((element) => !element.contains(
+                                    qrCodeScanning.barcodeStrings![22]))
+                                .toList();
+                            if (!Data.scannedDevices
+                                .contains(qrCodeScanning.barcodeStrings![22])) {
+                              Data.scannedDevices
+                                  .add(qrCodeScanning.barcodeStrings![22]);
+                            }
+                          });
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const scannedDriverStations(
+                              title: "Scanned Status",
+                            );
+                          }));
+                          await qrCodeScanning.generateCsv(
+                              qrCodeScanning.barcodeStrings![0],
+                              qrCodeScanning.barcodeStrings![1],
+                              qrCodeScanning.barcodeStrings![2],
+                              qrCodeScanning.barcodeStrings![3],
+                              qrCodeScanning.barcodeStrings![4],
+                              qrCodeScanning.barcodeStrings![5],
+                              qrCodeScanning.barcodeStrings![6],
+                              qrCodeScanning.barcodeStrings![7],
+                              qrCodeScanning.barcodeStrings![8],
+                              qrCodeScanning.barcodeStrings![9],
+                              qrCodeScanning.barcodeStrings![10],
+                              qrCodeScanning.barcodeStrings![11],
+                              qrCodeScanning.barcodeStrings![12],
+                              qrCodeScanning.barcodeStrings![13],
+                              qrCodeScanning.barcodeStrings![14],
+                              qrCodeScanning.barcodeStrings![15],
+                              qrCodeScanning.barcodeStrings![16],
+                              qrCodeScanning.barcodeStrings![17],
+                              qrCodeScanning.barcodeStrings![18],
+                              qrCodeScanning.barcodeStrings![19],
+                              qrCodeScanning.barcodeStrings![20],
+                              qrCodeScanning.barcodeStrings![21]);
+                        },
+                        child: const Text(
+                          'Save QR Code Data',
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              fontFamily: "Helvetica",
+                              color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  )
                 ])));
   }
 }

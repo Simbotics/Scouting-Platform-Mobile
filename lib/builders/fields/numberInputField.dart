@@ -45,7 +45,7 @@ class _NumberInputFieldState extends State<NumberInputField> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle: const TextStyle(
-            color: Colors.white,
+            color: Colors.grey,
             fontSize: 16.0,
           ),
           filled: true,

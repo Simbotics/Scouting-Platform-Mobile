@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:flutter/services.dart';
 import 'package:scouting_platform/ui/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +53,9 @@ class _TextInputFieldState extends State<TextInputField> {
       width: widget.width,
       height: widget.height,
       child: TextField(
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(140),
+        ],
         maxLines: widget.maxLines,
         onChanged: (value) {
           widget.onChanged(value);
@@ -66,7 +70,7 @@ class _TextInputFieldState extends State<TextInputField> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle:
-              const TextStyle(fontFamily: 'Helvetica', color: Colors.white),
+              const TextStyle(fontFamily: 'Helvetica', color: Colors.grey),
           filled: true,
           fillColor: widget.inputFieldColor,
           border: widget.inputFieldBorder,
