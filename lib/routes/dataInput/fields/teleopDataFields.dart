@@ -54,7 +54,7 @@ class _Row2FieldsState extends State<Row2Fields> {
             onTapDecrement: () => decrementNumber(Data.speakerMissed),
             onTapIncrement: () => incrementNumber(Data.speakerMissed)),
         //amp scored
-                CounterNumberField(
+        CounterNumberField(
             controller: Data.amp,
             onTapDecrement: () => decrementNumber(Data.amp),
             onTapIncrement: () => incrementNumber(Data.amp)),
@@ -63,6 +63,11 @@ class _Row2FieldsState extends State<Row2Fields> {
             controller: Data.ampMissed,
             onTapDecrement: () => decrementNumber(Data.ampMissed),
             onTapIncrement: () => incrementNumber(Data.ampMissed)),
+        //passes
+        CounterNumberField(
+            controller: Data.passes,
+            onTapDecrement: () => decrementNumber(Data.passes),
+            onTapIncrement: () => incrementNumber(Data.passes)),
       ],
     );
   }

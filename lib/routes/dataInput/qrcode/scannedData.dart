@@ -24,6 +24,7 @@ class scannedData extends StatefulWidget {
       required this.teleopSpeakerMissed,
       required this.teleopAmpScored,
       required this.teleopAmpMissed,
+      required this.teleopPasses,
       required this.teleopClimb,
       required this.teleopClimbTime,
       required this.teleopTrap,
@@ -49,6 +50,7 @@ class scannedData extends StatefulWidget {
   final String teleopSpeakerMissed;
   final String teleopAmpScored;
   final String teleopAmpMissed;
+  final String teleopPasses;
   final String teleopClimb;
   final String teleopClimbTime;
   final String teleopTrap;
@@ -118,6 +120,8 @@ class _scannedDataState extends State<scannedData> {
                       Text("Teleop Amp Scored: ${widget.teleopAmpScored}, ",
                           style: TextStyle(fontSize: 18)),
                       Text("Teleop Amp Missed: ${widget.teleopAmpMissed}, ",
+                          style: TextStyle(fontSize: 18)),
+                      Text("Teleop Passes: ${widget.teleopPasses}",
                           style: TextStyle(fontSize: 18)),
                       Text("Teleop Climb: ${widget.teleopClimb}",
                           style: TextStyle(fontSize: 18)),
@@ -194,7 +198,8 @@ class _scannedDataState extends State<scannedData> {
                               qrCodeScanning.barcodeStrings![18],
                               qrCodeScanning.barcodeStrings![19],
                               qrCodeScanning.barcodeStrings![20],
-                              qrCodeScanning.barcodeStrings![21]);
+                              qrCodeScanning.barcodeStrings![21],
+                              qrCodeScanning.barcodeStrings![22]);
                         },
                         child: const Text(
                           'Save QR Code Data',

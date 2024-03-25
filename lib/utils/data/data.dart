@@ -27,6 +27,7 @@ class Data {
   static TextEditingController speakerMissed = TextEditingController(text: "0");
   static TextEditingController amp = TextEditingController(text: "0");
   static TextEditingController ampMissed = TextEditingController(text: "0");
+  static TextEditingController passes = TextEditingController(text: "0");
   static TextEditingController climb = TextEditingController(text: "No");
   static TextEditingController climbTime = TextEditingController(text: "0");
   static TextEditingController trap = TextEditingController(text: "0");
