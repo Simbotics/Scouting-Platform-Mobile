@@ -43,6 +43,7 @@ dependencies:
   permission_handler: ^11.3.0
   remove_emoji: ^0.0.8
   path_provider: ^2.1.2
+  playing_cards: 0.3.1+9
 
 dev_dependencies:
   flutter_test:

@@ -13,6 +13,7 @@ class Row2Fields extends StatefulWidget {
 }
 
 class _Row2FieldsState extends State<Row2Fields> {
+
   /**
    * Increments an integer in a controllers value by one
    */

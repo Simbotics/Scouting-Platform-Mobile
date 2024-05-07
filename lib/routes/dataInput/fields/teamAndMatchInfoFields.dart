@@ -16,6 +16,52 @@ class teamAndMatchInfoFields extends StatefulWidget {
 }
 
 class _teamAndMatchInfoFieldsState extends State<teamAndMatchInfoFields> {
+      @override
+  void initState() {
+    super.initState();
+    Data.getCurrentEventIDAndCurrentDriverStation()
+        .then((value) => setState(() {
+              List<String> lineArray = value.split(",");
+              Data.eventID.text = lineArray[0];
+              Data.driverStation = lineArray[1];
+              Data.selectedDriverStation.text = lineArray[1];
+              switch(lineArray[1]) {
+                case "Red 1":
+                  Data.argumentReadingIndex = 1;
+                  break;
+                case "Red 2":
+                  Data.argumentReadingIndex = 2;
+                  break;
+                case "Red 3":
+                  Data.argumentReadingIndex = 3;
+                  break;
+                case "Blue 1":
+                  Data.argumentReadingIndex = 4;
+                  break;
+                case "Blue 2":
+                  Data.argumentReadingIndex = 5;
+                  break;
+                case "Blue 3":
+                  Data.argumentReadingIndex = 6;
+                  break;
+              }
+            }));
+    // If all requirements are met to update the team number automatically, update it on page loade
+    if (Data.isTeamNumberReadOnly) {
+      if (Data.matchNumber.text != "") {
+        // If it isn't null
+        Data.getTeamNumberFromSchedule(int.parse(
+            // Get the team number from the schedule
+            Data.matchNumber.text)).then((teamNumber) {
+          // Once retrieved then set the team number to the text field
+          setState(() {
+            Data.teamNumber.text = teamNumber.toString();
+          });
+        });
+      }
+    }
+  }
+
   /**
    * Increments an integer in a controllers value by one
    */

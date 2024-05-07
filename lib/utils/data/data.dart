@@ -10,7 +10,7 @@ class Data {
   static late int driverStationIdentifier;
 
   static final yesNoOptions = ["Yes", "No"];
-  static final climbOptions = ["No", "Single", "Double", "Triple", "Park"];
+  static final endgameOptions = ["No", "Single", "Double", "Park"];
   // Create files like these to store certain variables such as team numbers, match numbers, etc.
   // This is just a placeholder file and is to be deleted as this is just an example.
   //auto
@@ -28,11 +28,10 @@ class Data {
   static TextEditingController amp = TextEditingController(text: "0");
   static TextEditingController ampMissed = TextEditingController(text: "0");
   static TextEditingController passes = TextEditingController(text: "0");
-  static TextEditingController climb = TextEditingController(text: "No");
+  static TextEditingController endgame = TextEditingController(text: "No");
   static TextEditingController climbTime = TextEditingController(text: "0");
   static TextEditingController trap = TextEditingController(text: "0");
-  static TextEditingController parked = TextEditingController(text: "No");
-  static TextEditingController harmony = TextEditingController(text: "No");
+
 
   //comments
   static final TextEditingController autoComments = TextEditingController(text: "");
@@ -180,10 +179,10 @@ class Data {
   static List<String> unscannedDevices = ['0', '1', '2', '3', '4', '5'];
   static List<String> scannedDevices = [];
 
-  static String currentSavingSpreadsheetName = "2024-Newmarket.csv";
+  static String currentSavingSpreadsheetName = "2024-Milstein.csv";
 
   static final TextEditingController currentSavingSpreadsheetNameController =
-      TextEditingController(text: "2024-Newmarket");
+      TextEditingController(text: "2024-Milstein");
 
     // Create a list of all the driver stations for the dropdown menu
   static List<String> driverStations = [
@@ -197,8 +196,8 @@ class Data {
 
 
   static TextEditingController selectedDriverStation = TextEditingController(text: "Red 1");
-  static TextEditingController eventID = TextEditingController(text: "2024onnew");
-  static TextEditingController fileName = TextEditingController(text: "2024-Newmarket");
+  static TextEditingController eventID = TextEditingController(text: "2024mil");
+  static TextEditingController fileName = TextEditingController(text: "2024-Milstein");
    static TextEditingController selectedCenterfold = TextEditingController(text: "cheese");
   static List<String> images = [
     "cheese"

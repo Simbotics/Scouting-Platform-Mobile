@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/routePage.dart';
-import 'package:scouting_platform/routes/dataInput/Comments/commentsRoute.dart';
+import 'package:scouting_platform/routes/dataInput/comments/commentsRoute.dart';
 import 'package:scouting_platform/routes/dataInput/fields/autoDataFields.dart';
 import 'package:scouting_platform/routes/dataInput/fields/teleopDataFields.dart';
 import 'package:scouting_platform/routes/dataInput/fields/endgameDataFields.dart';
@@ -140,10 +140,9 @@ class _InputRouteState extends State<InputRoute> {
           Data.amp.text = "0";
           Data.ampMissed.text = "0";
           Data.autoMobility.text = "No";
-          Data.climb.text = "No";
-          Data.climbTime.text = "0";
-          Data.parked.text = "No";
-          Data.harmony.text = "No";
+          Data.endgame.text = "No"; // was climb, now endgame
+          Data.climbTime.text = "0"; // parked was below
+          Data.passes.text = "0";
           Data.trap.text = "0";
           Data.stopwatch.stop();
           Data.stopwatch.reset();

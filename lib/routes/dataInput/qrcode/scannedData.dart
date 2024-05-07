@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/builders/routePage.dart';
 import 'package:scouting_platform/routes/dataInput/qrcode/qrCodeScanning.dart';
 import 'package:scouting_platform/routes/dataInput/qrcode/scannedDriverStations.dart';
@@ -25,11 +24,9 @@ class scannedData extends StatefulWidget {
       required this.teleopAmpScored,
       required this.teleopAmpMissed,
       required this.teleopPasses,
-      required this.teleopClimb,
+      required this.teleopEndgame,
       required this.teleopClimbTime,
       required this.teleopTrap,
-      required this.teleopParked,
-      required this.teleopHarmony,
       required this.autoComments,
       required this.autoOrder,
       required this.teleopComments,
@@ -51,11 +48,9 @@ class scannedData extends StatefulWidget {
   final String teleopAmpScored;
   final String teleopAmpMissed;
   final String teleopPasses;
-  final String teleopClimb;
+  final String teleopEndgame;
   final String teleopClimbTime;
   final String teleopTrap;
-  final String teleopParked;
-  final String teleopHarmony;
   final String autoComments;
   final String autoOrder;
   final String teleopComments;
@@ -66,13 +61,6 @@ class scannedData extends StatefulWidget {
 }
 
 class _scannedDataState extends State<scannedData> {
-  // The scanned QR code data split into an array
-  static late List<String>? barcodeStrings;
-  // Array of barcodes scannned
-  static late List<Barcode> barcodes;
-  // Name of file generated when scanned
-  static late String fileName;
-
   @override
   Widget build(BuildContext context) {
     return RoutePage(
@@ -86,69 +74,65 @@ class _scannedDataState extends State<scannedData> {
                   Row(
                     children: [
                       Text("Team Number: ${widget.teamNumber}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Match Number: ${widget.matchNumber}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Initials: ${widget.initials}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Alliance Colour: ${widget.allianceColour}",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                   Row(
                     children: [
                       Text("Auto Speaker Scored: ${widget.autoSpeakerScored}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Auto Speaker Missed: ${widget.autoSpeakerMissed}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Auto Amp Scored: ${widget.autoAmpScored}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Auto Amp Missed: ${widget.autoAmpMissed}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Auto Mobility: ${widget.autoMobility}",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                   Row(
                     children: [
                       Text(
                           "Teleop Speaker Scored: ${widget.teleopSpeakerScored}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text(
                           "Teleop Speaker Missed: ${widget.teleopSpeakerMissed}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Teleop Amp Scored: ${widget.teleopAmpScored}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Teleop Amp Missed: ${widget.teleopAmpMissed}, ",
-                          style: TextStyle(fontSize: 18)),
-                      Text("Teleop Passes: ${widget.teleopPasses}",
-                          style: TextStyle(fontSize: 18)),
-                      Text("Teleop Climb: ${widget.teleopClimb}",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                   Row(
                     children: [
+                      Text("Teleop Passes: ${widget.teleopPasses}",
+                          style: const TextStyle(fontSize: 18)),
+                      Text("Teleop Endgame: ${widget.teleopEndgame}",
+                          style: const TextStyle(fontSize: 18)),
                       Text("Teleop Climb Time: ${widget.teleopClimbTime}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Teleop Trap: ${widget.teleopTrap}, ",
-                          style: TextStyle(fontSize: 18)),
-                      Text("Teleop Parked: ${widget.teleopParked}, ",
-                          style: TextStyle(fontSize: 18)),
-                      Text("Teleop Harmony: ${widget.teleopHarmony}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                     ],
                   ),
                   Row(
                     children: [
                       Text("Auto Comments: ${widget.autoComments}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Auto Order: ${widget.autoOrder}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Teleop Comments: ${widget.teleopComments}, ",
-                          style: TextStyle(fontSize: 18)),
+                          style: const TextStyle(fontSize: 18)),
                       Text("Endgame Comments: ${widget.endgameComments}",
-                          style: TextStyle(fontSize: 18))
+                          style: const TextStyle(fontSize: 18))
                     ],
                   ),
                   Row(
@@ -162,12 +146,12 @@ class _scannedDataState extends State<scannedData> {
                           setState(() {
                             Data.unscannedDevices = Data.unscannedDevices
                                 .where((element) => !element.contains(
-                                    qrCodeScanning.barcodeStrings![22]))
+                                    qrCodeScanning.barcodeStrings![21]))
                                 .toList();
                             if (!Data.scannedDevices
-                                .contains(qrCodeScanning.barcodeStrings![22])) {
+                                .contains(qrCodeScanning.barcodeStrings![21])) {
                               Data.scannedDevices
-                                  .add(qrCodeScanning.barcodeStrings![22]);
+                                  .add(qrCodeScanning.barcodeStrings![21]);
                             }
                           });
                           Navigator.push(context,
@@ -197,9 +181,7 @@ class _scannedDataState extends State<scannedData> {
                               qrCodeScanning.barcodeStrings![17],
                               qrCodeScanning.barcodeStrings![18],
                               qrCodeScanning.barcodeStrings![19],
-                              qrCodeScanning.barcodeStrings![20],
-                              qrCodeScanning.barcodeStrings![21],
-                              qrCodeScanning.barcodeStrings![22]);
+                              qrCodeScanning.barcodeStrings![20]);
                         },
                         child: const Text(
                           'Save QR Code Data',

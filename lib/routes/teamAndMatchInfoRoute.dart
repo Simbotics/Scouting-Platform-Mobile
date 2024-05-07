@@ -13,13 +13,13 @@ class teamAndMatchInfo extends StatelessWidget {
     return RoutePage(
       title: title,
       body: const SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Column(
-        children: [
-            teamAndMatchInfoLabels(),
-            teamAndMatchInfoFields()
-        ], )
-      ),
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              teamAndMatchInfoLabels(),
+              teamAndMatchInfoFields()
+            ],
+          )),
     );
   }
 }

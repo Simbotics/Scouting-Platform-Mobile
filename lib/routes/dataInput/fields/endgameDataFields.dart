@@ -45,15 +45,15 @@ class _Row3FieldsState extends State<Row3Fields> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        //climb dropdown
+        //endgame dropdown
         ScoutingDropdownMenu(
-            dropdownMenuSelectedItem: Data.climb.text,
+            dropdownMenuSelectedItem: Data.endgame.text,
             onChanged: (value) {
               setState(() {
-                Data.climb.text = value;
+                Data.endgame.text = value;
               });
             },
-            dropdownItems: Data.climbOptions,
+            dropdownItems: Data.endgameOptions,
             margin: const EdgeInsets.only(left: 20)),
         //climb time
         StopwatchButton(
@@ -65,28 +65,6 @@ class _Row3FieldsState extends State<Row3Fields> {
             controller: Data.trap,
             onTapDecrement: () => decrementNumber(Data.trap),
             onTapIncrement: () => incrementNumber(Data.trap)),
-        // parked
-        ScoutingDropdownMenu(
-            width: 130,
-            dropdownMenuSelectedItem: Data.parked.text,
-            onChanged: (value) {
-              setState(() {
-                Data.parked.text = value;
-              });
-            },
-            dropdownItems: Data.yesNoOptions,
-            margin: const EdgeInsets.only(left: 20, right: 20)),
-        // harmony
-        ScoutingDropdownMenu(
-            width: 130,
-            dropdownMenuSelectedItem: Data.harmony.text,
-            onChanged: (value) {
-              setState(() {
-                Data.harmony.text = value;
-              });
-            },
-            dropdownItems: Data.yesNoOptions,
-            margin: const EdgeInsets.only(left: 20, right: 20)),
       ],
     );
   }

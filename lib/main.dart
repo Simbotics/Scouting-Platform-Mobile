@@ -12,7 +12,7 @@ void main() {
   // Set the screen orientation to landscape (either way)
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeRight//i am so cool 
   ]);
   runApp(const ScoutingPlatform());
 }
