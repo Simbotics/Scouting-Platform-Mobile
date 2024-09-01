@@ -160,7 +160,7 @@ class _InputRouteState extends State<InputRoute> {
         });
         Navigator.of(context, rootNavigator: true).pop('dialog');
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const PrematchRoute(title: "Team and Match Data");
+          return const PrematchRoute(title: "Prematch Data");
         }));
       },
     ); // set up the AlertDialog

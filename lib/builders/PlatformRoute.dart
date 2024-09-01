@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/components/navigation/NavigationSidebar.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/UIHelper.dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
 
 class PlatformRoute extends StatefulWidget {
   final String title; // Title of the page
   final Widget body; // Body of the page
 
-  const PlatformRoute({Key? key, required this.title, required this.body})
+  const PlatformRoute(
+      {Key? key,
+      this.title = "${AppConstants.appName} - ${AppConstants.year}",
+      required this.body})
       : super(key: key);
 
   @override

@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/services.dart';
-import 'package:scouting_platform/routes/data/dataRoute.dart';
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
 
 void main() {
@@ -24,9 +24,8 @@ class ScoutingPlatform extends StatelessWidget {
     return const MaterialApp(
         title: AppConstants.appName,
         debugShowCheckedModeBanner: false,
-        home: InputRoute(
-          title: "${AppConstants.appName} - ${AppConstants.year}",
-        ) // Set this to what you want the default homepage to be
-        );
+        home: PrematchRoute(
+          title: "Prematch Data",
+        ));
   }
 }
