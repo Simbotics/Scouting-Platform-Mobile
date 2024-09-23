@@ -371,10 +371,10 @@ packages:
     dependency: "direct main"
     description:
       name: playing_cards
-      sha256: b44d29025fa8776daa930dadfdefe6ec426ae2606941c167f7a4a24de29a4e8a
+      sha256: "392d5e42317ec657f6814a282e6bb70942c6599d22dac89cdc741a8b2b095d09"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1+9"
+    version: "0.4.1+11"
   plugin_platform_interface:
     dependency: transitive
     description:
