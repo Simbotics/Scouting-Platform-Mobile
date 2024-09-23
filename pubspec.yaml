@@ -38,7 +38,7 @@ dependencies:
   mobile_scanner:
     path: ./local_plugins/mobile_scanner
   csv: ^5.0.1
-  screen_brightness: ^0.2.2
+  screen_brightness: ^1.0.1
   http: ^1.0.0
   permission_handler: ^11.3.0
   remove_emoji: ^0.0.8
