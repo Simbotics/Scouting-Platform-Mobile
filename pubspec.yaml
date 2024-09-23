@@ -55,7 +55,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.0
 
 flutter_launcher_icons:
   android: true
