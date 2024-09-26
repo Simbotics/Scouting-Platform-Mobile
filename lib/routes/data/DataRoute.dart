@@ -11,7 +11,7 @@ import 'package:scouting_platform/routes/data/labels/EndgameLabels.dart';
 import 'package:scouting_platform/routes/prematch/prematchRoute.dart';
 import 'package:scouting_platform/styles/TitleStyle.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
-import 'package:scouting_platform/utils/ScheduleHelper.dart';
+import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 import 'package:scouting_platform/utils/data/values/CommentValues.dart';
 import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
@@ -19,15 +19,15 @@ import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
 
-class InputRoute extends StatefulWidget {
-  const InputRoute({Key? key, required this.title}) : super(key: key);
+class DataRoute extends StatefulWidget {
+  const DataRoute({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<InputRoute> createState() => _InputRouteState();
+  State<DataRoute> createState() => _DataRouteState();
 }
 
-class _InputRouteState extends State<InputRoute> {
+class _DataRouteState extends State<DataRoute> {
   @override
   Widget build(BuildContext context) {
     return PlatformRoute(
