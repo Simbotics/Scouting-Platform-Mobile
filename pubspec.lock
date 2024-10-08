@@ -367,14 +367,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.5"
-  playing_cards:
-    dependency: "direct main"
-    description:
-      name: playing_cards
-      sha256: b44d29025fa8776daa930dadfdefe6ec426ae2606941c167f7a4a24de29a4e8a
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1+9"
   plugin_platform_interface:
     dependency: transitive
     description:
