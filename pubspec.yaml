@@ -37,7 +37,7 @@ dependencies:
   qr_flutter: ^4.1.0
   mobile_scanner:
     path: ./local_plugins/mobile_scanner
-  csv: ^5.0.1
+  csv: ^6.0.0
   screen_brightness: ^1.0.1
   http: ^1.0.0
   permission_handler: ^11.3.0
