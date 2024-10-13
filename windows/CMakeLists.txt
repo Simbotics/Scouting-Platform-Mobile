@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(qr_generator_tutorial LANGUAGES CXX)
+project(scouting_platform LANGUAGES CXX)
 
-set(BINARY_NAME "qr_generator_tutorial")
+set(BINARY_NAME "scouting_platform")
 
 cmake_policy(SET CMP0063 NEW)
 

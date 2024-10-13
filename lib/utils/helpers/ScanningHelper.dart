@@ -55,7 +55,13 @@ class ScanningHelper {
     // File name for generated csv file
     String fileName = SettingValues.getCurrentSavingSpreadsheetName();
 
-    final directory = await getExternalStorageDirectory();
+    Directory? directory;
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      directory = await getDownloadsDirectory();
+    } else {
+      directory = await getExternalStorageDirectory();
+    }
+
     final file = File('${directory?.path}/$fileName');
 
     // Check if the file already exists
@@ -85,7 +91,12 @@ class ScanningHelper {
 
   // Creates file in the app directory.
   static Future<File> createFileInAppDirectory(String fileName) async {
-    final directory = await getExternalStorageDirectory();
+        Directory? directory;
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      directory = await getDownloadsDirectory();
+    } else {
+      directory = await getExternalStorageDirectory();
+    }
     final file = File('${directory?.path}/$fileName');
     await file.create();
     return file;

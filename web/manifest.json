@@ -1,6 +1,6 @@
 {
-    "name": "qr_generator_tutorial",
-    "short_name": "qr_generator_tutorial",
+    "name": "scouting_platform",
+    "short_name": "scouting_platform",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "org.simbotics" "\0"
-            VALUE "FileDescription", "qr_generator_tutorial" "\0"
+            VALUE "FileDescription", "scouting_platform" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "qr_generator_tutorial" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 org.simbotics. All rights reserved." "\0"
-            VALUE "OriginalFilename", "qr_generator_tutorial.exe" "\0"
-            VALUE "ProductName", "qr_generator_tutorial" "\0"
+            VALUE "InternalName", "Scouting Platform" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Simbotics. All rights reserved." "\0"
+            VALUE "OriginalFilename", "scouting_platform.exe" "\0"
+            VALUE "ProductName", "Scouting Platform" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
