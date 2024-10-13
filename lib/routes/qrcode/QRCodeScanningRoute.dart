@@ -8,7 +8,7 @@ import 'package:scouting_platform/routes/qrcode/ScannedDataPreviewRoute.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class QRCodeScanningRoute extends StatelessWidget {
-  const QRCodeScanningRoute({Key? key, required this.title}) : super(key: key);
+  const QRCodeScanningRoute({super.key, required this.title});
   final String title;
 
   // The scanned QR code data split into an array
@@ -37,7 +37,7 @@ class QRCodeScanningRoute extends StatelessWidget {
                 for (final barcode in QRCodeScanningRoute.barcodes) {
                   barcodes = capture.barcodes; // Barcode(s) scanned
                   for (final barcode in barcodes) {
-                    List<int> decodedBytes = base64.decode(barcode.rawValue);
+                    List<int> decodedBytes = base64.decode(barcode.rawValue!);
                     String decodedBarcodeString = utf8.decode(decodedBytes);
                     barcodeStrings = decodedBarcodeString.split("^");
                     fileName = SettingValues.getCurrentSavingSpreadsheetName();

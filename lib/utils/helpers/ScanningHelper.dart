@@ -45,8 +45,10 @@ class ScanningHelper {
     await Permission.storage.request();
 
     if (await Permission.storage.isGranted) {
+      // ignore: avoid_print
       if (AppConstants.isDebug) print('Storage permission granted');
     } else {
+      // ignore: avoid_print
       if (AppConstants.isDebug) print('Storage permission denied');
     }
 

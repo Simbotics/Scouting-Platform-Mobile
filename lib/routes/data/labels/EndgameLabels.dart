@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class EndgameLabels extends StatefulWidget {
   const EndgameLabels({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<EndgameLabels> createState() => _EndgameLabelsState();

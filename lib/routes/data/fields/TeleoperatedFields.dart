@@ -5,8 +5,8 @@ import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
 
 class TeleoperatedFields extends StatefulWidget {
   const TeleoperatedFields({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TeleoperatedFields> createState() => _TeleoperatedFieldsState();

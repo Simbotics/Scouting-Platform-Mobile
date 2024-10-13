@@ -22,6 +22,7 @@ class QrcodeHelper {
       computeSuffixValues()
     ]);
 
+    // ignore: avoid_print
     if (AppConstants.isDebug) print(computedValues);
 
     // Encode to UTF-8 and then base64 to compress size and reduce issues with characters

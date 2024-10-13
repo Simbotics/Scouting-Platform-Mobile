@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class PrematchLabels extends StatefulWidget {
   const PrematchLabels({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<PrematchLabels> createState() => _PrematchLabelsState();

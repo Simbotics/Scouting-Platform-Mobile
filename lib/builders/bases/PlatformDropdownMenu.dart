@@ -16,7 +16,7 @@ class PlatformDropdownMenu extends StatelessWidget {
   final double selectedItemFontSize;
 
   const PlatformDropdownMenu({
-    Key? key,
+    super.key,
     this.margin = const EdgeInsets.only(top: 0.0),
     this.width = 204.0,
     this.dropdownButtonColor = AppStyle.textInputColor,
@@ -28,7 +28,7 @@ class PlatformDropdownMenu extends StatelessWidget {
     this.selectedItemTextPadding = const EdgeInsets.all(10.0),
     this.selectedItemAlignment = Alignment.centerLeft,
     this.selectedItemFontSize = 14.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

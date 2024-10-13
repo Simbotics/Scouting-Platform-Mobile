@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/utils/QRCodeHelper.dart';
-import 'package:scouting_platform/utils/UIHelper.dart';
+import 'package:scouting_platform/utils/helpers/QRCodeHelper.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class QRCodeRoute extends StatelessWidget {
-  const QRCodeRoute({Key? key, required this.title}) : super(key: key);
+  const QRCodeRoute({super.key, required this.title});
   final String title;
 
   @override

@@ -7,11 +7,10 @@ class SidebarItem extends StatefulWidget {
   final Widget route;
 
   const SidebarItem(
-      {Key? key,
+      {super.key,
       required this.icon,
       required this.itemName,
-      required this.route})
-      : super(key: key);
+      required this.route});
 
   @override
   State<SidebarItem> createState() => _SidebarItemState();

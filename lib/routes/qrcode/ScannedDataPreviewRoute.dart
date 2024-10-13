@@ -8,8 +8,7 @@ import 'package:scouting_platform/utils/helpers/ScanningHelper.dart';
 
 class ScannedDataPreviewRoute extends StatefulWidget {
   const ScannedDataPreviewRoute(
-      {Key? key, required this.title, required this.data})
-      : super(key: key);
+      {super.key, required this.title, required this.data});
 
   final String title;
   final List<String> data;

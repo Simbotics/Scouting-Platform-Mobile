@@ -12,14 +12,13 @@ class NumberInputField extends StatefulWidget {
   final bool readOnly;
 
   const NumberInputField(
-      {Key? key,
+      {super.key,
       required this.controller,
       required this.onChanged,
       required this.hintText,
       this.readOnly = false,
       this.margin = const EdgeInsets.only(top: 4.0, left: 10.0),
-      this.width = 150})
-      : super(key: key);
+      this.width = 150});
 
   @override
   State<NumberInputField> createState() => _NumberInputFieldState();

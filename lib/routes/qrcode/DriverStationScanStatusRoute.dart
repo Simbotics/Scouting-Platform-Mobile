@@ -9,8 +9,7 @@ import 'package:scouting_platform/utils/helpers/ScanningHelper.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 
 class DriverStationScanStatusRoute extends StatefulWidget {
-  const DriverStationScanStatusRoute({Key? key, required this.title})
-      : super(key: key);
+  const DriverStationScanStatusRoute({super.key, required this.title});
   final String title; // Title of the page
 
   @override

@@ -8,8 +8,8 @@ import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 
 class EndgameFields extends StatefulWidget {
   const EndgameFields({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<EndgameFields> createState() => _EndgameFieldsState();

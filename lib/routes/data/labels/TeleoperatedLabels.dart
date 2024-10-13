@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class TeleoperatedLabels extends StatefulWidget {
   const TeleoperatedLabels({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TeleoperatedLabels> createState() => _TeleoperatedLabelsState();

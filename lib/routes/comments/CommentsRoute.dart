@@ -4,7 +4,7 @@ import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/comments/CommentsFields.dart';
 
 class CommentsRoute extends StatelessWidget {
-  const CommentsRoute({Key? key, required this.title}) : super(key: key);
+  const CommentsRoute({super.key, required this.title});
   final String title;
 
   @override

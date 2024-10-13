@@ -7,11 +7,10 @@ class TitleStyle extends StatelessWidget {
   final EdgeInsets padding;
 
   const TitleStyle(
-      {Key? key,
+      {super.key,
       required this.text,
       this.fontWeight = FontWeight.bold,
-      required this.padding})
-      : super(key: key);
+      required this.padding});
 
   @override
   Widget build(BuildContext context) {

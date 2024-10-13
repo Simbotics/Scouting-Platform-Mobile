@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/NumberInputField.dart';
 import 'package:scouting_platform/builders/bases/TextInputField.dart';
-import 'package:scouting_platform/routes/data/dataRoute.dart';
+import 'package:scouting_platform/routes/data/DataRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
 import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
@@ -11,8 +11,8 @@ import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class PrematchFields extends StatefulWidget {
   const PrematchFields({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<PrematchFields> createState() => _PrematchFieldsState();
@@ -24,28 +24,30 @@ class _PrematchFieldsState extends State<PrematchFields> {
     super.initState();
     AppDataHelper.getCurrentEventIDAndCurrentDriverStation()
         .then((value) => setState(() {
-              List<String> lineArray = value.split(",");
-              SettingValues.eventID.text = lineArray[0];
-              SettingValues.selectedDriverStation.text = lineArray[1];
-              switch (lineArray[1]) {
-                case "Red 1":
-                  Schedulehelper.argumentReadingIndex = 1;
-                  break;
-                case "Red 2":
-                  Schedulehelper.argumentReadingIndex = 2;
-                  break;
-                case "Red 3":
-                  Schedulehelper.argumentReadingIndex = 3;
-                  break;
-                case "Blue 1":
-                  Schedulehelper.argumentReadingIndex = 4;
-                  break;
-                case "Blue 2":
-                  Schedulehelper.argumentReadingIndex = 5;
-                  break;
-                case "Blue 3":
-                  Schedulehelper.argumentReadingIndex = 6;
-                  break;
+              if (value != "") {
+                List<String> lineArray = value.split(",");
+                SettingValues.eventID.text = lineArray[0];
+                SettingValues.selectedDriverStation.text = lineArray[1];
+                switch (lineArray[1]) {
+                  case "Red 1":
+                    Schedulehelper.argumentReadingIndex = 1;
+                    break;
+                  case "Red 2":
+                    Schedulehelper.argumentReadingIndex = 2;
+                    break;
+                  case "Red 3":
+                    Schedulehelper.argumentReadingIndex = 3;
+                    break;
+                  case "Blue 1":
+                    Schedulehelper.argumentReadingIndex = 4;
+                    break;
+                  case "Blue 2":
+                    Schedulehelper.argumentReadingIndex = 5;
+                    break;
+                  case "Blue 3":
+                    Schedulehelper.argumentReadingIndex = 6;
+                    break;
+                }
               }
             }));
     // If all requirements are met to update the team number automatically, update it on page loade
@@ -139,7 +141,7 @@ class _PrematchFieldsState extends State<PrematchFields> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return const InputRoute(title: "Data Input");
+                      return const DataRoute(title: "Data Input");
                     }));
                   },
                   child: const Text("Auto/Teleop >",

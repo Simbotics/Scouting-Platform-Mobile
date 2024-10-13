@@ -11,13 +11,13 @@ class CounterNumberField extends StatelessWidget {
   final EdgeInsets margin;
 
   const CounterNumberField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.onTapIncrement,
     required this.onTapDecrement,
     this.hintText = "0",
     this.margin = const EdgeInsets.only(left: 20.0),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

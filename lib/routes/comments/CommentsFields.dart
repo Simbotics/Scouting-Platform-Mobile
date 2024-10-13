@@ -8,8 +8,8 @@ import 'package:scouting_platform/utils/data/values/CommentValues.dart';
 
 class CommentsFields extends StatefulWidget {
   const CommentsFields({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<CommentsFields> createState() => _CommentsFields();
@@ -34,7 +34,7 @@ class _CommentsFields extends State<CommentsFields> {
           hintText:
               "Speed, reliability, etc. Keep this 1-2 sentences and brief",
           controller: CommentValues.autoComments,
-          margin: const EdgeInsets.only(left: 40, top: 10),
+          margin: const EdgeInsets.only(left: 18, top: 10),
           width: 880,
           height: 90.0,
           maxLines: 10,
@@ -52,7 +52,7 @@ class _CommentsFields extends State<CommentsFields> {
           hintText:
               "1, 2, 3, 4, 5. One being the top of the field from your point of view and five being the bottom",
           controller: CommentValues.autoOrder,
-          margin: const EdgeInsets.only(left: 40, top: 10),
+          margin: const EdgeInsets.only(left: 18, top: 10),
           width: 880,
           height: 45.0,
           maxLines: 10,
@@ -70,7 +70,7 @@ class _CommentsFields extends State<CommentsFields> {
           hintText:
               "Speed, speaker reliability, amping, etc. Keep this 1-2 sentences and brief",
           controller: CommentValues.teleopComments,
-          margin: const EdgeInsets.only(left: 40, top: 10),
+          margin: const EdgeInsets.only(left: 18, top: 10),
           width: 880,
           height: 90.0,
           maxLines: 10,
@@ -88,7 +88,7 @@ class _CommentsFields extends State<CommentsFields> {
           hintText:
               "Climb, trap, park, harmony, etc. Keep this 1-2 sentences and brief",
           controller: CommentValues.endgameComments,
-          margin: const EdgeInsets.only(left: 40, top: 10, bottom: 20.0),
+          margin: const EdgeInsets.only(left: 18, top: 10, bottom: 20.0),
           width: 880,
           height: 90.0,
           maxLines: 10,

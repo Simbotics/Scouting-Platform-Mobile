@@ -7,8 +7,8 @@ import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 
 class AutonomousFields extends StatefulWidget {
   const AutonomousFields({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AutonomousFields> createState() => _AutonomousFieldsState();

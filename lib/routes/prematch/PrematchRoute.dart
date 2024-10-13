@@ -5,7 +5,7 @@ import 'package:scouting_platform/routes/prematch/components/PrematchFields.dart
 import 'package:scouting_platform/routes/prematch/components/PrematchLabels.dart';
 
 class PrematchRoute extends StatelessWidget {
-  const PrematchRoute({Key? key, required this.title}) : super(key: key);
+  const PrematchRoute({super.key, required this.title});
   final String title;
 
   @override

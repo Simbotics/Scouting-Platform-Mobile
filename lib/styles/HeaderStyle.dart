@@ -7,11 +7,10 @@ class HeaderStyle extends StatelessWidget {
   final EdgeInsets padding;
 
   const HeaderStyle(
-      {Key? key,
+      {super.key,
       required this.text,
       this.fontWeight = FontWeight.normal,
-      required this.padding})
-      : super(key: key);
+      required this.padding});
 
   @override
   Widget build(BuildContext context) {

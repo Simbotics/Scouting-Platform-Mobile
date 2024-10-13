@@ -18,7 +18,7 @@ class TextInputField extends StatefulWidget {
   final TextEditingController controller;
 
   const TextInputField(
-      {Key? key,
+      {super.key,
       this.margin = const EdgeInsets.only(top: 0.0),
       this.width = 150.0,
       this.height = 47.5,
@@ -30,8 +30,7 @@ class TextInputField extends StatefulWidget {
       this.inputFieldColor = AppStyle.textInputColor,
       this.inputFieldBorder = InputBorder.none,
       this.maxLines = 1,
-      required this.controller})
-      : super(key: key);
+      required this.controller});
 
   @override
   State<TextInputField> createState() => _TextInputFieldState();
@@ -57,9 +56,6 @@ class _TextInputFieldState extends State<TextInputField> {
           LengthLimitingTextInputFormatter(140),
         ],
         maxLines: widget.maxLines,
-        onChanged: (value) {
-          widget.onChanged(value);
-        },
         controller: widget.controller,
         textAlign: widget.textAlign,
         style: TextStyle(
@@ -75,7 +71,16 @@ class _TextInputFieldState extends State<TextInputField> {
           fillColor: widget.inputFieldColor,
           border: widget.inputFieldBorder,
         ),
+        onChanged: (value) {
+          final cursorPosition = widget.controller.selection;
+          widget.onChanged(value);
+          widget.controller.value = widget.controller.value.copyWith(
+            text: value,
+            selection: cursorPosition,
+          );
+        },
       ),
     );
   }
 }
+

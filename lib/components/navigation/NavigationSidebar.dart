@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/components/navigation/components/SidebarItem.dart';
 import 'package:scouting_platform/routes/comments/commentsRoute.dart';
-import 'package:scouting_platform/routes/data/dataRoute.dart';
+import 'package:scouting_platform/routes/data/DataRoute.dart';
 import 'package:scouting_platform/routes/qrcode/DriverStationScanStatusRoute.dart';
 import 'package:scouting_platform/routes/qrcode/QRCodeRoute.dart';
 import 'package:scouting_platform/routes/settings/settingsRoute.dart';
 import 'package:scouting_platform/routes/prematch/prematchRoute.dart';
 
 class NavigationSidebar extends StatelessWidget {
-  const NavigationSidebar({Key? key}) : super(key: key);
+  const NavigationSidebar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class NavigationSidebar extends StatelessWidget {
           const SidebarItem(
               icon: Icon(Icons.draw),
               itemName: "Data Input",
-              route: InputRoute(title: 'Data Input')),
+              route: DataRoute(title: 'Data Input')),
           const SidebarItem(
               icon: Icon(Icons.chat_bubble),
               itemName: "Comments",

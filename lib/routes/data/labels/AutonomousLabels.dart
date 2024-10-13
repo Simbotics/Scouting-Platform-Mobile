@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class AutonomousLabels extends StatefulWidget {
   const AutonomousLabels({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AutonomousLabels> createState() => _AutonomousLabelsState();

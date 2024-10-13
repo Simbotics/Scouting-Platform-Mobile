@@ -11,11 +11,11 @@ class StopwatchButton extends StatefulWidget {
   final Stopwatch timer;
 
   const StopwatchButton({
-    Key? key,
+    super.key,
     required this.value,
     required this.state,
     required this.timer,
-  }) : super(key: key);
+  });
 
   @override
   State<StopwatchButton> createState() => _StopwatchButtonState();

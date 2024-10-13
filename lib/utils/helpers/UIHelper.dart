@@ -18,7 +18,7 @@ class UIHelper {
   // Sets the brightness of the screen
   static Future<void> setBrightness(double brightness) async {
     try {
-      await ScreenBrightness().setScreenBrightness(brightness);
+      await ScreenBrightness().setApplicationScreenBrightness(brightness);
     } catch (e) {
       throw 'Failed to set brightness';
     }

@@ -17,7 +17,7 @@ void main() {
 }
 
 class ScoutingPlatform extends StatelessWidget {
-  const ScoutingPlatform({Key? key}) : super(key: key);
+  const ScoutingPlatform({super.key});
 
   @override
   Widget build(BuildContext context) {

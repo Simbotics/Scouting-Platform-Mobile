@@ -20,7 +20,7 @@ import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
 
 class DataRoute extends StatefulWidget {
-  const DataRoute({Key? key, required this.title}) : super(key: key);
+  const DataRoute({super.key, required this.title});
   final String title;
 
   @override
