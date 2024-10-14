@@ -92,8 +92,77 @@ When removing or adding values to the QR code or the spreadshet, you can modify 
 ### QR Code Encoding
 The QR code is not currently readable meaning that the values are not stored in plain text. To reduce issues with unicode characters the data is encoded with base64 on the way in to the QR code and is decoded by the scanner on the way out to the spreadsheet. You can decode the values going into the QR code by using a free online too such as https://www.base64decode.org/ to decode the base64 data.
 
-### Creating a Field With Changing Values
-Coming soon!
+### Input Field Examples
+Examples of how to use the base input field widgets with basic functionality. For more information on more complex configurations, please see the base file you wish to configure.
+
+#### Counter Number Field
+A field that has an increment and decrement button on either side of the value you're changing displayed. This is used heavily for tracking scoring of game pieces.
+```
+CounterNumberField(
+    controller: ValuesFile.valueToChange,
+    onTapDecrement: () =>
+        decrementNumber(ValuesFile.valueToChange),
+    onTapIncrement: () =>
+        incrementNumber(ValuesFile.valueToChange))
+```
+`ValuesFile`: The name of the file that contains the value you wish to control via the counter number field.
+`valueToChange`: The value name in the `ValuesFile` you wish to control via the counter number field.
+`decrementNumber` and `incrementNumber`: Custom methods that check the value of the `valueToChange` and either adds or removes 1 with the `setState` function.
+
+#### Number Input Field
+A field that allows the user to type any number in a field. This is similar to a text input field, but only allows the user to type numbers in the field.
+```
+NumberInputField(
+    onChanged: (value) {},
+    controller: ValuesFile.valueToChange,
+    hintText: "Example Field",
+)
+```
+`ValuesFile`: The name of the file that contains the value you wish to control via the number input field.
+`valueToChange`: The value name in the `ValuesFile` you wish to control via the number input field.
+
+#### Platform Dropdown Menu
+A dropdown menu that is custom made to be flexible and to come pre-packaged with basic configurations. Used mainly for endgame related states or yes or no dropdowns.
+```
+PlatformDropdownMenu(
+    dropdownMenuSelectedItem: ValuesFile.valueToChange.text,
+    onChanged: (value) {
+        setState(() {
+            ValuesFile.valueToChange.text = value;
+        });
+    },
+    dropdownItems: OptionConstants.yesNoOptions
+)
+```
+`ValuesFile`: The name of the file that contains the value you wish to control via the dropdown menu.
+`valueToChange`: The value name in the `ValuesFile` you wish to control via the dropdown menu.
+`OptionConstants.yesNoOptions`: An array of strings that can be selected in the dropdown. This example shows an example of the yes or no options to create a simple yes or no dropdown.
+
+#### Stopwatch Button (DEPRECATED)
+Allows the user to record time for something like a hang or endgame phase. A single tap can start or start the stopwatch and a double tap will reset the time.
+```
+StopwatchButton(
+    value: ValuesFile.stopwatchTime,
+    state: ValuesFile.stopwatchState,
+    timer: ValuesFile.stopwatchInstance,
+)
+```
+`ValuesFile`: The name of the file that contains the value you wish to control via the stopwatch.
+`stopwatchTime`: The text editing controller used to hold the time recorded by the stopwatch.
+`stopwatchState`: The text editing controller used to hold the number state of the stopwatch (e.g. 0, 1, 2, 3)
+`stopwatchInstance`: The stopwatch instance that holds and manages the values of the stopwatch.
+
+#### Text Input Field
+A commonly used field in the comments phase of the user experience. This allows the user to type any text characters, with the exception that all unicode characters are stripped when encoded into the QR code.
+```
+TextInputField(
+    controller: ValuesFile.valueToChange
+    onChanged: (value) {},
+    hintText: "Example Field"
+)
+```
+`ValuesFile`: The name of the file that contains the value you wish to control via the text input field.
+`valueToChange`: The value name in the `ValuesFile` you wish to control via the text input field.
 
 ## Schedule Generator
 We use a custom-built [Schedule Generator](https://github.com/Simbotics/Scouting-Platform-Schedule-Generator) to generate schedule for [automatic team number assigning](#automatic-team-number-assigning). You can find all documentation and help in the repository.
