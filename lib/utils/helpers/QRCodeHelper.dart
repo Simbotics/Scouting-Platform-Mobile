@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'dart:convert';
 
-import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 import 'package:scouting_platform/utils/data/values/CommentValues.dart';

@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:permission_handler/permission_handler.dart';
-import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class Schedulehelper {

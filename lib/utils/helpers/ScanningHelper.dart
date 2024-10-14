@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class ScanningHelper {

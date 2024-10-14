@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
 class SettingValues {
   static final TextEditingController currentSelectedCenterfold =

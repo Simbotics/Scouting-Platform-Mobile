@@ -2,7 +2,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
-import 'package:scouting_platform/utils/data/constants/AppConstants..dart';
+import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
