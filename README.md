@@ -2,6 +2,7 @@
 
 [![Flutter version](https://img.shields.io/badge/Flutter-v3.24.3-blue)](https://flutter.dev/docs/development/tools/sdk/releases)
 [![Dart version](https://img.shields.io/badge/Dart-v3.5.3-blue)](https://dart.dev/)
+[![Java version](https://img.shields.io/badge/Java-v17.0.11-blue)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
 A simple and easy-to-use scouting platform for FRC competitions, built with Flutter. This app allows FRC teams to collect and analyze scouting data during competitions.
 
