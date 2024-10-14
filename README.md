@@ -83,7 +83,7 @@ Using a generated schedule, automatically assigning team numbers based on the se
 To modify the generated spreadsheets values and columns is made simple.
 
 #### Spreadsheet Column Configuration
-All columns for the spreadsheet are configured in the `lib/utils/helpers/ScanningHelper.dart` file under the `csvColumnNames` value. The column names will appear from left to right following the array from top to bottom. <br\>
+All columns for the spreadsheet are configured in the `lib/utils/helpers/ScanningHelper.dart` file under the `csvColumnNames` value. The column names will appear from left to right following the array from top to bottom. <br/>
 *Note: When modifying the values in this array, please keep in mind that it will shift the indexes of either up or down depending on your operation. This is important to note when adding the values to the spreadsheet.*
 
 #### QR Code Value Configuration
