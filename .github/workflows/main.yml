@@ -1,48 +1,40 @@
-name: Analyze Flutter App
-
-# This workflow is triggered on pushes to the repository.
-
-on: [push]
-
-# on: push    # Default will running for every branch.
+name: Build and Test Scouting Platform
+on: [ push ]
 
 jobs:
   build:
-    # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
   
     - name: Clone repository
       uses: actions/checkout@v4
+      
     - name: Set up Flutter
-      uses: subosito/flutter-action@v2
+    - uses: subosito/flutter-action@v2
       with:
-        channel: stable
-        cache: true
-        cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
-        cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
-        pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:"
-        pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+      channel: 'stable'
+      cache: true
+      cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+      cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+      architecture: x64
     
+    # Output current flutter version
     - run: flutter --version
 
     # Get flutter dependencies.
     - run: flutter pub get
 
-    # Check for any formatting issues in the code.
-    - run: dart format .
+    # Run scouting platform widget tests
+    - run: flutter test
 
     # Statically analyze the Dart code for any errors.
     - run: flutter analyze .
 
-    # Run widget tests for our flutter project.
-    # - run: flutter test
+    # Build APK
+    - run: flutter build apk
 
-    # Build apk suited for scouting tablets.
-    # - run: flutter build appbundle --target-platform android-arm
+    # Build windows
+    - run: flutter build windows
 
-    # Upload generated apk to artifacts for the current action.
-    # - uses: actions/upload-artifact@v1
-      # with:
-        # name: release-apk
-        # path: build/app/outputs/apk/release/app-release.apk
+    # Build appbundle
+    - run: flutter build appbundle
