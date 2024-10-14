@@ -156,8 +156,7 @@ class _SettingsRoute extends State<SettingsRoute> {
                             padding: EdgeInsets.only(left: 30, top: 10)),
                         PlatformDropdownMenu(
                             width: 150.0,
-                            margin: const EdgeInsets.only(
-                                top: 10, right: 120),
+                            margin: const EdgeInsets.only(top: 10, right: 120),
                             dropdownMenuSelectedItem:
                                 SettingValues.isTeamNumberEditable,
                             onChanged: (value) {

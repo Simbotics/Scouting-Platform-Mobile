@@ -91,7 +91,7 @@ class ScanningHelper {
 
   // Creates file in the app directory.
   static Future<File> createFileInAppDirectory(String fileName) async {
-        Directory? directory;
+    Directory? directory;
     if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       directory = await getDownloadsDirectory();
     } else {
