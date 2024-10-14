@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_platform/components/navigation/components/SidebarItem.dart';
-import 'package:scouting_platform/routes/comments/commentsRoute.dart';
+import 'package:scouting_platform/routes/comments/CommentsRoute.dart';
 import 'package:scouting_platform/routes/data/DataRoute.dart';
 import 'package:scouting_platform/routes/qrcode/DriverStationScanStatusRoute.dart';
 import 'package:scouting_platform/routes/qrcode/QRCodeRoute.dart';
-import 'package:scouting_platform/routes/settings/settingsRoute.dart';
-import 'package:scouting_platform/routes/prematch/prematchRoute.dart';
+import 'package:scouting_platform/routes/settings/SettingsRoute.dart';
+import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 
 class NavigationSidebar extends StatelessWidget {
   const NavigationSidebar({super.key});

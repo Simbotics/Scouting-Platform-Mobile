@@ -1,14 +1,14 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/routes/comments/commentsRoute.dart';
+import 'package:scouting_platform/routes/comments/CommentsRoute.dart';
 import 'package:scouting_platform/routes/data/fields/AutonomousFields.dart';
 import 'package:scouting_platform/routes/data/fields/TeleoperatedFields.dart';
 import 'package:scouting_platform/routes/data/fields/EndgameFields.dart';
 import 'package:scouting_platform/routes/data/labels/AutonomousLabels.dart';
 import 'package:scouting_platform/routes/data/labels/TeleoperatedLabels.dart';
 import 'package:scouting_platform/routes/data/labels/EndgameLabels.dart';
-import 'package:scouting_platform/routes/prematch/prematchRoute.dart';
+import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/styles/TitleStyle.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
