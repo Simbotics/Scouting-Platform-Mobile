@@ -1,0 +1,37 @@
+name: Build Linux
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+  
+    - name: Clone repository
+      uses: actions/checkout@v4
+
+    - name: Download and install Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'oracle'
+        java-version: '17'
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        cache: true
+        cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
+        cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+        architecture: x64
+    
+    # Output current flutter version
+    - run: flutter --version
+
+    # Get flutter dependencies.
+    - run: flutter pub get
+
+    # Statically analyze the Dart code for any errors.
+    - run: flutter analyze .
+
+    # Build Linux
+    - run: flutter build linux
