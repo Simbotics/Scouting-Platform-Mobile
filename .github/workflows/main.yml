@@ -9,6 +9,12 @@ jobs:
     - name: Clone repository
       uses: actions/checkout@v4
 
+    - name: Download and install Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'oracle'
+        java-version: '17'
+
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
@@ -31,7 +37,7 @@ jobs:
     - run: flutter analyze .
 
     # Build APK
-    # - run: flutter build apk
+    - run: flutter build apk
 
     # Build windows
     # - run: flutter build windows
