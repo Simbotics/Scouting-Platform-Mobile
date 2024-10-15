@@ -20,6 +20,9 @@ jobs:
       with:
         cmake-version: '3.30.x'
 
+    - name: Setup Ninja Builder
+      uses: seanmiddleditch/gha-setup-ninja@master
+
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
