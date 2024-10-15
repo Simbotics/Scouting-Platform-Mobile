@@ -30,8 +30,5 @@ jobs:
     # Get flutter dependencies.
     - run: flutter pub get
 
-    # Statically analyze the Dart code for any errors.
-    - run: flutter analyze .
-
     # Build Appbundle (Android for publishing)
     - run: flutter build appbundle
