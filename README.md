@@ -1,4 +1,8 @@
 # FRC Scouting Platform
+[![Analyze Flutter Code](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/analyze.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/analyze.yml)
+[![Build APK](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-android.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-android.yml)
+[![Build Appbundle](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-appbundle.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-appbundle.yml)
+[![Build Windows](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-windows.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-windows.yml)
 
 [![Flutter version](https://img.shields.io/badge/Flutter-v3.24.3-blue)](https://docs.flutter.dev/release/archive)
 [![Dart version](https://img.shields.io/badge/Dart-v3.5.3-blue)](https://dart.dev/)
