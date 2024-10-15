@@ -40,7 +40,7 @@ jobs:
     - run: flutter build apk
 
     # Build windows
-    # - run: flutter build windows
+    - run: flutter build windows
 
     # Build appbundle
-    # - run: flutter build appbundle
+    - run: flutter build appbundle
