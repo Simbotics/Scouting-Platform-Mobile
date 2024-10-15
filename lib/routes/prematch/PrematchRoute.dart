@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/routes/prematch/components/PrematchFields.dart';
-import 'package:scouting_platform/routes/prematch/components/PrematchLabels.dart';
+import 'package:scouting_platform/routes/prematch/fields/PrematchFields.dart';
+import 'package:scouting_platform/routes/prematch/labels/PrematchLabels.dart';
 
 class PrematchRoute extends StatelessWidget {
   const PrematchRoute({super.key, required this.title});

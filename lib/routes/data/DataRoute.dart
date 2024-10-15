@@ -9,7 +9,7 @@ import 'package:scouting_platform/routes/data/labels/AutonomousLabels.dart';
 import 'package:scouting_platform/routes/data/labels/TeleoperatedLabels.dart';
 import 'package:scouting_platform/routes/data/labels/EndgameLabels.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
-import 'package:scouting_platform/styles/TitleStyle.dart';
+import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';

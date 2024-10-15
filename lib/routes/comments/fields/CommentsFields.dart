@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/TextInputField.dart';
 import 'package:scouting_platform/routes/qrcode/QRCodeRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
-import 'package:scouting_platform/styles/TitleStyle.dart';
+import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/utils/data/values/CommentValues.dart';
 
 class CommentsFields extends StatefulWidget {

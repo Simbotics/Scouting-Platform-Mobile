@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 import 'package:scouting_platform/builders/bases/TextInputField.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/styles/TitleStyle.dart';
+import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
 import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
