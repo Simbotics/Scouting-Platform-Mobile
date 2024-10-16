@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'dart:io';
 
 import 'package:csv/csv.dart';
@@ -38,9 +36,7 @@ class ScanningHelper {
     "Endgame Comments"
   ];
 
-  static generateCsv(
-      // Scout/match data
-      List<String> values) async {
+  static generateCsv(List<String> values) async {
     // Request storage permission
     await Permission.storage.request();
 
@@ -52,7 +48,7 @@ class ScanningHelper {
       if (AppConstants.isDebug) print('Storage permission denied');
     }
 
-    // File name for generated csv file
+    // File name for generated CSV file
     String fileName = SettingValues.getCurrentSavingSpreadsheetName();
 
     Directory? directory;
@@ -64,49 +60,22 @@ class ScanningHelper {
 
     final file = File('${directory?.path}/$fileName');
 
-    // Check if the file already exists
     bool fileExists = await file.exists();
 
-    // Add column names to data if the file doesn't exist
+
     List<List<String>> data = [];
 
     if (!fileExists) {
-      await writeToFile(fileName,
-          'sep=^\n'); // Used to automatically determine the delimiter when opening the file in excel
+      await file.writeAsString('sep=^\n', mode: FileMode.append);
       data.add(csvColumnNames);
+    } else {
+      await file.writeAsString('\n', mode: FileMode.append);
     }
 
     data.add(values);
 
-    if (fileExists) {
-      await writeToFile(fileName, "\n");
-    }
-
-    // Convert data to csv data and add "^" as field delimiter
     String csv = const ListToCsvConverter(fieldDelimiter: "^").convert(data);
 
-    // Write QR code data/excel data to file
-    await writeToFile(fileName, csv);
-  }
-
-  // Creates file in the app directory.
-  static Future<File> createFileInAppDirectory(String fileName) async {
-    Directory? directory;
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      directory = await getDownloadsDirectory();
-    } else {
-      directory = await getExternalStorageDirectory();
-    }
-    final file = File('${directory?.path}/$fileName');
-    await file.create();
-    return file;
-  }
-
-  // Creates and writes a string to a file in the app directory.
-  static Future<File> writeToFile(String fileName, String fileContents) async {
-    final file = await createFileInAppDirectory(fileName);
-    return file.writeAsString(fileContents,
-        flush: true,
-        mode: FileMode.append); // write to file if exists, else create file
+    await file.writeAsString(csv, mode: FileMode.append, flush: true);
   }
 }

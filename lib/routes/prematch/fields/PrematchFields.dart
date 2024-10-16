@@ -50,19 +50,32 @@ class _PrematchFieldsState extends State<PrematchFields> {
                 }
               }
             }));
-    // If all requirements are met to update the team number automatically, update it on page loade
+
+    // Ensure match number is set before trying to fetch team number
     if (SettingValues.isTeamNumberReadOnly) {
       if (PrematchValues.matchNumber.text != "") {
-        // If it isn't null
-        Schedulehelper.getTeamNumberFromSchedule(int.parse(
-            // Get the team number from the schedule
-            PrematchValues.matchNumber.text)).then((teamNumber) {
-          // Once retrieved then set the team number to the text field
-          setState(() {
-            PrematchValues.teamNumber.text = teamNumber.toString();
-          });
-        });
+        _updateTeamNumber(); // Call helper function to update team number
       }
+    }
+  }
+
+  void _updateTeamNumber() async {
+    int matchNumber;
+    try {
+      matchNumber = int.parse(PrematchValues.matchNumber.text);
+    } catch (e) {
+      // Handle invalid match number case
+      return;
+    }
+
+    // Get the team number from the schedule
+    String teamNumber =
+        (await Schedulehelper.getTeamNumberFromSchedule(matchNumber)) as String;
+
+    if (mounted) {
+      setState(() {
+        PrematchValues.teamNumber.text = teamNumber;
+      });
     }
   }
 

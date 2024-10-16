@@ -22,27 +22,29 @@ class _PlatformRouteState extends State<PlatformRoute> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: scaffoldKey,
-        drawer: const NavigationSidebar(),
-        backgroundColor: UIHelper.getBackgroundColour(),
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(40.0),
-            child: AppBar(
-              backgroundColor: AppStyle.textInputColor,
-              title: Text(
-                widget.title,
-                textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontFamily: 'Futura', color: Colors.white),
-              ),
-              leading: IconButton(
-                icon: const Icon(Icons.lunch_dining, color: Colors.white),
-                onPressed: () {
-                  scaffoldKey.currentState!.openDrawer();
-                },
-              ),
-            )),
-        body: widget.body);
+    return PopScope(
+        canPop: false,
+        child: Scaffold(
+            key: scaffoldKey,
+            drawer: const NavigationSidebar(),
+            backgroundColor: UIHelper.getBackgroundColour(),
+            appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(40.0),
+                child: AppBar(
+                  backgroundColor: AppStyle.textInputColor,
+                  title: Text(
+                    widget.title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontFamily: 'Futura', color: Colors.white),
+                  ),
+                  leading: IconButton(
+                    icon: const Icon(Icons.lunch_dining, color: Colors.white),
+                    onPressed: () {
+                      scaffoldKey.currentState!.openDrawer();
+                    },
+                  ),
+                )),
+            body: widget.body));
   }
 }

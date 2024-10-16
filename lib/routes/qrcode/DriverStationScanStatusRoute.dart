@@ -51,14 +51,29 @@ class _DriverStationScanStatusRouteState
       ));
     }
 
-    // If there are scanned devices, add them to the list of scanned widgets
     if (ScanningHelper.scannedDevices.isNotEmpty) {
-      for (String item in ScanningHelper.scannedDevices) {
-        scannedWidgets.add(Text(
-          OptionConstants.availableDriverstations[int.parse(item)],
+      List<InlineSpan> scannedSpans = [];
+      for (int i = 0; i < ScanningHelper.scannedDevices.length; i++) {
+        String item = ScanningHelper.scannedDevices[i];
+        String driverStation =
+            OptionConstants.availableDriverstations[int.parse(item)];
+
+        scannedSpans.add(TextSpan(
+          text: driverStation,
           style: const TextStyle(color: Colors.green, fontSize: 30.0),
         ));
+
+        if (i != ScanningHelper.scannedDevices.length - 1) {
+          scannedSpans.add(const TextSpan(
+            text: ', ',
+            style: TextStyle(fontSize: 30.0, color: Colors.white),
+          ));
+        }
       }
+
+      scannedWidgets.add(Text.rich(
+        TextSpan(children: scannedSpans),
+      ));
     }
 
     return PlatformRoute(

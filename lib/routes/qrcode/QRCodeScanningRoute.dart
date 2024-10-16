@@ -24,7 +24,8 @@ class QRCodeScanningRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    cameraController.start(); // Start camera
+    cameraController.stop();
+    cameraController.start();
     UIHelper.setBrightness(0.3);
 
     return PlatformRoute(
