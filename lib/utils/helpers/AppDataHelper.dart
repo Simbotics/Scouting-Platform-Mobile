@@ -12,7 +12,7 @@ class AppDataHelper {
     if (status.isGranted) {
       final file = File(AppConstants.appDataFilePath);
       await file.writeAsString(
-          "${SettingValues.eventID.text},${SettingValues.selectedDriverStation}");
+          "${SettingValues.eventID.text},${SettingValues.selectedDriverStation.text}");
     } else {
       throw Exception('Permission denied');
     }
