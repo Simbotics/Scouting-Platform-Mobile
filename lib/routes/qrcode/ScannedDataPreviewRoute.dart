@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/qrcode/DriverStationScanStatusRoute.dart';
-import 'package:scouting_platform/routes/qrcode/QRCodeScanningRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/helpers/ScanningHelper.dart';
 
@@ -103,12 +102,12 @@ class _ScannedDataPreviewRouteState extends State<ScannedDataPreviewRoute> {
                         ScanningHelper.unscannedDevices = ScanningHelper
                             .unscannedDevices
                             .where((element) => !element.contains(
-                                QRCodeScanningRoute.barcodeStrings![21]))
+                                widget.data[21]))
                             .toList();
                         if (!ScanningHelper.scannedDevices.contains(
-                            QRCodeScanningRoute.barcodeStrings![21])) {
+                            widget.data[21])) {
                           ScanningHelper.scannedDevices
-                              .add(QRCodeScanningRoute.barcodeStrings![21]);
+                              .add(widget.data[21]);
                         }
                       });
                       Navigator.push(context,
@@ -118,7 +117,7 @@ class _ScannedDataPreviewRouteState extends State<ScannedDataPreviewRoute> {
                         );
                       }));
                       await ScanningHelper.generateCsv(
-                          QRCodeScanningRoute.barcodeStrings!);
+                          widget.data);
                     },
                     child: const Text(
                       'Save QR Code Data',

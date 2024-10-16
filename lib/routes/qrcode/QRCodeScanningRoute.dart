@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,55 +9,81 @@ import 'package:scouting_platform/routes/qrcode/ScannedDataPreviewRoute.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
-class QRCodeScanningRoute extends StatelessWidget {
+class QRCodeScanningRoute extends StatefulWidget {
   const QRCodeScanningRoute({super.key, required this.title});
   final String title;
 
-  // The scanned QR code data split into an array
-  static late List<String>? barcodeStrings;
-  // Array of barcodes scannned
-  static late List<Barcode> barcodes;
-  // Name of file generated when scanned
-  static late String fileName;
+  @override
+  // ignore: library_private_types_in_public_api
+  _QRCodeScanningRouteState createState() => _QRCodeScanningRouteState();
+}
 
-  static MobileScannerController cameraController =
-      MobileScannerController(); // Camera controller for scanning QR codes
+class _QRCodeScanningRouteState extends State<QRCodeScanningRoute>
+    with WidgetsBindingObserver {
+  final MobileScannerController cameraController = MobileScannerController();
+  
+  // Make barcodeStrings a static property
+  static List<String>? barcodeStrings; 
+  List<Barcode>? barcodes;
+  String? fileName;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+
+    // Finally, start the scanner itself.
+    unawaited(cameraController.start());
+    UIHelper.setBrightness(0.3);
+  }
+
+  @override
+  Future<void> dispose() async {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+    await cameraController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    cameraController.stop();
-    cameraController.start();
-    UIHelper.setBrightness(0.3);
-
     return PlatformRoute(
-      title: title,
+      title: widget.title,
       body: RotatedBox(
-          quarterTurns: -1, // Fix rotation being messed up
-          child: MobileScanner(
-              fit: BoxFit.contain,
-              onDetect: (capture) {
-                QRCodeScanningRoute.barcodes =
-                    capture.barcodes; // Barcode(s) scanned
-                // ignore: unused_local_variable
-                for (final barcode in QRCodeScanningRoute.barcodes) {
-                  barcodes = capture.barcodes; // Barcode(s) scanned
-                  for (final barcode in barcodes) {
-                    List<int> decodedBytes = base64.decode(barcode.rawValue!);
-                    String decodedBarcodeString = utf8.decode(decodedBytes);
-                    barcodeStrings = decodedBarcodeString.split("^");
-                    fileName = SettingValues.getCurrentSavingSpreadsheetName();
+        quarterTurns: -1, // Fix rotation being messed up
+        child: MobileScanner(
+          fit: BoxFit.contain,
+          controller: cameraController,
+          onDetect: (capture) {
+            setState(() {
+              barcodes = capture.barcodes; // Barcode(s) scanned
+            });
+            for (final barcode in barcodes!) {
+              if (barcode.rawValue != null) {
+                // Decode the scanned QR code data
+                List<int> decodedBytes = base64.decode(barcode.rawValue!);
+                String decodedBarcodeString = utf8.decode(decodedBytes);
+                barcodeStrings = decodedBarcodeString.split("^"); // Assign to static property
+                fileName = SettingValues.getCurrentSavingSpreadsheetName();
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ScannedDataPreviewRoute(
-                                title: 'Scanned QR Code Data',
-                                data: barcodeStrings!)));
+                // Navigate to the preview route
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ScannedDataPreviewRoute(
+                      title: 'Scanned QR Code Data',
+                      data: barcodeStrings!,
+                    ),
+                  ),
+                );
 
-                    cameraController.stop();
-                  }
-                }
-              })),
+                // Stop the scanner after a successful scan
+                cameraController.stop();
+                break; // Stop after the first valid scan
+              }
+            }
+          },
+        ),
+      ),
     );
   }
 }
