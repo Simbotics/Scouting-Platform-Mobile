@@ -18,6 +18,7 @@ import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class DataRoute extends StatefulWidget {
   const DataRoute({super.key, required this.title});
@@ -28,6 +29,12 @@ class DataRoute extends StatefulWidget {
 }
 
 class _DataRouteState extends State<DataRoute> {
+  @override
+  void initState() {
+    super.initState();
+    UIHelper.setBrightness(0.3);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PlatformRoute(
@@ -86,19 +93,17 @@ class _DataRouteState extends State<DataRoute> {
           ),
           const AutonomousLabels(),
           const AutonomousFields(),
-          const Divider(color: AppStyle.redAlliance),
           const TitleStyle(
               text: "Teleop Data",
-              padding: EdgeInsets.only(top: 10.0, left: 20.0)),
+              padding: EdgeInsets.only(top: 20.0, left: 20.0)),
           const TeleoperatedLabels(),
           const TeleoperatedFields(),
-          const Divider(color: AppStyle.redAlliance),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TitleStyle(
                   text: "Endgame Data",
-                  padding: EdgeInsets.only(top: 10.0, left: 20.0)),
+                  padding: EdgeInsets.only(top: 20.0, left: 20.0)),
             ],
           ),
           const EndgameLabels(),

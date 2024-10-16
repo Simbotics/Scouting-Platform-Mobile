@@ -9,7 +9,6 @@ import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 class QRCodeRoute extends StatelessWidget {
   const QRCodeRoute({super.key, required this.title});
   final String title;
-
   @override
   Widget build(BuildContext context) {
     UIHelper.setBrightness(1.0);

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,8 @@ void main() {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight //i am so cool
   ]);
+
+  UIHelper.setBrightness(0.3);
 
   runApp(const ScoutingPlatform());
 }

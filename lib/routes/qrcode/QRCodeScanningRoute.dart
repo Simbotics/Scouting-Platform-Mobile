@@ -6,6 +6,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/qrcode/ScannedDataPreviewRoute.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class QRCodeScanningRoute extends StatelessWidget {
   const QRCodeScanningRoute({super.key, required this.title});
@@ -24,6 +25,8 @@ class QRCodeScanningRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     cameraController.start(); // Start camera
+    UIHelper.setBrightness(0.3);
+
     return PlatformRoute(
       title: title,
       body: RotatedBox(

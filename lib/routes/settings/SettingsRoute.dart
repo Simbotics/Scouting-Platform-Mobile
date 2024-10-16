@@ -9,6 +9,7 @@ import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class SettingsRoute extends StatefulWidget {
   const SettingsRoute({
@@ -33,6 +34,8 @@ class _SettingsRoute extends State<SettingsRoute> {
                 SettingValues.selectedDriverStation.text = lineArray[1];
               }
             }));
+
+    UIHelper.setBrightness(0.3);
   }
 
   @override
