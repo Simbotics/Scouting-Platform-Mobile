@@ -63,7 +63,6 @@ class ScanningHelper {
 
     bool fileExists = await file.exists();
 
-
     List<List<String>> data = [];
 
     if (!fileExists) {

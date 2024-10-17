@@ -64,7 +64,9 @@ class _SettingsRoute extends State<SettingsRoute> {
                                     value;
                                 AppDataHelper
                                     .saveCurrentEventIDAndCurrentDriverStation();
-                                if (PrematchValues.matchNumber.text != "") {
+                                if (PrematchValues.matchNumber.text != "" &&
+                                    SettingValues.isTeamNumberEditable !=
+                                        "Yes") {
                                   // If it isn't null
                                   Schedulehelper.getTeamNumberFromSchedule(
                                           int.parse(

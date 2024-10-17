@@ -7,6 +7,7 @@ import 'package:scouting_platform/styles/components/HeaderStyle.dart';
 import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/utils/helpers/ScanningHelper.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
+import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class DriverStationScanStatusRoute extends StatefulWidget {
   const DriverStationScanStatusRoute({super.key, required this.title});
@@ -19,6 +20,12 @@ class DriverStationScanStatusRoute extends StatefulWidget {
 
 class _DriverStationScanStatusRouteState
     extends State<DriverStationScanStatusRoute> {
+  @override
+  void initState() {
+    super.initState();
+    UIHelper.setBrightness(0.3);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> unscannedWidgets = []; // Unscanned devices widgets

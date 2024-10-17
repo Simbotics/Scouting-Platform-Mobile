@@ -7,7 +7,6 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/qrcode/ScannedDataPreviewRoute.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
-import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class QRCodeScanningRoute extends StatefulWidget {
   const QRCodeScanningRoute({super.key, required this.title});
@@ -21,9 +20,9 @@ class QRCodeScanningRoute extends StatefulWidget {
 class _QRCodeScanningRouteState extends State<QRCodeScanningRoute>
     with WidgetsBindingObserver {
   final MobileScannerController cameraController = MobileScannerController();
-  
+
   // Make barcodeStrings a static property
-  static List<String>? barcodeStrings; 
+  static List<String>? barcodeStrings;
   List<Barcode>? barcodes;
   String? fileName;
 
@@ -32,9 +31,7 @@ class _QRCodeScanningRouteState extends State<QRCodeScanningRoute>
     WidgetsBinding.instance.addObserver(this);
     super.initState();
 
-    // Finally, start the scanner itself.
     unawaited(cameraController.start());
-    UIHelper.setBrightness(0.3);
   }
 
   @override
@@ -62,7 +59,8 @@ class _QRCodeScanningRouteState extends State<QRCodeScanningRoute>
                 // Decode the scanned QR code data
                 List<int> decodedBytes = base64.decode(barcode.rawValue!);
                 String decodedBarcodeString = utf8.decode(decodedBytes);
-                barcodeStrings = decodedBarcodeString.split("^"); // Assign to static property
+                barcodeStrings = decodedBarcodeString
+                    .split("^"); // Assign to static property
                 fileName = SettingValues.getCurrentSavingSpreadsheetName();
 
                 // Navigate to the preview route
