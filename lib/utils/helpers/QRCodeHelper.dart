@@ -19,8 +19,8 @@ class QrcodeHelper {
       computeAutonomousValues(),
       computeTeleopValues(),
       computeEndgameValues(),
-      computeCommentValues(),
-      computeSuffixValues()
+      computeCommentValues()
+      // computeSuffixValues()
     ]);
 
     // ignore: avoid_print
