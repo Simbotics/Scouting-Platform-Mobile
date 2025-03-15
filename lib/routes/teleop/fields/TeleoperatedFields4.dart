@@ -44,18 +44,9 @@ class _TeleoperatedFields4State extends State<TeleoperatedFields4> {
       children: [
         //coral l4 Left
         CounterNumberField(
-            controller: TeleoperatedValues.coralLeftL4,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralLeftL4),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralLeftL4)),
-        // coral far l4
-        CounterNumberField(
-            controller: TeleoperatedValues.coralRightL4,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralRightL4),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralRightL4)),
+            controller: TeleoperatedValues.coralL4,
+            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL4),
+            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL4)),
         //algae barge
         CounterNumberField(
             controller: TeleoperatedValues.algaeBarge,
@@ -63,13 +54,6 @@ class _TeleoperatedFields4State extends State<TeleoperatedFields4> {
                 decrementNumber(TeleoperatedValues.algaeBarge),
             onTapIncrement: () =>
                 incrementNumber(TeleoperatedValues.algaeBarge)),
-        //field crosses
-        CounterNumberField(
-            controller: TeleoperatedValues.fieldCrosses,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.fieldCrosses),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.fieldCrosses)),
         //endgame dropdown
         PlatformDropdownMenu(
             dropdownMenuSelectedItem: EndgameValues.endgame.text,

@@ -6,8 +6,6 @@ class AutonomousValues {
   static TextEditingController autoStartPosition =
       TextEditingController(text: "Center");
   static TextEditingController autoMobility = TextEditingController(text: "No");
-  static TextEditingController coralHP = TextEditingController(text: "0");
-  static TextEditingController coralField = TextEditingController(text: "0");
   static TextEditingController coralMissed = TextEditingController(text: "0");
   static TextEditingController algaeRemoved = TextEditingController(text: "0");
   static TextEditingController algaeProcessor =
@@ -71,8 +69,6 @@ class AutonomousValues {
     AutonomousValues.autoStartPosition.text = "Center";
     AutonomousValues.autoMobility.text = "No";
     AutonomousValues.coralMissed.text = "0";
-    AutonomousValues.coralHP.text = "0";
-    AutonomousValues.coralField.text = "0";
     AutonomousValues.algaeRemoved.text = "0";
     AutonomousValues.algaeBarge.text = "0";
     AutonomousValues.algaeProcessor.text = "0";

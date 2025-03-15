@@ -7,13 +7,11 @@ import 'package:flutter/material.dart';
 /// NO SUPPORT WILL BE PROVIDED FOR THIS CLASSES USAGE
 class StopwatchButton extends StatefulWidget {
   final TextEditingController value;
-  final TextEditingController state;
   final Stopwatch timer;
 
   const StopwatchButton({
     super.key,
     required this.value,
-    required this.state,
     required this.timer,
   });
 
@@ -24,6 +22,8 @@ class StopwatchButton extends StatefulWidget {
 class _StopwatchButtonState extends State<StopwatchButton> {
   @override
   Widget build(BuildContext context) {
+    String _text = returnFormattedText();
+
     return Container(
       padding: const EdgeInsets.only(left: 20.0),
       child: ElevatedButton(
@@ -32,30 +32,28 @@ class _StopwatchButtonState extends State<StopwatchButton> {
           backgroundColor: AppStyle.textInputColor,
           shape: const ContinuousRectangleBorder(),
         ),
+        onLongPress: () {
+          widget.timer.stop();
+          widget.timer.reset();
+          setState(() {
+            _text = "Start Timer";
+          });
+        },
         onPressed: () {
-          if (int.parse(widget.state.text) == 1) {
+          if (!widget.timer.isRunning) {
+            widget.timer.start();
             setState(() {
-              widget.timer.stop();
-              widget.state.text = "2";
-              widget.value.text = returnFormattedText();
-            });
-          } else if (int.parse(widget.state.text) == 2) {
-            setState(() {
-              widget.state.text = "3";
-            });
-          } else if (int.parse(widget.state.text) == 3) {
-            setState(() {
-              widget.timer.reset();
-              widget.state.text = "0";
+              _text = "Running...";
             });
           } else {
+            widget.timer.stop();
             setState(() {
-              widget.timer.start();
-              widget.state.text = "1";
+              widget.value.text = widget.timer.elapsedMilliseconds.toString();
+              _text = widget.timer.elapsedMilliseconds.toString();
             });
           }
         },
-        child: Text(returnFormattedText(),
+        child: Text(_text,
             style: const TextStyle(
                 fontSize: 16.0, fontFamily: "Helvetica", color: Colors.white)),
       ),
@@ -63,12 +61,12 @@ class _StopwatchButtonState extends State<StopwatchButton> {
   }
 
   String returnFormattedText() {
-    int milli = widget.timer.elapsed.inMilliseconds;
+    int milli = widget.timer.elapsedMilliseconds;
 
     if (milli == 0) {
       return "Start Timer";
-    } else if (int.parse(widget.state.text) == 1) {
-      return "Stop Timer";
+    } else if (widget.timer.isRunning) {
+      return "Running...";
     }
 
     // String milliseconds = (milli % 1000).toString().padLeft(1, "0");

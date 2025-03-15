@@ -30,36 +30,6 @@ class _AutonomousRightLabel2State extends State<AutonomousRightLabel2> {
                     fontSize: 15.0),
               ),
             )),
-        // coral from field
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 160.0,
-              padding: const EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0),
-              child: const Text(
-                "Coral Field",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // coral from hp
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 130.0,
-              padding: const EdgeInsets.only(left: 0.0, top: 20.0, right: 0.0),
-              child: const Text(
-                "Coral Loading",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
         const Divider(),
       ],
     );
