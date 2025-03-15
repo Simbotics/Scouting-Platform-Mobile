@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class TeleoperatedValues {
+  static final stopwatch = Stopwatch();
+
   static TextEditingController coralL1 = TextEditingController(text: "0");
   static TextEditingController coralL2 = TextEditingController(text: "0");
   static TextEditingController coralL3 = TextEditingController(text: "0");
@@ -11,6 +13,7 @@ class TeleoperatedValues {
   static TextEditingController algaeProcessor =
       TextEditingController(text: "0");
   static TextEditingController algaeBarge = TextEditingController(text: "0");
+  static TextEditingController defenseTime = TextEditingController(text: "0");
 
   static void resetTeleopValues() {
     TeleoperatedValues.coralL1.text = "0";
@@ -21,5 +24,6 @@ class TeleoperatedValues {
     TeleoperatedValues.algaeRemoved.text = "0";
     TeleoperatedValues.algaeProcessor.text = "0";
     TeleoperatedValues.algaeBarge.text = "0";
+    TeleoperatedValues.defenseTime.text = "0";
   }
 }

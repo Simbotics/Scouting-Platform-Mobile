@@ -15,7 +15,7 @@ class _TeleoperatedLabels2State extends State<TeleoperatedLabels2> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        // coral l2 near scored
+        // coral l2 scored
         Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -40,6 +40,21 @@ class _TeleoperatedLabels2State extends State<TeleoperatedLabels2> {
                   const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
               child: const Text(
                 "Algae Removed",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0),
+              ),
+            )),
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              width: 170.0,
+              padding:
+                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
+              child: const Text(
+                "Defense Time",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

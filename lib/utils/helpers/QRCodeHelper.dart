@@ -118,6 +118,7 @@ class QrcodeHelper {
       parseInt(TeleoperatedValues.algaeRemoved.text), // index: 63
       parseInt(TeleoperatedValues.algaeProcessor.text), // index: 64
       parseInt(TeleoperatedValues.algaeBarge.text), // index: 65
+      parseInt(TeleoperatedValues.defenseTime.text) // index: blah
     ]);
   }
 
