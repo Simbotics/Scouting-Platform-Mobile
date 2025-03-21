@@ -22,23 +22,7 @@ class _TeleoperatedLabels4State extends State<TeleoperatedLabels4> {
               width: 170.0,
               padding: const EdgeInsets.only(left: 20.0, top: 20.0),
               child: const Text(
-                "L4 Coral Left",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // coral l4 far
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "L4 Coral Right",
+                "L4 Coral",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,
@@ -55,22 +39,6 @@ class _TeleoperatedLabels4State extends State<TeleoperatedLabels4> {
                   const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
               child: const Text(
                 "Algae Barge",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // field crosses
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "Field Crosses",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

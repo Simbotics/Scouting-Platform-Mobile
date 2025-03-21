@@ -43,18 +43,9 @@ class _TeleoperatedFields3State extends State<TeleoperatedFields3> {
       children: [
         // coral near l3
         CounterNumberField(
-            controller: TeleoperatedValues.coralLeftL3,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralLeftL3),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralLeftL3)),
-        // coral far l3
-        CounterNumberField(
-            controller: TeleoperatedValues.coralRightL3,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralRightL3),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralRightL3)),
+            controller: TeleoperatedValues.coralL3,
+            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL3),
+            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL3)),
         // algae processor
         CounterNumberField(
             controller: TeleoperatedValues.algaeProcessor,
@@ -62,17 +53,9 @@ class _TeleoperatedFields3State extends State<TeleoperatedFields3> {
                 decrementNumber(TeleoperatedValues.algaeProcessor),
             onTapIncrement: () =>
                 incrementNumber(TeleoperatedValues.algaeProcessor)),
-        // human player misses
-        CounterNumberField(
-            controller: TeleoperatedValues.humanPlayerMisses,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.humanPlayerMisses),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.humanPlayerMisses)),
         //climb time
         StopwatchButton(
           value: EndgameValues.climbTime,
-          state: EndgameValues.stopwatchState,
           timer: EndgameValues.stopwatch,
         ),
       ],

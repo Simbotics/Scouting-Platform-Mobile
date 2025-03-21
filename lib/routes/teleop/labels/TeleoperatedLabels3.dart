@@ -23,23 +23,7 @@ class _TeleoperatedLabels3State extends State<TeleoperatedLabels3> {
               padding:
                   const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
               child: const Text(
-                "L3 Coral Left",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // l3 coral far
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "L3 Coral Right",
+                "L3 Coral",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,
@@ -56,22 +40,6 @@ class _TeleoperatedLabels3State extends State<TeleoperatedLabels3> {
                   const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
               child: const Text(
                 "Algae Processor",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // human player misses
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "HP Misses",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

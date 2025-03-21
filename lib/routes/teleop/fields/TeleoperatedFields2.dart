@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
+import 'package:scouting_platform/builders/bases/StopwatchButton.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
 
 class TeleoperatedFields2 extends StatefulWidget {
@@ -41,25 +42,19 @@ class _TeleoperatedFields2State extends State<TeleoperatedFields2> {
       children: [
         // coral near l2
         CounterNumberField(
-            controller: TeleoperatedValues.coralLeftL2,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralLeftL2),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralLeftL2)),
-        // coral far l2
-        CounterNumberField(
-            controller: TeleoperatedValues.coralRightL2,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralRightL2),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralRightL2)),
-        //algae removed
+            controller: TeleoperatedValues.coralL2,
+            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL2),
+            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL2)),
+        // algae removed
         CounterNumberField(
             controller: TeleoperatedValues.algaeRemoved,
             onTapDecrement: () =>
                 decrementNumber(TeleoperatedValues.algaeRemoved),
             onTapIncrement: () =>
                 incrementNumber(TeleoperatedValues.algaeRemoved)),
+        StopwatchButton(
+            value: TeleoperatedValues.defenseTime,
+            timer: TeleoperatedValues.stopwatch)
       ],
     );
   }

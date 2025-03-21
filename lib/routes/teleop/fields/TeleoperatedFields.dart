@@ -41,18 +41,9 @@ class _TeleoperatedFieldsState extends State<TeleoperatedFields> {
       children: [
         //coral l1 near scored
         CounterNumberField(
-            controller: TeleoperatedValues.coralLeftL1,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralLeftL1),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralLeftL1)),
-        //coral l1 far scored
-        CounterNumberField(
-            controller: TeleoperatedValues.coralRightL1,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.coralRightL1),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.coralRightL1)),
+            controller: TeleoperatedValues.coralL1,
+            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL1),
+            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL1)),
         //coral missed
         CounterNumberField(
             controller: TeleoperatedValues.coralMissed,

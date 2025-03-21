@@ -87,7 +87,7 @@ class _AutonomousRow2State extends State<AutonomousRow2> {
               margin: const EdgeInsets.all(0.0)),
           Align(
               alignment: Alignment.centerLeft,
-              child: Container(
+              child: SizedBox(
                 width: 170.0,
                 child: const Text(
                   "L3",

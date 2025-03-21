@@ -51,20 +51,6 @@ class _AutonomousRightRow2State extends State<AutonomousRightRow2> {
                   incrementNumber(AutonomousValues.coralMissed),
               onTapDecrement: () =>
                   decrementNumber(AutonomousValues.coralMissed)),
-          // Coral form field counter
-          CounterNumberField(
-              margin: EdgeInsets.only(left: 10),
-              controller: AutonomousValues.coralField,
-              onTapIncrement: () =>
-                  incrementNumber(AutonomousValues.coralField),
-              onTapDecrement: () =>
-                  decrementNumber(AutonomousValues.coralField)),
-          // Coral from human player / coral station counter
-          CounterNumberField(
-              margin: EdgeInsets.only(left: 10),
-              controller: AutonomousValues.coralHP,
-              onTapIncrement: () => incrementNumber(AutonomousValues.coralHP),
-              onTapDecrement: () => decrementNumber(AutonomousValues.coralHP)),
         ],
       ),
     );

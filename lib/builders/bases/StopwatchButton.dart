@@ -1,19 +1,15 @@
 // ignore_for_file: file_names
-import 'package:scouting_platform/styles/AppStyle.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/styles/AppStyle.dart';
 
-/// THIS CLASS IS DEPRECATED AND IS NO LONGER SUPPORTED FOR USE
-/// Please refer to previous years of for usage of this class
-/// NO SUPPORT WILL BE PROVIDED FOR THIS CLASSES USAGE
 class StopwatchButton extends StatefulWidget {
   final TextEditingController value;
-  final TextEditingController state;
   final Stopwatch timer;
 
   const StopwatchButton({
     super.key,
     required this.value,
-    required this.state,
     required this.timer,
   });
 
@@ -22,6 +18,23 @@ class StopwatchButton extends StatefulWidget {
 }
 
 class _StopwatchButtonState extends State<StopwatchButton> {
+  Timer? _updateTimer;
+
+  @override
+  void dispose() {
+    _updateTimer?.cancel();
+    super.dispose();
+  }
+
+  void startUpdatingUI() {
+    _updateTimer?.cancel();
+    _updateTimer = Timer.periodic(const Duration(milliseconds: 100), (_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,49 +45,50 @@ class _StopwatchButtonState extends State<StopwatchButton> {
           backgroundColor: AppStyle.textInputColor,
           shape: const ContinuousRectangleBorder(),
         ),
-        onPressed: () {
-          if (int.parse(widget.state.text) == 1) {
-            setState(() {
-              widget.timer.stop();
-              widget.state.text = "2";
-              widget.value.text = returnFormattedText();
-            });
-          } else if (int.parse(widget.state.text) == 2) {
-            setState(() {
-              widget.state.text = "3";
-            });
-          } else if (int.parse(widget.state.text) == 3) {
-            setState(() {
-              widget.timer.reset();
-              widget.state.text = "0";
-            });
-          } else {
-            setState(() {
-              widget.timer.start();
-              widget.state.text = "1";
-            });
-          }
+        onLongPress: () {
+          widget.timer.stop();
+          widget.timer.reset();
+          _updateTimer?.cancel();
+          setState(() {});
         },
-        child: Text(returnFormattedText(),
-            style: const TextStyle(
-                fontSize: 16.0, fontFamily: "Helvetica", color: Colors.white)),
+        onPressed: () {
+          if (!widget.timer.isRunning) {
+            widget.timer.start();
+            startUpdatingUI();
+          } else {
+            widget.timer.stop();
+            _updateTimer?.cancel();
+            widget.value.text = widget.timer.elapsedMilliseconds.toString();
+          }
+          setState(() {});
+        },
+        child: Text(
+          returnFormattedText(),
+          style: const TextStyle(
+              fontSize: 16.0, fontFamily: "Helvetica", color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
 
   String returnFormattedText() {
-    int milli = widget.timer.elapsed.inMilliseconds;
+    String formattedTime = returnFormattedTime();
+    return widget.timer.isRunning
+        ? "Running... \n $formattedTime"
+        : "Start Timer \n $formattedTime";
+  }
 
-    if (milli == 0) {
-      return "Start Timer";
-    } else if (int.parse(widget.state.text) == 1) {
-      return "Stop Timer";
-    }
+  String returnFormattedTime() {
+    int milli = widget.timer.elapsedMilliseconds;
+    String milliseconds = (milli % 1000).toString().padLeft(3, "0");
+    String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, "0");
+    String minutes = ((milli ~/ 1000) ~/ 60).toString().padLeft(2, "0");
 
-    // String milliseconds = (milli % 1000).toString().padLeft(1, "0");
-    // String seconds = ((milli ~/ 1000) % 60).toString().padLeft(2, "0");
-    // String minutes = ((milli ~/ 1000) ~/ 60).toString().padLeft(1, "0");
+    return "$minutes:$seconds:$milliseconds";
+  }
 
-    return milli.toString();
+  int returnTime() {
+    return widget.timer.elapsedMicroseconds;
   }
 }
