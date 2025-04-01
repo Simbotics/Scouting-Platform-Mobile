@@ -25,5 +25,7 @@ class TeleoperatedValues {
     TeleoperatedValues.algaeProcessor.text = "0";
     TeleoperatedValues.algaeBarge.text = "0";
     TeleoperatedValues.defenseTime.text = "0";
+    TeleoperatedValues.stopwatch.stop();
+    TeleoperatedValues.stopwatch.reset();
   }
 }

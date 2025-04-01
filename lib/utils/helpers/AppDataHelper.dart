@@ -30,7 +30,7 @@ class AppDataHelper {
       if (!await file.exists()) {
         await file.create();
       }
-      await file.writeAsString("$data\n", mode: FileMode.append);
+      await file.writeAsString(data);
     } else {
       throw Exception('Permission denied');
     }
