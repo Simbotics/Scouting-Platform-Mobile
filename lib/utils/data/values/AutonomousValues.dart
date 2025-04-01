@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class AutonomousValues {
   // other
   static TextEditingController autoStartPosition =
-      TextEditingController(text: "Center");
-  static TextEditingController autoMobility = TextEditingController(text: "No");
+      TextEditingController(text: "");
+  static TextEditingController autoMobility = TextEditingController(text: "");
   static TextEditingController coralMissed = TextEditingController(text: "0");
   static TextEditingController algaeRemoved = TextEditingController(text: "0");
   static TextEditingController algaeProcessor =
@@ -66,8 +66,8 @@ class AutonomousValues {
   static TextEditingController l2G = TextEditingController(text: "0");
 
   static void resetAutoEtcValues() {
-    AutonomousValues.autoStartPosition.text = "Center";
-    AutonomousValues.autoMobility.text = "No";
+    AutonomousValues.autoStartPosition.text = "";
+    AutonomousValues.autoMobility.text = "";
     AutonomousValues.coralMissed.text = "0";
     AutonomousValues.algaeRemoved.text = "0";
     AutonomousValues.algaeBarge.text = "0";
