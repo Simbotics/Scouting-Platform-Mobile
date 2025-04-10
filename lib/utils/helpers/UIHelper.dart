@@ -24,7 +24,7 @@ class UIHelper {
       } else {
         return AppStyle.textInputColor;
       }
-    } catch (FormatException) {
+    } catch (e) {
       return AppStyle.textInputColor;
     }
   }
