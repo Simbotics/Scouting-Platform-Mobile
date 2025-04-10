@@ -9,7 +9,6 @@ import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
-import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
 
 class QrcodeHelper {
   /// Returns a string that represents the contents of the QR code that will be generated and separates them with a "^" character
@@ -29,7 +28,7 @@ class QrcodeHelper {
     // Encode to UTF-8 and then base64 to compress size and reduce issues with characters
     List<int> utf8Encoded = utf8.encode(computedValues);
 
-    AppDataHelper.saveQRCodeCopy(computedValues);
+    // AppDataHelper.saveQRCodeCopy(computedValues);
 
     return base64.encode(utf8Encoded);
   }

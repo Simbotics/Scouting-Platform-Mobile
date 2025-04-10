@@ -20,8 +20,24 @@ class PlatformRoute extends StatefulWidget {
 
 class _PlatformRouteState extends State<PlatformRoute> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  Color appBarColor = AppStyle.textInputColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadColor();
+  }
+
+  void _loadColor() async {
+    appBarColor = await UIHelper.getAppBarColour();
+    setState(() {
+      appBarColor = appBarColor;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     return PopScope(
         canPop: false,
         child: Scaffold(
@@ -31,7 +47,7 @@ class _PlatformRouteState extends State<PlatformRoute> {
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(40.0),
                 child: AppBar(
-                  backgroundColor: AppStyle.textInputColor,
+                  backgroundColor: appBarColor,
                   title: Text(
                     widget.title,
                     textAlign: TextAlign.center,

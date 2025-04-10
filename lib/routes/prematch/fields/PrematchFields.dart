@@ -124,6 +124,7 @@ class _PrematchFieldsState extends State<PrematchFields> {
                     PrematchValues.teamNumber.text = teamNumber.toString();
                   });
                 });
+                Schedulehelper.getSimbotMatches(); // does nothing with the value because this code computes the list too
               }
             }
           },

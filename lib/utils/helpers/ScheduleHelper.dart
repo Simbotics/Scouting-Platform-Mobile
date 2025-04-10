@@ -4,11 +4,13 @@ import 'dart:io';
 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
+import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class Schedulehelper {
   static late int argumentReadingIndex;
   static late int driverStationIdentifier;
+  static List<String> simbotMatches = [];
 
   static Future<String> get _scheduleDirecotyPath async {
     final directory = Directory('/storage/emulated/0/Documents');
@@ -51,6 +53,56 @@ class Schedulehelper {
       }
     }
     return null;
+  }
+
+  static Future<int> getNumberOfLinesInSchedule() async {
+    final file = File(
+        "/storage/emulated/0/Documents/match_schedule_${SettingValues.eventID.text}.csv");
+
+    if (await file.exists()) {
+      final lines = await file.readAsLines();
+      return lines.length - 1;
+    }
+    return 0;
+  }
+
+  static Future<List<String>> getSimbotMatches() async {
+    simbotMatches.clear();
+    for (var i = 0; i < await getNumberOfLinesInSchedule(); i++) {
+      String? matchData = await readLineFromSchedule(i);
+      if (matchData == null) {
+        break;
+      }
+      if (matchData.contains("1114")) {
+        simbotMatches.add(matchData);
+      }
+    }
+    return simbotMatches;
+  }
+
+  static Future<bool> isTeamInUpcomingMatches(int teamNumber) async {
+    if (PrematchValues.matchNumber.text.isEmpty) {
+      return false;
+    }
+
+    List<String> simbotMatches = await getSimbotMatches();
+    for (String simbotMatch in simbotMatches) {
+      List<String> simbotMatchData = simbotMatch.split(",");
+      String matchNumber = simbotMatchData[0];
+      simbotMatchData.removeAt(0);
+      int teamIndex = simbotMatchData.indexOf(teamNumber.toString());
+      int simbotIndex = simbotMatchData.indexOf("1114");
+
+      bool teamAlliance = teamIndex < 2 && teamIndex != -1;
+      bool simbotAlliance = simbotIndex < 2 && simbotIndex != -1;
+
+      if (int.parse(matchNumber) >
+              int.parse(PrematchValues.matchNumber.text) + 1 &&
+          teamAlliance == simbotAlliance) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static Future<int> getTeamNumberFromSchedule(int matchNumber) async {
