@@ -85,7 +85,7 @@ class _AutonomousRow5State extends State<AutonomousRow5> {
               checkColor: Colors.white,
               labelColor: Colors.white,
               margin: const EdgeInsets.only(right: 0.0)),
-              Align(
+          Align(
               alignment: Alignment.centerLeft,
               child: SizedBox(
                 width: 170.0,

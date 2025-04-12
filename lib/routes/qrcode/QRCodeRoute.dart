@@ -119,7 +119,8 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
           AppDataHelper.resetStates();
         });
         Navigator.of(context, rootNavigator: true).pop('dialog');
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) {
           return const PrematchRoute(title: "Prematch Data");
         }), (r) => false);
       },

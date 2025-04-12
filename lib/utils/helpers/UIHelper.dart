@@ -19,7 +19,8 @@ class UIHelper {
 
   static Future<Color> getAppBarColour() async {
     try {
-      if(await Schedulehelper.isTeamInUpcomingMatches(int.parse(PrematchValues.teamNumber.text))) {
+      if (await Schedulehelper.isTeamInUpcomingMatches(
+          int.parse(PrematchValues.teamNumber.text))) {
         return Color.from(alpha: 1, red: 0, green: 0.5, blue: 0);
       } else {
         return AppStyle.textInputColor;

@@ -26,8 +26,8 @@ class _SidebarItemState extends State<SidebarItem> {
         style:
             const TextStyle(fontFamily: 'Futura', fontWeight: FontWeight.bold),
       ),
-      onTap: () =>
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+      onTap: () => Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
         return widget.route;
       }), (r) => false),
     );

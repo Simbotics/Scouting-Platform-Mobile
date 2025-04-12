@@ -67,7 +67,8 @@ class Schedulehelper {
   }
 
   static Future<List<String>> getSimbotMatches() async {
-    if(simbotMatches.isNotEmpty) { // memoization
+    if (simbotMatches.isNotEmpty) {
+      // memoization
       return simbotMatches;
     }
 

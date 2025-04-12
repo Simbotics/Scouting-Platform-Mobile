@@ -37,7 +37,6 @@ class _PlatformRouteState extends State<PlatformRoute> {
 
   @override
   Widget build(BuildContext context) {
-    
     return PopScope(
         canPop: false,
         child: Scaffold(

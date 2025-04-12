@@ -31,7 +31,6 @@ class _PrematchRouteState extends State<PrematchRoute> {
         });
       }
     });
-
   }
 
   @override
