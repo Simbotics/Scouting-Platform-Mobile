@@ -10,6 +10,7 @@ class SettingValues {
       TextEditingController(text: AppConstants.defaultEventID);
   static TextEditingController fileName =
       TextEditingController(text: AppConstants.defaultFileName);
+  static bool isTeamListenerRegistered = false;
 
   static String isTeamNumberEditable = "No";
   static bool isTeamNumberReadOnly = true;

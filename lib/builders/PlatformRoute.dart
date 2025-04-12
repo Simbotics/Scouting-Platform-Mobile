@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/components/navigation/NavigationSidebar.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
+import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
@@ -26,6 +27,12 @@ class _PlatformRouteState extends State<PlatformRoute> {
   void initState() {
     super.initState();
     _loadColor();
+    if(!SettingValues.isTeamListenerRegistered) {
+      SettingValues.isTeamListenerRegistered = true;
+      Stream.periodic(Duration(seconds: 1)).listen((_) {
+        _loadColor();
+      });
+    }
   }
 
   void _loadColor() async {
