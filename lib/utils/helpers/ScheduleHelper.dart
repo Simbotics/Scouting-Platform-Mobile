@@ -67,7 +67,10 @@ class Schedulehelper {
   }
 
   static Future<List<String>> getSimbotMatches() async {
-    simbotMatches.clear();
+    if(simbotMatches.isNotEmpty) { // memoization
+      return simbotMatches;
+    }
+
     for (var i = 0; i < await getNumberOfLinesInSchedule(); i++) {
       String? matchData = await readLineFromSchedule(i);
       if (matchData == null) {

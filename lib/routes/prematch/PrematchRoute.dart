@@ -20,6 +20,7 @@ class _PrematchRouteState extends State<PrematchRoute> {
   @override
   void initState() {
     super.initState();
+    UIHelper.setBrightness(0.3);
 
     AppDataHelper.getCurrentEventIDAndCurrentDriverStation().then((value) {
       if (value != "") {
@@ -31,7 +32,6 @@ class _PrematchRouteState extends State<PrematchRoute> {
       }
     });
 
-    UIHelper.setBrightness(0.3);
   }
 
   @override
