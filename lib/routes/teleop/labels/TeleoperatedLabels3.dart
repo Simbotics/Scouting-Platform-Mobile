@@ -15,38 +15,6 @@ class _TeleoperatedLabels3State extends State<TeleoperatedLabels3> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        // l3 coral near
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "L3 Coral",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        // processor
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "Algae Processor",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
         // climb time
         Align(
             alignment: Alignment.centerLeft,
@@ -63,6 +31,23 @@ class _TeleoperatedLabels3State extends State<TeleoperatedLabels3> {
                     fontSize: 15.0),
               ),
             )),
+        // endgame
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              width: 170.0,
+              padding:
+                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
+              child: const Text(
+                "Endgame",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0),
+              ),
+            )),
+
         const Divider(),
       ],
     );

@@ -1,20 +1,21 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
-class AutonomousRightLabel1 extends StatefulWidget {
-  const AutonomousRightLabel1({
+class AutonomousLeftLabel1 extends StatefulWidget {
+  const AutonomousLeftLabel1({
     super.key,
   });
 
   @override
-  State<AutonomousRightLabel1> createState() => _AutonomousRightLabel1State();
+  State<AutonomousLeftLabel1> createState() => _AutonomousLeftLabel1State();
 }
 
-class _AutonomousRightLabel1State extends State<AutonomousRightLabel1> {
+class _AutonomousLeftLabel1State extends State<AutonomousLeftLabel1> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
+        Padding(padding: const EdgeInsets.only(left: 20)),
         // start pos
         Align(
             alignment: Alignment.centerLeft,

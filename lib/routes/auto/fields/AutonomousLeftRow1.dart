@@ -4,16 +4,16 @@ import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 
-class AutonomousRightRow1 extends StatefulWidget {
-  const AutonomousRightRow1({
+class AutonomousLeftRow1 extends StatefulWidget {
+  const AutonomousLeftRow1({
     super.key,
   });
 
   @override
-  State<AutonomousRightRow1> createState() => _AutonomousRightRow1State();
+  State<AutonomousLeftRow1> createState() => _AutonomousLeftRow1State();
 }
 
-class _AutonomousRightRow1State extends State<AutonomousRightRow1> {
+class _AutonomousLeftRow1State extends State<AutonomousLeftRow1> {
   /// Increments an integer in a controller's value by one
   void incrementNumber(TextEditingController controller) {
     if (!mounted) return;
@@ -39,6 +39,7 @@ class _AutonomousRightRow1State extends State<AutonomousRightRow1> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 20),
       decoration: BoxDecoration(),
       height: 60, // Set a height for the container
       child: Row(

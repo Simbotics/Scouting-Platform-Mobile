@@ -5,7 +5,9 @@ class OptionConstants {
 
   static final startPositions = ["Top", "Center", "Bottom"];
 
-  static final endgameOptions = ["No", "Shallow", "Deep", "Park"];
+  static final endgameOptions = ["No", "Level 1", "Level 2", "Level 3"];
+
+  static final climbPosition = ["No", "Right", "Left", "Center"];
 
   static List<String> availableDriverstations = [
     "Red 1",

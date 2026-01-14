@@ -1,9 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
-import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
-import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
-import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
 
 class TeleoperatedFields4 extends StatefulWidget {
@@ -42,28 +39,12 @@ class _TeleoperatedFields4State extends State<TeleoperatedFields4> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        //coral l4 Left
+        //num of balls scored
         CounterNumberField(
-            controller: TeleoperatedValues.coralL4,
-            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL4),
-            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL4)),
-        //algae barge
-        CounterNumberField(
-            controller: TeleoperatedValues.algaeBarge,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.algaeBarge),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.algaeBarge)),
-        //endgame dropdown
-        PlatformDropdownMenu(
-            dropdownMenuSelectedItem: EndgameValues.endgame.text,
-            onChanged: (value) {
-              setState(() {
-                EndgameValues.endgame.text = value;
-              });
-            },
-            dropdownItems: OptionConstants.endgameOptions,
-            margin: const EdgeInsets.only(left: 20)),
+            controller: TeleoperatedValues.ballsScored,
+            onTapDecrement: () => decrementNumber(TeleoperatedValues.ballsScored),
+            onTapIncrement: () => incrementNumber(TeleoperatedValues.ballsScored)),
+        
       ],
     );
   }
