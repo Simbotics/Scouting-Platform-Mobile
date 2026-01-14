@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/NumberPadBase.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
