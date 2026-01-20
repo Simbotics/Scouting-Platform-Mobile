@@ -30,13 +30,17 @@ class _TeleoperatedRightRowNumberPadState
 
   void onSubmitPressed() {
     if (!mounted) return;
-    int addingValue =
-        int.parse(TeleoperatedValues.numberPadDisplayedValue.text);
-    int currentValue = int.parse(TeleoperatedValues.ballsScored.text);
-    int finalValue = addingValue + currentValue;
     setState(() {
-      TeleoperatedValues.numberPadDisplayedValue.text = "";
-      TeleoperatedValues.ballsScored.text = finalValue.toString();
+      try {
+        int addingValue =
+            int.parse(TeleoperatedValues.numberPadDisplayedValue.text);
+        int currentValue = int.parse(TeleoperatedValues.ballsScored.text);
+        int finalValue = addingValue + currentValue;
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+        TeleoperatedValues.ballsScored.text = finalValue.toString();
+      } catch (e) {
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+      }
     });
   }
 

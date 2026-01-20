@@ -30,12 +30,17 @@ class _AutonomousRightrowNumberPadState
 
   void onSubmitPressed() {
     if (!mounted) return;
-    int addingValue = int.parse(AutonomousValues.numberPadDisplayedValue.text);
-    int currentValue = int.parse(AutonomousValues.autoBallScored.text);
-    int finalValue = addingValue + currentValue;
     setState(() {
-      AutonomousValues.numberPadDisplayedValue.text = "";
-      AutonomousValues.autoBallScored.text = finalValue.toString();
+      try {
+        int addingValue =
+            int.parse(AutonomousValues.numberPadDisplayedValue.text);
+        int currentValue = int.parse(AutonomousValues.autoBallScored.text);
+        int finalValue = addingValue + currentValue;
+        AutonomousValues.numberPadDisplayedValue.text = "";
+        AutonomousValues.autoBallScored.text = finalValue.toString();
+      } catch (e) {
+        AutonomousValues.numberPadDisplayedValue.text = "";
+      }
     });
   }
 
