@@ -56,7 +56,10 @@ class _AutonomousRightrowNumberPadState
             controller: AutonomousValues.numberPadDisplayedValue,
             readOnly: true,
             decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: "Input Number"),
+                fillColor: Colors.white,
+                filled: true,
+                border: OutlineInputBorder(),
+                hintText: "Input Number"),
           ),
         )),
         SizedBox(

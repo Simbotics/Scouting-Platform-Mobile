@@ -5,7 +5,6 @@ import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 
-
 class TeleoperatedFields3 extends StatefulWidget {
   const TeleoperatedFields3({
     super.key,
@@ -49,15 +48,14 @@ class _TeleoperatedFields3State extends State<TeleoperatedFields3> {
         ),
         //endgame dropdown
         PlatformDropdownMenu(
-            dropdownMenuSelectedItem: EndgameValues.endgame.text,
+            dropdownMenuSelectedItem: EndgameValues.climbHeight.text,
             onChanged: (value) {
               setState(() {
-                EndgameValues.endgame.text = value;
+                EndgameValues.climbHeight.text = value;
               });
             },
             dropdownItems: OptionConstants.endgameOptions,
             margin: const EdgeInsets.only(left: 20)),
-        
       ],
     );
   }

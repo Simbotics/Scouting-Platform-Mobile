@@ -53,14 +53,13 @@ class QrcodeHelper {
       parseString(AutonomousValues.autoBallScored.text),
       parseString(AutonomousValues.autoClimbPosition.text),
       parseString(AutonomousValues.autoClimbTime.text),
-     
     ]);
   }
 
   /// Computes all teleoperated values and returns them as a single string separated by a caret
   static String computeTeleopValues() {
     return computeValues([
-      parseInt(TeleoperatedValues.defenseTime.text), 
+      parseInt(TeleoperatedValues.defenseTime.text),
       parseInt(TeleoperatedValues.ballsScored.text),
     ]);
   }
@@ -68,7 +67,7 @@ class QrcodeHelper {
   /// Computes all endgame values and returns them as a single string separated by a caret
   static String computeEndgameValues() {
     return computeValues([
-      parseString(EndgameValues.endgame.text),
+      parseString(EndgameValues.climbHeight.text),
       parseString(EndgameValues.climbPosition.text), // index: 61
       parseString(EndgameValues.climbTime.text), // index: 62
     ]);
