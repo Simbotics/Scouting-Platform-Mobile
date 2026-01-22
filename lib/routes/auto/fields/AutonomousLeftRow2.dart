@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
 import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 
-class AutonomousRightRow2 extends StatefulWidget {
-  const AutonomousRightRow2({
+class AutonomousLeftRow2 extends StatefulWidget {
+  const AutonomousLeftRow2({
     super.key,
   });
 
   @override
-  State<AutonomousRightRow2> createState() => _AutonomousRightRow2State();
+  State<AutonomousLeftRow2> createState() => _AutonomousLeftRow2State();
 }
 
-class _AutonomousRightRow2State extends State<AutonomousRightRow2> {
+class _AutonomousLeftRow2State extends State<AutonomousLeftRow2> {
   /// Increments an integer in a controller's value by one
   void incrementNumber(TextEditingController controller) {
     if (!mounted) return;
@@ -38,19 +38,19 @@ class _AutonomousRightRow2State extends State<AutonomousRightRow2> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 20),
       decoration: BoxDecoration(),
       height: 60, // Set a height for the container
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start, // Center the row contents
         children: [
-          // Coral missed counter
+          // Ball scored  counter
           CounterNumberField(
               margin: EdgeInsets.zero,
-              controller: AutonomousValues.coralMissed,
+              controller: AutonomousValues.autoBallScored,
               onTapIncrement: () =>
-                  incrementNumber(AutonomousValues.coralMissed),
+                  incrementNumber(AutonomousValues.autoBallScored),
               onTapDecrement: () =>
-                  decrementNumber(AutonomousValues.coralMissed)),
+                  decrementNumber(AutonomousValues.autoBallScored)),
         ],
       ),
     );

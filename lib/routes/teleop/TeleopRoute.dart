@@ -7,6 +7,7 @@ import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields2.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields3.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields4.dart';
+import 'package:scouting_platform/routes/teleop/fields/TeleoperatedRightRowNumberPad.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels2.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels3.dart';
@@ -36,77 +37,103 @@ class _TeleopRouteState extends State<TeleopRoute> {
     return PlatformRoute(
       title: widget.title,
       body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(children: [
-          // Top-right aligned buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(5.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150.0, 37.0),
-                    padding: const EdgeInsets.all(15),
-                    backgroundColor: AppStyle.textInputColor,
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(children: [
+              Expanded(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // Other content
+                  const TeleoperatedLabels4(),
+                  const TeleoperatedFields4(),
+                  const TeleoperatedLabels3(),
+                  const TeleoperatedFields3(),
+                  const TeleoperatedLabels2(),
+                  const TeleoperatedFields2(),
+                  const TeleoperatedLabels(),
+                  const TeleoperatedFields(),
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  // Top-right aligned buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(150.0, 37.0),
+                            padding: const EdgeInsets.all(15),
+                            backgroundColor: AppStyle.textInputColor,
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const AutonomousDataRoute(title: "Auto");
+                            }));
+                          },
+                          child: const Text("< Auto",
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.white)),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(150.0, 37.0),
+                            backgroundColor: AppStyle.textInputColor,
+                            padding: EdgeInsets.all(15),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const CommentsRoute(title: "Comments");
+                            }));
+                          },
+                          child: const Text("Comments >",
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.white)),
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const AutonomousDataRoute(title: "Auto");
-                    }));
-                  },
-                  child: const Text("< Auto",
-                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.all(5.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150.0, 37.0),
-                    backgroundColor: AppStyle.textInputColor,
-                    padding: EdgeInsets.all(15),
+
+                  SizedBox(
+                    height: 20,
                   ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const CommentsRoute(title: "Comments");
-                    }));
-                  },
-                  child: const Text("Comments >",
-                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
-                ),
-              ),
-            ],
-          ),
-          // Other content
-          const TeleoperatedLabels4(),
-          const TeleoperatedFields4(),
-          const TeleoperatedLabels3(),
-          const TeleoperatedFields3(),
-          const TeleoperatedLabels2(),
-          const TeleoperatedFields2(),
-          const TeleoperatedLabels(),
-          const TeleoperatedFields(),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              width: 400.0,
-              padding: const EdgeInsets.only(left: 25.0),
-              child: Text(
-                "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}",
-                textAlign: TextAlign.left,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            ),
-          ),
-        ]),
-      ),
+
+                  const TeleoperatedRightRowNumberPad(),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      width: 400.0,
+                      padding: const EdgeInsets.only(left: 25.0),
+                      child: Text(
+                        "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+            ]),
+          )),
     );
   }
 }

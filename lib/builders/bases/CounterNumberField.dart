@@ -41,8 +41,8 @@ class CounterNumberField extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 3),
-              padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+              margin: const EdgeInsets.symmetric(horizontal: 1),
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
               color: AppStyle.textInputColor,
               child: TextFormField(
                 enabled: false,

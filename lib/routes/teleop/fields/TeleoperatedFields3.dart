@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
 import 'package:scouting_platform/builders/bases/StopwatchButton.dart';
 import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
-import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
+import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
+import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
 
 class TeleoperatedFields3 extends StatefulWidget {
   const TeleoperatedFields3({
@@ -41,23 +41,21 @@ class _TeleoperatedFields3State extends State<TeleoperatedFields3> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // coral near l3
-        CounterNumberField(
-            controller: TeleoperatedValues.coralL3,
-            onTapDecrement: () => decrementNumber(TeleoperatedValues.coralL3),
-            onTapIncrement: () => incrementNumber(TeleoperatedValues.coralL3)),
-        // algae processor
-        CounterNumberField(
-            controller: TeleoperatedValues.algaeProcessor,
-            onTapDecrement: () =>
-                decrementNumber(TeleoperatedValues.algaeProcessor),
-            onTapIncrement: () =>
-                incrementNumber(TeleoperatedValues.algaeProcessor)),
         //climb time
         StopwatchButton(
           value: EndgameValues.climbTime,
           timer: EndgameValues.stopwatch,
         ),
+        //endgame dropdown
+        PlatformDropdownMenu(
+            dropdownMenuSelectedItem: EndgameValues.climbHeight.text,
+            onChanged: (value) {
+              setState(() {
+                EndgameValues.climbHeight.text = value;
+              });
+            },
+            dropdownItems: OptionConstants.endgameOptions,
+            margin: const EdgeInsets.only(left: 20)),
       ],
     );
   }
