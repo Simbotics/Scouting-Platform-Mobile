@@ -50,9 +50,10 @@ class _TeleoperatedRightRowNumberPadState
       children: [
         Center(
             child: SizedBox(
-          height: 40,
-          width: 150,
+          height: 50,
+          width: 200,
           child: TextField(
+            style: TextStyle(fontSize: 20),
             controller: TeleoperatedValues.numberPadDisplayedValue,
             readOnly: true,
             decoration: InputDecoration(

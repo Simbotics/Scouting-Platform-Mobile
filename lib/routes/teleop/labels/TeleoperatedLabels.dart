@@ -25,7 +25,7 @@ class _TeleoperatedLabelsState extends State<TeleoperatedLabels> {
                 top: 20.0,
               ),
               child: const Text(
-                "Climb Position",
+                "Defense Time",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

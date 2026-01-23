@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/builders/bases/StopwatchButton.dart';
-import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
+import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
+import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
+import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 
 class TeleoperatedFields2 extends StatefulWidget {
   const TeleoperatedFields2({
@@ -9,39 +10,26 @@ class TeleoperatedFields2 extends StatefulWidget {
   });
 
   @override
-  State<TeleoperatedFields2> createState() => _TeleoperatedFields2State();
+  State<TeleoperatedFields2> createState() => _TeleoperatedFieldsState();
 }
 
-class _TeleoperatedFields2State extends State<TeleoperatedFields2> {
+class _TeleoperatedFieldsState extends State<TeleoperatedFields2> {
   /// Increments an integer in a controllers value by one
-  void incrementNumber(TextEditingController controller) {
-    if (!mounted) return;
-
-    int currentValue = int.parse(controller.text);
-    setState(() {
-      currentValue++;
-      controller.text = currentValue.toString();
-    });
-  }
-
-  /// Decrements an integer in a controllers value by one unless it's 0
-  void decrementNumber(TextEditingController controller) {
-    if (!mounted) return;
-
-    int currentValue = int.parse(controller.text);
-    setState(() {
-      currentValue--;
-      controller.text = (currentValue > 0 ? currentValue : 0).toString();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        StopwatchButton(
-            value: TeleoperatedValues.defenseTime,
-            timer: TeleoperatedValues.stopwatch)
+        //endgame dropdown
+        PlatformDropdownMenu(
+            dropdownMenuSelectedItem: EndgameValues.climbPosition.text,
+            onChanged: (value) {
+              setState(() {
+                EndgameValues.climbPosition.text = value;
+              });
+            },
+            dropdownItems: OptionConstants.climbPosition,
+            margin: const EdgeInsets.only(left: 20)),
       ],
     );
   }

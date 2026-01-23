@@ -22,7 +22,7 @@ class _TeleoperatedLabels2State extends State<TeleoperatedLabels2> {
               padding:
                   const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
               child: const Text(
-                "Defense Time",
+                "Climb Position",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

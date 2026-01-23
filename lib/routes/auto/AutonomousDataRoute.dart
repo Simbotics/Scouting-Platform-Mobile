@@ -66,28 +66,31 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       // reset button
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(150.0, 37.0),
-                            backgroundColor: AppStyle.textInputColor,
-                            padding: const EdgeInsets.all(15),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const PrematchRoute(title: "Prematch");
-                            }));
-                          },
-                          child: const Text(
-                            "< Prematch",
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: "Helvetica",
-                              color: Colors.white,
+                      Container(
+                        padding: EdgeInsets.all(5.0),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(150.0, 37.0),
+                              backgroundColor: AppStyle.textInputColor,
+                              padding: const EdgeInsets.all(15),
                             ),
-                          )),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const PrematchRoute(title: "Prematch");
+                              }));
+                            },
+                            child: const Text(
+                              "< Prematch",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontFamily: "Helvetica",
+                                color: Colors.white,
+                              ),
+                            )),
+                      ),
 
-                      const SizedBox(width: 8.0),
+                      const SizedBox(width: 10.0),
 
                       // next page button
                       ElevatedButton(
@@ -99,7 +102,7 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return const TeleopRoute(title: "Comments");
+                            return const TeleopRoute(title: "Teleop");
                           }));
                         },
                         child: const Text(

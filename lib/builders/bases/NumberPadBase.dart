@@ -65,11 +65,12 @@ class _NumberPadBaseState extends State<NumberPadBase> {
               ),
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
           child: Text(
             number,
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black, fontSize: 30),
           )),
     );
   }
@@ -82,12 +83,13 @@ class _NumberPadBaseState extends State<NumberPadBase> {
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
           child: Icon(
             icon,
             color: Colors.black,
-            size: 16,
+            size: 30,
           )),
     );
   }
