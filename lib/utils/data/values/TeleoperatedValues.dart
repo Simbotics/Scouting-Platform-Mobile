@@ -15,5 +15,8 @@ class TeleoperatedValues {
     TeleoperatedValues.defenseTime.text = "0";
     TeleoperatedValues.numberPadDisplayedValue.text = "";
     TeleoperatedValues.ballsPassed = TextEditingController(text: "0");
+
+    TeleoperatedValues.stopwatch.stop();
+    TeleoperatedValues.stopwatch.reset();
   }
 }
