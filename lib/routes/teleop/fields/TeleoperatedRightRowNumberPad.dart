@@ -28,7 +28,7 @@ class _TeleoperatedRightRowNumberPadState
     });
   }
 
-  void onSubmitPressed() {
+  void onSubmitScorePressed() {
     if (!mounted) return;
     setState(() {
       try {
@@ -38,6 +38,22 @@ class _TeleoperatedRightRowNumberPadState
         int finalValue = addingValue + currentValue;
         TeleoperatedValues.numberPadDisplayedValue.text = "";
         TeleoperatedValues.ballsScored.text = finalValue.toString();
+      } catch (e) {
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+      }
+    });
+  }
+
+  void onSubmitPassPressed() {
+    if (!mounted) return;
+    setState(() {
+      try {
+        int addingValue =
+            int.parse(TeleoperatedValues.numberPadDisplayedValue.text);
+        int currentValue = int.parse(TeleoperatedValues.ballsPassed.text);
+        int finalValue = addingValue + currentValue;
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+        TeleoperatedValues.ballsPassed.text = finalValue.toString();
       } catch (e) {
         TeleoperatedValues.numberPadDisplayedValue.text = "";
       }
@@ -68,9 +84,11 @@ class _TeleoperatedRightRowNumberPadState
         ),
         Center(
           child: NumberPadBase(
+              showPassButton: true,
               onNumberPressed: onNumberPressed,
               onDelete: onDeletePressed,
-              onSubmit: onSubmitPressed),
+              onSubmitScore: onSubmitScorePressed,
+              onSubmitPass: onSubmitPassPressed),
         )
       ],
     );

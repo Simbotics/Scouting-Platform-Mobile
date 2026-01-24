@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 class NumberPadBase extends StatefulWidget {
   final Function(String) onNumberPressed;
   final Function() onDelete;
-  final Function() onSubmit;
+  final Function() onSubmitScore;
+  final Function() onSubmitPass;
+  final bool showPassButton;
 
-  const NumberPadBase({
-    super.key,
-    required this.onNumberPressed,
-    required this.onDelete,
-    required this.onSubmit,
-  });
+  const NumberPadBase(
+      {super.key,
+      required this.onNumberPressed,
+      required this.onDelete,
+      required this.onSubmitScore,
+      required this.onSubmitPass,
+      required this.showPassButton});
 
   @override
   State<NumberPadBase> createState() => _NumberPadBaseState();
@@ -24,21 +27,11 @@ class _NumberPadBaseState extends State<NumberPadBase> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [_buildButton("1"), _buildButton("2"), _buildButton("3")],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [_buildButton("4"), _buildButton("5"), _buildButton("6")],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [_buildButton("7"), _buildButton("8"), _buildButton("9")],
+          children: [
+            _buildNumberButton("1"),
+            _buildNumberButton("2"),
+            _buildNumberButton("3")
+          ],
         ),
         SizedBox(
           height: 10,
@@ -46,16 +39,40 @@ class _NumberPadBaseState extends State<NumberPadBase> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildIcon(Icons.backspace, widget.onDelete),
-            _buildButton("0"),
-            _buildIcon(Icons.check, widget.onSubmit)
+            _buildNumberButton("4"),
+            _buildNumberButton("5"),
+            _buildNumberButton("6")
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildNumberButton("7"),
+            _buildNumberButton("8"),
+            _buildNumberButton("9")
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildIconButton(Icons.backspace, widget.onDelete),
+            _buildNumberButton("0"),
+            _buildTextButton("SCR", widget.onSubmitScore),
+            if (widget.showPassButton)
+              _buildTextButton("PSS", widget.onSubmitPass)
           ],
         ),
       ],
     );
   }
 
-  Widget _buildButton(String number) {
+  Widget _buildNumberButton(String number) {
     return SizedBox(
       width: 60,
       height: 60,
@@ -75,7 +92,7 @@ class _NumberPadBaseState extends State<NumberPadBase> {
     );
   }
 
-  Widget _buildIcon(IconData icon, VoidCallback onPressed) {
+  Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
     return SizedBox(
       height: 60,
       width: 60,
@@ -90,6 +107,24 @@ class _NumberPadBaseState extends State<NumberPadBase> {
             icon,
             color: Colors.black,
             size: 30,
+          )),
+    );
+  }
+
+  Widget _buildTextButton(String text, VoidCallback onPressed) {
+    return SizedBox(
+      height: 60,
+      width: 60,
+      child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20))),
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.black, fontSize: 20),
           )),
     );
   }

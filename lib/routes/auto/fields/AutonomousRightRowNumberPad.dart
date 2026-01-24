@@ -68,9 +68,12 @@ class _AutonomousRightrowNumberPadState
         ),
         Center(
           child: NumberPadBase(
-              onNumberPressed: onNumberPressed,
-              onDelete: onDeletePressed,
-              onSubmit: onSubmitPressed),
+            showPassButton: false,
+            onNumberPressed: onNumberPressed,
+            onDelete: onDeletePressed,
+            onSubmitScore: onSubmitPressed,
+            onSubmitPass: () {},
+          ),
         )
       ],
     );
