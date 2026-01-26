@@ -1,37 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/fields/FieldRow.dart';
 
-class TeleoperatedLabels2 extends StatefulWidget {
-  const TeleoperatedLabels2({
-    super.key,
-  });
+class TeleoperatedLabels2 extends StatelessWidget {
+  const TeleoperatedLabels2({super.key});
 
-  @override
-  State<TeleoperatedLabels2> createState() => _TeleoperatedLabels2State();
-}
-
-class _TeleoperatedLabels2State extends State<TeleoperatedLabels2> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding:
-                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 30.0),
-              child: const Text(
-                "Climb Position",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        const Divider(),
-      ],
-    );
+    return FieldRow.labels(['Climb Position']);
   }
 }

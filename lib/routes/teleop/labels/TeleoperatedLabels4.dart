@@ -1,50 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/utils/fields/FieldRow.dart';
 
-class TeleoperatedLabels4 extends StatefulWidget {
-  const TeleoperatedLabels4({
-    super.key,
-  });
+class TeleoperatedLabels4 extends StatelessWidget {
+  const TeleoperatedLabels4({super.key});
 
-  @override
-  State<TeleoperatedLabels4> createState() => _TeleoperatedLabels4State();
-}
-
-class _TeleoperatedLabels4State extends State<TeleoperatedLabels4> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-              child: const Text(
-                "Balls Scored",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 170.0,
-              padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-              child: const Text(
-                "Balls Passed",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0),
-              ),
-            )),
-        const Divider(),
-      ],
-    );
+    return FieldRow.labels(['Balls Scored', 'Balls Passed']);
   }
 }
