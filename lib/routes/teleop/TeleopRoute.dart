@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/auto/AutonomousDataRoute.dart';
 import 'package:scouting_platform/routes/comments/CommentsRoute.dart';
-import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields2.dart';
+import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields3.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields4.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedRightRowNumberPad.dart';
@@ -40,22 +40,23 @@ class _TeleopRouteState extends State<TeleopRoute> {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Row(children: [
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(
+                  flex: 1,
                   child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // Other content
-                  const TeleoperatedLabels4(),
-                  const TeleoperatedFields4(),
-                  const TeleoperatedLabels3(),
-                  const TeleoperatedFields3(),
-                  const TeleoperatedLabels2(),
-                  const TeleoperatedFields2(),
-                  const TeleoperatedLabels(),
-                  const TeleoperatedFields(),
-                ],
-              )),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // Other content
+                      const TeleoperatedLabels4(),
+                      const TeleoperatedFields4(),
+                      const TeleoperatedLabels3(),
+                      const TeleoperatedFields3(),
+                      const TeleoperatedLabels2(),
+                      const TeleoperatedFields2(),
+                      const TeleoperatedLabels(),
+                      const TeleoperatedFields(),
+                    ],
+                  )),
               Expanded(
                   child: Column(
                 children: [
@@ -82,7 +83,7 @@ class _TeleopRouteState extends State<TeleopRoute> {
                                   fontSize: 16.0, color: Colors.white)),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10.0),
                       Container(
                         padding: const EdgeInsets.all(5.0),
                         child: ElevatedButton(
@@ -116,20 +117,20 @@ class _TeleopRouteState extends State<TeleopRoute> {
                   ),
 
                   Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      width: 400.0,
-                      padding: const EdgeInsets.only(left: 25.0),
-                      child: Text(
-                        "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                    ),
-                  ),
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        width: 400.0,
+                        padding: const EdgeInsets.only(top: 0.0, right: 0.0),
+                        margin: EdgeInsets.only(left: 90.0, top: 55.0),
+                        child: Text(
+                          "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.0),
+                        ),
+                      )),
                 ],
               )),
             ]),

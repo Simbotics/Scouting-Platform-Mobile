@@ -28,7 +28,7 @@ class _TeleoperatedRightRowNumberPadState
     });
   }
 
-  void onSubmitPressed() {
+  void onSubmitScorePressed() {
     if (!mounted) return;
     setState(() {
       try {
@@ -44,15 +44,32 @@ class _TeleoperatedRightRowNumberPadState
     });
   }
 
+  void onSubmitPassPressed() {
+    if (!mounted) return;
+    setState(() {
+      try {
+        int addingValue =
+            int.parse(TeleoperatedValues.numberPadDisplayedValue.text);
+        int currentValue = int.parse(TeleoperatedValues.ballsPassed.text);
+        int finalValue = addingValue + currentValue;
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+        TeleoperatedValues.ballsPassed.text = finalValue.toString();
+      } catch (e) {
+        TeleoperatedValues.numberPadDisplayedValue.text = "";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Center(
             child: SizedBox(
-          height: 40,
-          width: 150,
+          height: 50,
+          width: 200,
           child: TextField(
+            style: TextStyle(fontSize: 20),
             controller: TeleoperatedValues.numberPadDisplayedValue,
             readOnly: true,
             decoration: InputDecoration(
@@ -67,9 +84,11 @@ class _TeleoperatedRightRowNumberPadState
         ),
         Center(
           child: NumberPadBase(
+              showPassButton: true,
               onNumberPressed: onNumberPressed,
               onDelete: onDeletePressed,
-              onSubmit: onSubmitPressed),
+              onSubmitScore: onSubmitScorePressed,
+              onSubmitPass: onSubmitPassPressed),
         )
       ],
     );

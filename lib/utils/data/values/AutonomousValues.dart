@@ -25,6 +25,9 @@ class AutonomousValues {
     AutonomousValues.autoClimbPosition.text = "No";
     AutonomousValues.autoClimbTime.text = "0";
     AutonomousValues.numberPadDisplayedValue.text = "";
+
+    AutonomousValues.stopwatch.stop();
+    AutonomousValues.stopwatch.reset();
   }
 
   static void resetAutoBallScored() {

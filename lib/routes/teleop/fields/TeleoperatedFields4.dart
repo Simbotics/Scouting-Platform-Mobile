@@ -42,9 +42,17 @@ class _TeleoperatedFields4State extends State<TeleoperatedFields4> {
         //num of balls scored
         CounterNumberField(
             controller: TeleoperatedValues.ballsScored,
-            onTapDecrement: () => decrementNumber(TeleoperatedValues.ballsScored),
-            onTapIncrement: () => incrementNumber(TeleoperatedValues.ballsScored)),
-        
+            onTapDecrement: () =>
+                decrementNumber(TeleoperatedValues.ballsScored),
+            onTapIncrement: () =>
+                incrementNumber(TeleoperatedValues.ballsScored)),
+        //num of balls passed
+        CounterNumberField(
+            controller: TeleoperatedValues.ballsPassed,
+            onTapDecrement: () =>
+                decrementNumber(TeleoperatedValues.ballsPassed),
+            onTapIncrement: () =>
+                incrementNumber(TeleoperatedValues.ballsPassed)),
       ],
     );
   }

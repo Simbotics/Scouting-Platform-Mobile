@@ -61,6 +61,7 @@ class QrcodeHelper {
     return computeValues([
       parseInt(TeleoperatedValues.defenseTime.text),
       parseInt(TeleoperatedValues.ballsScored.text),
+      parseInt(TeleoperatedValues.ballsPassed.text)
     ]);
   }
 
@@ -68,8 +69,8 @@ class QrcodeHelper {
   static String computeEndgameValues() {
     return computeValues([
       parseString(EndgameValues.climbHeight.text),
-      parseString(EndgameValues.climbPosition.text), // index: 61
-      parseString(EndgameValues.climbTime.text), // index: 62
+      parseString(EndgameValues.climbPosition.text),
+      parseString(EndgameValues.climbTime.text),
     ]);
   }
 

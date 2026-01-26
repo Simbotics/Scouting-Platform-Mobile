@@ -23,7 +23,7 @@ class _AutonomousLeftLabel2State extends State<AutonomousLeftLabel2> {
               width: 160.0,
               padding: const EdgeInsets.only(top: 20.0, right: 0.0),
               child: const Text(
-                "Ball Scored",
+                "Balls Scored",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.white,

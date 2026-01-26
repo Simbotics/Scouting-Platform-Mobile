@@ -15,7 +15,6 @@ class _TeleoperatedLabels4State extends State<TeleoperatedLabels4> {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        //coral l4 near
         Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -30,8 +29,20 @@ class _TeleoperatedLabels4State extends State<TeleoperatedLabels4> {
                     fontSize: 15.0),
               ),
             )),
-      
-       
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              width: 170.0,
+              padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+              child: const Text(
+                "Balls Passed",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15.0),
+              ),
+            )),
         const Divider(),
       ],
     );
