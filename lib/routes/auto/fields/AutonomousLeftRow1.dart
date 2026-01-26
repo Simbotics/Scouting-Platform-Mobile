@@ -13,8 +13,8 @@ class AutonomousLeftRow1 extends StatelessWidget {
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
-        FieldRegistry.autonomousLeftRow1_startPosition,
-        FieldRegistry.autonomousLeftRow1_mobility,
+        FieldRegistry.autonomousLeftRow1StartPosition,
+        FieldRegistry.autonomousLeftRow1Mobility,
       ], alignment: MainAxisAlignment.start),
     );
   }

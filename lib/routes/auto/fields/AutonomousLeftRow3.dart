@@ -12,8 +12,8 @@ class AutonomousLeftRow3 extends StatelessWidget {
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
-        FieldRegistry.autonomousLeftRow3_stopwatch,
-        FieldRegistry.autonomousLeftRow3_climbPosition,
+        FieldRegistry.autonomousLeftRow3Stopwatch,
+        FieldRegistry.autonomousLeftRow3ClimbPosition,
       ], alignment: MainAxisAlignment.start),
     );
   }

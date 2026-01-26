@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 import '../data/constants/OptionConstants.dart';
@@ -72,7 +73,7 @@ class FieldRegistry {
   );
 
   // Autonomous - Left column fields
-  static final autonomousLeftRow1_startPosition = FieldDescriptor(
+  static final autonomousLeftRow1StartPosition = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
       'controller': AutonomousValues.autoStartPosition,
@@ -80,7 +81,7 @@ class FieldRegistry {
     },
   );
 
-  static final autonomousLeftRow1_mobility = FieldDescriptor(
+  static final autonomousLeftRow1Mobility = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
       'controller': AutonomousValues.autoMobility,
@@ -89,17 +90,17 @@ class FieldRegistry {
     },
   );
 
-  static final autonomousLeftRow2_ballScored = FieldDescriptor(
+  static final autonomousLeftRow2BallScored = FieldDescriptor(
     type: FieldType.counter,
     config: {'controller': AutonomousValues.autoBallScored},
   );
 
-  static final autonomousLeftRow3_stopwatch = FieldDescriptor(
+  static final autonomousLeftRow3Stopwatch = FieldDescriptor(
     type: FieldType.stopwatch,
     config: {'value': AutonomousValues.autoClimbTime, 'timer': AutonomousValues.stopwatch},
   );
 
-  static final autonomousLeftRow3_climbPosition = FieldDescriptor(
+  static final autonomousLeftRow3ClimbPosition = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
       'controller': AutonomousValues.autoClimbPosition,
