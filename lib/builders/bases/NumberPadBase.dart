@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:scouting_platform/styles/AppStyle.dart';
 
 class NumberPadBase extends StatefulWidget {
   final Function(String) onNumberPressed;
@@ -77,17 +78,14 @@ class _NumberPadBaseState extends State<NumberPadBase> {
       width: 60,
       height: 60,
       child: ElevatedButton(
-          onPressed: () => widget.onNumberPressed(
-                number,
-              ),
+          onPressed: () => widget.onNumberPressed(number),
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
+              backgroundColor: AppStyle.accent,
               padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20))),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
           child: Text(
             number,
-            style: TextStyle(color: Colors.black, fontSize: 30),
+            style: const TextStyle(color: Colors.white, fontSize: 28),
           )),
     );
   }
@@ -99,14 +97,13 @@ class _NumberPadBaseState extends State<NumberPadBase> {
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
+              backgroundColor: AppStyle.accent,
               padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20))),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
           child: Icon(
             icon,
-            color: Colors.black,
-            size: 30,
+            color: Colors.white,
+            size: 26,
           )),
     );
   }
@@ -118,13 +115,12 @@ class _NumberPadBaseState extends State<NumberPadBase> {
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
+              backgroundColor: AppStyle.accent,
               padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20))),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
           child: Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 20),
+            style: const TextStyle(color: Colors.white, fontSize: 18),
           )),
     );
   }

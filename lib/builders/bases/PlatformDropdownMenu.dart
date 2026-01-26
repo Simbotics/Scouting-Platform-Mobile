@@ -36,9 +36,9 @@ class PlatformDropdownMenu extends StatelessWidget {
       margin: margin,
       width: width,
       height: 47.0,
-      color: dropdownButtonColor,
+      decoration: BoxDecoration(color: dropdownButtonColor, borderRadius: BorderRadius.circular(6.0)),
       child: DropdownButton<String>(
-        isExpanded: false,
+        isExpanded: true,
         underline: const SizedBox(),
         dropdownColor: dropdownMenuColor,
         value: dropdownMenuSelectedItem,
@@ -48,7 +48,6 @@ class PlatformDropdownMenu extends StatelessWidget {
             return Container(
               padding: selectedItemTextPadding,
               alignment: selectedItemAlignment,
-              width: 100,
               child: Text(
                 value,
                 textAlign: TextAlign.end,

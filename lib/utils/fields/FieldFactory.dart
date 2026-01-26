@@ -5,6 +5,7 @@ import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
 import 'package:scouting_platform/builders/bases/NumberInputField.dart';
 import 'package:scouting_platform/builders/bases/TextInputField.dart';
+import 'package:scouting_platform/styles/AppStyle.dart';
 import 'FieldDescriptor.dart';
 
 class FieldFactory {
@@ -35,11 +36,24 @@ class FieldFactory {
         return CounterField(controller: descriptor.config['controller']);
 
       case FieldType.numberInput:
+        // Allow the 'readOnly' config to be a bool or a callable that returns a bool.
+        var rawReadOnly = descriptor.config['readOnly'];
+        bool readOnlyValue = false;
+        if (rawReadOnly is bool) {
+          readOnlyValue = rawReadOnly;
+        } else if (rawReadOnly is Function) {
+          try {
+            readOnlyValue = rawReadOnly();
+          } catch (_) {
+            readOnlyValue = false;
+          }
+        }
+
         return NumberInputField(
           controller: descriptor.config['controller'],
           onChanged: descriptor.config['onChanged'] ?? (v) {},
           hintText: descriptor.config['hintText'] ?? '',
-          readOnly: descriptor.config['readOnly'] ?? false,
+          readOnly: readOnlyValue,
           margin: descriptor.config['margin'] ?? const EdgeInsets.only(top: 4.0, left: 10.0),
           width: descriptor.config['width'] ?? 150.0,
         );
@@ -75,12 +89,12 @@ class NumberPadField extends StatefulWidget {
   final bool showPassButton;
 
   const NumberPadField({
-    Key? key,
+    super.key,
     required this.displayedController,
     required this.targetController,
     this.targetControllerPass,
     this.showPassButton = false,
-  }) : super(key: key);
+  });
 
   @override
   State<NumberPadField> createState() => _NumberPadFieldState();
@@ -141,14 +155,16 @@ class _NumberPadFieldState extends State<NumberPadField> {
           height: 50,
           width: 200,
           child: TextField(
+            textAlign: TextAlign.center,
             controller: widget.displayedController,
             readOnly: true,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, color: Colors.white),
             decoration: InputDecoration(
-                fillColor: Colors.white,
+                fillColor: AppStyle.textInputColor,
                 filled: true,
                 border: OutlineInputBorder(),
-                hintText: "Input Number"),
+                hintText: "Input Number",
+                hintStyle: TextStyle(color: AppStyle.textInputColorLight)),
           ),
         )),
         SizedBox(
@@ -173,7 +189,7 @@ class DropdownField extends StatefulWidget {
   final List<String> dropdownItems;
   final EdgeInsets? margin;
 
-  const DropdownField({Key? key, required this.controller, required this.dropdownItems, this.margin}) : super(key: key);
+  const DropdownField({super.key, required this.controller, required this.dropdownItems, this.margin});
 
   @override
   State<DropdownField> createState() => _DropdownFieldState();
@@ -198,7 +214,7 @@ class _DropdownFieldState extends State<DropdownField> {
 class CounterField extends StatefulWidget {
   final TextEditingController controller;
 
-  const CounterField({Key? key, required this.controller}) : super(key: key);
+  const CounterField({super.key, required this.controller});
 
   @override
   State<CounterField> createState() => _CounterFieldState();
@@ -238,7 +254,7 @@ class LabelField extends StatelessWidget {
   final String? buttonLabel;
   final Widget Function()? routeBuilder;
 
-  const LabelField({Key? key, required this.labels, this.buttonLabel, this.routeBuilder}) : super(key: key);
+  const LabelField({super.key, required this.labels, this.buttonLabel, this.routeBuilder});
 
   @override
   Widget build(BuildContext context) {
