@@ -38,7 +38,7 @@ class _StopwatchButtonState extends State<StopwatchButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 8.0),
+      padding: const EdgeInsets.only(left: 20.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(150.0, 47.0),

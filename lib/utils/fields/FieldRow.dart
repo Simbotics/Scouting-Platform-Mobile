@@ -17,24 +17,38 @@ class FieldRow extends StatelessWidget {
   }
 
   factory FieldRow.fields(List<FieldDescriptor> descriptors, {MainAxisAlignment alignment = MainAxisAlignment.start}) {
-    final widgets = descriptors.map((d) => FieldFactory.build(d)).toList();
+    final widgets = descriptors.map<Widget>((d) {
+      final rawFlex = d.config['flex'];
+      final int flex = (rawFlex is int) ? rawFlex : 1;
+      return Flexible(
+        flex: flex,
+        fit: FlexFit.loose,
+        child: Container(
+          padding: const EdgeInsets.only(left: 0, top: 12.0, right: 8.0),
+          alignment: Alignment.centerLeft,
+          child: FieldFactory.build(d),
+        ),
+      );
+    }).toList();
+
     return FieldRow._(widgets, alignment: alignment);
   }
 
   factory FieldRow.labels(
     List<String> labels, {
-    double labelWidth = 170.0,
     double leftPadding = 20.0,
     MainAxisAlignment alignment = MainAxisAlignment.start,
     String? buttonLabel,
     Widget Function()? routeBuilder,
+    int labelFlex = 1,
   }) {
     final List<Widget> widgets = labels.map<Widget>((t) {
-      return Align(
-        alignment: Alignment.centerLeft,
+      return Flexible(
+        flex: labelFlex,
+        fit: FlexFit.tight,
         child: Container(
-          width: labelWidth,
-          padding: EdgeInsets.only(left: leftPadding, top: 20.0, right: 5.0),
+          padding: EdgeInsets.only(left: leftPadding, top: 12.0, right: 5.0),
+          alignment: Alignment.centerLeft,
           child: Text(
             t,
             textAlign: TextAlign.left,
@@ -45,7 +59,7 @@ class FieldRow extends StatelessWidget {
     }).toList();
 
     if (buttonLabel != null && routeBuilder != null) {
-      widgets.add(const SizedBox(width: 270.0));
+      widgets.add(const Spacer());
       widgets.add(Builder(builder: (context) {
         return Container(
           padding: const EdgeInsets.all(5.0),

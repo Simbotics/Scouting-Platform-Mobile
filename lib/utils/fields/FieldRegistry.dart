@@ -18,7 +18,6 @@ class FieldRegistry {
     config: {
       'controller': PrematchValues.initials,
       'hintText': 'Scout Initials',
-      'margin': const EdgeInsets.only(left: 20),
       'textAlign': TextAlign.center,
       'onChanged': (v) {},
     },
@@ -29,7 +28,6 @@ class FieldRegistry {
     config: {
       'controller': PrematchValues.matchNumber,
       'hintText': 'Match Number',
-      'margin': const EdgeInsets.only(left: 40),
       'onChanged': (value) async {
         if (SettingValues.isTeamNumberReadOnly) {
           if (PrematchValues.matchNumber.text != "") {
@@ -47,7 +45,6 @@ class FieldRegistry {
     config: {
       'controller': PrematchValues.teamNumber,
       'hintText': 'Team Number',
-      'margin': const EdgeInsets.only(left: 40),
       'readOnly': () => SettingValues.isTeamNumberReadOnly,
       'onChanged': (v) {},
     },
@@ -92,7 +89,9 @@ class FieldRegistry {
 
   static final autonomousLeftRow2BallScored = FieldDescriptor(
     type: FieldType.counter,
-    config: {'controller': AutonomousValues.autoBallScored},
+    config: {
+      'controller': AutonomousValues.autoBallScored,
+      },
   );
 
   static final autonomousLeftRow3Stopwatch = FieldDescriptor(
@@ -120,7 +119,6 @@ class FieldRegistry {
     config: {
       'controller': EndgameValues.climbPosition,
       'dropdownItems': OptionConstants.climbPosition,
-      'margin': const EdgeInsets.only(left: 20),
     },
   );
 
@@ -134,7 +132,6 @@ class FieldRegistry {
     config: {
       'controller': EndgameValues.climbHeight,
       'dropdownItems': OptionConstants.endgameOptions,
-      'margin': const EdgeInsets.only(left: 20),
     },
   );
 
