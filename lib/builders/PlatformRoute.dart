@@ -34,7 +34,7 @@ class _PlatformRouteState extends State<PlatformRoute> {
             backgroundColor: AppStyle.textInputColor,
             title: Text(widget.title, textAlign: TextAlign.center, style: AppStyle.headerText),
             leading: IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white),
+              icon: const Icon(Icons.lunch_dining, color: Colors.white),
               onPressed: () {
                 scaffoldKey.currentState!.openDrawer();
               },
