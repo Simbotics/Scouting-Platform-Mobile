@@ -23,6 +23,8 @@ if (flutterVersionName == null) {
 }
 
 android {
+    // Specify the namespace used by the Android Gradle Plugin (required by AGP 8+)
+    namespace "org.simbotics.scouting_platform"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion "25.1.8937393"
 
