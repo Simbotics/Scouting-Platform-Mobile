@@ -30,7 +30,6 @@ class _NumberInputFieldState extends State<NumberInputField> {
     return Container(
       width: widget.width,
       height: 47,
-      padding: const EdgeInsets.all(3),
       margin: widget.margin,
       decoration: BoxDecoration(color: AppStyle.textInputColor, borderRadius: BorderRadius.circular(6.0)),
       child: TextFormField(

@@ -41,15 +41,22 @@ class FieldRow extends StatelessWidget {
     String? buttonLabel,
     Widget Function()? routeBuilder,
     int labelFlex = 1,
+    List<EdgeInsets>? labelMargins,
   }) {
     // Make each label a Flexible with the same flex/fit used by fields so
     // label widths match the fields below.
-    final widgets = labels.map<Widget>((t) {
+    final widgets = labels.asMap().entries.map<Widget>((entry) {
+      final idx = entry.key;
+      final t = entry.value;
+      final EdgeInsets margin = (labelMargins != null && idx < labelMargins.length)
+          ? labelMargins[idx]
+          : EdgeInsets.only(left: leftPadding, top: 12.0, right: 8.0);
+
       return Flexible(
         flex: labelFlex,
         fit: FlexFit.loose,
         child: Container(
-          padding: EdgeInsets.only(left: leftPadding, top: 12.0, right: 8.0),
+          padding: margin,
           alignment: Alignment.centerLeft,
           child: Text(
             t,

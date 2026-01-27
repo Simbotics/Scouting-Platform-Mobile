@@ -11,6 +11,7 @@ class PrematchLabels extends StatelessWidget {
     return FieldRow.labels(
       ['Initials', 'Match Number', 'Team Number'],
       buttonLabel: 'Auto >',
+      labelMargins: [EdgeInsets.only(left:20), EdgeInsets.only(left:55), EdgeInsets.only(left:105)],
       routeBuilder: () => const AutonomousDataRoute(title: "Auto"),
     );
   }
