@@ -17,7 +17,7 @@ class NumberInputField extends StatefulWidget {
       required this.onChanged,
       required this.hintText,
       this.readOnly = false,
-      this.margin = const EdgeInsets.only(top: 4.0, left: 10.0),
+      this.margin = const EdgeInsets.only(top: 4.0, left: 0.0),
       this.width = 150});
 
   @override

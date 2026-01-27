@@ -19,6 +19,7 @@ class FieldRegistry {
       'controller': PrematchValues.initials,
       'hintText': 'Scout Initials',
       'textAlign': TextAlign.center,
+      'margin': const EdgeInsets.only(left: 20.0, right: 0.0),
       'onChanged': (v) {},
     },
   );

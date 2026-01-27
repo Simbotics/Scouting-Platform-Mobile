@@ -42,12 +42,14 @@ class FieldRow extends StatelessWidget {
     Widget Function()? routeBuilder,
     int labelFlex = 1,
   }) {
-    final List<Widget> widgets = labels.map<Widget>((t) {
+    // Make each label a Flexible with the same flex/fit used by fields so
+    // label widths match the fields below.
+    final widgets = labels.map<Widget>((t) {
       return Flexible(
         flex: labelFlex,
-        fit: FlexFit.tight,
+        fit: FlexFit.loose,
         child: Container(
-          padding: EdgeInsets.only(left: leftPadding, top: 12.0, right: 5.0),
+          padding: EdgeInsets.only(left: leftPadding, top: 12.0, right: 8.0),
           alignment: Alignment.centerLeft,
           child: Text(
             t,
@@ -59,7 +61,6 @@ class FieldRow extends StatelessWidget {
     }).toList();
 
     if (buttonLabel != null && routeBuilder != null) {
-      widgets.add(const Spacer());
       widgets.add(Builder(builder: (context) {
         return Container(
           padding: const EdgeInsets.all(5.0),
