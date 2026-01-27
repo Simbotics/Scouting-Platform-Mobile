@@ -73,14 +73,16 @@ class FieldRow extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              minimumSize: const Size(150.0, 37.0),
-              padding: const EdgeInsets.all(15),
-              backgroundColor: AppStyle.textInputColor,
+              minimumSize: const Size(130.0, 36.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              backgroundColor: AppStyle.accent,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+              elevation: 0,
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => routeBuilder()));
             },
-            child: Text(buttonLabel, style: const TextStyle(fontSize: 16.0, color: Colors.white)),
+            child: Text(buttonLabel, style: const TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
           ),
         );
       }));
