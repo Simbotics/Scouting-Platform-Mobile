@@ -75,6 +75,7 @@ class FieldRegistry {
     config: {
       'controller': AutonomousValues.autoStartPosition,
       'dropdownItems': OptionConstants.startPositions,
+      'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
@@ -83,7 +84,7 @@ class FieldRegistry {
     config: {
       'controller': AutonomousValues.autoMobility,
       'dropdownItems': OptionConstants.yesNoOptions,
-      'margin': const EdgeInsets.only(left: 10),
+      'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
@@ -104,7 +105,7 @@ class FieldRegistry {
     config: {
       'controller': AutonomousValues.autoClimbPosition,
       'dropdownItems': OptionConstants.climbPosition,
-      'margin': const EdgeInsets.only(left: 20),
+      'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
@@ -119,6 +120,7 @@ class FieldRegistry {
     config: {
       'controller': EndgameValues.climbPosition,
       'dropdownItems': OptionConstants.climbPosition,
+      'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
@@ -132,17 +134,24 @@ class FieldRegistry {
     config: {
       'controller': EndgameValues.climbHeight,
       'dropdownItems': OptionConstants.endgameOptions,
+      'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
   static final teleopBallsScoredCounter = FieldDescriptor(
     type: FieldType.counter,
-    config: {'controller': TeleoperatedValues.ballsScored},
+    config: {
+      'controller': TeleoperatedValues.ballsScored,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
   );
 
   static final teleopBallsPassedCounter = FieldDescriptor(
     type: FieldType.counter,
-    config: {'controller': TeleoperatedValues.ballsPassed},
+    config: {
+      'controller': TeleoperatedValues.ballsPassed,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
   );
 
   static final teleopNumberPad = FieldDescriptor(

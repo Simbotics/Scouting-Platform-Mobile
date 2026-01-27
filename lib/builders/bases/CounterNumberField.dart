@@ -16,7 +16,7 @@ class CounterNumberField extends StatelessWidget {
     required this.onTapIncrement,
     required this.onTapDecrement,
     this.hintText = "0",
-    this.margin = const EdgeInsets.only(left: 20.0),
+    this.margin = EdgeInsets.zero,
   });
 
   @override

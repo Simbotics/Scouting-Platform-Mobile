@@ -103,7 +103,7 @@ class _CommentsFields extends State<CommentsFields> {
           },
           textAlign: TextAlign.left,
           hintText:
-              "Speed, coral reliability, etc. Keep this 1-2 sentences and brief",
+              "Speed, fuel reliability, etc. Keep this 1-2 sentences and brief",
           controller: CommentValues.teleopComments,
           margin: const EdgeInsets.only(left: 18, top: 10),
           width: 880,

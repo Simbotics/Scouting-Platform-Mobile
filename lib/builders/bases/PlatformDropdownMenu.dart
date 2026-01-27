@@ -17,7 +17,7 @@ class PlatformDropdownMenu extends StatelessWidget {
 
   const PlatformDropdownMenu({
     super.key,
-    this.margin = const EdgeInsets.only(left: 0.0, top: 0.0),
+    this.margin = const EdgeInsets.only(left: 40.0, top: 0.0),
     this.width = 204.0,
     this.dropdownButtonColor = AppStyle.textInputColor,
     this.dropdownMenuColor = Colors.white,

@@ -30,11 +30,11 @@ class FieldFactory {
         return DropdownField(
           controller: descriptor.config['controller'],
           dropdownItems: descriptor.config['dropdownItems'],
-          margin: descriptor.config['margin'],
+          margin: descriptor.config['margin'] ?? EdgeInsets.zero,
         );
 
       case FieldType.counter:
-        return CounterField(controller: descriptor.config['controller']);
+        return CounterField(controller: descriptor.config['controller'], margin: descriptor.config['margin'] ?? EdgeInsets.zero);
 
       case FieldType.numberInput:
         // Allow the 'readOnly' config to be a bool or a callable that returns a bool.
@@ -55,7 +55,7 @@ class FieldFactory {
           onChanged: descriptor.config['onChanged'] ?? (v) {},
           hintText: descriptor.config['hintText'] ?? '',
           readOnly: readOnlyValue,
-          margin: descriptor.config['margin'] ?? const EdgeInsets.only(top: 4.0, left: 10.0),
+          margin: descriptor.config['margin'] ?? EdgeInsets.zero,
           width: descriptor.config['width'] ?? 150.0,
         );
 
@@ -65,7 +65,7 @@ class FieldFactory {
           hintText: descriptor.config['hintText'] ?? '',
           onChanged: descriptor.config['onChanged'] ?? (v) {},
           textAlign: descriptor.config['textAlign'] ?? TextAlign.left,
-          margin: descriptor.config['margin'] ?? const EdgeInsets.only(top: 0.0),
+          margin: descriptor.config['margin'] ?? EdgeInsets.zero,
           width: descriptor.config['width'] ?? 150.0,
           height: descriptor.config['height'] ?? 47.5,
         );
@@ -214,8 +214,9 @@ class _DropdownFieldState extends State<DropdownField> {
 
 class CounterField extends StatefulWidget {
   final TextEditingController controller;
+  final EdgeInsets margin;
 
-  const CounterField({super.key, required this.controller});
+  const CounterField({super.key, required this.controller, this.margin = EdgeInsets.zero});
 
   @override
   State<CounterField> createState() => _CounterFieldState();
@@ -246,6 +247,7 @@ class _CounterFieldState extends State<CounterField> {
       controller: widget.controller,
       onTapDecrement: decrementNumber,
       onTapIncrement: incrementNumber,
+      margin: widget.margin,
     );
   }
 }
