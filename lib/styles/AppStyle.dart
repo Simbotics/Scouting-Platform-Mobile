@@ -17,5 +17,5 @@ class AppStyle {
   static const Color accent = Color(0xFFB4150B);
 
   // Text styles
-  static const TextStyle headerText = TextStyle(fontFamily: 'Futura', color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w600);
+  static const TextStyle headerText = TextStyle(fontFamily: 'Futura', color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w600);
 }
