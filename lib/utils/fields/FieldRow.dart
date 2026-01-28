@@ -10,7 +10,7 @@ class FieldRow extends StatelessWidget {
   final List<Widget> children;
   final MainAxisAlignment alignment;
 
-  const FieldRow._(this.children, {this.alignment = MainAxisAlignment.start, super.key});
+  const FieldRow._(this.children, {this.alignment = MainAxisAlignment.start});
 
   factory FieldRow.widgets(List<Widget> widgets, {MainAxisAlignment alignment = MainAxisAlignment.start}) {
     return FieldRow._(widgets, alignment: alignment);

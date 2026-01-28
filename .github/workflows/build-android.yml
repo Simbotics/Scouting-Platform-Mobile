@@ -31,4 +31,4 @@ jobs:
     - run: flutter pub get
 
     # Build APK (Android)
-    - run: flutter build apk
+    - run: flutter build apk --android-skip-build-dependency-validation
