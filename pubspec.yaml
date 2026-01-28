@@ -36,7 +36,7 @@ dependencies:
   qr_flutter: ^4.1.0
   csv: ^6.0.0
   screen_brightness: ^2.0.0+1
-  http: ^1.0.0
+  http: ^1.6.0
   permission_handler: ^11.3.0
   path_provider: ^2.1.4
 
