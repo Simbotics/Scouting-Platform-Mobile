@@ -66,10 +66,6 @@ flutter:
     - assets/images/app_icon.png
     - assets/images/nav_banner.png
     - assets/images/simbotics_logo.png
-    # Reefscape diagram
-    - assets/images/reefscape/karthik-reef-diagram-top-shorter.png
-    - assets/images/reefscape/karthik-reef-diagram-middle-compressed.png
-    - assets/images/reefscape/karthik-reef-diagram-bottom-shorter.png
   # Custom fonts specific to team 1114
   fonts:
     - family: "HesDeadJim"

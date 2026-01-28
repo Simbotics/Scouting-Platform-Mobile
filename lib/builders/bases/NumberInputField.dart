@@ -17,7 +17,7 @@ class NumberInputField extends StatefulWidget {
       required this.onChanged,
       required this.hintText,
       this.readOnly = false,
-      this.margin = const EdgeInsets.only(top: 4.0, left: 10.0),
+      this.margin = const EdgeInsets.only(top: 4.0, left: 0.0),
       this.width = 150});
 
   @override
@@ -30,9 +30,8 @@ class _NumberInputFieldState extends State<NumberInputField> {
     return Container(
       width: widget.width,
       height: 47,
-      padding: const EdgeInsets.all(3),
       margin: widget.margin,
-      color: AppStyle.textInputColor,
+      decoration: BoxDecoration(color: AppStyle.textInputColor, borderRadius: BorderRadius.circular(6.0)),
       child: TextFormField(
         readOnly: widget.readOnly,
         onChanged: (value) => widget.onChanged(value),
@@ -47,8 +46,7 @@ class _NumberInputFieldState extends State<NumberInputField> {
             color: Colors.grey,
             fontSize: 16.0,
           ),
-          filled: true,
-          fillColor: AppStyle.textInputColor,
+          border: InputBorder.none,
         ),
         controller: widget.controller,
         keyboardType: const TextInputType.numberWithOptions(

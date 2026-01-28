@@ -69,7 +69,10 @@ class _TextInputFieldState extends State<TextInputField> {
               const TextStyle(fontFamily: 'Helvetica', color: Colors.grey),
           filled: true,
           fillColor: widget.inputFieldColor,
-          border: widget.inputFieldBorder,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+            borderSide: BorderSide.none,
+          ),
         ),
         onChanged: (value) {
           final cursorPosition = widget.controller.selection;

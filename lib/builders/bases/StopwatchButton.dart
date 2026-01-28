@@ -43,7 +43,7 @@ class _StopwatchButtonState extends State<StopwatchButton> {
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(150.0, 47.0),
           backgroundColor: AppStyle.textInputColor,
-          shape: const ContinuousRectangleBorder(),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
         ),
         onLongPress: () {
           widget.timer.stop();
@@ -64,8 +64,7 @@ class _StopwatchButtonState extends State<StopwatchButton> {
         },
         child: Text(
           returnFormattedText(),
-          style: const TextStyle(
-              fontSize: 16.0, fontFamily: "Helvetica", color: Colors.white),
+          style: const TextStyle(fontSize: 14.0, fontFamily: "Helvetica", color: Colors.white),
           textAlign: TextAlign.center,
         ),
       ),

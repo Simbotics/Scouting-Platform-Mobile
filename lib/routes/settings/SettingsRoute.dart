@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
 import 'package:scouting_platform/builders/bases/TextInputField.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/styles/components/TitleStyle.dart';
+import 'package:scouting_platform/styles/components/HeaderStyle.dart';
 import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
 import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
@@ -50,12 +50,13 @@ class _SettingsRoute extends State<SettingsRoute> {
                 Row(
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const TitleStyle(
+                        const HeaderStyle(
                             text: "Driver Station",
                             padding: EdgeInsets.only(top: 10)),
                         PlatformDropdownMenu(
-                            margin: const EdgeInsets.only(left: 30, top: 10),
+                          margin: const EdgeInsets.only(top: 10),
                             dropdownMenuSelectedItem:
                                 SettingValues.selectedDriverStation.text,
                             onChanged: (value) {
@@ -94,9 +95,11 @@ class _SettingsRoute extends State<SettingsRoute> {
                                 OptionConstants.availableDriverstations),
                       ],
                     ),
+                    const SizedBox(width: 40),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const TitleStyle(
+                        const HeaderStyle(
                             text: "Event ID",
                             padding: EdgeInsets.only(top: 10)),
                         TextInputField(
@@ -110,17 +113,19 @@ class _SettingsRoute extends State<SettingsRoute> {
                             textAlign: TextAlign.left,
                             hintText: "Event ID",
                             controller: SettingValues.eventID,
-                            margin: const EdgeInsets.only(left: 40, top: 10)),
+                            margin: const EdgeInsets.only(top: 10)),
                       ],
                     ),
+                    const SizedBox(width: 40),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const TitleStyle(
-                            text: "Team Number Editable",
-                            padding: EdgeInsets.only(left: 30, top: 10)),
+                        const HeaderStyle(
+                          text: "Team Number Editable",
+                          padding: EdgeInsets.only(top: 10)),
                         PlatformDropdownMenu(
-                            width: 150.0,
-                            margin: const EdgeInsets.only(top: 10, right: 120),
+                          width: 150.0,
+                          margin: const EdgeInsets.only(top: 10),
                             dropdownMenuSelectedItem:
                                 SettingValues.isTeamNumberEditable,
                             onChanged: (value) {

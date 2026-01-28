@@ -36,9 +36,11 @@ class _CommentsFields extends State<CommentsFields> {
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150.0, 37.0),
-                        padding: const EdgeInsets.all(15),
-                        backgroundColor: AppStyle.textInputColor,
+                        minimumSize: const Size(130.0, 36.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        backgroundColor: AppStyle.accent,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                        elevation: 0,
                       ),
                       onPressed: () {
                         Navigator.push(context,
@@ -47,8 +49,7 @@ class _CommentsFields extends State<CommentsFields> {
                         }));
                       },
                       child: const Text("< Teleop",
-                          style:
-                              TextStyle(fontSize: 16.0, color: Colors.white)),
+                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
                     ),
                   )),
               const SizedBox(width: 10.0),
@@ -59,9 +60,11 @@ class _CommentsFields extends State<CommentsFields> {
                     margin: const EdgeInsets.only(right: 5.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150.0, 37.0),
-                        padding: const EdgeInsets.all(15),
-                        backgroundColor: AppStyle.textInputColor,
+                        minimumSize: const Size(130.0, 36.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        backgroundColor: AppStyle.accent,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                        elevation: 0,
                       ),
                       onPressed: () {
                         Navigator.push(context,
@@ -70,8 +73,7 @@ class _CommentsFields extends State<CommentsFields> {
                         }));
                       },
                       child: const Text("Current QR Code >",
-                          style:
-                              TextStyle(fontSize: 16.0, color: Colors.white)),
+                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
                     ),
                   )),
             ]),
@@ -103,7 +105,7 @@ class _CommentsFields extends State<CommentsFields> {
           },
           textAlign: TextAlign.left,
           hintText:
-              "Speed, coral reliability, etc. Keep this 1-2 sentences and brief",
+              "Speed, fuel reliability, etc. Keep this 1-2 sentences and brief",
           controller: CommentValues.teleopComments,
           margin: const EdgeInsets.only(left: 18, top: 10),
           width: 880,

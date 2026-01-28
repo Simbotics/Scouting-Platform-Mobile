@@ -23,28 +23,43 @@ class _PlatformRouteState extends State<PlatformRoute> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-        canPop: false,
-        child: Scaffold(
-            key: scaffoldKey,
-            drawer: const NavigationSidebar(),
-            backgroundColor: UIHelper.getBackgroundColour(),
-            appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(40.0),
-                child: AppBar(
-                  backgroundColor: AppStyle.textInputColor,
-                  title: Text(
-                    widget.title,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontFamily: 'Futura', color: Colors.white),
-                  ),
-                  leading: IconButton(
-                    icon: const Icon(Icons.lunch_dining, color: Colors.white),
-                    onPressed: () {
-                      scaffoldKey.currentState!.openDrawer();
-                    },
-                  ),
-                )),
-            body: widget.body));
+      canPop: false,
+      child: Scaffold(
+        key: scaffoldKey,
+        drawer: const NavigationSidebar(),
+        backgroundColor: UIHelper.getBackgroundColour(),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(56.0),
+          child: AppBar(
+            backgroundColor: AppStyle.textInputColor,
+            title: Text(widget.title, textAlign: TextAlign.center, style: AppStyle.headerText),
+            leading: IconButton(
+              icon: const Icon(Icons.lunch_dining, color: Colors.white),
+              onPressed: () {
+                scaffoldKey.currentState!.openDrawer();
+              },
+            ),
+          ),
+        ),
+        // Center a constrained card so each route looks tidy and consistent.
+        body: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Card(
+                color: AppStyle.cardBackground,
+                elevation: 6.0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: widget.body,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

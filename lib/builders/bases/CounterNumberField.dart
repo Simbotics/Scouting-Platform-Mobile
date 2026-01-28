@@ -16,7 +16,7 @@ class CounterNumberField extends StatelessWidget {
     required this.onTapIncrement,
     required this.onTapDecrement,
     this.hintText = "0",
-    this.margin = const EdgeInsets.only(left: 20.0),
+    this.margin = EdgeInsets.zero,
   });
 
   @override
@@ -26,7 +26,7 @@ class CounterNumberField extends StatelessWidget {
       height: 47,
       padding: const EdgeInsets.all(3),
       margin: margin,
-      color: AppStyle.textInputColor,
+      decoration: BoxDecoration(color: AppStyle.textInputColor, borderRadius: BorderRadius.circular(6.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,14 +36,13 @@ class CounterNumberField extends StatelessWidget {
             child: const Icon(
               Icons.remove,
               color: Colors.white,
-              size: 40,
+              size: 28,
             ),
           ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 1),
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
-              color: AppStyle.textInputColor,
+              margin: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               child: TextFormField(
                 enabled: false,
                 style: const TextStyle(
@@ -52,8 +51,7 @@ class CounterNumberField extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppStyle.textInputColor,
+                  border: InputBorder.none,
                   hintText: hintText,
                   hintStyle: const TextStyle(
                     color: Colors.white,

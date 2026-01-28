@@ -45,9 +45,11 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
             left: 5.0,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(150.0, 37.0),
-                padding: EdgeInsets.all(15.0),
-                backgroundColor: AppStyle.textInputColor,
+                minimumSize: const Size(130.0, 36.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                backgroundColor: AppStyle.accent,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                elevation: 0,
               ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -60,6 +62,7 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
                   fontSize: 16.0,
                   fontFamily: "Helvetica",
                   color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -69,9 +72,11 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
             right: 5.0,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                minimumSize: const Size(150.0, 37.0),
-                padding: EdgeInsets.all(15.0),
-                backgroundColor: AppStyle.textInputColor,
+                minimumSize: const Size(130.0, 36.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                backgroundColor: AppStyle.accent,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                elevation: 0,
               ),
               onPressed: () {
                 showConformationDialog(context);
@@ -82,6 +87,7 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
                   fontSize: 16.0,
                   fontFamily: "Helvetica",
                   color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
