@@ -164,6 +164,9 @@ class _NumberPadFieldState extends State<NumberPadField> {
                 fillColor: AppStyle.textInputColor,
                 filled: true,
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppStyle.accent, width: 2.0),
+                ),
                 hintText: "Input Number",
                 hintStyle: TextStyle(color: AppStyle.textInputColorLight)),
           ),
