@@ -7,7 +7,6 @@ class AutonomousValues {
   // auto
   static TextEditingController autoStartPosition =
       TextEditingController(text: "Center");
-  static TextEditingController autoMobility = TextEditingController(text: "No");
 
   static TextEditingController autoBallScored =
       TextEditingController(text: "0");
@@ -24,7 +23,6 @@ class AutonomousValues {
 
   static void resetAutoEtcValues() {
     AutonomousValues.autoStartPosition.text = "Center";
-    AutonomousValues.autoMobility.text = "No";
     AutonomousValues.autoClimbPosition.text = "No";
     AutonomousValues.autoClimbTime.text = "0";
     AutonomousValues.numberPadDisplayedValue.text = "";

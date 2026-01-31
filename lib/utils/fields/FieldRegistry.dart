@@ -83,15 +83,6 @@ class FieldRegistry {
     },
   );
 
-  static final autonomousLeftRow1Mobility = FieldDescriptor(
-    type: FieldType.dropdown,
-    config: {
-      'controller': AutonomousValues.autoMobility,
-      'dropdownItems': OptionConstants.yesNoOptions,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
   static final autonomousLeftRow2BallScored = FieldDescriptor(
     type: FieldType.counter,
     config: {
