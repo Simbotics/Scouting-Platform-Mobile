@@ -51,6 +51,7 @@ class QrcodeHelper {
       parseString(AutonomousValues.autoStartPosition.text), // index 4
       parseString(AutonomousValues.autoMobility.text), // index 5
       parseString(AutonomousValues.autoBallScored.text),
+      parseString(AutonomousValues.autoBallPassed.text),
       parseString(AutonomousValues.autoClimbPosition.text),
       parseString(AutonomousValues.autoClimbTime.text),
     ]);

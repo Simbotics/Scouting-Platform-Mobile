@@ -7,6 +7,6 @@ class AutonomousLeftLabel2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FieldRow.labels(["Balls Scored"], leftPadding: 20.0);
+    return FieldRow.labels(["Balls Scored", "Balls Passed"], leftPadding: 20.0);
   }
 }

@@ -12,6 +12,9 @@ class AutonomousValues {
   static TextEditingController autoBallScored =
       TextEditingController(text: "0");
 
+  static TextEditingController autoBallPassed =
+      TextEditingController(text: "0");
+
   static TextEditingController autoClimbPosition =
       TextEditingController(text: "No");
   static TextEditingController autoClimbTime = TextEditingController(text: "0");
@@ -32,5 +35,6 @@ class AutonomousValues {
 
   static void resetAutoBallScored() {
     AutonomousValues.autoBallScored.text = "0";
+    AutonomousValues.autoBallPassed.text = "0";
   }
 }

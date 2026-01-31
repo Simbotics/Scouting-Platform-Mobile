@@ -9,11 +9,11 @@ class AutonomousLeftRow2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 20),
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
         FieldRegistry.autonomousLeftRow2BallScored,
+        FieldRegistry.autonomousLeftRow2BallPassed,
       ]),
     );
   }
