@@ -13,7 +13,6 @@ class AutonomousLeftRow1 extends StatelessWidget {
       height: 60,
       child: FieldRow.fields([
         FieldRegistry.autonomousLeftRow1StartPosition,
-        FieldRegistry.autonomousLeftRow1Mobility,
       ]),
     );
   }

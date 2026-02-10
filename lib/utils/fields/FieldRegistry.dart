@@ -12,7 +12,7 @@ import '../helpers/ScheduleHelper.dart';
 import 'FieldDescriptor.dart';
 
 class FieldRegistry {
-    // Prematch fields
+  // Prematch fields
   static final prematchInitials = FieldDescriptor(
     type: FieldType.textField,
     config: {
@@ -32,7 +32,9 @@ class FieldRegistry {
       'onChanged': (value) async {
         if (SettingValues.isTeamNumberReadOnly) {
           if (PrematchValues.matchNumber.text != "") {
-            Schedulehelper.getTeamNumberFromSchedule(int.parse(PrematchValues.matchNumber.text)).then((teamNumber) {
+            Schedulehelper.getTeamNumberFromSchedule(
+                    int.parse(PrematchValues.matchNumber.text))
+                .then((teamNumber) {
               PrematchValues.teamNumber.text = teamNumber.toString();
             });
           }
@@ -66,7 +68,8 @@ class FieldRegistry {
     config: {
       'displayedController': AutonomousValues.numberPadDisplayedValue,
       'targetController': AutonomousValues.autoBallScored,
-      'showPassButton': false,
+      'targetControllerPass': AutonomousValues.autoBallPassed,
+      'showPassButton': true,
     },
   );
 
@@ -80,25 +83,28 @@ class FieldRegistry {
     },
   );
 
-  static final autonomousLeftRow1Mobility = FieldDescriptor(
-    type: FieldType.dropdown,
-    config: {
-      'controller': AutonomousValues.autoMobility,
-      'dropdownItems': OptionConstants.yesNoOptions,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
   static final autonomousLeftRow2BallScored = FieldDescriptor(
     type: FieldType.counter,
     config: {
       'controller': AutonomousValues.autoBallScored,
-      },
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
+  );
+
+  static final autonomousLeftRow2BallPassed = FieldDescriptor(
+    type: FieldType.counter,
+    config: {
+      'controller': AutonomousValues.autoBallPassed,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
   );
 
   static final autonomousLeftRow3Stopwatch = FieldDescriptor(
     type: FieldType.stopwatch,
-    config: {'value': AutonomousValues.autoClimbTime, 'timer': AutonomousValues.stopwatch},
+    config: {
+      'value': AutonomousValues.autoClimbTime,
+      'timer': AutonomousValues.stopwatch
+    },
   );
 
   static final autonomousLeftRow3ClimbPosition = FieldDescriptor(
@@ -113,7 +119,10 @@ class FieldRegistry {
   // Teleop
   static final teleopDefenseTimer = FieldDescriptor(
     type: FieldType.stopwatch,
-    config: {'value': TeleoperatedValues.defenseTime, 'timer': TeleoperatedValues.stopwatch},
+    config: {
+      'value': TeleoperatedValues.defenseTime,
+      'timer': TeleoperatedValues.stopwatch
+    },
   );
 
   static final teleopClimbPositionDropdown = FieldDescriptor(
@@ -127,7 +136,10 @@ class FieldRegistry {
 
   static final teleopClimbTimer = FieldDescriptor(
     type: FieldType.stopwatch,
-    config: {'value': EndgameValues.climbTime, 'timer': EndgameValues.stopwatch},
+    config: {
+      'value': EndgameValues.climbTime,
+      'timer': EndgameValues.stopwatch
+    },
   );
 
   static final teleopClimbHeightDropdown = FieldDescriptor(

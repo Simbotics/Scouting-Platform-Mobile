@@ -49,37 +49,39 @@ class QrcodeHelper {
     return computeValues([
       // other
       parseString(AutonomousValues.autoStartPosition.text), // index 4
-      parseString(AutonomousValues.autoMobility.text), // index 5
-      parseString(AutonomousValues.autoBallScored.text),
-      parseString(AutonomousValues.autoClimbPosition.text),
-      parseString(AutonomousValues.autoClimbTime.text),
+      parseString(AutonomousValues.autoBallScored.text), // index 5
+      parseString(AutonomousValues.autoBallPassed.text), // index 6
+      parseString(AutonomousValues.autoClimbTime.text), // index 7
+      parseString(AutonomousValues.autoClimbPosition.text), // index 8
     ]);
   }
 
-  /// Computes all teleoperated values and returns them as a single string separated by a caret
+  // Computes all teleoperated values and returns them as a single string separated by a caret
   static String computeTeleopValues() {
     return computeValues([
-      parseInt(TeleoperatedValues.defenseTime.text),
-      parseInt(TeleoperatedValues.ballsScored.text),
-      parseInt(TeleoperatedValues.ballsPassed.text)
+      parseInt(TeleoperatedValues.ballsScored.text), // index 9
+      parseInt(TeleoperatedValues.ballsPassed.text), // index 10
+      parseInt(TeleoperatedValues.defenseTime.text), // index 11
     ]);
   }
 
   /// Computes all endgame values and returns them as a single string separated by a caret
   static String computeEndgameValues() {
     return computeValues([
-      parseString(EndgameValues.climbHeight.text),
-      parseString(EndgameValues.climbPosition.text),
-      parseString(EndgameValues.climbTime.text),
+      parseString(EndgameValues.climbHeight.text), // index 12
+      parseString(EndgameValues.climbPosition.text), // index 13
+      parseString(EndgameValues.climbTime.text), // index 14
     ]);
   }
 
   /// Computes all comment values and returns them as a single string separated by a caret
   static String computeCommentValues() {
     return computeValues([
-      parseString(stripEmoji(CommentValues.autoComments.text)), // index: 63
-      parseString(stripEmoji(CommentValues.teleopComments.text)), // index: 64
-      parseString(stripEmoji(CommentValues.endgameComments.text)) // index: 65
+      parseString(stripEmoji(CommentValues.autoComments.text)), // index 15
+      parseString(stripEmoji(CommentValues.teleopComments.text)), // index 16
+      parseString(stripEmoji(CommentValues.endgameComments.text)) //index 17
+
+      /// index 18
     ]);
   }
 
