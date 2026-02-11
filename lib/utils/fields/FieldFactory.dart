@@ -34,7 +34,9 @@ class FieldFactory {
         );
 
       case FieldType.counter:
-        return CounterField(controller: descriptor.config['controller'], margin: descriptor.config['margin'] ?? EdgeInsets.zero);
+        return CounterField(
+            controller: descriptor.config['controller'],
+            margin: descriptor.config['margin'] ?? EdgeInsets.zero);
 
       case FieldType.numberInput:
         // Allow the 'readOnly' config to be a bool or a callable that returns a bool.
@@ -116,15 +118,26 @@ class _NumberPadFieldState extends State<NumberPadField> {
     });
   }
 
+  void onSubtractPressed() {
+    if (!mounted) return;
+    setState(() {
+      if (widget.displayedController.text == "") {
+        widget.displayedController.text += "-";
+      }
+    });
+  }
+
   void onSubmitScorePressed() {
     if (!mounted) return;
     setState(() {
       try {
         int addingValue = int.parse(widget.displayedController.text);
         int currentValue = int.parse(widget.targetController.text);
-        int finalValue = addingValue + currentValue;
-        widget.displayedController.text = "";
-        widget.targetController.text = finalValue.toString();
+        if (addingValue + currentValue >= 0) {
+          int finalValue = addingValue + currentValue;
+          widget.displayedController.text = "";
+          widget.targetController.text = finalValue.toString();
+        }
       } catch (e) {
         widget.displayedController.text = "";
       }
@@ -138,9 +151,11 @@ class _NumberPadFieldState extends State<NumberPadField> {
       try {
         int addingValue = int.parse(widget.displayedController.text);
         int currentValue = int.parse(widget.targetControllerPass!.text);
-        int finalValue = addingValue + currentValue;
-        widget.displayedController.text = "";
-        widget.targetControllerPass!.text = finalValue.toString();
+        if (addingValue + currentValue >= 0) {
+          int finalValue = addingValue + currentValue;
+          widget.displayedController.text = "";
+          widget.targetControllerPass!.text = finalValue.toString();
+        }
       } catch (e) {
         widget.displayedController.text = "";
       }
@@ -176,12 +191,12 @@ class _NumberPadFieldState extends State<NumberPadField> {
         ),
         Center(
           child: NumberPadBase(
-            showPassButton: widget.showPassButton,
-            onNumberPressed: onNumberPressed,
-            onDelete: onDeletePressed,
-            onSubmitScore: onSubmitScorePressed,
-            onSubmitPass: onSubmitPassPressed,
-          ),
+              showPassButton: widget.showPassButton,
+              onNumberPressed: onNumberPressed,
+              onDelete: onDeletePressed,
+              onSubmitScore: onSubmitScorePressed,
+              onSubmitPass: onSubmitPassPressed,
+              onSubtract: onSubtractPressed),
         )
       ],
     );
@@ -193,7 +208,11 @@ class DropdownField extends StatefulWidget {
   final List<String> dropdownItems;
   final EdgeInsets? margin;
 
-  const DropdownField({super.key, required this.controller, required this.dropdownItems, this.margin});
+  const DropdownField(
+      {super.key,
+      required this.controller,
+      required this.dropdownItems,
+      this.margin});
 
   @override
   State<DropdownField> createState() => _DropdownFieldState();
@@ -219,7 +238,8 @@ class CounterField extends StatefulWidget {
   final TextEditingController controller;
   final EdgeInsets margin;
 
-  const CounterField({super.key, required this.controller, this.margin = EdgeInsets.zero});
+  const CounterField(
+      {super.key, required this.controller, this.margin = EdgeInsets.zero});
 
   @override
   State<CounterField> createState() => _CounterFieldState();
@@ -260,7 +280,8 @@ class LabelField extends StatelessWidget {
   final String? buttonLabel;
   final Widget Function()? routeBuilder;
 
-  const LabelField({super.key, required this.labels, this.buttonLabel, this.routeBuilder});
+  const LabelField(
+      {super.key, required this.labels, this.buttonLabel, this.routeBuilder});
 
   @override
   Widget build(BuildContext context) {
@@ -276,7 +297,9 @@ class LabelField extends StatelessWidget {
             label,
             textAlign: TextAlign.left,
             style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15.0),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15.0),
           ),
         ),
       ));
@@ -293,9 +316,11 @@ class LabelField extends StatelessWidget {
             padding: const EdgeInsets.all(15),
           ),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => routeBuilder!()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => routeBuilder!()));
           },
-          child: Text(buttonLabel!, style: const TextStyle(fontSize: 16.0, color: Colors.white)),
+          child: Text(buttonLabel!,
+              style: const TextStyle(fontSize: 16.0, color: Colors.white)),
         ),
       ));
     }
