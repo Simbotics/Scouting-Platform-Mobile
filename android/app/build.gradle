@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace 'SimScout'
+    namespace 'org.simbotics.scouting_platform'
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion "25.1.8937393"
 
