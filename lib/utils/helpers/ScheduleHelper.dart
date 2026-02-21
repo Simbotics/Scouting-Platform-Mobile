@@ -1,9 +1,6 @@
 // ignore_for_file: file_names
 
 import 'dart:io';
-
-import 'package:csv/csv.dart';
-import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
