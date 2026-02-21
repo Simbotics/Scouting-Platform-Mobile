@@ -18,33 +18,34 @@ class _PrematchFieldsState extends State<PrematchFields> {
   @override
   void initState() {
     super.initState();
-    AppDataHelper.getCurrentEventIDAndCurrentDriverStation().then((value) => setState(() {
-          if (value != "") {
-            List<String> lineArray = value.split(",");
-            SettingValues.eventID.text = lineArray[0];
-            SettingValues.selectedDriverStation.text = lineArray[1];
-            switch (lineArray[1]) {
-              case "Red 1":
-                Schedulehelper.argumentReadingIndex = 1;
-                break;
-              case "Red 2":
-                Schedulehelper.argumentReadingIndex = 2;
-                break;
-              case "Red 3":
-                Schedulehelper.argumentReadingIndex = 3;
-                break;
-              case "Blue 1":
-                Schedulehelper.argumentReadingIndex = 4;
-                break;
-              case "Blue 2":
-                Schedulehelper.argumentReadingIndex = 5;
-                break;
-              case "Blue 3":
-                Schedulehelper.argumentReadingIndex = 6;
-                break;
-            }
-          }
-        }));
+    AppDataHelper.getCurrentEventIDAndCurrentDriverStation()
+        .then((value) => setState(() {
+              if (value != "") {
+                List<String> lineArray = value.split(",");
+                SettingValues.eventID.text = lineArray[0];
+                SettingValues.selectedDriverStation.text = lineArray[1];
+                switch (lineArray[1]) {
+                  case "Red 1":
+                    Schedulehelper.argumentReadingIndex = 1;
+                    break;
+                  case "Red 2":
+                    Schedulehelper.argumentReadingIndex = 2;
+                    break;
+                  case "Red 3":
+                    Schedulehelper.argumentReadingIndex = 3;
+                    break;
+                  case "Blue 1":
+                    Schedulehelper.argumentReadingIndex = 4;
+                    break;
+                  case "Blue 2":
+                    Schedulehelper.argumentReadingIndex = 5;
+                    break;
+                  case "Blue 3":
+                    Schedulehelper.argumentReadingIndex = 6;
+                    break;
+                }
+              }
+            }));
 
     // Ensure match number is set before trying to fetch team number
     if (SettingValues.isTeamNumberReadOnly) {
@@ -64,11 +65,14 @@ class _PrematchFieldsState extends State<PrematchFields> {
     }
 
     // Get the team number from the schedule
-    String teamNumber = (await Schedulehelper.getTeamNumberFromSchedule(matchNumber)) as String;
+    String teamNumber =
+        (await Schedulehelper.getTeamNumberFromSchedule(matchNumber)) as String;
+    String robotCapacity = (await Schedulehelper.findRobotCapacity(teamNumber));
 
     if (mounted) {
       setState(() {
         PrematchValues.teamNumber.text = teamNumber;
+        PrematchValues.hopperCapacity.text = robotCapacity;
       });
     }
   }

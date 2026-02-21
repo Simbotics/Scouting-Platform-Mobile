@@ -8,4 +8,6 @@ class PrematchValues {
   static final TextEditingController matchNumber =
       TextEditingController(text: "");
   static final TextEditingController initials = TextEditingController(text: "");
+  static final TextEditingController hopperCapacity =
+      TextEditingController(text: "");
 }

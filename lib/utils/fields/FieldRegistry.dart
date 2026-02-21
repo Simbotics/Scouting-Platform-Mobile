@@ -36,6 +36,10 @@ class FieldRegistry {
                     int.parse(PrematchValues.matchNumber.text))
                 .then((teamNumber) {
               PrematchValues.teamNumber.text = teamNumber.toString();
+              return teamNumber;
+            }).then((teamNumber) async {
+              PrematchValues.hopperCapacity.text =
+                  await Schedulehelper.findRobotCapacity(teamNumber.toString());
             });
           }
         }

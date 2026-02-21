@@ -69,9 +69,11 @@ class _TeleopRouteState extends State<TeleopRoute> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(130.0, 36.0),
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
                             backgroundColor: AppStyle.accent,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6.0)),
                             elevation: 0,
                           ),
                           onPressed: () {
@@ -81,7 +83,10 @@ class _TeleopRouteState extends State<TeleopRoute> {
                             }));
                           },
                           child: const Text("< Auto",
-                              style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+                              style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -90,9 +95,11 @@ class _TeleopRouteState extends State<TeleopRoute> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(130.0, 36.0),
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
                             backgroundColor: AppStyle.accent,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6.0)),
                             elevation: 0,
                           ),
                           onPressed: () {
@@ -102,7 +109,10 @@ class _TeleopRouteState extends State<TeleopRoute> {
                             }));
                           },
                           child: const Text("Comments >",
-                              style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+                              style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
                         ),
                       ),
                     ],
@@ -125,7 +135,7 @@ class _TeleopRouteState extends State<TeleopRoute> {
                         padding: const EdgeInsets.only(top: 0.0, right: 0.0),
                         margin: EdgeInsets.only(left: 90.0, top: 55.0),
                         child: Text(
-                          "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}",
+                          "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color: Colors.white,
