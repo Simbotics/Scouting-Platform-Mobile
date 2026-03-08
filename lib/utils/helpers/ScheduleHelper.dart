@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'dart:io';
-
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
@@ -82,5 +81,19 @@ class Schedulehelper {
     } else {
       return 0;
     }
+  }
+
+  static Future<String> findRobotCapacity(String teamNumber) async {
+    final file = File("/storage/emulated/0/Documents/robot_capacity.csv");
+    if (await file.exists()) {
+      final lines = await file.readAsLines();
+      for (String line in lines) {
+        final columns = line.split(',');
+        if (columns[0] == teamNumber) {
+          return columns[1];
+        }
+      }
+    }
+    return "";
   }
 }
