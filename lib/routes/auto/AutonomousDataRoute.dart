@@ -4,10 +4,12 @@ import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow1.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow2.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow3.dart';
+import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow4.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousRightRowNumberPad.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel1.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel2.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel3.dart';
+import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel4.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/routes/teleop/TeleopRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
@@ -54,6 +56,8 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                     const AutonomousLeftRow2(),
                     const AutonomousLeftLabel3(),
                     const AutonomousLeftRow3(),
+                    const AutonomousLeftLabel4(),
+                    const AutonomousLeftRow4(),
                   ],
                 ),
               ),

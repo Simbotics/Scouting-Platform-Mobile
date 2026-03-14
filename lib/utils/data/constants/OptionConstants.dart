@@ -3,11 +3,13 @@
 class OptionConstants {
   static final yesNoOptions = ["Yes", "No"];
 
-  static final startPositions = ["Top", "Center", "Bottom"];
+  static final startPositions = ["Far", "Middle", "Near"];
 
-  static final endgameOptions = ["No", "Level 1", "Level 2", "Level 3"];
+  static final endgameOptions = ["None", "Level 1", "Level 2", "Level 3"];
 
-  static final climbPosition = ["No", "Near", "Middle", "Far"];
+  static final autoClimbHeight = ["None", "Fail", "Level 1"];
+
+  static final climbPosition = ["None", "Far", "Middle", "Near"];
 
   static List<String> availableDriverstations = [
     "Red 1",

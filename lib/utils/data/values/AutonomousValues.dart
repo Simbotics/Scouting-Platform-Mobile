@@ -6,7 +6,7 @@ class AutonomousValues {
 
   // auto
   static TextEditingController autoStartPosition =
-      TextEditingController(text: "Center");
+      TextEditingController(text: "Middle");
 
   static TextEditingController autoBallScored =
       TextEditingController(text: "0");
@@ -15,16 +15,20 @@ class AutonomousValues {
       TextEditingController(text: "0");
 
   static TextEditingController autoClimbPosition =
-      TextEditingController(text: "No");
+      TextEditingController(text: "None");
   static TextEditingController autoClimbTime = TextEditingController(text: "0");
+
+  static TextEditingController autoClimbHeight =
+      TextEditingController(text: "None");
 
   static TextEditingController numberPadDisplayedValue =
       TextEditingController(text: "");
 
   static void resetAutoEtcValues() {
-    AutonomousValues.autoStartPosition.text = "Center";
-    AutonomousValues.autoClimbPosition.text = "No";
+    AutonomousValues.autoStartPosition.text = "Middle";
+    AutonomousValues.autoClimbPosition.text = "None";
     AutonomousValues.autoClimbTime.text = "0";
+    AutonomousValues.autoClimbHeight.text = "None";
     AutonomousValues.numberPadDisplayedValue.text = "";
 
     AutonomousValues.stopwatch.stop();
