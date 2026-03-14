@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/components/navigation/NavigationSidebar.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
+import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
+import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
@@ -32,7 +34,10 @@ class _PlatformRouteState extends State<PlatformRoute> {
           preferredSize: const Size.fromHeight(56.0),
           child: AppBar(
             backgroundColor: AppStyle.textInputColor,
-            title: Text(widget.title, textAlign: TextAlign.center, style: AppStyle.headerText),
+            title: Text(
+                "${widget.title}   Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
+                textAlign: TextAlign.center,
+                style: AppStyle.headerText),
             leading: IconButton(
               icon: const Icon(Icons.lunch_dining, color: Colors.white),
               onPressed: () {
@@ -50,7 +55,8 @@ class _PlatformRouteState extends State<PlatformRoute> {
               child: Card(
                 color: AppStyle.cardBackground,
                 elevation: 6.0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: widget.body,

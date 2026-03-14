@@ -36,131 +36,128 @@ class _DataRouteState extends State<AutonomousDataRoute> {
   Widget build(BuildContext context) {
     return PlatformRoute(
       title: widget.title,
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Left Column
-              Expanded(
-                flex: 1,
+      body: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Left Column
+            Expanded(
+              flex: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // various right side data entry and labels
+                  const AutonomousLeftLabel1(),
+                  const AutonomousLeftRow1(),
+                  const AutonomousLeftLabel2(),
+                  const AutonomousLeftRow2(),
+                  const AutonomousLeftLabel3(),
+                  const AutonomousLeftRow3(),
+                  const AutonomousLeftLabel4(),
+                  const AutonomousLeftRow4(),
+                ],
+              ),
+            ),
+
+            Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // various right side data entry and labels
-                    const AutonomousLeftLabel1(),
-                    const AutonomousLeftRow1(),
-                    const AutonomousLeftLabel2(),
-                    const AutonomousLeftRow2(),
-                    const AutonomousLeftLabel3(),
-                    const AutonomousLeftRow3(),
-                    const AutonomousLeftLabel4(),
-                    const AutonomousLeftRow4(),
+                    // reset button
+                    Container(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(130.0, 36.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
+                            backgroundColor: AppStyle.accent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6.0)),
+                            elevation: 0,
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return const PrematchRoute(title: "Prematch");
+                            }));
+                          },
+                          child: const Text(
+                            "< Prematch",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontFamily: "Helvetica",
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )),
+                    ),
+
+                    const SizedBox(width: 10.0),
+
+                    // next page button
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(130.0, 36.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
+                        backgroundColor: AppStyle.accent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)),
+                        elevation: 0,
+                      ),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const TeleopRoute(title: "Teleop");
+                        }));
+                      },
+                      child: const Text(
+                        "Teleop >",
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: "Helvetica",
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
 
-              Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      // reset button
-                      Container(
-                        padding: const EdgeInsets.all(5.0),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(130.0, 36.0),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              backgroundColor: AppStyle.accent,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6.0)),
-                              elevation: 0,
-                            ),
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const PrematchRoute(title: "Prematch");
-                              }));
-                            },
-                            child: const Text(
-                              "< Prematch",
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontFamily: "Helvetica",
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )),
-                      ),
+                SizedBox(
+                  height: 20,
+                ),
 
-                      const SizedBox(width: 10.0),
+                AutonomousRightrowNumberPad(),
 
-                      // next page button
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(130.0, 36.0),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 8.0),
-                          backgroundColor: AppStyle.accent,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6.0)),
-                          elevation: 0,
-                        ),
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const TeleopRoute(title: "Teleop");
-                          }));
-                        },
-                        child: const Text(
-                          "Teleop >",
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontFamily: "Helvetica",
+                SizedBox(
+                  height: 20,
+                ),
+
+                // robot information
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      width: 400.0,
+                      padding: const EdgeInsets.only(top: 0.0, right: 0.0),
+                      margin: EdgeInsets.only(left: 90.0, top: 55.0),
+                      child: Text(
+                        "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
                             color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0),
                       ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  AutonomousRightrowNumberPad(),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  // robot information
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        width: 400.0,
-                        padding: const EdgeInsets.only(top: 0.0, right: 0.0),
-                        margin: EdgeInsets.only(left: 90.0, top: 55.0),
-                        child: Text(
-                          "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15.0),
-                        ),
-                      )),
-                ],
-              ))
-            ],
-          ),
+                    )),
+              ],
+            ))
+          ],
         ),
       ),
     );
