@@ -34,10 +34,16 @@ class _PlatformRouteState extends State<PlatformRoute> {
           preferredSize: const Size.fromHeight(56.0),
           child: AppBar(
             backgroundColor: AppStyle.textInputColor,
-            title: Text(
-                "${widget.title}   Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
-                textAlign: TextAlign.center,
-                style: AppStyle.headerText),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(widget.title, style: AppStyle.headerText),
+                Text(
+                  "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                )
+              ],
+            ),
             leading: IconButton(
               icon: const Icon(Icons.lunch_dining, color: Colors.white),
               onPressed: () {
