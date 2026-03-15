@@ -120,6 +120,13 @@ class FieldRegistry {
     },
   );
 
+  static final autonomousLeftRow4ClimbHeight =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': AutonomousValues.autoClimbHeight,
+    'dropdownItems': OptionConstants.autoClimbHeight,
+    'margin': const EdgeInsets.only(left: 20),
+  });
+
   // Teleop
   static final teleopDefenseTimer = FieldDescriptor(
     type: FieldType.stopwatch,
