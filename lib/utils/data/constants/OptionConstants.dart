@@ -5,7 +5,13 @@ class OptionConstants {
 
   static final startPositions = ["Far", "Middle", "Near"];
 
-  static final endgameOptions = ["None", "Level 1", "Level 2", "Level 3"];
+  static final endgameOptions = [
+    "None",
+    "Fail",
+    "Level 1",
+    "Level 2",
+    "Level 3"
+  ];
 
   static final autoClimbHeight = ["None", "Fail", "Level 1"];
 
