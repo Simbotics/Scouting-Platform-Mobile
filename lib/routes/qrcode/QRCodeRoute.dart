@@ -46,9 +46,11 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(130.0, 36.0),
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 backgroundColor: AppStyle.accent,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.0)),
                 elevation: 0,
               ),
               onPressed: () {
@@ -73,9 +75,11 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(130.0, 36.0),
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 backgroundColor: AppStyle.accent,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.0)),
                 elevation: 0,
               ),
               onPressed: () {
@@ -105,31 +109,34 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
       },
     );
     Widget continueButton = TextButton(
-      child: const Text("Yes"),
-      onPressed: () {
-        if (PrematchValues.matchNumber.text != "") {
-          PrematchValues.matchNumber.text =
-              (int.parse(PrematchValues.matchNumber.text) + 1).toString();
-        } else {
-          PrematchValues.matchNumber.text = (2).toString();
-        }
+        child: const Text("Yes"),
+        onPressed: () {
+          if (PrematchValues.matchNumber.text != "") {
+            PrematchValues.matchNumber.text =
+                (int.parse(PrematchValues.matchNumber.text) + 1).toString();
+          } else {
+            PrematchValues.matchNumber.text = (2).toString();
+          }
 
-        if (SettingValues.isTeamNumberReadOnly) {
-          Schedulehelper.getTeamNumberFromSchedule(
-            int.parse(PrematchValues.matchNumber.text),
-          ).then((teamNumber) =>
-              PrematchValues.teamNumber.text = teamNumber.toString());
-        }
-
-        setState(() {
-          AppDataHelper.resetStates();
+          if (SettingValues.isTeamNumberReadOnly) {
+            Schedulehelper.getTeamNumberFromSchedule(
+              int.parse(PrematchValues.matchNumber.text),
+            )
+                .then((teamNumber) =>
+                    PrematchValues.teamNumber.text = teamNumber.toString())
+                .then((teamNumber) async {
+              PrematchValues.hopperCapacity.text =
+                  await Schedulehelper.findRobotCapacity(teamNumber.toString());
+            });
+          }
+          setState(() {
+            AppDataHelper.resetStates();
+          });
+          Navigator.of(context, rootNavigator: true).pop('dialog');
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const PrematchRoute(title: "Prematch Data");
+          }));
         });
-        Navigator.of(context, rootNavigator: true).pop('dialog');
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const PrematchRoute(title: "Prematch Data");
-        }));
-      },
-    );
 
     AlertDialog alert = AlertDialog(
       title: const Text("Confirmation: Reset ALL Fields"),

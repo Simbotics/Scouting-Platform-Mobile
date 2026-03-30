@@ -76,7 +76,7 @@ class _NumberPadBaseState extends State<NumberPadBase> {
           children: [
             _buildIconButton(Icons.backspace, widget.onDelete),
             _buildNumberButton("0"),
-            _buildTextButton("-", widget.onSubtract),
+            _buildTextButton("—", widget.onSubtract),
             if (widget.showPassButton)
               _buildTextButton("PSS", widget.onSubmitPass),
           ],

@@ -22,6 +22,18 @@ class PlatformRoute extends StatefulWidget {
 
 class _PlatformRouteState extends State<PlatformRoute> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    PrematchValues.matchNumber.addListener(_refreshAppbar);
+  }
+
+  void _refreshAppbar() {
+    setState(() {}); //update appbar text when match number changed
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
