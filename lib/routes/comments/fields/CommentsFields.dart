@@ -6,8 +6,6 @@ import 'package:scouting_platform/routes/teleop/TeleopRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/utils/data/values/CommentValues.dart';
-import 'package:scouting_platform/utils/data/values/SettingValues.dart';
-import 'package:scouting_platform/utils/helpers/BatteryHelper.dart';
 
 class CommentsFields extends StatefulWidget {
   const CommentsFields({
@@ -75,9 +73,7 @@ class _CommentsFields extends State<CommentsFields> {
                             borderRadius: BorderRadius.circular(6.0)),
                         elevation: 0,
                       ),
-                      onPressed: () async {
-                        SettingValues.batteryLevel.text =
-                            await BatteryHelper.getBatteryLevel() as String;
+                      onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return const QRCodeRoute(title: "QR Code");

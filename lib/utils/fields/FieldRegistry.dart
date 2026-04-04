@@ -1,8 +1,5 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
-import 'package:scouting_platform/routes/prematch/fields/PrematchFields.dart';
 
 import '../data/constants/OptionConstants.dart';
 import '../data/values/AutonomousValues.dart';
@@ -39,10 +36,10 @@ class FieldRegistry {
                     int.parse(PrematchValues.matchNumber.text))
                 .then((teamNumber) {
               PrematchValues.teamNumber.text = teamNumber.toString();
-              return teamNumber;
-            }).then((teamNumber) async {
-              PrematchValues.hopperCapacity.text =
-                  await Schedulehelper.findRobotCapacity(teamNumber.toString());
+            });
+            Schedulehelper.findRobotCapacity(PrematchValues.teamNumber.text)
+                .then((capacity) {
+              PrematchValues.hopperCapacity.text = capacity;
             });
           }
         }

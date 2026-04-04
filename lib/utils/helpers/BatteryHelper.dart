@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'dart:async';
-import 'package:flutter/material.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 class BatteryHelper {
@@ -10,7 +11,8 @@ class BatteryHelper {
     try {
       final int? result = await platform.invokeMethod<int>('getBatteryLevel');
       return result ?? -1;
-    } on PlatformException {
+    } on PlatformException catch (e) {
+      debugPrint('Battery Level Error ${e.message}');
       return -1;
     }
   }

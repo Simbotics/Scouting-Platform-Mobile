@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:scouting_platform/utils/helpers/BatteryHelper.dart';
 import 'package:scouting_platform/utils/helpers/QRCodeHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
@@ -21,6 +22,14 @@ class QRCodeRoute extends StatefulWidget {
 }
 
 class _QRCodeRouteState extends State<QRCodeRoute> {
+  @override
+  void initState() {
+    super.initState();
+    BatteryHelper.getBatteryLevel().then((level) {
+      SettingValues.batteryLevel.text = level.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     UIHelper.setBrightness(1.0);
