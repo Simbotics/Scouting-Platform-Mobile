@@ -32,15 +32,13 @@ class FieldRegistry {
       'onChanged': (value) async {
         if (SettingValues.isTeamNumberReadOnly) {
           if (PrematchValues.matchNumber.text != "") {
-            Schedulehelper.getTeamNumberFromSchedule(
-                    int.parse(PrematchValues.matchNumber.text))
-                .then((teamNumber) {
-              PrematchValues.teamNumber.text = teamNumber.toString();
-            });
-            Schedulehelper.findRobotCapacity(PrematchValues.teamNumber.text)
-                .then((capacity) {
-              PrematchValues.hopperCapacity.text = capacity;
-            });
+            final teamNumber = await Schedulehelper.getTeamNumberFromSchedule(
+                int.parse(PrematchValues.matchNumber.text));
+            PrematchValues.teamNumber.text = teamNumber.toString();
+
+            PrematchValues.hopperCapacity.text =
+                await Schedulehelper.findRobotCapacity(
+                    PrematchValues.teamNumber.text);
           }
         }
       }

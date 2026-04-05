@@ -23,14 +23,6 @@ class QRCodeRoute extends StatefulWidget {
 
 class _QRCodeRouteState extends State<QRCodeRoute> {
   @override
-  void initState() {
-    super.initState();
-    BatteryHelper.getBatteryLevel().then((level) {
-      SettingValues.batteryLevel.text = level.toString();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     UIHelper.setBrightness(1.0);
 
