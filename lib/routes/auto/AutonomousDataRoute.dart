@@ -13,8 +13,6 @@ import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/Autono
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/routes/teleop/TeleopRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
-import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
-import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 
 class AutonomousDataRoute extends StatefulWidget {
@@ -128,33 +126,10 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
-
                 AutonomousRightrowNumberPad(),
-
-                SizedBox(
-                  height: 20,
-                ),
-
-                // robot information
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      width: 400.0,
-                      padding: const EdgeInsets.only(top: 0.0, right: 0.0),
-                      margin: EdgeInsets.only(left: 90.0, top: 55.0),
-                      child: Text(
-                        "Driver Station: ${SettingValues.selectedDriverStation.text}, Match #${PrematchValues.matchNumber.text}, Team #${PrematchValues.teamNumber.text}, Capacity #${PrematchValues.hopperCapacity.text}",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.0),
-                      ),
-                    )),
               ],
             ))
           ],

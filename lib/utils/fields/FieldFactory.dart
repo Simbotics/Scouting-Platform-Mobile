@@ -168,13 +168,13 @@ class _NumberPadFieldState extends State<NumberPadField> {
       children: [
         Center(
             child: SizedBox(
-          height: 50,
+          height: 35,
           width: 200,
           child: TextField(
             textAlign: TextAlign.center,
             controller: widget.displayedController,
             readOnly: true,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: TextStyle(fontSize: 15, color: Colors.white),
             decoration: InputDecoration(
                 fillColor: AppStyle.textInputColor,
                 filled: true,
