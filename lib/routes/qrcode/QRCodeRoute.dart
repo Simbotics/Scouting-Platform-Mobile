@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:scouting_platform/utils/helpers/BatteryHelper.dart';
 import 'package:scouting_platform/utils/helpers/QRCodeHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';

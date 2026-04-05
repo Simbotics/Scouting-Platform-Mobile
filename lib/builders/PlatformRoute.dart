@@ -4,7 +4,6 @@ import 'package:scouting_platform/components/navigation/NavigationSidebar.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
-import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
