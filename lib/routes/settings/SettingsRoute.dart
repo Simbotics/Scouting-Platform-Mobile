@@ -56,7 +56,7 @@ class _SettingsRoute extends State<SettingsRoute> {
                             text: "Driver Station",
                             padding: EdgeInsets.only(top: 10)),
                         PlatformDropdownMenu(
-                          margin: const EdgeInsets.only(top: 10),
+                            margin: const EdgeInsets.only(top: 10),
                             dropdownMenuSelectedItem:
                                 SettingValues.selectedDriverStation.text,
                             onChanged: (value) {
@@ -77,6 +77,13 @@ class _SettingsRoute extends State<SettingsRoute> {
                                     // Once retrieved then set the team number to the text field
                                     PrematchValues.teamNumber.text =
                                         teamNumber.toString();
+                                    return teamNumber;
+                                  }).then((teamNumber) {
+                                    Schedulehelper.findRobotCapacity(
+                                        teamNumber.toString());
+                                  }).then((capacity) {
+                                    PrematchValues.hopperCapacity.text =
+                                        capacity.toString();
                                   });
                                 }
 
@@ -121,11 +128,11 @@ class _SettingsRoute extends State<SettingsRoute> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const HeaderStyle(
-                          text: "Team Number Editable",
-                          padding: EdgeInsets.only(top: 10)),
+                            text: "Team Number Editable",
+                            padding: EdgeInsets.only(top: 10)),
                         PlatformDropdownMenu(
-                          width: 150.0,
-                          margin: const EdgeInsets.only(top: 10),
+                            width: 150.0,
+                            margin: const EdgeInsets.only(top: 10),
                             dropdownMenuSelectedItem:
                                 SettingValues.isTeamNumberEditable,
                             onChanged: (value) {
