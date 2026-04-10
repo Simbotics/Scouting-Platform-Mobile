@@ -20,14 +20,6 @@ class CommentsFields extends StatefulWidget {
 
 class _CommentsFields extends State<CommentsFields> {
   @override
-  void initState() {
-    super.initState();
-    BatteryHelper.getBatteryLevel().then((level) {
-      SettingValues.batteryLevel.text = level.toString();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
