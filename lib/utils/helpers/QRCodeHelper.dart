@@ -77,6 +77,7 @@ class QrcodeHelper {
       parseString(EndgameValues.climbHeight.text), // index 12
       parseString(EndgameValues.climbPosition.text), // index 13
       parseString(EndgameValues.climbTime.text), // index 14
+      parseString(EndgameValues.isRobotDead.text)
     ]);
   }
 

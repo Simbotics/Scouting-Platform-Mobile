@@ -134,11 +134,18 @@ class FieldRegistry {
     },
   );
 
+  static final teleopRobotDeadDropdown =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': EndgameValues.climbPosition,
+    'dropdownItems': OptionConstants.climbPosition,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+
   static final teleopClimbPositionDropdown = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
-      'controller': EndgameValues.climbPosition,
-      'dropdownItems': OptionConstants.climbPosition,
+      'controller': EndgameValues.isRobotDead,
+      'dropdownItems': OptionConstants.yesNoOptions,
       'margin': const EdgeInsets.only(left: 20.0),
     },
   );
