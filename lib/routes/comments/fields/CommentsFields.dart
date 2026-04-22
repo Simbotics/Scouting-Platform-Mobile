@@ -6,6 +6,8 @@ import 'package:scouting_platform/routes/teleop/TeleopRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/styles/components/TitleStyle.dart';
 import 'package:scouting_platform/utils/data/values/CommentValues.dart';
+import 'package:scouting_platform/utils/data/values/SettingValues.dart';
+import 'package:scouting_platform/utils/helpers/BatteryHelper.dart';
 
 class CommentsFields extends StatefulWidget {
   const CommentsFields({
@@ -17,6 +19,14 @@ class CommentsFields extends StatefulWidget {
 }
 
 class _CommentsFields extends State<CommentsFields> {
+  @override
+  void initState() {
+    super.initState();
+    BatteryHelper.getBatteryLevel().then((level) {
+      SettingValues.batteryLevel.text = level.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,9 +47,11 @@ class _CommentsFields extends State<CommentsFields> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(130.0, 36.0),
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
                         backgroundColor: AppStyle.accent,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)),
                         elevation: 0,
                       ),
                       onPressed: () {
@@ -49,7 +61,10 @@ class _CommentsFields extends State<CommentsFields> {
                         }));
                       },
                       child: const Text("< Teleop",
-                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
                     ),
                   )),
               const SizedBox(width: 10.0),
@@ -61,9 +76,11 @@ class _CommentsFields extends State<CommentsFields> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(130.0, 36.0),
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
                         backgroundColor: AppStyle.accent,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)),
                         elevation: 0,
                       ),
                       onPressed: () {
@@ -73,7 +90,10 @@ class _CommentsFields extends State<CommentsFields> {
                         }));
                       },
                       child: const Text("Current QR Code >",
-                          style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
                     ),
                   )),
             ]),

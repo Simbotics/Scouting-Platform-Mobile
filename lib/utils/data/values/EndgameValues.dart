@@ -11,11 +11,13 @@ class EndgameValues {
   static TextEditingController climbTime = TextEditingController(text: "0");
   static TextEditingController climbPosition =
       TextEditingController(text: "None");
+  static TextEditingController isRobotDead = TextEditingController(text: "No");
 
   static void resetEndgameValues() {
     EndgameValues.climbHeight.text = "None"; // was climb, now endgame
     EndgameValues.climbTime.text = "0";
     EndgameValues.climbPosition.text = "None";
+    EndgameValues.isRobotDead.text = "No";
     EndgameValues.stopwatch.stop();
     EndgameValues.stopwatch.reset();
   }

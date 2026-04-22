@@ -15,6 +15,7 @@ class QrcodeHelper {
   /// Returns a string that represents the contents of the QR code that will be generated and separates them with a "^" character
   static String getQRCodeString() {
     var computedValues = computeValues([
+      computeBatteryLevel(),
       computePrematchValues(),
       computeAutonomousValues(),
       computeTeleopValues(),
@@ -32,6 +33,10 @@ class QrcodeHelper {
     AppDataHelper.saveQRCodeCopy(computedValues);
 
     return base64.encode(utf8Encoded);
+  }
+
+  static String computeBatteryLevel() {
+    return computeValues([parseInt(SettingValues.batteryLevel.text)]);
   }
 
   /// Computes all prematch values and returns them as a single string separated by a caret
@@ -72,6 +77,7 @@ class QrcodeHelper {
       parseString(EndgameValues.climbHeight.text), // index 12
       parseString(EndgameValues.climbPosition.text), // index 13
       parseString(EndgameValues.climbTime.text), // index 14
+      parseString(EndgameValues.isRobotDead.text)
     ]);
   }
 

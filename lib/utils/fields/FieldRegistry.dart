@@ -32,15 +32,13 @@ class FieldRegistry {
       'onChanged': (value) async {
         if (SettingValues.isTeamNumberReadOnly) {
           if (PrematchValues.matchNumber.text != "") {
-            Schedulehelper.getTeamNumberFromSchedule(
-                    int.parse(PrematchValues.matchNumber.text))
-                .then((teamNumber) {
-              PrematchValues.teamNumber.text = teamNumber.toString();
-              return teamNumber;
-            }).then((teamNumber) async {
-              PrematchValues.hopperCapacity.text =
-                  await Schedulehelper.findRobotCapacity(teamNumber.toString());
-            });
+            final teamNumber = await Schedulehelper.getTeamNumberFromSchedule(
+                int.parse(PrematchValues.matchNumber.text));
+            PrematchValues.teamNumber.text = teamNumber.toString();
+
+            PrematchValues.hopperCapacity.text =
+                await Schedulehelper.findRobotCapacity(
+                    PrematchValues.teamNumber.text);
           }
         }
       }
@@ -136,11 +134,18 @@ class FieldRegistry {
     },
   );
 
+  static final teleopRobotDeadDropdown =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': EndgameValues.climbPosition,
+    'dropdownItems': OptionConstants.climbPosition,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+
   static final teleopClimbPositionDropdown = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
-      'controller': EndgameValues.climbPosition,
-      'dropdownItems': OptionConstants.climbPosition,
+      'controller': EndgameValues.isRobotDead,
+      'dropdownItems': OptionConstants.yesNoOptions,
       'margin': const EdgeInsets.only(left: 20.0),
     },
   );

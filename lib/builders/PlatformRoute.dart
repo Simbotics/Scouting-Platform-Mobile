@@ -4,6 +4,7 @@ import 'package:scouting_platform/components/navigation/NavigationSidebar.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
+import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 
@@ -22,6 +23,19 @@ class PlatformRoute extends StatefulWidget {
 
 class _PlatformRouteState extends State<PlatformRoute> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    PrematchValues.teamNumber.addListener(_refreshAppbar);
+  }
+
+  void _refreshAppbar() async {
+    PrematchValues.hopperCapacity.text =
+        await Schedulehelper.findRobotCapacity(PrematchValues.teamNumber.text);
+    setState(() {}); //update appbar text when match number changed
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
