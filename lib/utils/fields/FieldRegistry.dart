@@ -64,19 +64,8 @@ class FieldRegistry {
     },
   );
 
-  // Autonomous
-  static final autonomousRightRowNumberPad = FieldDescriptor(
-    type: FieldType.numberPad,
-    config: {
-      'displayedController': AutonomousValues.numberPadDisplayedValue,
-      'targetController': AutonomousValues.autoBallScored,
-      'targetControllerPass': AutonomousValues.autoBallPassed,
-      'showPassButton': true,
-    },
-  );
-
   // Autonomous - Left column fields
-  static final autonomousLeftRow1StartPosition = FieldDescriptor(
+  static final autoStartPosition = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
       'controller': AutonomousValues.autoStartPosition,
@@ -85,45 +74,39 @@ class FieldRegistry {
     },
   );
 
-  static final autonomousLeftRow2BallScored = FieldDescriptor(
-    type: FieldType.counter,
-    config: {
-      'controller': AutonomousValues.autoBallScored,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final autonomousLeftRow2BallPassed = FieldDescriptor(
-    type: FieldType.counter,
-    config: {
-      'controller': AutonomousValues.autoBallPassed,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final autonomousLeftRow3Stopwatch = FieldDescriptor(
-    type: FieldType.stopwatch,
-    config: {
-      'value': AutonomousValues.autoClimbTime,
-      'timer': AutonomousValues.stopwatch
-    },
-  );
-
-  static final autonomousLeftRow3ClimbPosition = FieldDescriptor(
+  static final autoPath = FieldDescriptor(
     type: FieldType.dropdown,
     config: {
-      'controller': AutonomousValues.autoClimbPosition,
-      'dropdownItems': OptionConstants.climbPosition,
+      'controller': AutonomousValues.autoPath,
+      'dropdownItems': OptionConstants.autoPath,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
+  );
+  static final autoSweep = FieldDescriptor(
+    type: FieldType.dropdown,
+    config: {
+      'controller': AutonomousValues.autoSweep,
+      'dropdownItems': OptionConstants.depthIntoPile,
       'margin': const EdgeInsets.only(left: 20.0),
     },
   );
 
-  static final autonomousLeftRow4ClimbHeight =
-      FieldDescriptor(type: FieldType.dropdown, config: {
-    'controller': AutonomousValues.autoClimbHeight,
-    'dropdownItems': OptionConstants.autoClimbHeight,
-    'margin': const EdgeInsets.only(left: 20),
-  });
+  static final autoClimb = FieldDescriptor(
+    type: FieldType.dropdown,
+    config: {
+      'controller': AutonomousValues.autoClimb,
+      'dropdownItems': OptionConstants.autoClimbOptions,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
+  );
+
+  static final autoBeachCounter = FieldDescriptor(
+    type: FieldType.counter,
+    config: {
+      'controller': AutonomousValues.autoBeachCount,
+      'margin': const EdgeInsets.only(left: 20.0),
+    },
+  );
 
   // Teleop
   static final teleopDefenseTimer = FieldDescriptor(
