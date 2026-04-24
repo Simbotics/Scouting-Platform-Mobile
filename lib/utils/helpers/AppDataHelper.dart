@@ -53,7 +53,6 @@ class AppDataHelper {
 
   static void resetStates() {
     AutonomousValues.resetAutoEtcValues();
-    AutonomousValues.resetAutoBallScored();
     TeleoperatedValues.resetTeleopValues();
     EndgameValues.resetEndgameValues();
     CommentValues.resetComments();

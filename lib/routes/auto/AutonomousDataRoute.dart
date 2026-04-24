@@ -5,7 +5,6 @@ import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow1.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow2.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow3.dart';
 import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow4.dart';
-import 'package:scouting_platform/routes/auto/fields/AutonomousRightRowNumberPad.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel1.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel2.dart';
 import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel3.dart';
@@ -126,10 +125,6 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                AutonomousRightrowNumberPad(),
               ],
             ))
           ],

@@ -12,8 +12,8 @@ class AutonomousLeftRow2 extends StatelessWidget {
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
-        FieldRegistry.autonomousLeftRow2BallScored,
-        FieldRegistry.autonomousLeftRow2BallPassed,
+        FieldRegistry.autoPath,
+        FieldRegistry.autoSweep,
       ]),
     );
   }

@@ -12,7 +12,7 @@ class AutonomousLeftRow4 extends StatelessWidget {
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
-        FieldRegistry.autonomousLeftRow4ClimbHeight,
+        FieldRegistry.autoBeachCounter,
       ], alignment: MainAxisAlignment.start),
     );
   }

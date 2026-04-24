@@ -6,37 +6,25 @@ class AutonomousValues {
 
   // auto
   static TextEditingController autoStartPosition =
-      TextEditingController(text: "Middle");
+      TextEditingController(text: "Trench");
 
-  static TextEditingController autoBallScored =
+  static TextEditingController autoPath = TextEditingController(text: "None");
+
+  static TextEditingController autoSweep = TextEditingController(text: "None");
+
+  static TextEditingController autoClimb = TextEditingController(text: "No");
+
+  static TextEditingController autoBeachCount =
       TextEditingController(text: "0");
-
-  static TextEditingController autoBallPassed =
-      TextEditingController(text: "0");
-
-  static TextEditingController autoClimbPosition =
-      TextEditingController(text: "None");
-  static TextEditingController autoClimbTime = TextEditingController(text: "0");
-
-  static TextEditingController autoClimbHeight =
-      TextEditingController(text: "None");
-
-  static TextEditingController numberPadDisplayedValue =
-      TextEditingController(text: "");
 
   static void resetAutoEtcValues() {
-    AutonomousValues.autoStartPosition.text = "Middle";
-    AutonomousValues.autoClimbPosition.text = "None";
-    AutonomousValues.autoClimbTime.text = "0";
-    AutonomousValues.autoClimbHeight.text = "None";
-    AutonomousValues.numberPadDisplayedValue.text = "";
+    AutonomousValues.autoStartPosition.text = "Trench";
+    AutonomousValues.autoPath.text = "None";
+    AutonomousValues.autoSweep.text = "None";
+    AutonomousValues.autoClimb.text = "No";
+    AutonomousValues.autoBeachCount.text = "0";
 
     AutonomousValues.stopwatch.stop();
     AutonomousValues.stopwatch.reset();
-  }
-
-  static void resetAutoBallScored() {
-    AutonomousValues.autoBallScored.text = "0";
-    AutonomousValues.autoBallPassed.text = "0";
   }
 }

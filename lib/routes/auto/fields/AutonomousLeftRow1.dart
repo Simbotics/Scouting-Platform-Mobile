@@ -12,7 +12,7 @@ class AutonomousLeftRow1 extends StatelessWidget {
       decoration: BoxDecoration(),
       height: 60,
       child: FieldRow.fields([
-        FieldRegistry.autonomousLeftRow1StartPosition,
+        FieldRegistry.autoStartPosition,
       ]),
     );
   }

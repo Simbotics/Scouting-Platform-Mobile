@@ -7,6 +7,6 @@ class AutonomousLeftLabel4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FieldRow.labels(["Climb Height"], leftPadding: 20.0);
+    return FieldRow.labels(["Times Beached"], leftPadding: 20.0);
   }
 }

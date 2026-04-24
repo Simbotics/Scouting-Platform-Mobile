@@ -54,11 +54,10 @@ class QrcodeHelper {
     return computeValues([
       // other
       parseString(AutonomousValues.autoStartPosition.text), // index 4
-      parseString(AutonomousValues.autoBallScored.text), // index 5
-      parseString(AutonomousValues.autoBallPassed.text), // index 6
-      parseString(AutonomousValues.autoClimbHeight.text), // index 8
-      parseString(AutonomousValues.autoClimbPosition.text), // index 8
-      parseString(AutonomousValues.autoClimbTime.text), // index 7
+      parseString(AutonomousValues.autoPath.text), // index 5
+      parseString(AutonomousValues.autoSweep.text), // index 6
+      parseString(AutonomousValues.autoClimb.text), // index 8
+      parseString(AutonomousValues.autoBeachCount.text), // index 8 // index 7
     ]);
   }
 
