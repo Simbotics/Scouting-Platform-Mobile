@@ -90,7 +90,8 @@ class QrcodeHelper {
     return computeValues([
       parseString(stripEmoji(CommentValues.autoComments.text)), // index 15
       parseString(stripEmoji(CommentValues.teleopComments.text)), // index 16
-      parseString(stripEmoji(CommentValues.endgameComments.text)) //index 17
+      parseString(stripEmoji(CommentValues.effectiveness.text)),
+      parseInt(stripEmoji(CommentValues.aura.text)) //index 17
 
       /// index 18
     ]);
