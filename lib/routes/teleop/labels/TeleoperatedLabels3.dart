@@ -8,8 +8,9 @@ class TeleoperatedLabels3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldRow.labels([
-      'Climb Time',
-      'Defense Time',
+      'Cycles',
+      'Stealing',
+      'Defense',
     ]);
   }
 }

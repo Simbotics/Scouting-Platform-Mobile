@@ -109,70 +109,74 @@ class FieldRegistry {
   );
 
   // Teleop
-  static final teleopDefenseTimer = FieldDescriptor(
-    type: FieldType.stopwatch,
-    config: {
-      'value': TeleoperatedValues.defenseTime,
-      'timer': TeleoperatedValues.stopwatch
-    },
-  );
-
-  static final teleopRobotDeadDropdown =
+  static final teleopScoring =
       FieldDescriptor(type: FieldType.dropdown, config: {
-    'controller': EndgameValues.climbPosition,
-    'dropdownItems': OptionConstants.climbPosition,
+    'controller': TeleoperatedValues.teleopScoring,
+    'dropdownItems': OptionConstants.yesNoOptions,
     'margin': const EdgeInsets.only(left: 20.0)
   });
-
-  static final teleopClimbPositionDropdown = FieldDescriptor(
-    type: FieldType.dropdown,
-    config: {
-      'controller': EndgameValues.isRobotDead,
-      'dropdownItems': OptionConstants.yesNoOptions,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final teleopClimbTimer = FieldDescriptor(
-    type: FieldType.stopwatch,
-    config: {
-      'value': EndgameValues.climbTime,
-      'timer': EndgameValues.stopwatch
-    },
-  );
-
-  static final teleopClimbHeightDropdown = FieldDescriptor(
-    type: FieldType.dropdown,
-    config: {
-      'controller': EndgameValues.climbHeight,
-      'dropdownItems': OptionConstants.endgameOptions,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final teleopBallsScoredCounter = FieldDescriptor(
-    type: FieldType.counter,
-    config: {
-      'controller': TeleoperatedValues.ballsScored,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final teleopBallsPassedCounter = FieldDescriptor(
-    type: FieldType.counter,
-    config: {
-      'controller': TeleoperatedValues.ballsPassed,
-      'margin': const EdgeInsets.only(left: 20.0),
-    },
-  );
-
-  static final teleopNumberPad = FieldDescriptor(
-    type: FieldType.numberPad,
-    config: {
-      'displayedController': TeleoperatedValues.numberPadDisplayedValue,
-      'targetController': TeleoperatedValues.ballsScored,
-      'targetControllerPass': TeleoperatedValues.ballsPassed,
-      'showPassButton': true,
-    },
-  );
+  static final teleopPassing =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopPassing,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopCleanUp =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopCleanUp,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopCycles =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopCycles,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopStealing =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopStealing,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopDefence =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopDefence,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopGetDefended =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopGetDefended,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopBroken =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopBroken,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopDead = FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopDead,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopBackToLife =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': TeleoperatedValues.teleopBackToLife,
+    'dropdownItems': OptionConstants.yesNoOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final teleopBeachCounter =
+      FieldDescriptor(type: FieldType.counter, config: {
+    'controller': TeleoperatedValues.teleopBeachCount,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
+  static final endGameClimb =
+      FieldDescriptor(type: FieldType.dropdown, config: {
+    'controller': EndgameValues.endGameClimb,
+    'dropdownItems': OptionConstants.endgameOptions,
+    'margin': const EdgeInsets.only(left: 20.0)
+  });
 }

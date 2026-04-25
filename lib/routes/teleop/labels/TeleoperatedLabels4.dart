@@ -7,6 +7,6 @@ class TeleoperatedLabels4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FieldRow.labels(['Balls Scored', 'Balls Passed']);
+    return FieldRow.labels(['Scoring', 'Passing', 'Clean Up']);
   }
 }

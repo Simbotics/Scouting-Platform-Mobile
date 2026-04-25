@@ -11,8 +11,9 @@ class TeleoperatedFields2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldRow.fields([
-      FieldRegistry.teleopRobotDeadDropdown,
-      FieldRegistry.teleopClimbPositionDropdown
+      FieldRegistry.teleopGetDefended,
+      FieldRegistry.teleopBroken,
+      FieldRegistry.teleopDead
     ]);
   }
 }

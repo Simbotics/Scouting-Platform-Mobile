@@ -10,8 +10,9 @@ class TeleoperatedFields4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldRow.fields([
-      FieldRegistry.teleopBallsScoredCounter,
-      FieldRegistry.teleopBallsPassedCounter,
+      FieldRegistry.teleopScoring,
+      FieldRegistry.teleopPassing,
+      FieldRegistry.teleopCleanUp
     ]);
   }
 }
