@@ -64,19 +64,24 @@ class QrcodeHelper {
   // Computes all teleoperated values and returns them as a single string separated by a caret
   static String computeTeleopValues() {
     return computeValues([
-      parseInt(TeleoperatedValues.ballsScored.text), // index 9
-      parseInt(TeleoperatedValues.ballsPassed.text), // index 10
-      parseInt(TeleoperatedValues.defenseTime.text), // index 11
+      parseInt(TeleoperatedValues.teleopScoring.text), // index 9
+      parseInt(TeleoperatedValues.teleopPassing.text), // index 10
+      parseInt(TeleoperatedValues.teleopCleanUp.text),
+      parseInt(TeleoperatedValues.teleopCycles.text),
+      parseInt(TeleoperatedValues.teleopStealing.text),
+      parseInt(TeleoperatedValues.teleopDefence.text),
+      parseInt(TeleoperatedValues.teleopGetDefended.text),
+      parseInt(TeleoperatedValues.teleopBroken.text),
+      parseInt(TeleoperatedValues.teleopDead.text),
+      parseInt(TeleoperatedValues.teleopBackToLife.text),
+      parseInt(TeleoperatedValues.teleopBeachCount.text), // index 11
     ]);
   }
 
   /// Computes all endgame values and returns them as a single string separated by a caret
   static String computeEndgameValues() {
     return computeValues([
-      parseString(EndgameValues.climbHeight.text), // index 12
-      parseString(EndgameValues.climbPosition.text), // index 13
-      parseString(EndgameValues.climbTime.text), // index 14
-      parseString(EndgameValues.isRobotDead.text)
+      parseString(EndgameValues.endGameClimb.text), // index 12
     ]);
   }
 

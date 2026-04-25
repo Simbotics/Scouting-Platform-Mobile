@@ -7,7 +7,6 @@ import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields2.dart'
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields3.dart';
 import 'package:scouting_platform/routes/teleop/fields/TeleoperatedFields4.dart';
-import 'package:scouting_platform/routes/teleop/fields/TeleoperatedRightRowNumberPad.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels2.dart';
 import 'package:scouting_platform/routes/teleop/labels/TeleoperatedLabels3.dart';
@@ -113,12 +112,6 @@ class _TeleopRouteState extends State<TeleopRoute> {
                   ),
                 ],
               ),
-
-              SizedBox(
-                height: 20,
-              ),
-
-              const TeleoperatedRightRowNumberPad(),
             ],
           )),
         ]),

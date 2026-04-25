@@ -7,6 +7,6 @@ class TeleoperatedLabels2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FieldRow.labels(['Climb Position', 'Robot Died']);
+    return FieldRow.labels(['Got Defended', 'Broken', 'Dead']);
   }
 }

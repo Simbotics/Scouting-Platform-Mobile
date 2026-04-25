@@ -10,7 +10,9 @@ class TeleoperatedFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldRow.fields([
-      FieldRegistry.teleopClimbHeightDropdown,
+      FieldRegistry.teleopBackToLife,
+      FieldRegistry.teleopBeachCounter,
+      FieldRegistry.endGameClimb
     ]);
   }
 }
