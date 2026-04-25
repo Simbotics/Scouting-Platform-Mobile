@@ -57,23 +57,23 @@ class QrcodeHelper {
       parseString(AutonomousValues.autoPath.text), // index 5
       parseString(AutonomousValues.autoSweep.text), // index 6
       parseString(AutonomousValues.autoClimb.text), // index 8
-      parseString(AutonomousValues.autoBeachCount.text), // index 8 // index 7
+      parseInt(AutonomousValues.autoBeachCount.text), // index 8 // index 7
     ]);
   }
 
   // Computes all teleoperated values and returns them as a single string separated by a caret
   static String computeTeleopValues() {
     return computeValues([
-      parseInt(TeleoperatedValues.teleopScoring.text), // index 9
-      parseInt(TeleoperatedValues.teleopPassing.text), // index 10
-      parseInt(TeleoperatedValues.teleopCleanUp.text),
-      parseInt(TeleoperatedValues.teleopCycles.text),
-      parseInt(TeleoperatedValues.teleopStealing.text),
-      parseInt(TeleoperatedValues.teleopDefence.text),
-      parseInt(TeleoperatedValues.teleopGetDefended.text),
-      parseInt(TeleoperatedValues.teleopBroken.text),
-      parseInt(TeleoperatedValues.teleopDead.text),
-      parseInt(TeleoperatedValues.teleopBackToLife.text),
+      parseString(TeleoperatedValues.teleopScoring.text), // index 9
+      parseString(TeleoperatedValues.teleopPassing.text), // index 10
+      parseString(TeleoperatedValues.teleopCleanUp.text),
+      parseString(TeleoperatedValues.teleopCycles.text),
+      parseString(TeleoperatedValues.teleopStealing.text),
+      parseString(TeleoperatedValues.teleopDefence.text),
+      parseString(TeleoperatedValues.teleopGetDefended.text),
+      parseString(TeleoperatedValues.teleopBroken.text),
+      parseString(TeleoperatedValues.teleopDead.text),
+      parseString(TeleoperatedValues.teleopBackToLife.text),
       parseInt(TeleoperatedValues.teleopBeachCount.text), // index 11
     ]);
   }
@@ -90,8 +90,10 @@ class QrcodeHelper {
     return computeValues([
       parseString(stripEmoji(CommentValues.autoComments.text)), // index 15
       parseString(stripEmoji(CommentValues.teleopComments.text)), // index 16
-      parseString(stripEmoji(CommentValues.effectiveness.text)),
-      parseInt(stripEmoji(CommentValues.aura.text)) //index 17
+      parseInt(
+          (double.parse(CommentValues.effectiveness.text).round().toString())),
+      parseInt(
+          double.parse(CommentValues.aura.text).round().toString()) //index 17
 
       /// index 18
     ]);
