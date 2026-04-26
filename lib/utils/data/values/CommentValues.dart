@@ -6,12 +6,14 @@ class CommentValues {
       TextEditingController(text: "");
   static final TextEditingController teleopComments =
       TextEditingController(text: "");
-  static final TextEditingController endgameComments =
-      TextEditingController(text: "");
+  static final TextEditingController effectiveness =
+      TextEditingController(text: "0");
+  static final TextEditingController aura = TextEditingController(text: "0");
 
   static void resetComments() {
     CommentValues.autoComments.text = "";
     CommentValues.teleopComments.text = "";
-    CommentValues.endgameComments.text = "";
+    CommentValues.effectiveness.text = "0";
+    CommentValues.aura.text = "0";
   }
 }

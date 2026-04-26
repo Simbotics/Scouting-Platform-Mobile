@@ -133,23 +133,34 @@ class _CommentsFields extends State<CommentsFields> {
           maxLines: 10,
         ),
         const TitleStyle(
-            text: "End Game Comments",
+            text: "Effectiveness When at Their Role?",
             padding: EdgeInsets.only(top: 10.0, left: 18.0)),
-        TextInputField(
-          onChanged: (value) {
+        Slider(
+          max: 10,
+          divisions: 10,
+          value: double.parse(CommentValues.effectiveness.text),
+          label:
+              double.parse(CommentValues.effectiveness.text).round().toString(),
+          onChanged: (double value) {
             setState(() {
-              CommentValues.endgameComments.text = value;
+              CommentValues.effectiveness.text = value.toString();
             });
           },
-          textAlign: TextAlign.left,
-          hintText:
-              "Climb, park, any troubles, etc. Keep this 1-2 sentences and brief",
-          controller: CommentValues.endgameComments,
-          margin: const EdgeInsets.only(left: 18, top: 10, bottom: 20.0),
-          width: 880,
-          height: 90.0,
-          maxLines: 10,
         ),
+        const TitleStyle(
+            text: "Aura (like 6 or 7)",
+            padding: EdgeInsets.only(top: 10.0, left: 18.0)),
+        Slider(
+          max: 10,
+          divisions: 10,
+          value: double.parse(CommentValues.aura.text),
+          label: double.parse(CommentValues.aura.text).round().toString(),
+          onChanged: (double value) {
+            setState(() {
+              CommentValues.aura.text = value.toString();
+            });
+          },
+        )
       ],
     );
   }
