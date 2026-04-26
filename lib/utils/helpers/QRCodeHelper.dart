@@ -82,6 +82,7 @@ class QrcodeHelper {
   static String computeEndgameValues() {
     return computeValues([
       parseString(EndgameValues.endGameClimb.text), // index 12
+      parseString(EndgameValues.endGameClimb.text), // index 12
     ]);
   }
 
