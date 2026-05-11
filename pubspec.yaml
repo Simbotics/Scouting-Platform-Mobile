@@ -35,7 +35,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   qr_flutter: ^4.1.0
   csv: ^6.0.0
-  screen_brightness: ^2.0.0+1
+  screen_brightness: ^2.1.8
   http: ^1.0.0
   permission_handler: ^11.3.0
   path_provider: ^2.1.4
