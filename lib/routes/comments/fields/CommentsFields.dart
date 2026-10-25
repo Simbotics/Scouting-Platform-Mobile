@@ -55,7 +55,7 @@ class _CommentsFields extends State<CommentsFields> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return const TeleopRoute(title: "Teleop");
                         }));
@@ -84,7 +84,7 @@ class _CommentsFields extends State<CommentsFields> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return const QRCodeRoute(title: "QR Code");
                         }));

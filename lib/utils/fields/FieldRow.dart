@@ -12,11 +12,13 @@ class FieldRow extends StatelessWidget {
 
   const FieldRow._(this.children, {this.alignment = MainAxisAlignment.start});
 
-  factory FieldRow.widgets(List<Widget> widgets, {MainAxisAlignment alignment = MainAxisAlignment.start}) {
+  factory FieldRow.widgets(List<Widget> widgets,
+      {MainAxisAlignment alignment = MainAxisAlignment.start}) {
     return FieldRow._(widgets, alignment: alignment);
   }
 
-  factory FieldRow.fields(List<FieldDescriptor> descriptors, {MainAxisAlignment alignment = MainAxisAlignment.start}) {
+  factory FieldRow.fields(List<FieldDescriptor> descriptors,
+      {MainAxisAlignment alignment = MainAxisAlignment.start}) {
     final widgets = descriptors.map<Widget>((d) {
       final rawFlex = d.config['flex'];
       final int flex = (rawFlex is int) ? rawFlex : 1;
@@ -48,9 +50,10 @@ class FieldRow extends StatelessWidget {
     final widgets = labels.asMap().entries.map<Widget>((entry) {
       final idx = entry.key;
       final t = entry.value;
-      final EdgeInsets margin = (labelMargins != null && idx < labelMargins.length)
-          ? labelMargins[idx]
-          : EdgeInsets.only(left: leftPadding, top: 12.0, right: 8.0);
+      final EdgeInsets margin =
+          (labelMargins != null && idx < labelMargins.length)
+              ? labelMargins[idx]
+              : EdgeInsets.only(left: leftPadding, top: 12.0, right: 8.0);
 
       return Flexible(
         flex: labelFlex,
@@ -61,7 +64,10 @@ class FieldRow extends StatelessWidget {
           child: Text(
             t,
             textAlign: TextAlign.left,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15.0),
+            style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15.0),
           ),
         ),
       );
@@ -74,15 +80,22 @@ class FieldRow extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(130.0, 36.0),
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               backgroundColor: AppStyle.accent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.0)),
               elevation: 0,
             ),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => routeBuilder()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => routeBuilder()));
             },
-            child: Text(buttonLabel, style: const TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.w600)),
+            child: Text(buttonLabel,
+                style: const TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600)),
           ),
         );
       }));

@@ -316,7 +316,7 @@ class LabelField extends StatelessWidget {
             padding: const EdgeInsets.all(15),
           ),
           onPressed: () {
-            Navigator.push(context,
+            Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => routeBuilder!()));
           },
           child: Text(buttonLabel!,

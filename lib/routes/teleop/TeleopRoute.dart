@@ -72,7 +72,7 @@ class _TeleopRouteState extends State<TeleopRoute> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return const AutonomousDataRoute(title: "Auto");
                         }));
@@ -98,7 +98,7 @@ class _TeleopRouteState extends State<TeleopRoute> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return const CommentsRoute(title: "Comments");
                         }));

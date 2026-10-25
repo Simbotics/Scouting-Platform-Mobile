@@ -78,7 +78,7 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                             elevation: 0,
                           ),
                           onPressed: () {
-                            Navigator.push(context,
+                            Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) {
                               return const PrematchRoute(title: "Prematch");
                             }));
@@ -108,7 +108,7 @@ class _DataRouteState extends State<AutonomousDataRoute> {
                         elevation: 0,
                       ),
                       onPressed: () {
-                        Navigator.push(context,
+                        Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                           return const TeleopRoute(title: "Teleop");
                         }));

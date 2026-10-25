@@ -54,7 +54,8 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
                 elevation: 0,
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
                   return const CommentsRoute(title: "Comments");
                 }));
               },
@@ -133,7 +134,8 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
             AppDataHelper.resetStates();
           });
           Navigator.of(context, rootNavigator: true).pop('dialog');
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
             return const PrematchRoute(title: "Prematch Data");
           }));
         });
