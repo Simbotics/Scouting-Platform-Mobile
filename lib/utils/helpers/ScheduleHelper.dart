@@ -43,7 +43,7 @@ class Schedulehelper {
 
     if (await file.exists()) {
       final lines = await file.readAsLines();
-      if (lines.length >= lineNumber) {
+      if (lineNumber > 0 && lineNumber < lines.length) {
         return lines[lineNumber];
       } else {
         return null;

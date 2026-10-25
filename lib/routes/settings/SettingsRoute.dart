@@ -79,7 +79,7 @@ class _SettingsRoute extends State<SettingsRoute> {
                                         teamNumber.toString();
                                     return teamNumber;
                                   }).then((teamNumber) {
-                                    Schedulehelper.findRobotCapacity(
+                                    return Schedulehelper.findRobotCapacity(
                                         teamNumber.toString());
                                   }).then((capacity) {
                                     PrematchValues.hopperCapacity.text =

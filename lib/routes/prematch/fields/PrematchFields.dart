@@ -66,7 +66,8 @@ class _PrematchFieldsState extends State<PrematchFields> {
 
     // Get the team number from the schedule
     String teamNumber =
-        (await Schedulehelper.getTeamNumberFromSchedule(matchNumber)) as String;
+        (await Schedulehelper.getTeamNumberFromSchedule(matchNumber))
+            .toString();
     String robotCapacity = (await Schedulehelper.findRobotCapacity(teamNumber));
 
     if (mounted) {
