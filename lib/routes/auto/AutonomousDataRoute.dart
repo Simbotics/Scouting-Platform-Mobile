@@ -1,14 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scouting_platform/builders/PlatformRoute.dart';
-import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow1.dart';
-import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow2.dart';
-import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow3.dart';
-import 'package:scouting_platform/routes/auto/fields/AutonomousLeftRow4.dart';
-import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel1.dart';
-import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel2.dart';
-import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel3.dart';
-import 'package:scouting_platform/routes/auto/labels/AutonomousLeftLabels/AutonomousLeftLabel4.dart';
+import 'package:scouting_platform/builders/bases/PlatformDropdownMenu.dart';
+import 'package:scouting_platform/builders/bases/CounterNumberField.dart';
+import 'package:scouting_platform/utils/data/constants/OptionConstants.dart';
+import 'package:scouting_platform/utils/data/values/AutonomousValues.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/routes/teleop/TeleopRoute.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
@@ -29,6 +25,40 @@ class _DataRouteState extends State<AutonomousDataRoute> {
     UIHelper.setBrightness(0.3);
   }
 
+  Widget _labeledField(String label, Widget child) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, top: 12, right: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(label,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15)),
+            const SizedBox(height: 12),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _dropdown(TextEditingController controller, List<String> options) {
+    return PlatformDropdownMenu(
+      margin: EdgeInsets.zero,
+      dropdownMenuSelectedItem: controller.text,
+      dropdownItems: options,
+      onChanged: (String? value) {
+        if (value == null) return;
+        setState(() {
+          controller.text = value;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return PlatformRoute(
@@ -44,15 +74,53 @@ class _DataRouteState extends State<AutonomousDataRoute> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // various right side data entry and labels
-                  const AutonomousLeftLabel1(),
-                  const AutonomousLeftRow1(),
-                  const AutonomousLeftLabel2(),
-                  const AutonomousLeftRow2(),
-                  const AutonomousLeftLabel3(),
-                  const AutonomousLeftRow3(),
-                  const AutonomousLeftLabel4(),
-                  const AutonomousLeftRow4(),
+                  Row(children: [
+                    _labeledField(
+                        'Start Position',
+                        _dropdown(AutonomousValues.autoStartPosition,
+                            OptionConstants.startPositions)),
+                  ]),
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    _labeledField(
+                        'General Path',
+                        _dropdown(AutonomousValues.autoPath,
+                            OptionConstants.autoPath)),
+                    _labeledField(
+                        'Depth Into Pile',
+                        _dropdown(AutonomousValues.autoSweep,
+                            OptionConstants.depthIntoPile)),
+                  ]),
+                  Row(children: [
+                    _labeledField(
+                        'Climb',
+                        _dropdown(AutonomousValues.autoClimb,
+                            OptionConstants.autoClimbOptions)),
+                  ]),
+                  Row(children: [
+                    _labeledField(
+                        'Times Beached',
+                        CounterNumberField(
+                          controller: AutonomousValues.autoBeachCount,
+                          onTapIncrement: () {
+                            setState(() {
+                              final count = int.tryParse(
+                                      AutonomousValues.autoBeachCount.text) ??
+                                  0;
+                              AutonomousValues.autoBeachCount.text =
+                                  (count + 1).toString();
+                            });
+                          },
+                          onTapDecrement: () {
+                            setState(() {
+                              final count = int.tryParse(
+                                      AutonomousValues.autoBeachCount.text) ??
+                                  0;
+                              AutonomousValues.autoBeachCount.text =
+                                  (count > 0 ? count - 1 : 0).toString();
+                            });
+                          },
+                        )),
+                  ]),
                 ],
               ),
             ),
