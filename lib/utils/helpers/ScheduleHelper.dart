@@ -1,40 +1,10 @@
 // ignore_for_file: file_names
 
 import 'dart:io';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:scouting_platform/utils/data/constants/AppConstants.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 
 class Schedulehelper {
   static late int argumentReadingIndex;
-  static late int driverStationIdentifier;
-
-  static Future<String> get _scheduleDirecotyPath async {
-    final directory = Directory('/storage/emulated/0/Documents');
-
-    return directory.path;
-  }
-
-  static Future<File> get _scheduleFile async {
-    final path = await _scheduleDirecotyPath;
-    return File('$path/match_schedule_${SettingValues.eventID.text}.csv');
-  }
-
-  static get http => null;
-
-  // Fetched the current schedule file from the repository
-  static Future<void> fetchEventSchedule() async {
-    final status = await Permission.storage.request();
-    if (status.isGranted) {
-      final response = await http.get(Uri.parse(
-          "${AppConstants.githubSchedulesCDN}/match_schedule_${SettingValues.eventID.text}.csv"));
-      final bytes = response.bodyBytes;
-      final file = await _scheduleFile;
-      await file.writeAsBytes(bytes);
-    } else {
-      throw Exception('Permission denied');
-    }
-  }
 
   // Read a line from the schedule file
   static Future<String?> readLineFromSchedule(int lineNumber) async {

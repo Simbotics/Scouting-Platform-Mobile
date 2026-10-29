@@ -24,11 +24,6 @@ class _PlatformRouteState extends State<PlatformRoute> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
