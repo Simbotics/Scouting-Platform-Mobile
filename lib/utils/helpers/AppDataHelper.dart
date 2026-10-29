@@ -8,6 +8,7 @@ import 'package:scouting_platform/utils/data/values/CommentValues.dart';
 import 'package:scouting_platform/utils/data/values/EndgameValues.dart';
 import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/data/values/TeleoperatedValues.dart';
+import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 
 class AppDataHelper {
   // Save the current event ID to a file called "current_event_id.txt"
@@ -67,6 +68,9 @@ class AppDataHelper {
   }
 
   static void resetStates() {
+    PrematchValues.hopperCapacity.clear();
+    PrematchValues.teamNumber.clear();
+
     AutonomousValues.resetAutoEtcValues();
     TeleoperatedValues.resetTeleopValues();
     EndgameValues.resetEndgameValues();

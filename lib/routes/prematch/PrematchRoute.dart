@@ -50,10 +50,9 @@ class _PrematchRouteState extends State<PrematchRoute> {
     final matchNumber = int.tryParse(matchText);
     if (matchNumber == null) return;
 
-    final teamNumber =
-        (await Schedulehelper.getTeamNumberFromSchedule(matchNumber))
-            .toString();
-    final capacity = await Schedulehelper.findRobotCapacity(teamNumber);
+    final result = await Schedulehelper.getTeamNumberFromSchedule(matchNumber);
+    final teamNumber = result?.toString() ?? '';
+    final capacity = result == null ? '' : await Schedulehelper.findRobotCapacity(teamNumber);
     if (!mounted ||
         PrematchValues.matchNumber.text != matchText ||
         !SettingValues.isTeamNumberReadOnly) {
@@ -110,7 +109,7 @@ class _PrematchRouteState extends State<PrematchRoute> {
                   controller: PrematchValues.matchNumber,
                   hintText: 'Match Number',
                   margin: EdgeInsets.zero,
-                  onChanged: (value) => _updateTeamNumber(),
+                  onChanged: (value) {setState(() {PrematchValues.teamNumber.clear(); PrematchValues.hopperCapacity.clear();}); _updateTeamNumber();},
                 )),
             _labeledField(
                 'Team Number',
@@ -119,7 +118,7 @@ class _PrematchRouteState extends State<PrematchRoute> {
                   hintText: 'Team Number',
                   readOnly: SettingValues.isTeamNumberReadOnly,
                   margin: EdgeInsets.zero,
-                  onChanged: (value) {},
+                  onChanged: (value) {PrematchValues.hopperCapacity.text = ''; setState(() {});},
                 )),
             Padding(
               padding: const EdgeInsets.all(5),

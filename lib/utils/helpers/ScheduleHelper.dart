@@ -52,7 +52,7 @@ class Schedulehelper {
     return null;
   }
 
-  static Future<int> getTeamNumberFromSchedule(int matchNumber) async {
+  static Future<int?> getTeamNumberFromSchedule(int matchNumber) async {
     switch (SettingValues.selectedDriverStation.text) {
       case "Red 1":
         argumentReadingIndex = 1;
@@ -79,7 +79,7 @@ class Schedulehelper {
       List<String> arguments = lineStringValues.split(",");
       return int.parse(arguments[argumentReadingIndex]);
     } else {
-      return 0;
+      return null;
     }
   }
 

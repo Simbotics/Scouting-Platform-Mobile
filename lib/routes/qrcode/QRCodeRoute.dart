@@ -4,11 +4,9 @@ import 'package:scouting_platform/builders/PlatformRoute.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_platform/utils/helpers/QRCodeHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
-import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
 import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
-import 'package:scouting_platform/utils/helpers/ScheduleHelper.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/routes/comments/CommentsRoute.dart';
 
@@ -118,21 +116,7 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
           } else {
             PrematchValues.matchNumber.text = (2).toString();
           }
-
-          if (SettingValues.isTeamNumberReadOnly) {
-            Schedulehelper.getTeamNumberFromSchedule(
-              int.parse(PrematchValues.matchNumber.text),
-            )
-                .then((teamNumber) =>
-                    PrematchValues.teamNumber.text = teamNumber.toString())
-                .then((teamNumber) async {
-              PrematchValues.hopperCapacity.text =
-                  await Schedulehelper.findRobotCapacity(teamNumber.toString());
-            });
-          }
-          setState(() {
-            AppDataHelper.resetStates();
-          });
+          AppDataHelper.resetStates();
           Navigator.of(context, rootNavigator: true).pop('dialog');
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) {
