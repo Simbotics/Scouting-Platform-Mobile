@@ -31,7 +31,9 @@ class _NumberInputFieldState extends State<NumberInputField> {
       width: widget.width,
       height: 47,
       margin: widget.margin,
-      decoration: BoxDecoration(color: AppStyle.textInputColor, borderRadius: BorderRadius.circular(6.0)),
+      decoration: BoxDecoration(
+          color: AppStyle.textInputColor,
+          borderRadius: BorderRadius.circular(6.0)),
       child: TextFormField(
         readOnly: widget.readOnly,
         onChanged: (value) => widget.onChanged(value),

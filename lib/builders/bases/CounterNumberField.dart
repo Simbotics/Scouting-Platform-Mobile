@@ -26,7 +26,9 @@ class CounterNumberField extends StatelessWidget {
       height: 47,
       padding: const EdgeInsets.all(3),
       margin: margin,
-      decoration: BoxDecoration(color: AppStyle.textInputColor, borderRadius: BorderRadius.circular(6.0)),
+      decoration: BoxDecoration(
+          color: AppStyle.textInputColor,
+          borderRadius: BorderRadius.circular(6.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

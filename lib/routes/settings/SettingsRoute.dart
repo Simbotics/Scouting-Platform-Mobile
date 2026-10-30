@@ -25,8 +25,7 @@ class _SettingsRoute extends State<SettingsRoute> {
   void initState() {
     super.initState();
     // Get the current event ID and current driver station from the file
-    AppDataHelper.getCurrentEventIDAndCurrentDriverStation()
-        .then((value) {
+    AppDataHelper.getCurrentEventIDAndCurrentDriverStation().then((value) {
       if (!mounted) return;
 
       setState(() {
