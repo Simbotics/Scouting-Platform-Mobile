@@ -6,7 +6,9 @@ import 'package:scouting_platform/utils/helpers/QRCodeHelper.dart';
 import 'package:scouting_platform/utils/helpers/UIHelper.dart';
 import 'package:scouting_platform/routes/prematch/PrematchRoute.dart';
 import 'package:scouting_platform/utils/data/values/PrematchValues.dart';
+import 'package:scouting_platform/utils/data/values/SettingValues.dart';
 import 'package:scouting_platform/utils/helpers/AppDataHelper.dart';
+import 'package:scouting_platform/utils/helpers/BatteryHelper.dart';
 import 'package:scouting_platform/styles/AppStyle.dart';
 import 'package:scouting_platform/routes/comments/CommentsRoute.dart';
 
@@ -19,10 +21,28 @@ class QRCodeRoute extends StatefulWidget {
 }
 
 class _QRCodeRouteState extends State<QRCodeRoute> {
+  String? _qrData;
+
+  @override
+  void initState() {
+    super.initState();
+    UIHelper.setBrightness(1.0);
+    _loadQRData();
+  }
+
+  Future<void> _loadQRData() async {
+    final level = await BatteryHelper.getBatteryLevel();
+    if (!mounted) return;
+
+    SettingValues.batteryLevel.text = level.toString();
+    final qrData = QrcodeHelper.getQRCodeString();
+    setState(() {
+      _qrData = qrData;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    UIHelper.setBrightness(1.0);
-
     return PlatformRoute(
       title: widget.title,
       body: Stack(
@@ -30,12 +50,14 @@ class _QRCodeRouteState extends State<QRCodeRoute> {
           Center(
             child: SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: QrImageView(
-                data: QrcodeHelper.getQRCodeString(),
-                backgroundColor: Colors.white,
-                errorCorrectionLevel: QrErrorCorrectLevel.L,
-                version: QrVersions.auto,
-              ),
+              child: _qrData == null
+                  ? const CircularProgressIndicator()
+                  : QrImageView(
+                      data: _qrData!,
+                      backgroundColor: Colors.white,
+                      errorCorrectionLevel: QrErrorCorrectLevel.L,
+                      version: QrVersions.auto,
+                    ),
             ),
           ),
           Positioned(
