@@ -36,7 +36,8 @@ class PlatformDropdownMenu extends StatelessWidget {
       margin: margin,
       width: width,
       height: 47.0,
-      decoration: BoxDecoration(color: dropdownButtonColor, borderRadius: BorderRadius.circular(6.0)),
+      decoration: BoxDecoration(
+          color: dropdownButtonColor, borderRadius: BorderRadius.circular(6.0)),
       child: DropdownButton<String>(
         isExpanded: true,
         underline: const SizedBox(),

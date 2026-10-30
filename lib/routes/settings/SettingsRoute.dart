@@ -25,15 +25,18 @@ class _SettingsRoute extends State<SettingsRoute> {
   void initState() {
     super.initState();
     // Get the current event ID and current driver station from the file
-    AppDataHelper.getCurrentEventIDAndCurrentDriverStation()
-        .then((value) => setState(() {
-              if (value != "") {
-                // Once retrieved then set the text fields to the values
-                List<String> lineArray = value.split(",");
-                SettingValues.eventID.text = lineArray[0];
-                SettingValues.selectedDriverStation.text = lineArray[1];
-              }
-            }));
+    AppDataHelper.getCurrentEventIDAndCurrentDriverStation().then((value) {
+      if (!mounted) return;
+
+      setState(() {
+        if (value != "") {
+          // Once retrieved then set the text fields to the values
+          List<String> lineArray = value.split(",");
+          SettingValues.eventID.text = lineArray[0];
+          SettingValues.selectedDriverStation.text = lineArray[1];
+        }
+      });
+    });
 
     UIHelper.setBrightness(0.3);
   }
@@ -59,43 +62,44 @@ class _SettingsRoute extends State<SettingsRoute> {
                             margin: const EdgeInsets.only(top: 10),
                             dropdownMenuSelectedItem:
                                 SettingValues.selectedDriverStation.text,
-                            onChanged: (value) {
+                            onChanged: (value) async {
                               setState(() {
                                 SettingValues.selectedDriverStation.text =
                                     value;
-                                AppDataHelper
-                                    .saveCurrentEventIDAndCurrentDriverStation();
-                                if (PrematchValues.matchNumber.text != "" &&
-                                    SettingValues.isTeamNumberEditable !=
-                                        "Yes") {
-                                  // If it isn't null
-                                  Schedulehelper.getTeamNumberFromSchedule(
-                                          int.parse(
-                                              // Get the team number from the schedule
-                                              PrematchValues.matchNumber.text))
-                                      .then((teamNumber) {
-                                    // Once retrieved then set the team number to the text field
-                                    PrematchValues.teamNumber.text =
-                                        teamNumber.toString();
-                                    return teamNumber;
-                                  }).then((teamNumber) {
-                                    Schedulehelper.findRobotCapacity(
-                                        teamNumber.toString());
-                                  }).then((capacity) {
-                                    PrematchValues.hopperCapacity.text =
-                                        capacity.toString();
-                                  });
-                                }
 
                                 // If the driver station starts with "Red" make alliance colour red, if it starts with "Blue" make alliance colour blue
-                                if (SettingValues.selectedDriverStation.text
-                                    .startsWith("Red")) {
+                                if (value.startsWith("Red")) {
                                   PrematchValues.teamAlliance = "Red";
-                                } else if (SettingValues
-                                    .selectedDriverStation.text
-                                    .startsWith("Blue")) {
+                                } else if (value.startsWith("Blue")) {
                                   PrematchValues.teamAlliance = "Blue";
                                 }
+                              });
+
+                              // Save settings before loading the team and capacity.
+                              await AppDataHelper
+                                  .saveCurrentEventIDAndCurrentDriverStation();
+                              if (!mounted) return;
+
+                              if (!SettingValues.isTeamNumberReadOnly) return;
+
+                              final matchNumber =
+                                  int.tryParse(PrematchValues.matchNumber.text);
+                              if (matchNumber == null) return;
+
+                              final result = await Schedulehelper
+                                  .getTeamNumberFromSchedule(matchNumber);
+                              if (!mounted) return;
+
+                              final teamNumber = result?.toString() ?? '';
+                              final capacity = result == null
+                                  ? ''
+                                  : await Schedulehelper.findRobotCapacity(
+                                      teamNumber);
+                              if (!mounted) return;
+
+                              setState(() {
+                                PrematchValues.teamNumber.text = teamNumber;
+                                PrematchValues.hopperCapacity.text = capacity;
                               });
                             },
                             dropdownItems:

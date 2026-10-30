@@ -1,184 +1,163 @@
 # FRC Scouting Platform
+
 [![Analyze Flutter Code](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/analyze.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/analyze.yml)
 [![Build APK](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-android.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-android.yml)
-[![Build Appbundle](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-appbundle.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-appbundle.yml)
-[![Build Windows](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-windows.yml/badge.svg)](https://github.com/Simbotics/Scouting-Platform-Mobile/actions/workflows/build-windows.yml)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-v3.24.3-blue)](https://docs.flutter.dev/release/archive)
-[![Dart version](https://img.shields.io/badge/Dart-v3.5.3-blue)](https://dart.dev/)
-[![Java version](https://img.shields.io/badge/Java-v17.0.11-blue)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+A Flutter app for collecting FRC match observations on Android tablets. Scouts record autonomous, teleop, endgame, and comment data, then display a QR code for a separate scanning device to collect.
 
-A simple and easy-to-use scouting platform for FRC competitions, built with Flutter. This app allows FRC teams to collect and analyze scouting data during competitions.
+The app runs in landscape and reads event schedules and robot capacities from the tablet's Documents directory. Android is the deployment target; the file paths and native battery integration are Android-specific.
 
-## Features
-- Record data for individual matches, including scores, balancing metrics, and various other stats for each team
-- View and analyze match data in real-time to make informed decisions about alliance selection and game strategy
-- Store data securely on a scanning device and export it for future use
+## Development setup
 
-## Prerequisites
-- An IDE that is compatible with the Dart programming language. The recommended IDE to use is [VSCode](https://code.visualstudio.com/download) as it has a Flutter compatible extension that can automatically install Flutter and can easily run the project.
-- [Android Studio 2024.2.1 or Above](https://developer.android.com/studio) - Used for emulating mobile devices on the machine running the project. For information on the bundles JDK, please see below.
-- [Java JDK 17.0.11](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) - Used for building the scouting platform with Gradle. <br/>
-*Note: Currently there are issues with Java JDK 21 that is bundled with Android Studio. Please be sure that you are currently running Java JDK 17.0.11.*
-- [Flutter 3.24.3 or Above](https://docs.flutter.dev/release/archive) - This can either be installed with the Flutter extension if you're using VSCode, or it can be installed by following the hyperlink to this prerequisite.
-- [Dart 3.5.3 or Above](https://dart.dev/get-dart) - Dart by default is installed alongside Flutter so you will not need to install it manually. In the event of issues with installing Dart with Flutter, you can following this sections hyperlink for more information.
+You need:
 
-## Getting Started
-The following guide will cover the basics of setting up the project and running the basics of it. For more information on the maintaining the scouting platform, please see [advanced concepts](#advanced-concepts).
+- Flutter with its bundled Dart SDK. The CI workflows use the stable Flutter channel; package constraints are in [pubspec.yaml](pubspec.yaml).
+- Java 17 and the Android SDK. The Android build and CI configuration use Java 17.
+- An Android tablet with USB debugging enabled, or an Android emulator for development.
+- A Dart-capable editor, such as VS Code with the Dart and Flutter extensions.
 
-1. Install the latest [Flutter](https://flutter.dev/docs/development/tools/sdk/releases) and [Dart](https://dart.dev/) SDKs on your machine. Additionally, install [Java JDK 17.0.11](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-2. Clone this repository using:
+From the repository root:
+
 ```sh
-git clone https://github.com/Simbotics/Scouting-Platform-Mobile
-```
-3. In the root of the project directory, run the following command to download and install all project dependencies:
-```sh
+flutter doctor -v
 flutter pub get
+flutter devices
+flutter run -d <android-device-id>
 ```
-4. To run the app, use the following command to run the app on either web or desktop. Otherwise, please install and use the Flutter VSCode extension to run on compatible devices with Android Studio. For more infdo
+
+Replace `<android-device-id>` with an Android device listed by `flutter devices`.
+
+To build a release APK:
+
 ```sh
-flutter run
+flutter build apk --release
 ```
 
-## Advanced Concepts
-A guide that documents the process of configuring advances parts of the scouting platform, it also acts as a guide to maintain this project in the future. The following guides expect that the project has already been set up by following the [getting started](#getting-started) guide.
+The default APK output is `build/app/outputs/flutter-apk/app-release.apk`. The current Gradle configuration uses the debug signing configuration for release builds; configure release signing before distributing through a store.
 
-### Lib Subfolder Breakdown
-- `builders` - This folder contains a `bases` subfolder and a route page base. The route page base simplifies the creation of routes by allowing customization through this widget.
-    - `bases` - Includes foundational widgets like number input fields, stopwatch fields, and text fields that can be tailored to various needs.
-- `components` - Contains subfolders with reusable components used throughout the project.
-    - `navigation` - Holds a `components` subfolder containing widgets used for building the navigation sidebar, including the finalized sidebar and its routing.
-        - `components` - Widgets used in constructing the navigation sidebar.
-- `routes` - Holds subfolders for each route, along with the widgets used in them.
-    - `comments` - Displays the page at the end of the user flow where users can leave comments on the match they just played.  
-    *All inputs on this page feed into the `lib/utils/data/values/CommentValues.dart` values.*
-    - `data` - The main data entry page where users input details for autonomous, teleoperated, and endgame phases. Its fields and labels are organized into separate subdirectories.
-    *All inputs on this page feed into the `lib/utils/data/values/AutonomousValues.dart`, `lib/utils/data/values/TeleoperatedValues.dart`, and `lib/utils/data/values/EndgameValues.dart` values.*
-    - `prematch` - Contains fields for initials, match number, and team number, and automatically selects the team based on the match number and driver station configured in the settings.
-    *All inputs on this page feed into the `lib/utils/data/values/PrematchValues.dart` values.*
-    - `qrcode` - Contains routes for scanning QR codes and managing related data for creating or saving them.
-    - `settings` - Provides the settings route where users configure event ID, team number editability, and other important settings for app functionality.
-    *All inputs on this page feed into the `lib/utils/data/values/SettingValues.dart` values.*
-- `styles` - Contains widgets for easily generating headers and titles, as well as a set of colors used throughout the app to maintain uniformity in the scouting platform.
-- `utils` - Includes utilities like constants, value files, and helpers to support app functionality.
-    - `data` - Stores constants and values that update as the app is used.
-        - `constants` - Holds fixed values such as dropdown options, app details (name, URIs, event codes), and other immutable app settings.
-        - `values` - Stores dynamic values that change based on user input, with controllers ensuring app-wide synchronization during a session.
-    - `helpers` - Includes methods to assist with file creation, UI adjustments like brightness, and functions like QR code scanning and generation.
+## Prepare a tablet for an event
 
-### Automatic Team Number Assigning
-The scouting platform uses a system which combs through a generated match schedule with a custom-made schedule generator.
+The app currently reads and writes files under:
 
-#### Schedule Format
-The schedule that is generated by the custom schedule generator is in the following format:
+```text
+/storage/emulated/0/Documents/
 ```
+
+Place the schedule and optional capacity file there, and allow the app's storage permission when prompted. Verify file access on the actual tablets before scouting.
+
+| File | Purpose |
+| --- | --- |
+| `match_schedule_<event_id>.csv` | Teams assigned to each match and driver station. |
+| `robot_capacity.csv` | Hopper capacity for each team. |
+| `scouting_app_data.pickle` | App-created settings file containing plain text: `event_id,driver_station`. |
+| `<event_id>_output.csv` | App-created local copy of generated scouting records, with one caret-separated record per line. |
+
+The settings file uses a `.pickle` filename but contains plain text. The output file uses a `.csv` filename but separates fields with `^`.
+
+### Match schedule
+
+For event `2026onham`, name the file `match_schedule_2026onham.csv`:
+
+```csv
 match_number,red1,red2,red3,blue1,blue2,blue3
-1,1114,1113,1112,1111,1110,1109
-2,2056,2055,2054,2053,2052,2051
-...,...,...,...,...,...,...
+1,1114,2056,1241,3683,5406,1325
+2,610,771,865,188,2200,4039
 ```
 
-#### Using a Generated Schedule
-Using a generated schedule, automatically assigning team numbers based on the selected driver station and match number is simple. Follow these steps to use a schedule:
+Keep the header on the first line and one row per match, starting at match 1 in sequential order. The current lookup uses the match number as the row index; it does not search the first column. Do not omit matches or insert blank lines. Use simple comma-separated values without quoted fields or extra spaces.
 
-1. Generate a match schedule with a file name that follows the app's naming convention: `match_schedule_[event_id].csv`, where `[event_id]` is replaced by the ID of the event you're scouting. Place this file in the device's documents directory.
-2. Ensure the schedule has the correct team IDs in the proper order. You can verify this by checking the first three matches and comparing them to The Blue Alliance data.
-3. In the `lib/utils/data/constants/AppConstants.dart` file, locate the default event ID configurations. It's good practice to update the `defaultEventID` to the current event ID, ensuring the app grabs the correct schedule. Although this value can be modified and saved between sessions, updating the `defaultEventID` helps avoid errors. Additionally, update the `defaultFileName` value to match the CSV file name generated after scanning.
-4. Test the automatic team number assignment by navigating to the settings, verifying the event ID (or updating it if necessary), selecting your desired driver station, and then heading to the prematch data route. Enter a match number, and the app should automatically resolve the team number based on your driver station and match number.
+Schedules must be copied onto the tablet before use. The app reads the local file and has no automatic schedule download.
 
-### Modifying Generated Spreadsheet
-To modify the generated spreadsheets values and columns is made simple.
+### Robot capacity
 
-#### Spreadsheet Column Configuration
-All columns for the spreadsheet are configured in the `lib/utils/helpers/ScanningHelper.dart` file under the `csvColumnNames` value. The column names will appear from left to right following the array from top to bottom. <br/>
-*Note: When modifying the values in this array, please keep in mind that it will shift the indexes of either up or down depending on your operation. This is important to note when adding the values to the spreadsheet.*
+Use two columns in `robot_capacity.csv`:
 
-#### QR Code Value Configuration
-When removing or adding values to the QR code or the spreadshet, you can modify the values in the `lib/utils/helpers/QRCodeHelper.dart` file. Beside each value you can find an index number comment, this is the order that each value appears in the spreadsheet when it scans and the order it appears in for the QR code. Please keep in mind that these values will shift indexes in the QR code and the spreadsheet when a value is removed or added.
-
-### QR Code Encoding
-The QR code is not currently readable meaning that the values are not stored in plain text. To reduce issues with unicode characters the data is encoded with base64 on the way in to the QR code and is decoded by the scanner on the way out to the spreadsheet. You can decode the values going into the QR code by using a free online too such as https://www.base64decode.org/ to decode the base64 data.
-
-### Input Field Examples
-Examples of how to use the base input field widgets with basic functionality. For more information on more complex configurations, please see the base file you wish to configure.
-
-#### Counter Number Field
-A field that has an increment and decrement button on either side of the value you're changing displayed. This is used heavily for tracking scoring of game pieces.
+```csv
+team_number,capacity
+1114,60
+2056,65
+1241,55
 ```
-CounterNumberField(
-    controller: ValuesFile.valueToChange,
-    onTapDecrement: () =>
-        decrementNumber(ValuesFile.valueToChange),
-    onTapIncrement: () =>
-        incrementNumber(ValuesFile.valueToChange))
-```
-`ValuesFile`: The name of the file that contains the value you wish to control via the counter number field.
-`valueToChange`: The value name in the `ValuesFile` you wish to control via the counter number field.
-`decrementNumber` and `incrementNumber`: Custom methods that check the value of the `valueToChange` and either adds or removes 1 with the `setState` function.
 
-#### Number Input Field
-A field that allows the user to type any number in a field. This is similar to a text input field, but only allows the user to type numbers in the field.
-```
-NumberInputField(
-    onChanged: (value) {},
-    controller: ValuesFile.valueToChange,
-    hintText: "Example Field",
-)
-```
-`ValuesFile`: The name of the file that contains the value you wish to control via the number input field.
-`valueToChange`: The value name in the `ValuesFile` you wish to control via the number input field.
+The lookup matches the first column to the team number and returns the second column. Missing files or unmatched teams produce an empty capacity. Capacity is displayed in the app bar and is not included in the current QR payload.
 
-#### Platform Dropdown Menu
-A dropdown menu that is custom made to be flexible and to come pre-packaged with basic configurations. Used mainly for endgame related states or yes or no dropdowns.
-```
-PlatformDropdownMenu(
-    dropdownMenuSelectedItem: ValuesFile.valueToChange.text,
-    onChanged: (value) {
-        setState(() {
-            ValuesFile.valueToChange.text = value;
-        });
-    },
-    dropdownItems: OptionConstants.yesNoOptions
-)
-```
-`ValuesFile`: The name of the file that contains the value you wish to control via the dropdown menu.
-`valueToChange`: The value name in the `ValuesFile` you wish to control via the dropdown menu.
-`OptionConstants.yesNoOptions`: An array of strings that can be selected in the dropdown. This example shows an example of the yes or no options to create a simple yes or no dropdown.
+### Settings
 
-#### Stopwatch Button (DEPRECATED)
-Allows the user to record time for something like a hang or endgame phase. A single tap can start or start the stopwatch and a double tap will reset the time.
-```
-StopwatchButton(
-    value: ValuesFile.stopwatchTime,
-    state: ValuesFile.stopwatchState,
-    timer: ValuesFile.stopwatchInstance,
-)
-```
-`ValuesFile`: The name of the file that contains the value you wish to control via the stopwatch.
-`stopwatchTime`: The text editing controller used to hold the time recorded by the stopwatch.
-`stopwatchState`: The text editing controller used to hold the number state of the stopwatch (e.g. 0, 1, 2, 3)
-`stopwatchInstance`: The stopwatch instance that holds and manages the values of the stopwatch.
+Open **Settings** and select:
 
-#### Text Input Field
-A commonly used field in the comments phase of the user experience. This allows the user to type any text characters, with the exception that all unicode characters are stripped when encoded into the QR code.
+- **Event ID:** must match the schedule filename.
+- **Driver Station:** Red 1–3 or Blue 1–3.
+- **Team Number Editable:** choose **No** for schedule-based assignment, or **Yes** for manual team entry.
+
+Return to **Prematch** after changing events. Event ID and driver station are saved between sessions; team-number editability defaults to automatic mode when the app starts.
+
+## Scouting workflow
+
+1. **Prematch:** enter scout initials and match number. Automatic mode fills the team and capacity from the local files. Changing the match clears the previous team and capacity. Manual team entry currently clears capacity without looking it up.
+2. **Auto:** record start position, general path, depth into the pile, climb result, and times beached.
+3. **Teleop:** record scoring, passing, cleanup, cycles, stealing, defense, robot status, times beached, and endgame climb result.
+4. **Comments:** enter brief autonomous, teleop, and endgame observations.
+5. **QR Code:** the app reads the tablet battery level, generates the payload once for that screen opening, and displays it for scanning. It also starts saving a local copy.
+6. **Reset:** after the record has been collected, confirm Reset to increment the match number, clear team/capacity and scouting observations, and return to Prematch. Scout initials are retained. Automatic mode then loads the next team.
+
+The sidebar also allows direct navigation between screens. Verify the displayed match, team, and driver station before recording or scanning data.
+
+## QR data format
+
+[QRCodeHelper.dart](lib/utils/helpers/QRCodeHelper.dart) defines the field order. Values are joined with `^`, encoded as UTF-8, and then Base64-encoded for the QR. Base64 is encoding, not compression or encryption.
+
+The current payload has 25 fields. These positions include the battery field and are zero-based:
+
+| Positions | Fields, in order |
+| --- | --- |
+| 0 | Tablet battery percentage (`-1` when unavailable). |
+| 1–4 | Team number, match number, scout initials, driver station. |
+| 5–9 | Auto start position, general path, depth into pile, climb result, times beached. |
+| 10–19 | Teleop scoring, passing, cleanup, cycles, stealing, defense, got defended, broken, dead, back to life. |
+| 20 | Teleop times beached. |
+| 21 | Endgame climb result. |
+| 22–24 | Auto comments, teleop comments, endgame comments. |
+
+Teleop Yes/No selections are stored as the strings `Yes` and `No`. The scanning application must decode Base64 as UTF-8 and interpret the fields in this same order. Coordinate any field additions, removals, reordering, or type changes with the scanner.
+
+The local output file stores the decoded, caret-separated payload. Saving skips a record when its scouting fields match the last nonempty record, ignoring the battery field. Opening a QR does not confirm that a separate scanner has collected it or that the local save succeeded.
+
+## Code structure
+
+| Location | Responsibility |
+| --- | --- |
+| [lib/main.dart](lib/main.dart) | App entry point, landscape orientation, and initial Prematch route. |
+| [lib/routes](lib/routes) | Prematch, auto, teleop, comments, settings, and QR screens. Each form keeps its labels, controls, and callbacks in its route. |
+| [lib/builders/PlatformRoute.dart](lib/builders/PlatformRoute.dart) | Shared scaffold, app bar, sidebar, and content container. |
+| [lib/builders/bases](lib/builders/bases) | Reusable text inputs, number inputs, dropdowns, and counters. |
+| [lib/components/navigation](lib/components/navigation) | Sidebar and navigation items. |
+| [lib/utils/data/values](lib/utils/data/values) | Shared controllers and values used across routes, plus reset methods. |
+| [lib/utils/data/constants](lib/utils/data/constants) | App defaults and dropdown options. |
+| [lib/utils/helpers](lib/utils/helpers) | Schedule lookup, file persistence, QR encoding, battery access, and brightness helpers. |
+| [lib/styles](lib/styles) | Shared colors and text/header styles. |
+| [MainActivity.kt](android/app/src/main/kotlin/org/simbotics/scouting_platform/MainActivity.kt) | Android method-channel handler for battery readings. |
+
+### Changing the form
+
+- Change layout, labels, and callbacks in the relevant route. Small private helpers handle repeated field layout.
+- Add shared controllers and reset behavior in the appropriate values file.
+- Edit dropdown choices in [OptionConstants.dart](lib/utils/data/constants/OptionConstants.dart).
+- Edit app defaults in [AppConstants.dart](lib/utils/data/constants/AppConstants.dart).
+- Update QR serialization and the receiving scanner together when changing exported data.
+
+## Checks before use
+
+Run formatting and static analysis:
+
+```sh
+dart format lib
+flutter analyze
 ```
-TextInputField(
-    controller: ValuesFile.valueToChange
-    onChanged: (value) {},
-    hintText: "Example Field"
-)
-```
-`ValuesFile`: The name of the file that contains the value you wish to control via the text input field.
-`valueToChange`: The value name in the `ValuesFile` you wish to control via the text input field.
 
-## Schedule Generator
-We use a custom-built [Schedule Generator](https://github.com/Simbotics/Scouting-Platform-Schedule-Generator) to generate schedule for [automatic team number assigning](#automatic-team-number-assigning). You can find all documentation and help in the repository.
+On an Android tablet, check the complete flow with a known schedule: select a driver station, enter a match, confirm team/capacity, fill the form, scan the QR, and reset to the next match. Check that Yes/No selections and comments survive scanning, and that the local output file receives the record. Also try manual team entry and a match that is absent from the schedule.
 
-## Contributing
-Contributions are always welcome! If you have an idea for a feature or want to report a bug, please open an issue on this repository.
-
-If you want to contribute code, please fork this repository and create a pull request with your changes.
+The repository's CI workflows run static analysis and build an Android APK on pushes. Tablet verification is still needed for file access, battery readings, screen layout, and scanner compatibility.
 
 ## License
-This project is licensed under the [BSD 3-Clause "New" or "Revised" License](https://github.com/Simbotics/Scouting-Platform-Mobile/blob/main/LICENSE).
 
+[BSD 3-Clause](LICENSE), Team 1114 — Simbotics.
